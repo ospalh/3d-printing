@@ -5,10 +5,16 @@ Add a stand so i won’t knock that thing over with every careless movement.
 
 As a second part, a hopper on top so i can just pour the tea in.
 
-I then want to slide the hopper to the side, and with that movement strike the measuer (gestrichenes Maß), so that i have the exact ammount.
+I then want to slide the hopper to the side, and with that movement strike the measuer , so that i have the exact ammount. The stirking instrument for this was traditionally called “strickle”, so the top part can be called hoppre/strickle.
 
-For that, i need some sort of spillway on one side, where the tea falls back into the storage tin.
+For the tea falling back into the storage tin, there has to be some sort of spillway on one side.
 
-Then i need a spillway/hopper where i pour the tea leaves into the filter. Probably on the other side to the first spillway.
+Abandoning some earlier ideas, there will be no second hopper/spillway to pour out the measured tea.
 
-There will probably be a groove on the sides and the top of the thing where the top bit is sliding along.
+Also, when striking the tea, the hopper is pulled out all the way, and the tea then poured from only the bottom part into the tea filter, or the hopper for that.
+
+
+Also: add warnigs:
+https://pinshape.com/blog/3d-printing-food-safe/
+
+Mention oiler: clean your extruder nozzle! Use vegetable oil!
