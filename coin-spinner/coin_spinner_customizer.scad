@@ -1,3 +1,13 @@
+// -*-  coding: utf-8 -*-
+//
+// Coin spinner
+// A slightly modified Money Spinner
+//
+// © 2017 ospalh (Roland Sieker) <ospalh@gmail.com>
+// Licensed CC-BY-SA https://creativecommons.org/licenses/by-sa/4.0/
+
+
+// Original header below
 /*
     Filename: moneySpinner02
     Dated: 2017-01-15T08:21:52+10:00
@@ -10,7 +20,7 @@
 
     Uploaded to Customizer 2016-12-08T21:16:25+10:00
 
-    Change Log: 
+    Change Log:
     	0.2 - Initial upload to Customizer
     	0.3 - Activated 'Flush' parameter
     	0.4 - Added Qatari 50 dirham (QA 0.5QAR) Ref: https://www.catawiki.com/catalog/coins/countries/qatar/432219-qatar-50-dirhams-1973-year-1393
@@ -22,7 +32,7 @@
     The knurled library is incorporated in toto here as Customizer is limited to one SCAD file.
 
 	 * knurledFinishLib_v2.scad
-	 * 
+	 *
 	 * Written by aubenc @ Thingiverse
 	 *
 	 * This script is licensed under the Public Domain license.
@@ -36,19 +46,21 @@
 */
 
 /* [Spinner_Parameters] */
-//Which coin do you want to use?
-coin_list=3;//[1:AU $2,2:AU 5c,3:US 10c,4:UK £1,5:UK 5p,6:EU €1,7:QA 0.5QAR,8:US 5c]
-coin=coin_list;
 
-//How many spokes should the spinner have?
+// Measure your coin or look it up on Wikipedia or elsewhere
+coin_diameter = 22.3;  // [10:0.1:30]
+
+// Measure or look it up.
+coin_thickness = 2.1; // [0.2:0.1:7]
+
 Number_of_Spokes=3;//[2,3,4,5,6,7]
 spokeNumber=Number_of_Spokes;
 
-//Choose Knurled if you are tough enough, Smooth if you are a wuss 
+//Choose Knurled if you are tough enough, Smooth if you are a wuss
 Edge_finish=1;//[0:Smooth,1:Knurled]
 finish=Edge_finish;		//Smooth deletes knurled edge but adds 1mm to rim for strength
 
-//Flush for easier printing 
+//Flush for easier printing
 Flush_or_Raised_Hub=1;//[0:Hub,1:Flush]
 flush=Flush_or_Raised_Hub;		//Flush is easier to print, the hub is height of bearing and may print with support
 
@@ -93,8 +105,8 @@ flush=Flush_or_Raised_Hub;		//Flush is easier to print, the hub is height of bea
 						e_smooth =  2,
 						s_smooth =  0)
 	{
-	    knurled_cyl(k_cyl_hg, k_cyl_od, 
-	                knurl_wd, knurl_hg, knurl_dp, 
+	    knurled_cyl(k_cyl_hg, k_cyl_od,
+	                knurl_wd, knurl_hg, knurl_dp,
 	                e_smooth, s_smooth);
 	}
 
@@ -222,56 +234,6 @@ flush=Flush_or_Raised_Hub;		//Flush is easier to print, the hub is height of bea
 		echo("");
 	}
 
-//Allocate coin data
-
-	coinName=coin==1 ? "AU $2" : 
-		(coin==2 ? "AU 5c" : 
-			(coin==3 ? "US 10c" :
-				(coin==4 ? "UK £1" :
-					(coin==5 ? "UK 5p" :
-						(coin==6 ? "EU €1" :
-							(coin==7 ? "QA 0.5QAR" : "US 5c")
-						)	
-					)	
-				)
-			)
-		);
-
-	coin_d=coin==1 ? 20.5 : 
-		(coin==2 ? 19.4 : 
-			(coin==3 ? 17.9 :
-				(coin==4 ? 22.5 :
-					(coin==5 ? 18.0 :
-						(coin==6 ? 23.3 :
-							(coin==7 ? 25.0 : 21.3)
-						)
-					)	
-				)
-			)
-		);
-
-	coin_z=coin==1 ? 2.8 : 
-		(coin==2 ? 1.3 : 
-			(coin==3 ? 1.35 :
-				(coin==4 ? 3.15 :
-					(coin==5 ? 1.8 :
-						(coin==6 ? 2.35 :
-							(coin==7 ? 1.78 : 1.95)
-						)
-					)	
-				)
-			)
-		);
-
-	stack=coin==2 ? 3 : 
-		(coin==3 ? 3 : 
-			(coin==5 ? 3 :
-				(coin==7 ? 3 :
-					(coin==8 ? 4 : 2)
-				)
-			)	
-		);
-
 //Default values
 	$fa=0.8;
 	$fs=0.8;
@@ -281,34 +243,37 @@ flush=Flush_or_Raised_Hub;		//Flush is easier to print, the hub is height of bea
 	rim=5;	//Nominal thickness for hub, adjustable as below for smooth finish
 
 	//If smooth rim: add 1mm for extra strength to coin holders only
-	rim_x=finish==0 ? rim+1 : rim;	
+	rim_x=finish==0 ? rim+1 : rim;
 
-	holder_d=coin_d+rim_x;
-	holder_z=coin_z*stack;
+	holder_d=coin_diameter+rim_x;
+	holder_z=coin_thickness*stack;
 
 	brg_d=22.0;
 	brg_z=7.0;
 
-	spoke_x=coin_d/2;
-	spoke_y=coin_d/3;
+	spoke_x=coin_diameter/2;
+	spoke_y=coin_diameter/3;
 	spoke_z=holder_z;
 
+    // Number of coins is now calculated
+    stack = floor(brg_z/coin_thickness);
+
 	//If flush: hub will be height of coin stack otherwise height of bearing
-	hub_z=flush==1 ? coin_z*stack : brg_z;	
+	hub_z=flush==1 ? coin_thickness*stack : brg_z;
 
 
 //SpinnerModules
 
 	module dollarHolder() {
-		translate([0,coin_d/2+spoke_y,0])
+		translate([0,coin_diameter/2+spoke_y,0])
 		difference() {
-			translate([0,0,-coin_z*stack/2])
-			if(finish == 1) 
-				knurl(k_cyl_hg=holder_z,k_cyl_od=holder_d); 
+			translate([0,0,-coin_thickness*stack/2])
+			if(finish == 1)
+				knurl(k_cyl_hg=holder_z,k_cyl_od=holder_d);
 			else
 				cylinder(d=holder_d,h=holder_z,center=false);
-			cylinder(d=coin_d,h=holder_z+4,center=true);
-		}	
+			cylinder(d=coin_diameter,h=holder_z+4,center=true);
+		}
 	}
 
 	module hub() {
