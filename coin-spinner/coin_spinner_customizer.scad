@@ -210,29 +210,6 @@ flush=Flush_or_Raised_Hub;		//Flush is easier to print, the hub is height of bea
 	    }
 	}
 
-	module knurl_help()
-	{
-		echo();
-		echo("    Knurled Surface Library  v2  ");
-	   echo("");
-		echo("      Modules:    ");
-		echo("");
-		echo("        knurled_cyl(parameters... );    -    Requires a value for each an every expected parameter (see bellow)    ");
-		echo("");
-		echo("        knurl();    -    Call to the previous module with a set of default parameters,    ");
-		echo("                                  values may be changed by adding 'parameter_name=value'        i.e.     knurl(s_smooth=40);    ");
-		echo("");
-		echo("      Parameters, all of them in mm but the last one.    ");
-		echo("");
-		echo("        k_cyl_hg       -   [ 12   ]  ,,  Height for the knurled cylinder    ");
-		echo("        k_cyl_od      -   [ 25   ]  ,,  Cylinder's Outer Diameter before applying the knurled surfacefinishing.    ");
-		echo("        knurl_wd     -   [   3   ]  ,,  Knurl's Width.    ");
-		echo("        knurl_hg      -   [   4   ]  ,,  Knurl's Height.    ");
-		echo("        knurl_dp     -   [  1.5 ]  ,,  Knurl's Depth.    ");
-		echo("        e_smooth   -    [  2   ]  ,,  Bevel's Height at the bottom and the top of the cylinder    ");
-		echo("        s_smooth   -    [  0   ]  ,,  Knurl's Surface Smoothing :  File donwn the top of the knurl this value, i.e. 40 will snooth it a 40%.    ");
-		echo("");
-	}
 
 //Default values
 	$fa=0.8;
@@ -240,23 +217,26 @@ flush=Flush_or_Raised_Hub;		//Flush is easier to print, the hub is height of bea
 
 //Variables:
 
-	rim=5;	//Nominal thickness for hub, adjustable as below for smooth finish
+	brg_d=22.0;
+	brg_z=7.0;
+
+    rim=5;	//Nominal thickness for hub, adjustable as below for smooth finish
 
 	//If smooth rim: add 1mm for extra strength to coin holders only
 	rim_x=finish==0 ? rim+1 : rim;
 
+    // Number of coins is now calculated
+    stack = floor(brg_z/coin_thickness);
+
+    echo("Use ", stack, " coins per spoke.");
+
 	holder_d=coin_diameter+rim_x;
 	holder_z=coin_thickness*stack;
-
-	brg_d=22.0;
-	brg_z=7.0;
 
 	spoke_x=coin_diameter/2;
 	spoke_y=coin_diameter/3;
 	spoke_z=holder_z;
 
-    // Number of coins is now calculated
-    stack = floor(brg_z/coin_thickness);
 
 	//If flush: hub will be height of coin stack otherwise height of bearing
 	hub_z=flush==1 ? coin_thickness*stack : brg_z;
