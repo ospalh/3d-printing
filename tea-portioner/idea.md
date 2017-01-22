@@ -14,7 +14,5 @@ Abandoning some earlier ideas, there will be no second funnel/spillway to pour o
 Also, when striking the tea, the funnel is pulled out all the way, and the tea then poured from only the bottom part into the tea filter, or the funnel for that.
 
 
-Also: add warnigs:
-https://pinshape.com/blog/3d-printing-food-safe/
 
-Mention oiler: clean your extruder nozzle! Use vegetable oil!
+Comment: Yes, the “American Customary Units” *is* a joke, of the ha-ha-only-serious kind. Part of my pet peeve.
