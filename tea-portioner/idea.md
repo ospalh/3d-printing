@@ -1,18 +1,9 @@
+The funnel will get a flat bottom, and the measuring cup internal groves, making it higher, and with thicker walls at the top. That reduces overhangs.
 
-I want a container at the bottom, with the right volume for one pot of roibos tea. That is about 53 ml.
+Wandstärke 1.2 mm or 1.6 mm
+Breite der Arme: 2.4 mm
 
-Add a stand so i won’t knock that thing over with every careless movement.
-
-As a second part, a funnel on top so i can just pour the tea in.
-
-I then want to slide the funnel to the side, and with that movement strike the measuer , so that i have the exact ammount. The stirking instrument for this was traditionally called “strickle”, so the top part can be called hoppre/strickle.
-
-For the tea falling back into the storage tin, there has to be some sort of spillway on one side.
-
-Abandoning some earlier ideas, there will be no second funnel/spillway to pour out the measured tea.
-
-Also, when striking the tea, the funnel is pulled out all the way, and the tea then poured from only the bottom part into the tea filter, or the funnel for that.
-
+verschiedene toleranzen: Overhang droop vs vertical tolerance, + maybe overnag angle (80°?)
 
 
 Comment: Yes, the “American Customary Units” *is* a joke, of the ha-ha-only-serious kind. Part of my pet peeve.
