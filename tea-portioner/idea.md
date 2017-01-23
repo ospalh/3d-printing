@@ -12,3 +12,7 @@ For the tea falling back into the storage tin, there has to be some sort of spil
 Abandoning some earlier ideas, there will be no second funnel/spillway to pour out the measured tea.
 
 Also, when striking the tea, the funnel is pulled out all the way, and the tea then poured from only the bottom part into the tea filter, or the funnel for that.
+
+
+
+Comment: Yes, the “American Customary Units” *is* a joke, of the ha-ha-only-serious kind. Part of my pet peeve.
