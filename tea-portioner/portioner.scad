@@ -41,7 +41,7 @@ tau = 2 * PI;
 roundness = 5;
 inner_radius = roundness-wall_thickness;
 
-slider_tolerance = 0.1;
+droop_tolerance = 0.1;
 
 leg_width = 2.4;
 feet_angle = 50;  // Degrees
@@ -84,7 +84,6 @@ else
       feet_and_chute();
    }
    translate([0,some_distance,0]){
-   funnel_base();
    funnel();
    }
 }
@@ -144,68 +143,6 @@ module measure()
    translate([0,0,inner_box_dimension+0.5*wall_thickness])
    {
       // Stuff at the top edge: the rail for the funnel
-      translate(
-         [icl_xy/2+roundness+0.5*wall_thickness,0,0])
-      {
-         cube([wall_thickness, inner_box_dimension+2*wall_thickness,
-               wall_thickness], center=true);
-      }
-      translate(
-         [-icl_xy/2-roundness-0.5*wall_thickness,0,0])
-      {
-         cube([wall_thickness, inner_box_dimension+2*wall_thickness,
-               wall_thickness], center=true);
-      }
-      // Fill in the space at the corners
-      translate([+icl_xy/2,+icl_xy/2,0])
-      {
-         difference()
-         {
-            translate([+inner_radius,+inner_radius,0]){
-               cube([2*wall_thickness,2*wall_thickness,wall_thickness],center=true);
-            }
-            // The +1 is to make sure we cut off all at the top and bottom
-            cylinder(h=wall_thickness+1,r=inner_radius,center=true);
-         }
-      }
-      translate([+icl_xy/2,-icl_xy/2,0])
-      {
-         difference()
-         {
-            translate([+inner_radius,-inner_radius,0]){
-               cube([2*wall_thickness,2*wall_thickness,wall_thickness],center=true);
-            }
-            cylinder(h=wall_thickness+1,r=inner_radius,center=true);
-         }
-      }
-      translate([-icl_xy/2,+icl_xy/2,0])
-      {
-         difference()
-         {
-            translate([-inner_radius,+inner_radius,0]){
-               cube([2*wall_thickness,2*wall_thickness,wall_thickness],center=true);
-            }
-            cylinder(h=wall_thickness+1,r=inner_radius,center=true);
-         }
-      }
-      translate([-icl_xy/2,-icl_xy/2,0])
-      {
-         difference()
-         {
-            translate([-inner_radius,-inner_radius,0]){
-               cube([2*wall_thickness,2*wall_thickness,wall_thickness],center=true);
-            }
-            cylinder(h=wall_thickness+1,r=inner_radius,center=true);
-         }
-      }
-      // The two end stops
-      translate(
-         [0,-icl_xy/2-roundness+0.5*wall_thickness,0])
-      {
-         cube([inner_box_dimension+6*wall_thickness, wall_thickness,
-               wall_thickness], center=true);
-      }
-
    }
 
 }
@@ -218,7 +155,7 @@ module feet_and_chute()
    h = inner_box_dimension + wall_thickness;
    l = h / sin(feet_angle);
    p = l * cos(feet_angle);
-   o = w/2 + p/2 - wall_thickness/2;
+   o = w/2 + p/2 - leg_width;
    difference()
    {
       union()
@@ -234,7 +171,7 @@ module feet_and_chute()
                      cube([leg_width, l, leg_width], center=true);
                   }
                }
-               translate([0,-o-p/2+wall_thickness/2,,wall_thickness/2])
+               translate([0,-o-p/2+leg_width/2,wall_thickness/2])
                {
                   cylinder(r=1.5*leg_width,h=wall_thickness,center=true);
                }
@@ -247,7 +184,7 @@ module feet_and_chute()
                   cube([leg_width, l, leg_width], center=true);
                }
             }
-            translate([0,-o-p/2+wall_thickness/2,,wall_thickness/2])
+            translate([0,-o-p/2+leg_width/2,wall_thickness/2])
             {
                cylinder(r=1.5*leg_width,h=wall_thickness,center=true);
             }
@@ -260,7 +197,7 @@ module feet_and_chute()
                      cube([leg_width, l, leg_width], center=true);
                   }
                }
-               translate([0,-o-p/2+wall_thickness/2,,wall_thickness/2])
+               translate([0,-o-p/2+leg_width/2,wall_thickness/2])
                {
                   cylinder(r=1.5*leg_width,h=wall_thickness,center=true);
                }
@@ -302,44 +239,24 @@ module feet_and_chute()
    }
 }
 
-module funnel_base()
+module funnel()
 {
-   w = inner_box_dimension+2*wall_thickness;
-   translate([0,0,1.5*wall_thickness+slider_tolerance])
+   // First the base
+   xl = inner_box_dimension+2*wall_thickness;
+   yl = inner_box_dimension+wall_thickness;
+   translate([0,0,0.5*wall_thickness])
    {
       difference(){
          difference()
          {
-            cube([4*wall_thickness + w, w, 3*wall_thickness+ 2*slider_tolerance], center=true);
+            cube([xl, yl, wall_thickness], center=true);
             minkowski()
             {
                // This is the main hollow shell
-               cube([icl_xy, icl_xy, 5*wall_thickness], center=true);
+               cube([icl_xy-wall_thickness, icl_xy-wall_thickness, 5*wall_thickness], center=true);
                cylinder(r=inner_radius,h=5*wall_thickness);
             }
          }
-         translate([0,wall_thickness-slider_tolerance,0])
-         {
-            cube([2*wall_thickness + w+2*slider_tolerance, w, wall_thickness+ 2*slider_tolerance],center=true);
-         }
-         translate([0,wall_thickness-slider_tolerance,-wall_thickness-slider_tolerance])
-         {
-            cube([w+2*slider_tolerance, w, wall_thickness+ 6*slider_tolerance],center=true);
-         }
-         translate([0, -w/2,-wall_thickness+slider_tolerance])
-         {
-            cube([6*wall_thickness + w,2*wall_thickness, 3*wall_thickness],center=true);
-         }
       }
-   }
-}
-
-
-module funnel()
-{
-   w = inner_box_dimension+2*wall_thickness;
-   translate([0,0,3*wall_thickness+ 2*slider_tolerance])
-   {
-      // cube([wall_thickness, 2*w, 2*w],center=true);
    }
 }
