@@ -42,6 +42,7 @@ roundness = 5;
 inner_radius = roundness-wall_thickness;
 
 droop_tolerance = 0.1;
+slider_tolerance = 1;
 
 leg_width = 2.4;
 feet_angle = 50;  // Degrees
@@ -69,7 +70,7 @@ inner_box_dimension = cube_root_bit / (pow(2, 1/3) * pow(3, 2/3)) -
 
 // End crazy math.
 
-some_distance = 4 * inner_box_dimension;
+some_distance = 10 * inner_box_dimension;
 
 
 if (use_american_customary_units)
@@ -78,13 +79,14 @@ if (use_american_customary_units)
 }
 else
 {
-   //translate([some_distance,0,0])
+   translate([some_distance,0,0])
    {
-      measure();
-      feet_and_chute();
+      %measure();
+      %feet_and_chute();
    }
-   translate([0,some_distance,0]){
-   %funnel();
+   //translate([0,some_distance,0])
+   {
+      funnel();
    }
 }
 
@@ -289,21 +291,157 @@ module feet_and_chute()
 module funnel()
 {
    // First the base
-   xl = inner_box_dimension+2*wall_thickness;
-   yl = inner_box_dimension+wall_thickness;
-   translate([0,0,0.5*wall_thickness])
+   xo = inner_box_dimension+2*wall_thickness-2*roundness-2*slider_tolerance;
+   yo = inner_box_dimension+3*wall_thickness-2*roundness-  slider_tolerance;
+
+   xm = inner_box_dimension                 -2*roundness-2*slider_tolerance;
+   ym = inner_box_dimension+  wall_thickness-2*roundness-  slider_tolerance;
+
+   xi = inner_box_dimension-2*wall_thickness-2*roundness-2*slider_tolerance;
+   yi = inner_box_dimension-  wall_thickness-2*roundness-  slider_tolerance;
+   difference()
+    {
+       translate([0,wall_thickness,0])
+       {
+          linear_extrude(wall_thickness)
+          {
+             offset(roundness)
+             {
+                square([xo,yo],center=true);
+             }
+          }
+       }
+       translate([0,wall_thickness,-0.5*wall_thickness])
+       {
+          linear_extrude(2*wall_thickness)
+          {
+             offset(roundness)
+             {
+                square([xi, yi],center=true);
+             }
+          }
+       }
+
+    }
+
+   difference()
+    {
+       translate([0,wall_thickness,wall_thickness])
+       {
+          linear_extrude(wall_thickness)
+          {
+             offset(roundness)
+             {
+                square([xm,ym],center=true);
+             }
+          }
+       }
+       translate([0,wall_thickness,-0.5*wall_thickness])
+       {
+          linear_extrude(4*wall_thickness)
+          {
+             offset(roundness)
+             {
+                square([xi, yi],center=true);
+             }
+          }
+       }
+    }
+   funnel_height = xm;
+   funnel_offset = 2*wall_thickness;
+   translate([0,wall_thickness,2.5*wall_thickness])
    {
-      difference(){
-         difference()
-         {
-            cube([xl, yl, wall_thickness], center=true);
-            minkowski()
-            {
-               // This is the main hollow shell
-               cube([icl_xy-wall_thickness, icl_xy-wall_thickness, 5*wall_thickness], center=true);
-               cylinder(r=inner_radius,h=5*wall_thickness);
-            }
-         }
-      }
+       difference()
+       {
+           hull()
+           {
+               translate([xm/2, ym/2, 0])
+               {
+                   sphere(roundness);
+               }
+               translate([-xm/2, ym/2, 0])
+               {
+                   sphere(roundness);
+               }
+               translate([xm/2, -ym/2, 0])
+               {
+                   sphere(roundness);
+               }
+               translate([-xm/2, -ym/2, 0])
+               {
+                   sphere(roundness);
+               }
+               translate([0,0,funnel_height])
+               {
+                   translate([xm, ym, 0])
+                   {
+                       sphere(roundness);
+                   }
+                   translate([-xm, ym, 0])
+                   {
+                       sphere(roundness);
+                   }
+                   translate([xm, -ym, 0])
+                   {
+                       sphere(roundness);
+                   }
+                   translate([-xm, -ym, 0])
+                   {
+                       sphere(roundness);
+                   }
+               }
+           }
+           translate([0,0,funnel_offset])
+           {
+               hull()
+               {
+                   translate([xm/2, ym/2, 0])
+                   {
+                       sphere(roundness);
+                   }
+                   translate([-xm/2, ym/2, 0])
+                   {
+                       sphere(roundness);
+                   }
+                   translate([xm/2, -ym/2, 0])
+                   {
+                       sphere(roundness);
+                   }
+                   translate([-xm/2, -ym/2, 0])
+                   {
+                       sphere(roundness);
+                   }
+                   translate([0,0,funnel_height])
+                   {
+                       translate([xm, ym, 0])
+                       {
+                           sphere(roundness);
+                       }
+                       translate([-xm, ym, 0])
+                       {
+                           sphere(roundness);
+                       }
+                       translate([xm, -ym, 0])
+                       {
+                           sphere(roundness);
+                       }
+                       translate([-xm, -ym, 0])
+                       {
+                           sphere(roundness);
+                       }
+                   }
+               }
+           }
+           translate([0,0,-roundness-wall_thickness])
+           {
+               linear_extrude(roundness)
+               {
+                   offset(roundness)
+                   {
+                       square([xo,yo],center=true);
+                   }
+               }
+           }
+       }
    }
 }
