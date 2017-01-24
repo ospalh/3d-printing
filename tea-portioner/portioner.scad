@@ -84,7 +84,7 @@ else
       feet_and_chute();
    }
    translate([0,some_distance,0]){
-   funnel();
+   %funnel();
    }
 }
 
@@ -101,8 +101,8 @@ module how_rude()
 
 // Length of the inner cube
 icl_xy = inner_box_dimension - 2 * inner_radius;
-icl_z = inner_box_dimension - inner_radius;
 // Measure shell dimension
+icl_z = inner_box_dimension - inner_radius;
 msd = inner_box_dimension + 2*wall_thickness;
 
 
@@ -110,39 +110,57 @@ module measure()
 {
    // The precisely shaped box
 
-
-   translate([0,0,icl_z/2+roundness])
+   icl_z_plus =  icl_z + 2*wall_thickness+droop_tolerance;
+   translate([0,0,icl_z_plus/2+roundness])
    {
       difference()
       {
-         difference()
+         union()
          {
             minkowski()
             {
                // This is the outer shell
-               cube([icl_xy, icl_xy, icl_z], center=true);
+               cube([icl_xy, icl_xy, icl_z_plus], center=true);
                sphere(roundness);
             }
-            minkowski()
-             {
-                // This is the main hollow shell
-                cube([icl_xy, icl_xy, icl_z], center=true);
-                sphere(inner_radius);
-             }
-         } // The measure with rounded top
-         {
-            // Cut off the top. A big enough cube. important is the
-            // lower face height.
-            translate([-msd/2,-msd/2,icl_z/2])
+            // The thicker walls at the top
+            delta_x = (inner_box_dimension +4*wall_thickness)/
+               (inner_box_dimension + 2*wall_thickness);
+            translate([0,0,icl_z/2-4*wall_thickness])
             {
-               cube([msd,msd,2*roundness]);
+               linear_extrude(height=2*wall_thickness,scale=delta_x)
+               {
+                  offset(r=roundness)
+                  {
+                     square([icl_xy,icl_xy],center=true);
+                  }
+               }
+            }
+            translate([0,0,icl_z/2-2*wall_thickness])
+            {
+               linear_extrude(height=3*wall_thickness+droop_tolerance)
+               {
+                  offset(r=roundness)
+                  {
+                     square([icl_xy+2*wall_thickness,icl_xy+2*wall_thickness],center=true);
+                  }
+               }
             }
          }
+         minkowski()
+         {
+            // This is the main hollow shell
+            cube([icl_xy, icl_xy, icl_z_plus], center=true);
+            sphere(inner_radius);
+         }
+         // Cut off the top. A big enough cube. important is the
+         // lower face height.
+         translate([-msd/2,-msd/2,icl_z_plus/2])
+         {
+            cube([msd,msd,2*roundness]);
+         }
       }
-   }
-   translate([0,0,inner_box_dimension+0.5*wall_thickness])
-   {
-      // Stuff at the top edge: the rail for the funnel
+
    }
 
 }
