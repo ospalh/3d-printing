@@ -15,7 +15,7 @@ volume = 55;
 use_american_customary_units = false;
 
 // Add three extra feet on the sides without the chute
-add_feet = false;
+add_feet = true;
 
 // Should be a multiple of your nozzle diameter
 wall_thickness = 1.6; // [1.2, 1.5, 1.6, 1.8]
@@ -70,7 +70,7 @@ inner_box_dimension = cube_root_bit / (pow(2, 1/3) * pow(3, 2/3)) -
 
 // End crazy math.
 
-some_distance = 10 * inner_box_dimension;
+some_distance = 3 * inner_box_dimension;
 
 
 if (use_american_customary_units)
@@ -81,8 +81,8 @@ else
 {
    translate([some_distance,0,0])
    {
-      %measure();
-      %feet_and_chute();
+      measure();
+      feet_and_chute();
    }
    //translate([0,some_distance,0])
    {
