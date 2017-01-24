@@ -15,7 +15,7 @@ volume = 55;
 use_american_customary_units = false;
 
 // Add three extra feet on the sides without the chute
-add_feet = true;
+add_feet = false;
 
 // Should be a multiple of your nozzle diameter
 wall_thickness = 1.6; // [1.2, 1.5, 1.6, 1.8]
@@ -111,57 +111,86 @@ module measure()
    // The precisely shaped box
 
    icl_z_plus =  icl_z + 2*wall_thickness+droop_tolerance;
-   translate([0,0,icl_z_plus/2+roundness])
+   difference()
    {
-      difference()
+      union()
       {
-         union()
+         translate([0,0,icl_z_plus/2+roundness])
          {
-            minkowski()
+            difference()
             {
-               // This is the outer shell
-               cube([icl_xy, icl_xy, icl_z_plus], center=true);
-               sphere(roundness);
-            }
-            // The thicker walls at the top
-            delta_x = (inner_box_dimension +4*wall_thickness)/
-               (inner_box_dimension + 2*wall_thickness);
-            translate([0,0,icl_z/2-4*wall_thickness])
-            {
-               linear_extrude(height=2*wall_thickness,scale=delta_x)
+               union()
                {
-                  offset(r=roundness)
+                  minkowski()
                   {
-                     square([icl_xy,icl_xy],center=true);
+                     // This is the outer shell
+                     cube([icl_xy, icl_xy, icl_z_plus], center=true);
+                     sphere(roundness);
+                  }
+                  // The thicker walls at the top
+                  delta_x = (inner_box_dimension +4*wall_thickness)/
+                     (inner_box_dimension + 2*wall_thickness);
+                  translate([0,0,icl_z/2-4*wall_thickness])
+                  {
+                     linear_extrude(height=2*wall_thickness,scale=delta_x)
+                     {
+                        offset(r=roundness)
+                        {
+                           square([icl_xy,icl_xy],center=true);
+                        }
+                     }
+                  }
+                  translate([0,0,icl_z/2-2*wall_thickness])
+                  {
+                     linear_extrude(height=3*wall_thickness+droop_tolerance)
+                     {
+                        offset(r=roundness)
+                        {
+                           square([icl_xy+2*wall_thickness,icl_xy+2*wall_thickness],center=true);
+                        }
+                     }
                   }
                }
-            }
-            translate([0,0,icl_z/2-2*wall_thickness])
-            {
-               linear_extrude(height=3*wall_thickness+droop_tolerance)
+               minkowski()
                {
-                  offset(r=roundness)
-                  {
-                     square([icl_xy+2*wall_thickness,icl_xy+2*wall_thickness],center=true);
-                  }
+                  // This is the main hollow shell
+                  cube([icl_xy, icl_xy, icl_z_plus], center=true);
+                  sphere(inner_radius);
+               }
+               // Cut off the top. A big enough cube. important is the
+               // lower face height.
+               translate([-msd/2,-msd/2,icl_z_plus/2])
+               {
+                  cube([msd,msd,2*roundness]);
                }
             }
          }
-         minkowski()
+      } // The measuring cup, with thick walls
+      // Cutting out the rails for the funnel
+      yl_extra = 10*wall_thickness;
+      xl = inner_box_dimension+2*wall_thickness-2*roundness;
+      yl = inner_box_dimension+wall_thickness-2*roundness + yl_extra;
+      // Main rails
+      translate([0,yl_extra/2,wall_thickness+inner_box_dimension])
+      {
+         linear_extrude(wall_thickness)
          {
-            // This is the main hollow shell
-            cube([icl_xy, icl_xy, icl_z_plus], center=true);
-            sphere(inner_radius);
-         }
-         // Cut off the top. A big enough cube. important is the
-         // lower face height.
-         translate([-msd/2,-msd/2,icl_z_plus/2])
-         {
-            cube([msd,msd,2*roundness]);
+            offset(roundness)
+            {
+               square([xl,yl],center=true);
+            }
          }
       }
-
+      // Space for the funnel
+      translate([0,inner_box_dimension/2,1.8*wall_thickness+inner_box_dimension])
+      {
+         linear_extrude(2*wall_thickness)
+         {
+            square([inner_box_dimension,8*wall_thickness],center=true);
+         }
+      }
    }
+      // End rails
 
 }
 
