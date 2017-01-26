@@ -9,13 +9,13 @@
 //
 
 // How many cm³ (ml) for one portion
-volume = 55;
+volume = 55;  // [3:0.1:250]
 
 // Don’t
-use_american_customary_units = false;
+use_american_customary_units = 0;  // [1:Yes, please. What’s a meter?, 0:Of course not! Use SI units.]
 
 // Add three extra feet on the sides without the chute
-add_feet = true;
+add_feet = 0;  // [1:Add feet, 0: No feet]
 
 // Should be a multiple of your nozzle diameter
 wall_thickness = 1.6; // [1.2, 1.5, 1.6, 1.8]
@@ -42,18 +42,17 @@ roundness = 5;
 inner_radius = roundness-wall_thickness;
 
 droop_tolerance = 0.1;
-slider_tolerance = 1;
+slider_tolerance = 0.6;
 
 leg_width = 2.4;
 feet_angle = 50;  // Degrees
 funnel_angle = 60;
 
 // Crazy math to get the volume with the rounding right Basically we
-// have V = l³ - lost_volume with lost volume = the fillets in the
+// have V = l³ - lost_volume, with lost volume = the fillets in the
 // edges and corners, ½ (cube - sphere), and a bit, depending on l,
-// (square rod - cylinder), with no l² term.
-// Transformed to 0 = l³ + al + b, plugged into Wolfram Alpha, put in
-// here.
+// (square rod - cylinder), with no l² term.  Transformed to 0 = l³ +
+// al + b, plugged into Wolfram Alpha, put in here.
 a = -8*(4-tau/2)*inner_radius*inner_radius;
 b = -v_cmm +
       ((4-tau/3) -12 * (4 - tau/2)) * inner_radius*inner_radius*inner_radius;
@@ -70,7 +69,7 @@ inner_box_dimension = cube_root_bit / (pow(2, 1/3) * pow(3, 2/3)) -
 
 // End crazy math.
 
-some_distance = 3 * inner_box_dimension;
+some_distance = 1.95 * inner_box_dimension + 10 * wall_thickness;
 
 
 if (use_american_customary_units)
@@ -81,8 +80,11 @@ else
 {
    translate([some_distance,0,0])
    {
-      measure();
-      feet_and_chute();
+      rotate(90)
+      {
+         measure();
+         feet_and_chute();
+      }
    }
    //translate([0,some_distance,0])
    {
