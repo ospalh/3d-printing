@@ -7,18 +7,18 @@
 //
 
 // in cm. The neck is the thin bottom part
-neck_diameter = 4;  // [0.3:8]
+neck_diameter = 3;  // [0.3:0.1:8]
 
 // in cm. This is the top part
-rim_diameter = 8;  // [3:15]
+rim_diameter = 8;  // [3:0.1:15]
 
 // in cm.
-neck_length = 4; // [0.3:8]
+neck_length = 4; // [0.3:0.1:8]
 
-// in cm. The stand height will be this + the height of the conical part. Must be higher than the Neck Length, or your funnel will not fit.
-neck_top_height = 14; // [1:15]
+// in cm. How much the bottom of the funnel will be above ground.
+funnel_bottom_height = 10; // [1:0.1:15]
 
-// Slope of the main conical part, in °. 60° seems to be somewhat standard. Beware of printing problems below 45°.
+// Slope of the main conical part, in °. Beware of printing problems below 45°.
 funnel_angle = 60;  // [30:75]
 
 // Cut off angle to give the funnel a sharpend tip. 90° means flat bottom.
@@ -29,7 +29,7 @@ wall_thickness = 1.6; // [1.2, 1.5, 1.6, 1.8]
 
 module end_customizer()
 {
-   // This is a dummy module so stop users messing with the values below.
+   // This is a dummy module to stop users messing with the values below.
 }
 
 r_n = neck_diameter * 5;  // neck radius in mm
