@@ -46,9 +46,31 @@ o_ta = 1 * (r_n + w) * tan(ta_b);
 // π is still wrong. Even if we use the area of a circle below. Use τ.
 tau = 2 * PI;
 
+// The small radius, from center to center of face
+r_p_s = 3;
+// The max. radius (center to edge) of the support “pencil”. Also the
+// width of one pencil face.
+r_p_l = r_p_s * 2 / 3 * sqrt(3);
 
+// Size of the “big pencil” connector. Twice the area, half of it hollow.
+r_bp_s = sqrt(2) * r_p_s;
+r_bp_l = r_bp_s * 2 / 3 * sqrt(3);
+
+bp_h = 10 * r_p_s;  // Height of the “big pencil” connector
+bp_s_h = r_bp_s;
+// Height of the sleve at the bottom (as printed) of the “big pencil”
+// connector
+
+es_h = 15; // Extra support/stabilizer height
+es_w = 0.8;
+// Extra support/stabilizer width. Need not be as stable as a normal
+// wall
+
+// The actual calls to generate the objects
 funnel();
 
+
+// And the definitions
 module funnel()
 {
 
@@ -76,7 +98,8 @@ module funnel()
 
    }
 
-   // The holow core of the funnel, plus a bit of tollerance. Used as difference later.
+   // The holow core of the funnel, plus a bit of tollerance. Used as
+   // difference later.
    module funnel_core()
    {
       c_poly = [
@@ -94,7 +117,7 @@ module funnel()
    }
 
    // The funnel proper
-   %difference()
+   difference()
    {
       rot_funnel();
       translate([0, 0, mh + 2*r_n-o_ta])
@@ -105,8 +128,69 @@ module funnel()
          }
       }
    }
-   // The holder lug
-lp_poly = [
-   [,],
-   ];
+
+   // The holder lug. The Poly is bigger than needed, and we
+   // subtract a bit later.
+   lp_poly = [
+      [r_p_l,r_r + w - 3*w],
+      [r_p_l,r_r + w + r_p_s],
+      [r_p_l/2,r_r + w + 2*r_p_s],
+      [-r_p_l/2,r_r + w + 2*r_p_s],
+      [-r_p_l,r_r + w + r_p_s],
+      [-r_p_l,r_r + w - 3*w],
+      ];
+
+
+
+   difference()
+   {
+      union()
+      {
+         linear_extrude(w)
+         {
+            // Holder plate
+            polygon(lp_poly);
+         }
+         // Extra support
+         translate([-es_w/2,r_n+w,0])
+         {
+            cube([es_w,r_r-r_n, es_h]);
+         }
+         translate([0,r_r+w+r_p_s,0])
+         {
+            // holder/stand “pencil”
+            linear_extrude(mh-bp_h)
+            {
+               circle(r=r_p_l,$fn=6);
+            }
+         }
+      }
+      funnel_core();
+   }
+
+   translate([0,r_r+w+r_p_s,mh-bp_h])
+   {
+      difference()
+      {
+         // The main connector  bit
+            linear_extrude(bp_h)
+            {
+               circle(r=r_bp_l,$fn=6);
+            }
+            // Hollow it out
+            linear_extrude(bp_h)
+            {
+               circle(r=r_p_l,$fn=6);
+            }
+      }
+   }
+   bp_s_f = r_bp_l / r_p_l;
+   translate([0,r_r+w+r_p_s,mh-bp_h-bp_s_h])
+   {
+      linear_extrude(bp_s_h, scale=bp_s_f)
+      {
+         circle(r=r_p_l, $fn=6);
+      }
+   }
+
 }
