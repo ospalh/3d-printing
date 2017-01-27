@@ -74,6 +74,7 @@ es_h = 15; // Extra support/stabilizer height
 es_w = 0.8;
 // Extra support/stabilizer width. Need not be as stable as a normal
 // wall
+strake_r = es_w/2;
 
 some_distance = 2 * (r_r + w) + 10 * w;
 
@@ -133,17 +134,23 @@ module funnel()
 
    }
 
+   module funnel_neck_cutoff()
+   {
+      // The bit that creates the slant an the neck
+      translate([0, 0, mh + 6*r_n-o_ta])
+      {
+         rotate(a=ta_b,v=[1,1,0])
+         {
+            cube(size=12*r_n, center=true);
+         }
+      }
+   }
+
    // The funnel proper
    difference()
    {
       rot_funnel();
-      translate([0, 0, mh + 2*r_n-o_ta])
-      {
-         rotate(a=ta_b,v=[1,1,0])
-         {
-            cube(size=4*r_n, center=true);
-         }
-      }
+      funnel_neck_cutoff();
    }
 
    // The holder lug. The Poly is bigger than needed, and we
@@ -204,10 +211,38 @@ module funnel()
                   circle(handle_r);
                }
             }
+            for (i=[60, 180, 300])
+            {
+               rotate(i)
+               {
+                  translate([0, r_n+w, mh-l_n])
+                  {
+                     cylinder(r=strake_r, h=l_n);
+                  }
+               }
+               rotate(i + 30)
+               {
+
+                  translate([-(r_r+w), 0, 0])
+                  {
+                     rotate([0,90-funnel_angle,0])
+                     {
+                        translate([0,0,w])
+                        {
+                           // It’s possibly a rounding error, but with
+                           // r=strake_r here it doesn’t perfectly
+                           // align with the funnel. Use a bit more.
+                           cylinder(r=es_w, h=(r_r - r_n) / cos(funnel_angle));
+                        }
+                     }
+                  }
+               }
+            }
 
          }
       }
       funnel_core();
+      funnel_neck_cutoff();
    }
    if (with_stand)
    {
