@@ -15,14 +15,18 @@ rim_diameter = 8;  // [3:0.1:15]
 // in cm.
 neck_length = 4; // [0.3:0.1:8]
 
-// in cm. How much the bottom of the funnel will be above ground.
-funnel_bottom_height = 10; // [1:0.1:15]
-
 // Slope of the main conical part, in °. Beware of printing problems below 45°.
 funnel_angle = 60;  // [30:75]
 
-// Cut off angle to give the funnel a sharpend tip. 90° means flat bottom.
+// Cut off angle to give the funnel a sharpened tip. 90° means flat bottom.
 neck_tip_angle = 80;  // [45:90]
+
+// Create just the funnel, or a stand to go with it
+with_stand = 1; // [0:Just funnel, 1:Funnel and stand]
+
+// in cm. How much the bottom of the funnel will be above ground.
+funnel_bottom_height = 10; // [1:0.1:15]
+
 
 // in mm. Should be a multiple of your nozzle diameter
 wall_thickness = 1.6; // [1.2, 1.5, 1.6, 1.8]
@@ -35,6 +39,7 @@ module end_customizer()
 r_n = neck_diameter * 5;  // neck radius in mm
 r_r = rim_diameter * 5;  // rim radius in mm
 l_n = neck_length * 10;  // neck_length in mm
+fb_h = funnel_bottom_height * 10;  // funnel bottom height in mm
 
 // shorthand
 w = wall_thickness;
@@ -46,11 +51,15 @@ o_ta = 1 * (r_n + w) * tan(ta_b);
 // π is still wrong. Even if we use the area of a circle below. Use τ.
 tau = 2 * PI;
 
-// The small radius, from center to center of face
+// The small radius of the support “pencil”., from center to center of face
 r_p_s = 3;
-// The max. radius (center to edge) of the support “pencil”. Also the
+
+// The max. radius (center to edge).  Also the
 // width of one pencil face.
 r_p_l = r_p_s * 2 / 3 * sqrt(3);
+
+// Handle radius
+handle_r = 10;
 
 // Size of the “big pencil” connector. Twice the area, half of it hollow.
 r_bp_s = sqrt(2) * r_p_s;
@@ -66,9 +75,17 @@ es_w = 0.8;
 // Extra support/stabilizer width. Need not be as stable as a normal
 // wall
 
+some_distance = 2 * (r_r + w) + 10 * w;
+
 // The actual calls to generate the objects
 funnel();
-
+translate([some_distance, 0, 0])
+{
+   if (with_stand)
+   {
+      stand();
+   }
+}
 
 // And the definitions
 module funnel()
@@ -132,65 +149,166 @@ module funnel()
    // The holder lug. The Poly is bigger than needed, and we
    // subtract a bit later.
    lp_poly = [
-      [r_p_l,r_r + w - 3*w],
-      [r_p_l,r_r + w + r_p_s],
-      [r_p_l/2,r_r + w + 2*r_p_s],
-      [-r_p_l/2,r_r + w + 2*r_p_s],
-      [-r_p_l,r_r + w + r_p_s],
-      [-r_p_l,r_r + w - 3*w],
+      [r_p_s,r_r + w - 3*w],
+      [r_p_s,r_r + w + r_p_l + 0.5*r_p_s],
+      [0,r_r + w + 2*r_p_l],
+      [-r_p_s,r_r + w + r_p_l + 0.5*r_p_s],
+      [-r_p_s,r_r + w - 3*w],
       ];
 
+   //
+   handle_poly = [
+      [handle_r,r_r + w - 3*w],
+      [handle_r,r_r + w + handle_r],
+      [-handle_r,r_r + w + handle_r],
+      [-handle_r,r_r + w - 3*w]
+      ];
 
 
    difference()
    {
       union()
       {
-         linear_extrude(w)
+         if (with_stand)
          {
-            // Holder plate
-            polygon(lp_poly);
-         }
-         // Extra support
-         translate([-es_w/2,r_n+w,0])
-         {
-            cube([es_w,r_r-r_n, es_h]);
-         }
-         translate([0,r_r+w+r_p_s,0])
-         {
-            // holder/stand “pencil”
-            linear_extrude(mh-bp_h)
+            linear_extrude(w)
             {
-               circle(r=r_p_l,$fn=6);
+               // Holder plate
+               polygon(lp_poly);
             }
+            // Extra support
+            translate([-es_w/2,r_n+w,0])
+            {
+               cube([es_w,r_r-r_n, es_h]);
+            }
+            translate([0,r_r+w+r_p_l,0])
+            {
+               // holder/stand “pencil”
+               rotate(30)
+               {
+                  linear_extrude(mh-bp_h)
+                  {
+                     circle(r=r_p_l,$fn=6);
+                  }
+               }
+            }
+         }
+         else
+         {
+            linear_extrude(w)
+            {
+               // Holder plate
+               polygon(handle_poly);
+               translate([0,r_r+w+handle_r,0])
+               {
+                  circle(handle_r);
+               }
+            }
+
          }
       }
       funnel_core();
    }
-
-   translate([0,r_r+w+r_p_s,mh-bp_h])
+   if (with_stand)
    {
-      difference()
+      translate([0,r_r+w+r_p_l,mh-bp_h])
       {
-         // The main connector  bit
-            linear_extrude(bp_h)
+         rotate(30)
+         {
+            difference()
             {
-               circle(r=r_bp_l,$fn=6);
-            }
-            // Hollow it out
-            linear_extrude(bp_h)
-            {
+               // The main connector  bit
+               linear_extrude(bp_h)
+               {
+                  circle(r=r_bp_l,$fn=6);
+               }
+               // Hollow it out
+               linear_extrude(bp_h)
+               {
                circle(r=r_p_l,$fn=6);
+               }
             }
+         }
       }
-   }
-   bp_s_f = r_bp_l / r_p_l;
-   translate([0,r_r+w+r_p_s,mh-bp_h-bp_s_h])
-   {
-      linear_extrude(bp_s_h, scale=bp_s_f)
+      bp_s_f = r_bp_l / r_p_l;
+      translate([0,r_r+w+r_p_l,mh-bp_h-bp_s_h])
       {
-         circle(r=r_p_l, $fn=6);
+         rotate(30)
+         {
+            linear_extrude(bp_s_h, scale=bp_s_f)
+            {
+               circle(r=r_p_l, $fn=6);
+            }
+         }
       }
    }
+}
 
+module stand()
+{
+   hex_r = r_r + w + r_p_s;
+//   hex_r_l = hex_r_s * 2 / 3 * sqrt(3);
+   difference()
+   {
+      union()
+      {
+         // Construct the stand ring symmetric to xy plane …
+         rotate(30)
+         {
+            rotate_extrude($fn=6)
+            {
+               translate([hex_r, 0, 0])
+               {
+                  circle(r=r_p_l, $fn=6);
+               }
+            }
+         }
+      }
+      // … and subtract everything below the xy plane.
+      translate([0,0,-l_n])
+      {
+         cylinder(r=1.5*r_r, h=l_n);
+      }
+   }
+   // Fill of the base p
+   rotate(30)
+   {
+      cylinder(r=hex_r, h=es_w, $fn=6);
+   }
+   translate([0, hex_r, 0])
+   {
+      // The stand.
+      rotate(30)
+      {
+         linear_extrude(fb_h + bp_h)
+         {
+            circle(r=r_p_l, $fn=6);
+         }
+      }
+   }
+   es_s_p = [
+      [0, 0],
+      [es_h + r_p_l/2, 0],
+      [0, es_h + r_p_l/2]
+      ];
+   translate([0, hex_r, 0])
+   {
+      rotate([90, 0, -30])
+      {
+         linear_extrude(es_w)
+         {
+            polygon(es_s_p);
+         }
+      }
+      mirror()
+      {
+         rotate([90, 0, -30])
+         {
+            linear_extrude(es_w)
+            {
+               polygon(es_s_p);
+            }
+         }
+      }
+   }
 }
