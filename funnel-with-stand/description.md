@@ -1,8 +1,8 @@
-## Customizable funnel with stand
+## Customizable funnel with or without stand
 
 A funnel where the main parameters can be changed. You either get a special stand with it or not.
 
-When the stand is selected, about half of a stand is printed connected to the funnel, the other half to the holder plate. Just stick the funnel’s part onto the stand, and you can place your container under the funnel.
+When the stand is selected, about half of a stand is printed connected to the funnel, the other half to the holder plate. Just stick the funnel’s part onto the stand, and you can place your receptacle under the funnel.
 
 I use it to fill paper tea filters with tea. For those you need a stand like this.
 
@@ -12,18 +12,19 @@ I use it to fill paper tea filters with tea. For those you need a stand like thi
 
 I wanted a funnel with a rather low throat ratio, if that is the
 term. For the tea i wanted to use it with, the necks of supermarket
-funnels were too tight. So this starts with 3 cm, but change them to
+funnels were too tight. This starts with a 3 cm neck, but change it to
 taste.
 
-
 The wall thickness should be a multiple of your nozzle diameter, but then again, large parts are sloped, which throws of this value.
+
+A too low neck tip angle, combined with a too low neck length doesn’t work. Check that you still have some funnel left before printing.
 
 ### Print Settings
 
 * I used a 300 µm layer height, because this thing is more about utility than aesthetics, but use whatever you like
 * No supports
 * No raft or brim
-
+* Standard low infill. About 20 % should be enough.
 
 ### Food safety concerns
 
