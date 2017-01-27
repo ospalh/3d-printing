@@ -42,6 +42,6 @@ In the end, it is up to you. I can take no responsibility.
 ### Github
 
 This part is also available at
-[github](https://github.com/ospalh/3d-printing/tree/develop/tea-portioner). When
+[github](https://github.com/ospalh/3d-printing/tree/develop/funnel-with-stand). When
 the version here is ever updated, look at the repo there for older
 versions.
