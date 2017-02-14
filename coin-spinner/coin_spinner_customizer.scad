@@ -48,10 +48,10 @@
 /* [Spinner_Parameters] */
 
 // Measure your coin or look it up on Wikipedia or elsewhere
-coin_diameter = 22.3;  // [10:0.1:30]
+coin_diameter = 19;  // [10:0.1:30]
 
 // Measure or look it up.
-coin_thickness = 2.1; // [0.2:0.1:7]
+coin_thickness = 1.7; // [0.2:0.1:7]
 
 Number_of_Spokes=3;//[2,3,4,5,6,7]
 spokeNumber=Number_of_Spokes;
@@ -118,8 +118,6 @@ flush=Flush_or_Raised_Hub;		//Flush is easier to print, the hub is height of bea
 	    clf=360/cfn;
 	    crn=ceil(chg/csh);
 
-	    echo("knurled cylinder max diameter: ", 2*cord);
-	    echo("knurled cylinder min diameter: ", 2*cird);
 
 		 if( fsh < 0 )
 	    {
