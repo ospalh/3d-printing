@@ -6,15 +6,15 @@
 // © 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
-message_obverse = ["AfD?", "Nein", "danke!"];
-message_reverse = ["AfD?", "Nein", "danke!"];
+message_obverse = ["AfD?", "Nee!"];
+message_reverse = ["AfD?", "Nee!"];
 diameter = 23.25;  // mm
 thickness = 2.33;  // mm
-font_name = "Demos LT";  // Use one you actually have …
+font_name = "Praxis LT";  // Use one you actually have …
 
 // Easy configuration section end
 
-font_size = 4.6;  // Play around with this
+font_size = 6;  // Play around with this
 radius = diameter/2;
 
 
@@ -40,20 +40,15 @@ module text_obverse()
    {
       linear_extrude(thickness/2)
       {
-         translate([0,0.2 * font_size,0])
+         translate([0, 0.6*font_size, 0])
          {
-            translate([0,1.1 * font_size,0])
-            {
-               text(text=str(message_obverse[0]), size=font_size,
-                    font=font_name, valign="center", halign="center");
-            }
+            text(text=str(message_obverse[0]), size=font_size,
+                 font=font_name, valign="center", halign="center");
+         }
+         translate([0, -0.6 * font_size, 0])
+         {
             text(text=str(message_obverse[1]), size=font_size,
                  font=font_name, valign="center", halign="center");
-            translate([0,-1.1 * font_size,0])
-            {
-               text(text=str(message_obverse[2]), size=font_size,
-                    font=font_name, valign="center", halign="center");
-            }
          }
       }
    }
@@ -66,20 +61,15 @@ module text_reverse()
       {
          linear_extrude(thickness/2)
          {
-            translate([0,0.2 * font_size,0])
+            translate([0, 0.6*font_size, 0])
             {
-               translate([0,1.1 * font_size,0])
-               {
-                  text(text=str(message_reverse[0]), size=font_size,
-                       font=font_name, valign="center", halign="center");
-               }
+               text(text=str(message_reverse[0]), size=font_size,
+                    font=font_name, valign="center", halign="center");
+            }
+            translate([0, -0.6*font_size, 0])
+            {
                text(text=str(message_reverse[1]), size=font_size,
                     font=font_name, valign="center", halign="center");
-               translate([0,-1.1 * font_size,0])
-               {
-                  text(text=str(message_reverse[2]), size=font_size,
-                       font=font_name, valign="center", halign="center");
-               }
             }
          }
       }
