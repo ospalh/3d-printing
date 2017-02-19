@@ -41,6 +41,8 @@ r_r = rim_diameter * 5;  // rim radius in mm
 l_n = neck_length * 10;  // neck_length in mm
 fb_h = funnel_bottom_height * 10;  // funnel bottom height in mm
 
+wiggle_room_factor = 1.05;
+
 // shorthand
 w = wall_thickness;
 fa = funnel_angle;
@@ -60,6 +62,8 @@ r_p_l = r_p_s * 2 / 3 * sqrt(3);
 
 // Handle radius
 handle_r = 10;
+
+cooling_distance = 20;
 
 // Size of the “big pencil” connector. Twice the area, half of it hollow.
 r_bp_s = sqrt(2) * r_p_s;
@@ -255,17 +259,17 @@ module funnel()
                // The main connector  bit
                linear_extrude(bp_h)
                {
-                  circle(r=r_bp_l,$fn=6);
+                  circle(r=r_bp_l * wiggle_room_factor ,$fn=6);
                }
                // Hollow it out
                linear_extrude(bp_h)
                {
-               circle(r=r_p_l,$fn=6);
+               circle(r=r_p_l * wiggle_room_factor,$fn=6);
                }
             }
          }
       }
-      bp_s_f = r_bp_l / r_p_l;
+      bp_s_f = (r_bp_l * wiggle_room_factor) / r_p_l;
       translate([0,r_r+w+r_p_l,mh-bp_h-bp_s_h])
       {
          rotate(30)
@@ -305,7 +309,7 @@ module stand()
          cylinder(r=1.5*r_r, h=l_n);
       }
    }
-   // Fill of the base p
+   // Fill the base plate
    rotate(30)
    {
       cylinder(r=hex_r, h=es_w, $fn=6);
@@ -321,6 +325,18 @@ module stand()
          }
       }
    }
+   translate([0, -hex_r -cooling_distance , 0])
+   {
+      // Small sacrifical cooling tower. Printed so the layers take a bit longer and the plastic can cool. Throw it away after the print
+      rotate(30)
+      {
+         linear_extrude(fb_h + bp_h)
+         {
+            square(es_w);
+         }
+      }
+   }
+
    es_s_p = [
       [0, 0],
       [es_h + r_p_l/2, 0],
