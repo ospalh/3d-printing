@@ -100,18 +100,23 @@ module counter_holders()
    // connected to the token proper.
    translate([1, 4,0])
    {
-      cube([0.4, 10, 0.2], center=true);
+      cube([0.8, 10, 0.6], center=true);
    }
    translate([1.7, 4,0])
    {
-      cube([6, 0.4, 0.2], center=true);
+      cube([6, 0.8, 0.6], center=true);
    }
    translate([-0.3, -3.5, 0])
    {
-      cube([0.4, 3, 0.2], center=true);
+      cube([0.8, 3, 0.6], center=true);
    }
    translate([4, -3.5, 0])
    {
-      cube([0.4, 3, 0.2], center=true);
+      cube([0.8, 3, 0.6], center=true);
    }
+   translate([-6.5, 4, 0])
+   {
+      cube([4, 0.8 , 0.6], center=true);
+   }
+
 }
