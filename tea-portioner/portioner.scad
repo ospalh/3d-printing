@@ -41,7 +41,7 @@ inner_radius = roundness-wall_thickness;
 droop_tolerance = 0.1;
 slider_tolerance = 0.6;
 
-chute_angle = 50;  // Degrees
+chute_angle = 55;  // Degrees
 funnel_angle = 60;
 
 // Crazy math to get the volume with the rounding right Basically we
