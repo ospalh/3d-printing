@@ -48,17 +48,17 @@
 /* [Spinner_Parameters] */
 
 // Measure your coin or look it up on Wikipedia or elsewhere
-coin_diameter = 19;  // [10:0.1:30]
+coin_diameter = 22.2;  // [10:0.1:30]
 
-// Measure or look it up.
-coin_thickness = 1.7; // [0.2:0.1:7]
+// Measure or look it up. Both sizes in mm.
+coin_thickness = 2.1; // [0.2:0.1:7]
 
 Number_of_Spokes=3;//[2,3,4,5,6,7]
 spokeNumber=Number_of_Spokes;
 
-//Choose Knurled if you are tough enough, Smooth if you are a wuss
+// Smooth deletes knurled edge but adds 1 mm to rim for strength
 Edge_finish=1;//[0:Smooth,1:Knurled]
-finish=Edge_finish;		//Smooth deletes knurled edge but adds 1mm to rim for strength
+finish=Edge_finish;
 
 //Flush for easier printing
 Flush_or_Raised_Hub=1;//[0:Hub,1:Flush]
