@@ -31,6 +31,7 @@ v_cmm = volume * 1000;
 // Smother than normal
 $fa=5;
 $fs=0.1;
+// $fs=1;
 
 // π is still wrong. Even if we use the area of a circle below. Use τ.
 tau = 2 * PI;
@@ -38,9 +39,6 @@ tau = 2 * PI;
 // Curvature of sides (Sphere radius)
 roundness = 5;
 inner_radius = roundness-wall_thickness;
-
-droop_tolerance = 0.1;
-slider_tolerance = 0.6;
 
 chute_angle = 55;  // Degrees
 funnel_angle = 60;
@@ -75,7 +73,7 @@ if (use_american_customary_units)
 }
 else
 {
-//   translate([some_distance,0,0])
+   translate([some_distance,0,0])
    {
       rotate(90)
       {
@@ -85,7 +83,7 @@ else
    }
    //translate([0,some_distance,0])
    {
-  //    funnel();
+      funnel();
    }
 }
 
@@ -111,7 +109,7 @@ module measure()
 {
    // The precisely shaped box
 
-   icl_z_plus =  icl_z + 2*wall_thickness+droop_tolerance;
+   icl_z_plus =  icl_z + 2*wall_thickness;
    difference()
    {
       union()
@@ -143,7 +141,7 @@ module measure()
                   }
                   translate([0,0,icl_z/2-2*wall_thickness])
                   {
-                     linear_extrude(height=3*wall_thickness+droop_tolerance)
+                     linear_extrude(height=3*wall_thickness)
                      {
                         offset(r=roundness)
                         {
@@ -167,31 +165,22 @@ module measure()
             }
          }
       } // The measuring cup, with thick walls
-      // Cutting out the rails for the funnel
-      yl_extra = 10*wall_thickness;
-      xl = inner_box_dimension+2*wall_thickness-2*roundness;
-      yl = inner_box_dimension+wall_thickness-2*roundness + yl_extra;
-      // Main rails
-      translate([0,yl_extra/2,wall_thickness+inner_box_dimension])
+      // Cutting out space where to put on the funnel. (No rails, just
+      // lay it on top.)
+      xyl_extra = 5*wall_thickness;
+      xyl = inner_box_dimension+2*wall_thickness-2*roundness;
+      translate([xyl_extra/2, xyl_extra/2, wall_thickness+inner_box_dimension])
       {
-         linear_extrude(wall_thickness)
+         linear_extrude(2.5*wall_thickness)
          {
             offset(roundness)
             {
-               square([xl,yl],center=true);
+               square([xyl + xyl_extra, xyl + xyl_extra],center=true);
             }
          }
       }
-      // Space for the funnel
-      translate([0,inner_box_dimension/2,1.8*wall_thickness+inner_box_dimension])
-      {
-         linear_extrude(2*wall_thickness)
-         {
-            square([inner_box_dimension,8*wall_thickness],center=true);
-         }
-      }
    }
-      // End rails
+
 
 }
 
@@ -282,33 +271,48 @@ module chute()
 module funnel()
 {
    // First the base
-   xo = inner_box_dimension+2*wall_thickness-2*roundness-2*slider_tolerance;
-   yo = inner_box_dimension+3*wall_thickness-2*roundness-  slider_tolerance;
+//   xo = inner_box_dimension+2*wall_thickness-2*roundness-2*slider_tolerance;
+   xyo = inner_box_dimension+2*wall_thickness-2*roundness;
 
-   xm = inner_box_dimension                 -2*roundness-2*slider_tolerance;
-   ym = inner_box_dimension+  wall_thickness-2*roundness-  slider_tolerance;
+//   xm = inner_box_dimension                 -2*roundness-2*slider_tolerance;
+   xym = inner_box_dimension+  wall_thickness-2*roundness;
 
-   xi = inner_box_dimension-2*wall_thickness-2*roundness-2*slider_tolerance;
-   yi = inner_box_dimension-  wall_thickness-2*roundness-  slider_tolerance;
+//   xi = inner_box_dimension-2*wall_thickness-2*roundness-2*slider_tolerance;
+   xyi = inner_box_dimension-  wall_thickness-2*roundness;
    difference()
     {
-       translate([0,wall_thickness,0])
+       translate([0.5*wall_thickness, 0.5*wall_thickness, 0])
        {
-          linear_extrude(wall_thickness)
+          union()
           {
-             offset(roundness)
+             linear_extrude(wall_thickness)
              {
-                square([xo,yo],center=true);
+                offset(roundness)
+                {
+                   square([xyo,xyo],center=true);
+                }
+             }
+             // Half of this is hidden in the bit below. This covers some edges
+             translate([0,0, wall_thickness])
+             {
+
+                linear_extrude(height=1.5*wall_thickness, scale=xym/xyo)
+                {
+                   offset(roundness)
+                   {
+                      square([xyo,xyo],center=true);
+                   }
+                }
              }
           }
        }
-       translate([0,wall_thickness,-0.5*wall_thickness])
+       translate([wall_thickness, wall_thickness, -0.5*wall_thickness])
        {
-          linear_extrude(2*wall_thickness)
+          linear_extrude(4*wall_thickness)
           {
              offset(roundness)
              {
-                square([xi, yi],center=true);
+                square([xyi, xyi],center=true);
              }
           }
        }
@@ -317,23 +321,23 @@ module funnel()
 
    difference()
     {
-       translate([0,wall_thickness,wall_thickness])
+       translate([wall_thickness, wall_thickness, wall_thickness])
        {
           linear_extrude(1.5*wall_thickness)
           {
              offset(roundness)
              {
-                square([xm,ym],center=true);
+                square([xym, xym],center=true);
              }
           }
        }
-       translate([0,wall_thickness,-0.5*wall_thickness])
+       translate([wall_thickness, wall_thickness, -0.5*wall_thickness])
        {
           linear_extrude(4*wall_thickness)
           {
              offset(roundness)
              {
-                square([xi, yi],center=true);
+                square([xyi, xyi],center=true);
              }
           }
        }
@@ -341,46 +345,47 @@ module funnel()
    // funnel_angle is typically 60°, tan(60°) == sqrt(3)
    funnel_offset = wall_thickness / sin(funnel_angle);
    funnel_z_offset = roundness * sin(funnel_angle);
-   xf = xm + roundness * cos(funnel_angle);
-   yf = ym + roundness * cos(funnel_angle);
-   funnel_height = xf/2 * tan(funnel_angle);
-   translate([0,wall_thickness,2*wall_thickness + funnel_z_offset])
+//   xf = xm + roundness * cos(funnel_angle);
+   xyf = xym + roundness * cos(funnel_angle);
+   funnel_height = xyf/2 * tan(funnel_angle);
+   translate([wall_thickness, wall_thickness,
+              2*wall_thickness + funnel_z_offset])
    {
        difference()
        {
            hull()
            {
-               translate([xf/2, yf/2, 0])
+               translate([xyf/2, xyf/2, 0])
                {
                    sphere(roundness);
                }
-               translate([-xf/2, yf/2, 0])
+               translate([-xyf/2, xyf/2, 0])
                {
                    sphere(roundness);
                }
-               translate([xf/2, -yf/2, 0])
+               translate([xyf/2, -xyf/2, 0])
                {
                    sphere(roundness);
                }
-               translate([-xf/2, -yf/2, 0])
+               translate([-xyf/2, -xyf/2, 0])
                {
                    sphere(roundness);
                }
                translate([0,0,funnel_height])
                {
-                   translate([xf, yf, 0])
+                   translate([xyf, xyf, 0])
                    {
                        sphere(roundness);
                    }
-                   translate([-xf, yf, 0])
+                   translate([-xyf, xyf, 0])
                    {
                        sphere(roundness);
                    }
-                   translate([xf, -yf, 0])
+                   translate([xyf, -xyf, 0])
                    {
                        sphere(roundness);
                    }
-                   translate([-xf, -yf, 0])
+                   translate([-xyf, -xyf, 0])
                    {
                        sphere(roundness);
                    }
@@ -390,37 +395,37 @@ module funnel()
            {
                hull()
                {
-                   translate([xf/2, yf/2, 0])
+                   translate([xyf/2, xyf/2, 0])
                    {
                        sphere(roundness);
                    }
-                   translate([-xf/2, yf/2, 0])
+                   translate([-xyf/2, xyf/2, 0])
                    {
                        sphere(roundness);
                    }
-                   translate([xf/2, -yf/2, 0])
+                   translate([xyf/2, -xyf/2, 0])
                    {
                        sphere(roundness);
                    }
-                   translate([-xf/2, -yf/2, 0])
+                   translate([-xyf/2, -xyf/2, 0])
                    {
                        sphere(roundness);
                    }
                    translate([0,0,funnel_height])
                    {
-                       translate([xf, yf, 0])
+                       translate([xyf, xyf, 0])
                        {
                            sphere(roundness);
                        }
-                       translate([-xf, yf, 0])
+                       translate([-xyf, xyf, 0])
                        {
                            sphere(roundness);
                        }
-                       translate([xf, -yf, 0])
+                       translate([xyf, -xyf, 0])
                        {
                            sphere(roundness);
                        }
-                       translate([-xf, -yf, 0])
+                       translate([-xyf, -xyf, 0])
                        {
                            sphere(roundness);
                        }
@@ -433,7 +438,7 @@ module funnel()
                {
                    offset(roundness)
                    {
-                       square([xi, yi],center=true);
+                       square([xyi, xyi],center=true);
                    }
                }
            }
@@ -443,7 +448,7 @@ module funnel()
                {
                    offset(roundness)
                    {
-                       square([3*xf, 3*yf],center=true);
+                       square([3*xyf, 3*xyf],center=true);
                    }
                }
            }
