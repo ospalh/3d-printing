@@ -14,9 +14,6 @@ volume = 55;  // [3:0.1:250]
 // Don’t
 use_american_customary_units = 0;  // [1:Yes, please. What’s a meter?, 0:Of course not! Use SI units.]
 
-// Should be a multiple of your nozzle diameter
-wall_thickness = 1.6; // [1.2, 1.5, 1.6, 1.8]
-
 module end_customizer()
 {
    // This is a dummy module so stop users messing with the values below.
@@ -26,12 +23,22 @@ module end_customizer()
 // TODO²: Braile labels
 // label_style = 1; [0:No label, 1:Raised Text, 2:Colored Text, 3:Braile];
 
-v_cmm = volume * 1000;
 
-// Smother than normal
+// Smoother than normal
 $fa=5;
-$fs=0.1;
-// $fs=1;
+
+$fs=1;  // Use 0.1 here when runnig OpenSCAD at home.
+
+// And use the lower value here. This avoids odd edges caused by
+// rounding errors.
+// odd_offset = 0.02;
+odd_offset = 0.1;
+
+
+// Should be a multiple of your nozzle diameter
+wall_thickness = 1.6; // [1.2, 1.5, 1.6, 1.8]
+
+
 
 // π is still wrong. Even if we use the area of a circle below. Use τ.
 tau = 2 * PI;
@@ -42,6 +49,8 @@ inner_radius = roundness-wall_thickness;
 
 chute_angle = 55;  // Degrees
 funnel_angle = 60;
+
+v_cmm = volume * 1000;
 
 // Crazy math to get the volume with the rounding right Basically we
 // have V = l³ - lost_volume, with lost volume = the fillets in the
@@ -65,7 +74,7 @@ inner_box_dimension = cube_root_bit / (pow(2, 1/3) * pow(3, 2/3)) -
 // End crazy math.
 
 some_distance = 1.95 * inner_box_dimension + 10 * wall_thickness;
-odd_offset = 0.02;
+
 
 if (use_american_customary_units)
 {
