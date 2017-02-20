@@ -22,14 +22,15 @@ module end_customizer()
    // This is a dummy module so stop users messing with the values below.
 }
 
-
 // TODO: labels
 // TODO²: Braile labels
 // label_style = 1; [0:No label, 1:Raised Text, 2:Colored Text, 3:Braile];
 
 v_cmm = volume * 1000;
 
-// $fa=5;  // Fewer facets than standard
+// Smother than normal
+$fa=5;
+$fs=0.1;
 
 // π is still wrong. Even if we use the area of a circle below. Use τ.
 tau = 2 * PI;
@@ -66,7 +67,7 @@ inner_box_dimension = cube_root_bit / (pow(2, 1/3) * pow(3, 2/3)) -
 // End crazy math.
 
 some_distance = 1.95 * inner_box_dimension + 10 * wall_thickness;
-
+odd_offset = 0.02;
 
 if (use_american_customary_units)
 {
@@ -74,7 +75,7 @@ if (use_american_customary_units)
 }
 else
 {
-   translate([some_distance,0,0])
+//   translate([some_distance,0,0])
    {
       rotate(90)
       {
@@ -84,7 +85,7 @@ else
    }
    //translate([0,some_distance,0])
    {
-      funnel();
+  //    funnel();
    }
 }
 
@@ -198,11 +199,11 @@ module chute()
 {
    // The length were done by hand, rather than
    // calculated. looks good, is good enough.
-   w = inner_box_dimension + 4*wall_thickness;
+   w = inner_box_dimension + 2*wall_thickness - odd_offset;
    h = inner_box_dimension + wall_thickness;
    l = h / sin(chute_angle);
    p = l * cos(chute_angle);
-   o = w/2 + p/2;
+   o = w/2 + p/2 + wall_thickness;
    difference()
    {
       union()
@@ -213,19 +214,55 @@ module chute()
             {
                rotate(a=[chute_angle, 0, 0])
                {
-                  cube([inner_box_dimension, l, wall_thickness], center=true);
-                  translate([inner_box_dimension/2-wall_thickness/2,0,2.5*wall_thickness])
+                  cube([w, l, wall_thickness], center=true);
+                  translate([w/2-wall_thickness/2,0,2.5*wall_thickness])
                   {
                      cube([wall_thickness, 2*l, 5*wall_thickness], center=true);
                   }
-                  translate([-inner_box_dimension/2+wall_thickness/2,0,2.5*wall_thickness])
+                  translate([-w/2+wall_thickness/2,0,2.5*wall_thickness])
                   {
                      cube([wall_thickness, 2*l, 5*wall_thickness], center=true);
                   }
                }
             }
+            // Better connection between chute and measure
+            difference()
+            {
+               translate([0,-w/2,
+                          inner_box_dimension - inner_radius + roundness])
+               {
+                  rotate(a=[-chute_angle, 0, 0])
+                  {
+                     translate([-w/2, -wall_thickness, -2 * roundness + 1 * wall_thickness])
+                     {
+                        cube([w, 0.85*h, 2 * roundness]);
+                     }
+                  }
+               }
+               translate([0,-o, h/2])
+               {
+                  rotate(a=[chute_angle, 0, 0])
+                  {
+                     translate([0, 3*wall_thickness, 5*wall_thickness])
+                     {
+                        cube([w-odd_offset, l, 10*wall_thickness], center=true);
+                     }
+                  }
+               }
+               // I wanted to round the connection off. Too much work
+               // to position the cylinder to do it.
+               // translate([0,0,0])
+               // {
+               //    rotate(a=[0,90,0])
+               //    {
+               //       translate([0,0,-w/2])
+               //       {
+               //          cylinder(r=inner_radius, h=w);
+               //       }
+               //    }
+               // }
+            }
          }
-
       }
       // Honking big boxes to cut off too large stuff
       translate([0,0,-10*inner_box_dimension])
