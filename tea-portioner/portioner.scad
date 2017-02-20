@@ -5,7 +5,7 @@
 // © 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 // Using material (or inspirations) by
-//  Soren_Furbo (https://www.thingiverse.com/thing:43899/)
+// Soren_Furbo (https://www.thingiverse.com/thing:43899/)
 //
 
 // How many cm³ (ml) for one portion
@@ -13,9 +13,6 @@ volume = 55;  // [3:0.1:250]
 
 // Don’t
 use_american_customary_units = 0;  // [1:Yes, please. What’s a meter?, 0:Of course not! Use SI units.]
-
-// Add three extra feet on the sides without the chute
-add_feet = 0;  // [1:Add feet, 0: No feet]
 
 // Should be a multiple of your nozzle diameter
 wall_thickness = 1.6; // [1.2, 1.5, 1.6, 1.8]
@@ -44,8 +41,7 @@ inner_radius = roundness-wall_thickness;
 droop_tolerance = 0.1;
 slider_tolerance = 0.6;
 
-leg_width = 2.4;
-feet_angle = 50;  // Degrees
+chute_angle = 50;  // Degrees
 funnel_angle = 60;
 
 // Crazy math to get the volume with the rounding right Basically we
@@ -83,7 +79,7 @@ else
       rotate(90)
       {
          measure();
-         feet_and_chute();
+         chute();
       }
    }
    //translate([0,some_distance,0])
@@ -198,68 +194,24 @@ module measure()
 
 }
 
-module feet_and_chute()
+module chute()
 {
    // The length were done by hand, rather than
    // calculated. looks good, is good enough.
    w = inner_box_dimension + 4*wall_thickness;
    h = inner_box_dimension + wall_thickness;
-   l = h / sin(feet_angle);
-   p = l * cos(feet_angle);
-   o = w/2 + p/2 - leg_width;
+   l = h / sin(chute_angle);
+   p = l * cos(chute_angle);
+   o = w/2 + p/2;
    difference()
    {
       union()
       {
-         if (add_feet)
-         {
-            rotate([0,0,-90])
-            {
-               translate([0,-o, h/2])
-               {
-                  rotate(a=[feet_angle, 0, 0])
-                  {
-                     cube([leg_width, l, leg_width], center=true);
-                  }
-               }
-               translate([0,-o-p/2+leg_width/2,wall_thickness/2])
-               {
-                  cylinder(r=1.5*leg_width,h=wall_thickness,center=true);
-               }
-            }
-
-            translate([0,-o, h/2])
-            {
-               rotate(a=[feet_angle, 0, 0])
-               {
-                  cube([leg_width, l, leg_width], center=true);
-               }
-            }
-            translate([0,-o-p/2+leg_width/2,wall_thickness/2])
-            {
-               cylinder(r=1.5*leg_width,h=wall_thickness,center=true);
-            }
-            rotate([0,0,90])
-            {
-               translate([0,-o, h/2])
-               {
-                  rotate(a=[feet_angle, 0, 0])
-                  {
-                     cube([leg_width, l, leg_width], center=true);
-                  }
-               }
-               translate([0,-o-p/2+leg_width/2,wall_thickness/2])
-               {
-                  cylinder(r=1.5*leg_width,h=wall_thickness,center=true);
-               }
-
-            }
-         }
          rotate([0,0,180])
          {
             translate([0,-o, h/2])
             {
-               rotate(a=[feet_angle, 0, 0])
+               rotate(a=[chute_angle, 0, 0])
                {
                   cube([inner_box_dimension, l, wall_thickness], center=true);
                   translate([inner_box_dimension/2-wall_thickness/2,0,2.5*wall_thickness])
