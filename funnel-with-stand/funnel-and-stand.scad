@@ -24,13 +24,12 @@ neck_tip_angle = 80;  // [45:90]
 // Create just the funnel, or a stand to go with it
 with_stand = 1; // [0:Just funnel, 1:Funnel and stand]
 
-// in cm. How much the bottom of the funnel will be above ground.
-funnel_bottom_height = 10; // [1:0.1:15]
+// Height added  to the stand, in cm. The height of the top of the funnel will be the length of your pencil plus this.
+extra_height = 1; // [1:15]
 
 
 // in mm. Should be a multiple of your nozzle diameter
 wall_thickness = 1.6; // [1.2, 1.5, 1.6, 1.8]
-
 module end_customizer()
 {
    // This is a dummy module to stop users messing with the values below.
@@ -39,10 +38,7 @@ module end_customizer()
 r_n = neck_diameter * 5;  // neck radius in mm
 r_r = rim_diameter * 5;  // rim radius in mm
 l_n = neck_length * 10;  // neck_length in mm
-fb_h = funnel_bottom_height * 10;  // funnel bottom height in mm
-
-wiggle_room_factor = 1.05;
-
+heh = extra_height * 5; // Half the extra height, in mm
 // shorthand
 w = wall_thickness;
 fa = funnel_angle;
@@ -53,26 +49,45 @@ o_ta = 1 * (r_n + w) * tan(ta_b);
 // π is still wrong. Even if we use the area of a circle below. Use τ.
 tau = 2 * PI;
 
-// The small radius of the support “pencil”., from center to center of face
-r_p_s = 3;
+wiggle_room_factor = 1.2;
+// The small radius of the support pencil, from center to center of face
 
+r_p_s = 3.4 * wiggle_room_factor;
+// The flat-to-flat diameter of a standard pencil is 6.8 mm. Do quite a
+// bit more.
 // The max. radius (center to edge).  Also the
 // width of one pencil face.
 r_p_l = r_p_s * 2 / 3 * sqrt(3);
 
+
 // Handle radius
 handle_r = 10;
 
-cooling_distance = 20;
+// Tip angle
+tip_a = 21;  // °. Apparently standard in Germany
+// tip_a = 19;  // °. There is a German »Long Point« pencil sharpnener with 19 °.
+// There are also rumors that American pencil are pointier than German ones.
+// tip_a = 24 // °. Special color pencil sharpener.
+
+// The tip angle is apparently from one side to the other side, not from
+// one side to the center line.
+
 
 // Size of the “big pencil” connector. Twice the area, half of it hollow.
 r_bp_s = sqrt(2) * r_p_s;
 r_bp_l = r_bp_s * 2 / 3 * sqrt(3);
 
-bp_h = 10 * r_p_s;  // Height of the “big pencil” connector
-bp_s_h = r_bp_s;
+sp_h = 8 * r_p_s;  // Height of the sharpend pencil cylindrical connector bit
+usp_h = 10 * r_p_s;  // Height of the unsharpend pencil connector bit
+
+
+bp_s_h = r_bp_s / tan(tip_a/2);
+
 // Height of the sleve at the bottom (as printed) of the “big pencil”
-// connector
+// connector. The length of a pencil tip. (The angle of the outer wall
+// should come out slightly below tip_a, as the walls get thinner. We
+// (try to) maintain cross section area, not wall strength.)
+// Here we need the angle from one side to the center line.
 
 es_h = 15; // Extra support/stabilizer height
 es_w = 0.8;
@@ -99,7 +114,8 @@ module funnel()
    ch = (r_r - r_n) / tan(fa_b);
    o_rr = w / sin(fa);
    o_nl = w * tan((90-fa_b)/2);
-   // Max height. I sort-of designed the funnel the right way up, but want it come out upside down.
+   // Max height. I sort-of designed the funnel the right way up, but
+   // want it come out upside down.
    mh = l_n + o_nl + ch;
 
    // just the rotationl symmetirc part
@@ -160,11 +176,11 @@ module funnel()
    // The holder lug. The Poly is bigger than needed, and we
    // subtract a bit later.
    lp_poly = [
-      [r_p_s,r_r + w - 3*w],
-      [r_p_s,r_r + w + r_p_l + 0.5*r_p_s],
-      [0,r_r + w + 2*r_p_l],
-      [-r_p_s,r_r + w + r_p_l + 0.5*r_p_s],
-      [-r_p_s,r_r + w - 3*w],
+      [r_bp_s,r_r + w - 3*w],
+      [r_bp_s,r_r + w + r_bp_l + 0.5*r_bp_s],
+      [0,r_r + w + 2*r_bp_l],
+      [-r_bp_s,r_r + w + r_bp_l + 0.5*r_bp_s],
+      [-r_bp_s,r_r + w - 3*w],
       ];
 
    //
@@ -192,17 +208,7 @@ module funnel()
             {
                cube([es_w,r_r-r_n, es_h]);
             }
-            translate([0,r_r+w+r_p_l,0])
-            {
-               // holder/stand “pencil”
-               rotate(30)
-               {
-                  linear_extrude(mh-bp_h)
-                  {
-                     circle(r=r_p_l,$fn=6);
-                  }
-               }
-            }
+
          }
          else
          {
@@ -250,33 +256,19 @@ module funnel()
    }
    if (with_stand)
    {
-      translate([0,r_r+w+r_p_l,mh-bp_h])
+      bp_s_f = (r_bp_l) / r_p_l;
+      translate([0,r_r+w+r_bp_l, w])
       {
          rotate(30)
          {
             difference()
             {
-               // The main connector  bit
-               linear_extrude(bp_h)
-               {
-                  circle(r=r_bp_l * wiggle_room_factor ,$fn=6);
-               }
+               cylinder(h=usp_h+heh, r=r_bp_l, $fn=6);
                // Hollow it out
-               linear_extrude(bp_h)
+               translate([0,0, heh])
                {
-               circle(r=r_p_l * wiggle_room_factor,$fn=6);
+                  cylinder(h=usp_h+1,r=r_p_l, $fn=6);
                }
-            }
-         }
-      }
-      bp_s_f = (r_bp_l * wiggle_room_factor) / r_p_l;
-      translate([0,r_r+w+r_p_l,mh-bp_h-bp_s_h])
-      {
-         rotate(30)
-         {
-            linear_extrude(bp_s_h, scale=bp_s_f)
-            {
-               circle(r=r_p_l, $fn=6);
             }
          }
       }
@@ -319,41 +311,58 @@ module stand()
       // The stand.
       rotate(30)
       {
-         linear_extrude(fb_h + bp_h)
+         difference()
          {
-            circle(r=r_p_l, $fn=6);
-         }
-      }
-   }
-   translate([0, -hex_r -cooling_distance , 0])
-   {
-      // Small sacrifical cooling tower. Printed so the layers take a bit longer and the plastic can cool. Throw it away after the print
-      rotate(30)
-      {
-         linear_extrude(fb_h + bp_h)
-         {
-            square(es_w);
+            union()
+            {
+               // Three segments of linear extrusion
+               // The extra
+               cylinder(h=heh, r=r_p_l,$fn=6);
+               // The sharpend bit
+               translate([0, 0 , heh])
+               {
+                  cylinder(h=bp_s_h, r1=r_p_l, r2=r_bp_l,$fn=6);
+               }
+               // The shaft bit
+               translate([0, 0 , bp_s_h+heh])
+               {
+                  cylinder(h=sp_h, r=r_bp_l, $fn=6);
+               }
+               // The extra plates. Should not interfere with the stand
+               // without this. Anyway.
+               rotate(-60)
+               {
+                  extra_plate();
+               }
+               rotate(180)
+               {
+                  extra_plate();
+               }
+            }
+            // Hollow it out
+            translate([0, 0 , heh])
+            {
+               cylinder(h=bp_s_h, r1=0, r2=r_p_l, $fn=6);
+            }
+            translate([0, 0 , bp_s_h+heh])
+            {
+               cylinder(h=sp_h+1,r=r_p_l, $fn=6);
+            }
+
          }
       }
    }
 
-   es_s_p = [
-      [0, 0],
-      [es_h + r_p_l/2, 0],
-      [0, es_h + r_p_l/2]
-      ];
-   translate([0, hex_r, 0])
+   module extra_plate()
    {
-      rotate([90, 0, -30])
+      es_s_p = [
+         [0, 0],
+         [es_h + r_p_l/2, 0],
+         [0, es_h + r_p_l/2]
+         ];
+      rotate([90, 0, 0])
       {
-         linear_extrude(es_w)
-         {
-            polygon(es_s_p);
-         }
-      }
-      mirror()
-      {
-         rotate([90, 0, -30])
+         translate([r_p_l, 0.5*r_p_l, 0])
          {
             linear_extrude(es_w)
             {
