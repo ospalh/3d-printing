@@ -28,21 +28,28 @@ with_stand = 1; // [0:Just funnel, 1:Funnel and stand]
 extra_height = 1; // [1:15]
 
 
-// in mm. Should be a multiple of your nozzle diameter
-wall_thickness = 1.6; // [1.2, 1.5, 1.6, 1.8]
 module end_customizer()
 {
    // This is a dummy module to stop users messing with the values below.
 }
+
+
+// Smoother than normal
+$fa=5;   // Use 1 or lower here when runnig OpenSCAD at home.
+$fs=1;
+
+// in mm. Should be a multiple of your nozzle diameter
+// wall_thickness = 1.6; // [1.2, 1.5, 1.6, 1.8]
+
 
 r_n = neck_diameter * 5;  // neck radius in mm
 r_r = rim_diameter * 5;  // rim radius in mm
 l_n = neck_length * 10;  // neck_length in mm
 heh = extra_height * 5; // Half the extra height, in mm
 // shorthand
-w = wall_thickness;
-fa = funnel_angle;
-fa_b = 90 - fa;
+w = 1.6;
+fua = funnel_angle;
+fua_b = 90 - fua;
 ta_b = 90 - neck_tip_angle;
 o_ta = 1 * (r_n + w) * tan(ta_b);
 
@@ -111,9 +118,9 @@ translate([some_distance, 0, 0])
 module funnel()
 {
 
-   ch = (r_r - r_n) / tan(fa_b);
-   o_rr = w / sin(fa);
-   o_nl = w * tan((90-fa_b)/2);
+   ch = (r_r - r_n) / tan(fua_b);
+   o_rr = w / sin(fua);
+   o_nl = w * tan((90-fua_b)/2);
    // Max height. I sort-of designed the funnel the right way up, but
    // want it come out upside down.
    mh = l_n + o_nl + ch;
