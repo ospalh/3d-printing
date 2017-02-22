@@ -2,9 +2,7 @@
 
 A funnel where the main parameters can be changed. You either get a special stand with it or not.
 
-To assemble, stick a sharpened pencil into the stand, the funnel on top of this pencil, and you can place your receptacle under the funnel.
-
-This is intended for light use. A few tea leaves rather than kilogrammes of sugar.
+Stick a sharpened pencil into the stand and the funnel on top of this pencil. Then you can place your receptacle under the funnel. This is intended for light use. A few tea leaves rather than kilogrammes of sugar.
 
 I wanted a funnel with a rather low throat ratio, if that is the
 term,to fill paper tea filters. The tea leaves always jam in the necks
