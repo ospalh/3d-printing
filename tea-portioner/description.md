@@ -1,35 +1,34 @@
 ## Customizable tea (sugar, coffee &c.) portioner
 
-Quickly measure the right amount of tea leaves for one pot, or other granular materials where you need the same amount every day.
+Quickly measure the right amount of tea leaves for one pot, or other granular materials where you need the same amount every day:
 
-The STL files are for 44 cm³ (44 ml) and 55 cm³ (55 ml), the right amount of roibos tea for my two teapots, 1 dm³ (1 l) and 1.25 dm³ (1.25 l). They are smoother than what you get out of the customizer. If you want this smoothness, download the SCAD file, open it and reduce the `$fa` value according to the comment.
-
-
-If you like to strike off the funnel to the left, you should mirror the measuring cup before you print it
-
-
-
-### Customizer
+* Place the funnel on the measuring cup. There *is* a right way, with the wider brim of the funnel on the flat surface of the cup, but with the funnel in another direction it should work well, too.
+* Pour in the tea leaves until the cup is a bit over full.
+* Slide off the funnel, striking the measuring cup and pouring the extra tea back in its tin over the chute.
+* The measure now contains the right amount of tea. Pour it into the filter or teapot. I use my funnel and stand for this.
 
 
-* Main parameter is the volume. When you know the mass to use, you need the density. For roibos, the 44 cm³ and 55 cm³ is for 12 g and 15g, that is 270 kg/m³ or 0.27 g/cm³
-* When you have a mass, look up the density in the [FAO list](http://www.fao.org/docrep/017/ap815e/ap815e.pdf), elsewhere, or measure yourself.
-* This is no precise measuring device. Expect large tolerances.
-* The “American customary units” *is* a bit of a joke, or my pet peeve. GIYF when you want to know how many cm³ are in 7/13 cups, or whatever it is your recipe says.
+The STL files included are for 44 cm³ (44 ml) and 55 cm³ (55 ml), the
+right amount of rooibos tea for my two teapots, 1 dm³ (1 l) and 1.25
+dm³ (1.25 l). For other sizes use the customizer.  When you have a mass, look up the density in the [FAO list](http://www.fao.org/docrep/017/ap815e/ap815e.pdf), elsewhere, or measure yourself.
+
+The included STL files are smoother than what you get out of the
+customizer. You can download the SCAD file, open it in OpenSCAD and
+uncomment the `$fs` and `$fa` lines according to the comment to get this smoothness.
+
+The “American customary units” in the customizer *is* a bit of a joke, or my pet peeve.
+Practically, Americans should look up the millilitres per teaspoon &c. in [this list](http://www.jsward.com/cooking/conversion.shtml), and visit [metric4us](http://metric4us.com/) at their leisure after they printed their portioner.
+
+Of course there’s nothing wrong with using a measuring  spoons or scoops like things [682146](https://www.thingiverse.com/thing:682146) or [619626](https://www.thingiverse.com/thing:619626). Except that the designer seems to think that 29.5735295625 cm³ or 14.7867647825 cm³ are useful units of measurement, and won’t [discourage](http://metric4us.com) Americans – and Britons – from that silly habit. I still prefer this because tilting a tea tin is easier than filling a measuring spoon, especially if their is barely enough tea in the tin for one pot.
+
 
 ### Print Settings
 
 * Supports: no
-* Brim: yes Measuring cup only. The chute may fall over without.
-* Make sure the chute is to the left or right on Prusa style printers, or the y axis acceleration would put extra force on it.
+* Brim: yes Measuring cup only. The chute may fall over without it.
+* Make sure the chute is to the left or right on Prusa style printers, or the y axis acceleration force would work to tear it loose.
 
 
-### How to use
-
-* Place the funnel on the measuring cup. There *is* a right way, with the wider brim of the funnel on the flat surface of the cup, but with the funnel in another direction it should work well, too.
-* Pour in the tea leaves until the cup is a bit over full
-* Slide off the funnel, striking the measuring cup and pouring the extra tea back in its tin over the chute
-* The measure now contains the right amount of tea. Pour it into the filter or teapot. I use my funnel and stand for this
 
 ### Safety concerns
 
