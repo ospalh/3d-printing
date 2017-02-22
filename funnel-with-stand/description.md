@@ -12,7 +12,10 @@ of supermarket funnels.
 
 Not all slider value combinations in the customizer produce reasonable results. Especially a too high tip angle may cut off parts of the funnel proper. Just use different values when you get odd shapes.
 
-The included STL files are smoother than what you get out of the customizer. If you want this smoothness, download the SCAD file, open it and reduce the `$fa` value according to the comment.
+The included STL files are smoother than what you get out of the
+customizer. You can download the SCAD file, open it in OpenSCAD and
+uncomment the `$fs` and `$fa` lines according to the comment to get
+this smoothness.
 
 ### Print Settings
 
