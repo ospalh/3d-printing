@@ -2,9 +2,7 @@
 
 A funnel where the main parameters can be changed. You either get a special stand with it or not.
 
-To assemble, stick a sharpened pencil into the stand, the funnel on top of this pencil, and you can place your receptacle under the funnel.
-
-This is intended for light use. A few tea leaves rather than kilogrammes of sugar.
+Stick a sharpened pencil into the stand and the funnel on top of this pencil. Then you can place your receptacle under the funnel. This is intended for light use. A few tea leaves rather than kilogrammes of sugar.
 
 I wanted a funnel with a rather low throat ratio, if that is the
 term,to fill paper tea filters. The tea leaves always jam in the necks
@@ -14,7 +12,10 @@ of supermarket funnels.
 
 Not all slider value combinations in the customizer produce reasonable results. Especially a too high tip angle may cut off parts of the funnel proper. Just use different values when you get odd shapes.
 
-The included STL files are smoother than what you get out of the customizer. If you want this smoothness, download the SCAD file, open it and reduce the `$fa` value according to the comment.
+The included STL files are smoother than what you get out of the
+customizer. You can download the SCAD file, open it in OpenSCAD and
+uncomment the `$fs` and `$fa` lines according to the comment to get
+this smoothness.
 
 ### Print Settings
 

@@ -24,10 +24,11 @@ module end_customizer()
 // label_style = 1; [0:No label, 1:Raised Text, 2:Colored Text, 3:Braile];
 
 
-// Smoother than normal
-$fa=5;
+// Uncomment these when running OpenSCAD at home for a smoother
+// (ronuder) parts.
+// $fa= 1;
+// $fs=0.1;
 
-$fs=1;  // Use 0.1 here when runnig OpenSCAD at home.
 
 // And use the lower value here. This avoids odd edges caused by
 // rounding errors.
