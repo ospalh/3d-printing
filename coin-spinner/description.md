@@ -4,20 +4,22 @@ Instead of selecting from a short list of coins, now you have to put in the size
 
 When you use euro coins, you can make yours a symbol of international cooperation. Mine is using coins from
 
-* Austria
+
 * France
 * Greece
 * Ireland
 * Italy
+* Portugal
 * Slovenia
+* Austria
 * Germany
 * the Netherlands
 
-More countries than visible coins! (The last two are on the inside, two from Germany.)
+Nine coins, nine countries! The last three are on the inside.
 
 I also added the bearing caps from Arondite’s [Fidget Toy Comfort Spinner](https://www.thingiverse.com/thing:1816684)
 
-You may have to adjust your scale slightly to make the bearing and coins fit, especially if your printer is not calibrated too precisely. I had to use 102 %.
+You may have to adjust your scale slightly to make the bearing and coins fit, especially if your printer is not calibrated too precisely. I had to use 101 %.
 
 Included are three variants of the spinner as STLs:
 
