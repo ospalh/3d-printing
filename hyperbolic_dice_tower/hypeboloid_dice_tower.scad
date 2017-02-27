@@ -6,14 +6,20 @@
 // Licence: CC-BY-SA 4.0
 
 
-r_t = 40;  // top (after print) radius
-w = 1.2;  // wire radius
+// These two should be somewhate save to change
+w = 1.2;  // wire size
 c = 20;  // count
+
+
+// When you change these, you’ll have to tweak the rings below
+r_t = 40;  // top (after print) radius
 a_1 = 30;  // angle from vertical;
 a_2 = 40;  // angle inwards;
 l = 125; // lengt of a wire. the height will be slightly less
 
+
 s = 360 / c;
+$fn = c;
 
 
 difference()
@@ -36,20 +42,23 @@ difference()
 ring(h=0, r=r_t);
 ring(h=26.675, r=r_t*0.81);
 ring(h=53.75, r=r_t*0.78);
-ring(h=80.624, r=r_t*0.937);
-ring(h=107.5, r=r_t*1.2);
-feet(1.2*r_t,27, 107.5);
+ring(h=80.624, r=r_t*0.934);
+ring(h=107.5, r=r_t*1.19);
+rotate(-30)
+{
+feet(1.18*r_t,27, 107.5);
+}
 mirror()
 {
-   rotate(30)
+   rotate(0)
    {
-      feet(1.2*r_t,27, 107.5);
+      feet(1.18*r_t,27, 107.5);
    }
 }
 ramp(r_t, 0, 180);
-ramp(0.81*r_t, 26.675, 0);
-ramp(0.78*r_t, 53.75, 180);
-ramp(0.937*r_t, 80.624, 0);
+ramp(0.804*r_t, 26.675, 0);
+ramp(0.773*r_t, 53.75, 180);
+ramp(0.926*r_t, 80.624, 0);
 
 
 module shell()
@@ -79,11 +88,12 @@ module ring(h, r)
       {
          translate([r,w/2,0])
          {
-            square([w, 2*w], center=true);
+               square([w, 2*w], center=true);
          }
       }
    }
 }
+
 
 module feet(rf, fl, hl)
 {
