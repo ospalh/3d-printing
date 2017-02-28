@@ -19,10 +19,10 @@ c = 14;  // count
 
 
 // When you change these, you’ll have to tweak the rings below
-r_t = 30;  // top (after print) radius
-a_1 = 20;  // angle from vertical;
-a_2 = 20;  // angle inwards;
-l = 115; // lengt of a wire. the height will be slightly less
+r_t = 34;  // top (after print) radius
+a_1 = 30;  // angle from vertical;
+a_2 = 50;  // angle inwards;
+l = 125.5; // lengt of a wire. the height will be slightly less
 
 
 s = 360 / c;
@@ -43,25 +43,25 @@ difference()
 }
 // These are done by hand, made to look good, rather than caluclated.
 ring(h=0, r=r_t);
-ring(h=26.675, r=r_t*0.957);
-ring(h=53.75, r=r_t*1.022);
-ring(h=80.624, r=r_t*1.162);
-ring(h=107.5, r=r_t*1.385);
-rotate(-10)
+ring(h=26.675, r=r_t*0.72);
+ring(h=53.75, r=r_t*0.68);
+ring(h=80.624, r=r_t*0.91);
+ring(h=107.5, r=r_t*1.275);
+rotate(-18)
 {
-   feet(1.385*r_t,35, 107.5);
+  feet(1.275*r_t,35, 107.5);
 }
 mirror()
 {
    rotate(0)
    {
-      feet(1.385*r_t,35, 107.5);
+      feet(1.275*r_t,35, 107.5);
    }
 }
 ramp(r_t, 0, 180);
-ramp(0.957*r_t, 26.675, 0);
-ramp(1.022*r_t, 53.75, 180);
-ramp(1.162*r_t, 80.624, 0);
+ramp(0.72*r_t, 26.675, 0);
+ramp(0.68*r_t, 53.75, 180);
+ramp(0.91*r_t, 80.624, 0);
 
 
 module shell(f)
