@@ -18,11 +18,11 @@ c = 14;  // count
 //c = 20;
 
 
-// When you change these, you’ll have to tweak the rings below
-r_t = 34;  // top (after print) radius
-a_1 = 30;  // angle from vertical;
-a_2 = 50;  // angle inwards;
-l = 125.5; // lengt of a wire. the height will be slightly less
+// When you change these, you’ll have to tweak the rings &c. below
+r_t = 34;  // Top (after print) radius
+a_1 = 30;  // Angle from vertical
+a_2 = 50;  // Angle inwards
+l = 125.5; // Length of a wire. The height will be slightly less + the feet.
 
 
 s = 360 / c;
@@ -38,7 +38,7 @@ difference()
    }
    translate([0, 0, -6*w])
    {
-      //cylinder(r=2*r_t,h=6*w);
+      cylinder(r=2*r_t,h=6*w);
    }
 }
 // These are done by hand, made to look good, rather than caluclated.

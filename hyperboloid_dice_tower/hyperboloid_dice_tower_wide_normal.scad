@@ -18,11 +18,11 @@ w = 1.8;
 c = 24;
 
 
-// When you change these, you’ll have to tweak the rings below
-r_t = 40;  // top (after print) radius
-a_1 = 30;  // angle from vertical;
-a_2 = 40;  // angle inwards;
-l = 125; // lengt of a wire. the height will be slightly less
+// When you change these, you’ll have to tweak the rings &c. below
+r_t = 40;  // Top (after print) radius
+a_1 = 30;  // Angle from vertical
+a_2 = 40;  // Angle inwards
+l = 125; // Length of a wire. The height will be slightly less + the feet.
 
 
 s = 360 / c;
@@ -59,9 +59,9 @@ mirror()
    }
 }
 ramp(r_t, 0, 180);
-ramp(0.804*r_t, 26.675, 0);
-ramp(0.773*r_t, 53.75, 180);
-ramp(0.926*r_t, 80.624, 0);
+ramp(0.81*r_t, 26.675, 0);
+ramp(0.78*r_t, 53.75, 180);
+ramp(0.934*r_t, 80.624, 0);
 
 
 module shell(f)
@@ -76,7 +76,9 @@ module shell(f)
             rotate([f*a_1, 0, -1*f*a_2])
             {
                translate([0,0, l/2])
-               cube([w, w, l], center=true );
+               {
+                  cube([w, w, l], center=true);
+               }
             }
          }
       }
