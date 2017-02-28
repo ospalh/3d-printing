@@ -46,7 +46,7 @@ ring(h=80.624, r=r_t*0.934);
 ring(h=107.5, r=r_t*1.19);
 rotate(-16)
 {
-feet(1.18*r_t,40, 107.5);
+   feet(1.18*r_t,40, 107.5);
 }
 mirror()
 {
@@ -129,46 +129,47 @@ module feet(rf, fl, hl)
 
 module ramp(rf, hl, ao)
 {
-   fl = 1.1*rf;
-   for (o = [0:15:180])
+   for (o = [0:20:160])
    {
       rotate(o + ao)
       {
-         translate([rf, 0, hl])
+         translate([rf, 0, hl+0.5*w])
          {
-            difference(){
-               rotate([0, -40, 0])
-               {
-                  translate([0,0, fl/2])
-                  {
-                     cube([w, w, fl], center=true);
-                  }
-               }
-               translate([0,0, -4*w])
-               {
-                  cylinder(r=1.5*rf, h=4*w);
-               }
-               translate([0,0, 0.83*fl])  // more ad-hockery
-               {
-                  cylinder(r=1.5*rf, h=4*w);
-               }
-
-            }
-         }
-      }
-   }
-   translate([0,0,hl+fl])  // tweak
-   {
-      difference()
-      {
-         rotate_extrude()
-         {
-            translate([rf-fl,w/2,0]) //tweak
+            rotate([0, -40, 0])
             {
-               square([w, w], center=true);
+               translate([0,0, 0.6*rf])
+               {
+                  cube([w, w, 1.2*rf], center=true);
+               }
+            }
+
+         }
+         rotate(10)
+         {
+            translate([0.2*rf, -w, hl + 0.91*rf])
+            {
+               cube([w, 0.086*rf, w]);
+            }
+            translate([0.6*rf, -0.13*rf+w/2, hl + 0.455*rf])
+            {
+               cube([w, 0.225*rf, w]);
             }
          }
-         // halber zylinder abziehen
       }
    }
+   rotate(180 + ao)
+   {
+      translate([rf, 0, hl+0.5*w])
+      {
+         rotate([0, -40, 0])
+         {
+            translate([0,0, 0.6*rf])
+            {
+                  cube([w, w, 1.2*rf], center=true);
+            }
+         }
+
+      }
+   }
+
 }
