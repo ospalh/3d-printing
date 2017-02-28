@@ -46,16 +46,16 @@ ring(h=0, r=r_t);
 ring(h=26.675, r=r_t*0.72);
 ring(h=53.75, r=r_t*0.68);
 ring(h=80.624, r=r_t*0.91);
-ring(h=107.5, r=r_t*1.275);
+ring(h=107.5, r=r_t*1.27);
 rotate(-18)
 {
-  feet(1.275*r_t,35, 107.5);
+  feet(1.27*r_t,35, 107.5);
 }
 mirror()
 {
    rotate(0)
    {
-      feet(1.275*r_t,35, 107.5);
+      feet(1.27*r_t,35, 107.5);
    }
 }
 ramp(r_t, 0, 180);
