@@ -10,19 +10,19 @@
 // w and c should be somewhat save to change
 
 // Flimsy:
-w = 1.2;  // wire size
-c = 14;  // count
+//w = 1.2;  // wire size
+//c = 14;  // count
 
 // Light～normal
-//w = 1.8;
-//c = 20;
+w = 1.8;
+c = 24;
 
 
 // When you change these, you’ll have to tweak the rings below
-r_t = 30;  // top (after print) radius
-a_1 = 20;  // angle from vertical;
-a_2 = 20;  // angle inwards;
-l = 115; // lengt of a wire. the height will be slightly less
+r_t = 40;  // top (after print) radius
+a_1 = 30;  // angle from vertical;
+a_2 = 40;  // angle inwards;
+l = 125; // lengt of a wire. the height will be slightly less
 
 
 s = 360 / c;
@@ -38,30 +38,30 @@ difference()
    }
    translate([0, 0, -6*w])
    {
-      //cylinder(r=2*r_t,h=6*w);
+      cylinder(r=2*r_t,h=6*w);
    }
 }
 // These are done by hand, made to look good, rather than caluclated.
 ring(h=0, r=r_t);
-ring(h=26.675, r=r_t*0.957);
-ring(h=53.75, r=r_t*1.022);
-ring(h=80.624, r=r_t*1.162);
-ring(h=107.5, r=r_t*1.385);
-rotate(-10)
+ring(h=26.675, r=r_t*0.81);
+ring(h=53.75, r=r_t*0.78);
+ring(h=80.624, r=r_t*0.934);
+ring(h=107.5, r=r_t*1.19);
+rotate(-16)
 {
-   feet(1.385*r_t,35, 107.5);
+   feet(1.18*r_t,40, 107.5);
 }
 mirror()
 {
    rotate(0)
    {
-      feet(1.385*r_t,35, 107.5);
+      feet(1.18*r_t,40, 107.5);
    }
 }
 ramp(r_t, 0, 180);
-ramp(0.957*r_t, 26.675, 0);
-ramp(1.022*r_t, 53.75, 180);
-ramp(1.162*r_t, 80.624, 0);
+ramp(0.804*r_t, 26.675, 0);
+ramp(0.773*r_t, 53.75, 180);
+ramp(0.926*r_t, 80.624, 0);
 
 
 module shell(f)
