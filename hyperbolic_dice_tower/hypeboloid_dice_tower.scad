@@ -1,14 +1,21 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// A dice tower as Vladimir Shukhov might have designed it.
+// A dice tower as Vladimir Shukhov might have designed it. Or one that
+// looks like a cooling tower.
 //
 // © 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 
-// These two should be somewhate save to change
-w = 1.4;  // wire size
-c = 20;  // count
+// w and c should be somewhat save to change
+
+// Flimsy:
+//w = 1.2;  // wire size
+//c = 14;  // count
+
+// Light～normal
+w = 1.8;
+c = 24;
 
 
 // When you change these, you’ll have to tweak the rings below
@@ -26,12 +33,8 @@ difference()
 {
    union()
    {
-      shell();
-      mirror()
-      {
-         shell();
-      }
-
+      shell(1);
+      shell(-1);
    }
    translate([0, 0, -6*w])
    {
@@ -61,15 +64,16 @@ ramp(0.773*r_t, 53.75, 180);
 ramp(0.926*r_t, 80.624, 0);
 
 
-module shell()
+module shell(f)
 {
-   for (o = [0:s:360-s])
+   for (o = [0:s:360-s+1])
    {
+      // the +1 is a kludge needed when s is not an integer
       rotate(o)
       {
          translate([r_t, 0, 0])
          {
-            rotate([a_1, 0, -a_2])
+            rotate([f*a_1, 0, -1*f*a_2])
             {
                translate([0,0, l/2])
                cube([w, w, l], center=true );
