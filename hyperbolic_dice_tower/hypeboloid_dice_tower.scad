@@ -7,7 +7,7 @@
 
 
 // These two should be somewhate save to change
-w = 1.2;  // wire size
+w = 1.4;  // wire size
 c = 20;  // count
 
 
@@ -44,15 +44,15 @@ ring(h=26.675, r=r_t*0.81);
 ring(h=53.75, r=r_t*0.78);
 ring(h=80.624, r=r_t*0.934);
 ring(h=107.5, r=r_t*1.19);
-rotate(-30)
+rotate(-16)
 {
-feet(1.18*r_t,27, 107.5);
+feet(1.18*r_t,40, 107.5);
 }
 mirror()
 {
    rotate(0)
    {
-      feet(1.18*r_t,27, 107.5);
+      feet(1.18*r_t,40, 107.5);
    }
 }
 ramp(r_t, 0, 180);
@@ -88,10 +88,11 @@ module ring(h, r)
       {
          translate([r,w/2,0])
          {
-               square([w, 2*w], center=true);
+               square([w, w], center=true);
          }
       }
    }
+
 }
 
 
@@ -128,7 +129,7 @@ module feet(rf, fl, hl)
 
 module ramp(rf, hl, ao)
 {
-   fl = 1.5*rf;
+   fl = 1.1*rf;
    for (o = [0:15:180])
    {
       rotate(o + ao)
@@ -154,6 +155,20 @@ module ramp(rf, hl, ao)
 
             }
          }
+      }
+   }
+   translate([0,0,hl+fl])  // tweak
+   {
+      difference()
+      {
+         rotate_extrude()
+         {
+            translate([rf-fl,w/2,0]) //tweak
+            {
+               square([w, w], center=true);
+            }
+         }
+         // halber zylinder abziehen
       }
    }
 }
