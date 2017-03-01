@@ -54,13 +54,9 @@ o_ta = 1 * (r_n + w) * tan(ta_b);
 // $fa= 1;
 // $fs=0.1;
 
-
-// π is still wrong. Even if we use the area of a circle below. Use τ.
-tau = 2 * PI;
-
 wiggle_room_factor = 1.2;
-// The small radius of the support pencil, from center to center of face
 
+// The small radius of the support pencil, from center to center of face
 r_p_s = 3.4 * wiggle_room_factor;
 // The flat-to-flat diameter of a standard pencil is 6.8 mm. Do quite a
 // bit more.
