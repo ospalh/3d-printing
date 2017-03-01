@@ -24,6 +24,8 @@ a_1 = 30;  // Angle from vertical
 a_2 = 50;  // Angle inwards
 l = 125.5; // Length of a wire. The height will be slightly less + the feet.
 
+// Tweak this so the rings are in the right height
+hs = 0.8566 * l;
 
 s = 360 / c;
 $fn = c;
@@ -41,28 +43,20 @@ difference()
       cylinder(r=2*r_t,h=6*w);
    }
 }
-// These are done by hand, made to look good, rather than caluclated.
+// Tweak these radiuses to make it look goot
 ring(h=0, r=r_t);
-ring(h=26.675, r=r_t*0.72);
-ring(h=53.75, r=r_t*0.68);
-ring(h=80.624, r=r_t*0.91);
-ring(h=107.5, r=r_t*1.27);
-rotate(-18)
+ring(h=0.25*hs, r=r_t*0.72);
+ring(h=0.5*hs, r=r_t*0.68);
+ring(h=0.75*hs, r=r_t*0.91);
+ring(h=hs, r=r_t*1.27);
+rotate(0)
 {
-  feet(1.27*r_t,35, 107.5);
+  feet(1.27*r_t);  // Use the last rings’s r factor here
+  mirror()
+  {
+     feet(1.27*r_t, 107.5);
+  }
 }
-mirror()
-{
-   rotate(0)
-   {
-      feet(1.27*r_t,35, 107.5);
-   }
-}
-ramp(r_t, 0, 180);
-ramp(0.72*r_t, 26.675, 0);
-ramp(0.68*r_t, 53.75, 180);
-ramp(0.91*r_t, 80.624, 0);
-
 
 module shell(f)
 {
@@ -100,80 +94,34 @@ module ring(h, r)
 }
 
 
-module feet(rf, fl, hl)
+module feet(rf)
 {
-   for (o = [0:60:300])
+   fl = 6.8 * rf / c;
+   for (o = [0:s:360-s+0.1])
    {
       rotate(o)
       {
-         translate([rf, 0, hl])
+         translate([rf, 0, hs])
          {
             difference(){
                rotate([30, 0, 0])
                {
                   translate([0,0, fl/2])
                   {
-                     cube([2*w, 2*w, fl], center=true);
+                     cube([w, w, fl], center=true);
                   }
                }
-               translate([0,0, -4*w])
+               translate([0,0, -3*w])
                {
-                  cylinder(r=1.5*rf, h=4*w);
+                  cylinder(r=1.5*rf, h=3*w);
                }
                translate([0,0, 0.83*fl])  // more ad-hockery
                {
-                  cylinder(r=1.5*rf, h=4*w);
+                  cylinder(r=1.5*rf, h=3*w);
                }
 
             }
          }
       }
    }
-}
-
-module ramp(rf, hl, ao)
-{
-   for (o = [0:20:160])
-   {
-      rotate(o + ao)
-      {
-         translate([rf, 0, hl+0.5*w])
-         {
-            rotate([0, -40, 0])
-            {
-               translate([0,0, 0.6*rf])
-               {
-                  cube([w, w, 1.2*rf], center=true);
-               }
-            }
-
-         }
-         rotate(10)
-         {
-            translate([0.2*rf, -w, hl + 0.91*rf])
-            {
-               cube([w, 0.086*rf, w]);
-            }
-            translate([0.6*rf, -0.13*rf+w/2, hl + 0.455*rf])
-            {
-               cube([w, 0.225*rf, w]);
-            }
-         }
-      }
-   }
-   rotate(180 + ao)
-   {
-      translate([rf, 0, hl+0.5*w])
-      {
-         rotate([0, -40, 0])
-         {
-            translate([0,0, 0.6*rf])
-            {
-                  cube([w, w, 1.2*rf], center=true);
-            }
-         }
-
-      }
-   }
-
 }
