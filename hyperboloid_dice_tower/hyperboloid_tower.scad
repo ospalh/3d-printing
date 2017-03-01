@@ -44,11 +44,11 @@ difference()
    }
 }
 // Tweak these radiuses to make it look goot
-ring(h=0, r=r_t);
-ring(h=0.25*hs, r=r_t*0.72);
-ring(h=0.5*hs, r=r_t*0.68);
-ring(h=0.75*hs, r=r_t*0.91);
-ring(h=hs, r=r_t*1.27);
+ring(0,   r_t);
+ring(0.25*hs, r_t*0.72);
+ring(0.5*hs, r_t*0.68);
+ring(0.75*hs, r_t*0.91);
+ring(hs, r_t*1.27);
 rotate(0)
 {
   feet(1.27*r_t);  // Use the last rings’s r factor here
