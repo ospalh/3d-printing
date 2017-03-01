@@ -24,6 +24,8 @@ module end_customizer()
 // label_style = 1; [0:No label, 1:Raised Text, 2:Colored Text, 3:Braile];
 
 
+min_funnel_top_width = 80;
+
 // Uncomment these when running OpenSCAD at home for a smoother
 // (ronuder) parts.
 // $fa= 1;
@@ -356,8 +358,9 @@ module funnel()
    funnel_offset = wall_thickness / sin(funnel_angle);
    funnel_z_offset = roundness * sin(funnel_angle);
 //   xf = xm + roundness * cos(funnel_angle);
-   xyf = xym + roundness * cos(funnel_angle);
-   funnel_height = xyf/2 * tan(funnel_angle);
+   xyfb = xym + roundness * cos(funnel_angle);
+   xyft = max(xyfb, min_funnel_top_width/2);
+   funnel_height = (xyft - xyfb/2) * tan(funnel_angle);
    translate([wall_thickness, wall_thickness,
               2*wall_thickness + funnel_z_offset])
    {
@@ -365,37 +368,37 @@ module funnel()
        {
            hull()
            {
-               translate([xyf/2, xyf/2, 0])
+               translate([xyfb/2, xyfb/2, 0])
                {
                    sphere(roundness);
                }
-               translate([-xyf/2, xyf/2, 0])
+               translate([-xyfb/2, xyfb/2, 0])
                {
                    sphere(roundness);
                }
-               translate([xyf/2, -xyf/2, 0])
+               translate([xyfb/2, -xyfb/2, 0])
                {
                    sphere(roundness);
                }
-               translate([-xyf/2, -xyf/2, 0])
+               translate([-xyfb/2, -xyfb/2, 0])
                {
                    sphere(roundness);
                }
                translate([0,0,funnel_height])
                {
-                   translate([xyf, xyf, 0])
+                   translate([xyft, xyft, 0])
                    {
                        sphere(roundness);
                    }
-                   translate([-xyf, xyf, 0])
+                   translate([-xyft, xyft, 0])
                    {
                        sphere(roundness);
                    }
-                   translate([xyf, -xyf, 0])
+                   translate([xyft, -xyft, 0])
                    {
                        sphere(roundness);
                    }
-                   translate([-xyf, -xyf, 0])
+                   translate([-xyft, -xyft, 0])
                    {
                        sphere(roundness);
                    }
@@ -405,37 +408,37 @@ module funnel()
            {
                hull()
                {
-                   translate([xyf/2, xyf/2, 0])
+                   translate([xyfb/2, xyfb/2, 0])
                    {
                        sphere(roundness);
                    }
-                   translate([-xyf/2, xyf/2, 0])
+                   translate([-xyfb/2, xyfb/2, 0])
                    {
                        sphere(roundness);
                    }
-                   translate([xyf/2, -xyf/2, 0])
+                   translate([xyfb/2, -xyfb/2, 0])
                    {
                        sphere(roundness);
                    }
-                   translate([-xyf/2, -xyf/2, 0])
+                   translate([-xyfb/2, -xyfb/2, 0])
                    {
                        sphere(roundness);
                    }
                    translate([0,0,funnel_height])
                    {
-                       translate([xyf, xyf, 0])
+                       translate([xyft, xyft, 0])
                        {
                            sphere(roundness);
                        }
-                       translate([-xyf, xyf, 0])
+                       translate([-xyft, xyft, 0])
                        {
                            sphere(roundness);
                        }
-                       translate([xyf, -xyf, 0])
+                       translate([xyft, -xyft, 0])
                        {
                            sphere(roundness);
                        }
-                       translate([-xyf, -xyf, 0])
+                       translate([-xyft, -xyft, 0])
                        {
                            sphere(roundness);
                        }
@@ -458,7 +461,7 @@ module funnel()
                {
                    offset(roundness)
                    {
-                       square([3*xyf, 3*xyf],center=true);
+                       square([3*xyfb, 3*xyfb],center=true);
                    }
                }
            }
