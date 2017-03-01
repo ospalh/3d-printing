@@ -38,14 +38,16 @@ r_r = rim_diameter * 5;  // rim radius in mm
 l_n = neck_length * 10;  // neck_length in mm
 heh = extra_height * 5; // Half the extra height, in mm
 
+w = 1.6;
+// Wall thickness. Should be a multiple of your nozzle diameter. 1.2 may
+// be enough.
+
+
 fua = funnel_angle;
 fua_b = 90 - fua;
 ta_b = 90 - neck_tip_angle;
 o_ta = 1 * (r_n + w) * tan(ta_b);
 
-w = 1.6;
-// Wall thickness. Should be a multiple of your nozzle diameter. 1.2 may
-// be enough.
 
 // Uncomment these when running OpenSCAD at home for a smoother
 // (ronuder) funnel.
