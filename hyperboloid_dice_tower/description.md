@@ -4,7 +4,7 @@ I did print [David South](https://www.thingiverse.com/south2012/about)’s “bo
 
 So, here are lots of straight beams or wires (even the rings are really polygons) that form a dice tower.
 
-There are two variants, one somewhat substantial, and one flimsy. That one prints out surprisingly easily, and is stable enough for its job. It is probably one of the lightest full size dice towers out there. (If somebody build one out of an aerogel, i want to see it!) Mine weighs g, the bone dice tower 66 g, and this [angular dice tower](https://www.thingiverse.com/thing:617991) z g without trays.
+There are two variants, one somewhat substantial, and one flimsy. That one prints out surprisingly easily, and is stable enough for its job. It is probably one of the lightest full size dice towers out there. (If somebody build one out of an aerogel, i want to see it!) Mine weighs g, the bone dice tower 66 g, and this [angular dice tower](https://www.thingiverse.com/thing:617991) 106 g without trays.
 
 
 
@@ -21,8 +21,6 @@ Raft: no
 You need reasonably good bed adhesion, as the contact area isn’t all that big. For the flimsy version, you may want to use blue tape, remove tower and tape together and then peel of the tape from the tower.
 
 Don’t use a raft. Trying to get it off will most likely break the tower instead. A brim might work, though. Supports would be just a waste of material.
-
-For some reason slic3r insisted on adding a solid bridge layer at the end. I had to use cura to do the slicing.
 
 
 ## Post printing
