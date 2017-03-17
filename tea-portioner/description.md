@@ -3,7 +3,7 @@ Quickly measure the right amount of tea leaves for one pot, or other granular ma
 * Place the funnel on the measuring cup. There *is* a right way, with the wider brim of the funnel on the flat surface of the cup, but with the funnel in another direction it should work well, too.
 * Pour in the tea leaves until the cup is a bit over full.
 * Slide off the funnel, striking the measuring cup and pouring the extra tea back in its tin over the chute.
-* The measure now contains the right amount of tea. Pour it into the filter or teapot. I use my funnel and stand for this.
+* The measure now contains the right amount of tea. Pour it into the filter or teapot. I use my [funnel and stand](https://www.thingiverse.com/thing:2144990) for this.
 
 
 The STL files included are for 44 cm³ (44 ml) and 55 cm³ (55 ml), the
