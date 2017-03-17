@@ -27,7 +27,7 @@ Of course there’s nothing wrong with using measuring spoons or scoops like thi
 
 ### Safety concerns
 
-* PLA seems to be better suited for food use than ABS, so you should use that
+* PLA seems to be better suited for food use than ABS, so you should use that. Or maybe PETG
 * You should probably clean your nozzle once, to get rid of mineral oil and other residues.
 * When you use an oiler, use a suitable oil. Maybe a vegetable oil or something like Ballistol oil.
 * The food comes into contact with the printed parts for only a short time, and it is usually dry, so it should hardly be effected at all.

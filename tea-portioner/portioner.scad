@@ -12,7 +12,7 @@
 volume = 55;  // [3:0.1:250]
 
 // Don’t
-use_american_customary_units = 0;  // [1:Yes, please. What’s a meter?, 0:Of course not! Use SI units.]
+use_american_customary_units = 0;  // [1:Yes please. What’s a meter?, 0:Of course not! Use SI units.]
 
 module end_customizer()
 {
