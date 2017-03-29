@@ -20,8 +20,7 @@ bottle_diameter = 50;  // In mm.
 x_count = 3;  // Number of bottles in a long row
 y_count = 2;  // Number of rows
 
-// You will get (x_count * y_count) - (number of even numbers in
-// y_count) bottle positions. Even y_counts >= 4 look a bit odd.
+// You will get (x_count * y_count) - (y_count/2) bottle positions. Even y_counts >= 4 look a bit odd.
 
 
 // ***************************************************
