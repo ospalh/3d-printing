@@ -73,8 +73,6 @@ for (y_c = [0:y_count-1])
 
 module one_holder(x_pos, y_pos)
 {
-   echo(x_pos, y_pos);
-
    translate([x_pos, y_pos, 0])
    {
       difference()
