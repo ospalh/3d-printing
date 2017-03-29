@@ -16,7 +16,7 @@
 
 // ***************************************************
 // Change these to your needs:
-bottle_diameter = 50;  // In mm.
+bottle_diameter = 57;  // In mm.
 x_count = 3;  // Number of bottles in a long row
 y_count = 2;  // Number of rows
 
@@ -32,7 +32,7 @@ wall_width = 2;  // how thick the walls will be (mm).
 // Pick a multiple of your nozzle size and enough perimeters that you
 // don't get infill.
 
-clearance = 1; // Space added to the bottle diameter.
+clearance = 2; // Space added to the bottle diameter.
 // Increase for looser fit and for shrinking prints.
 
 height = 0.8 * bottle_diameter;  // Adjust to taste
@@ -49,7 +49,7 @@ r_h = hole_diameter/2;
 
 x_step= 2*r_i+wall_width;
 y_step = x_step*sqrt(3)/2;
-ms = 0.001; // Muggeseggele. To make the quick renderer work a little better.
+ms = 0.01; // Muggeseggele. To make the quick renderer work a little better.
 
 for (y_c = [0:y_count-1])
 {
