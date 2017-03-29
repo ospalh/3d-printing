@@ -12,7 +12,7 @@
 volume = 55;  // [3:0.1:250]
 
 // Don’t
-use_american_customary_units = 0;  // [1:Yes, please. What’s a meter?, 0:Of course not! Use SI units.]
+use_american_customary_units = 0;  // [1:Yes please. What’s a meter?, 0:Of course not! Use SI units.]
 
 module end_customizer()
 {
@@ -26,15 +26,14 @@ module end_customizer()
 
 min_funnel_top_width = 80;
 
-// Uncomment these when running OpenSCAD at home for a smoother
-// (ronuder) parts.
-// $fa= 1;
-// $fs=0.1;
+// Define values for $fa and $fs (or $fn) to get smoother corners.
+// N.B.: Rendering of the funnel gets quite slow for small $fs and $fa values.
+// $fa = 5;
+// $fs = 0.5;
 
 
-// And use the lower value here. This avoids odd edges caused by
-// rounding errors.
-// odd_offset = 0.02;
+// This avoids odd edges caused by rounding errors. Use a smaller value
+// here when you switched to smoother above.
 odd_offset = 0.1;
 
 
@@ -85,18 +84,30 @@ if (use_american_customary_units)
 }
 else
 {
-   translate([some_distance,0,0])
+   measure();
+   chute();
+
+   translate([0,some_distance,0])
    {
-      rotate(90)
+      rotate(180)
       {
-         measure();
-         chute();
+         funnel();
       }
    }
-   //translate([0,some_distance,0])
+}
+
+if (false)
+{
+   // Demo. Check that the funnel fits
+   translate(
+      [wall_thickness, wall_thickness, inner_box_dimension + wall_thickness])
    {
-      funnel();
+      rotate(180)
+      {
+         funnel();
+      }
    }
+
 }
 
 module how_rude()
@@ -284,13 +295,13 @@ module funnel()
 {
    // First the base
 //   xo = inner_box_dimension+2*wall_thickness-2*roundness-2*slider_tolerance;
-   xyo = inner_box_dimension+2*wall_thickness-2*roundness;
+   xyo = inner_box_dimension+3*wall_thickness-2*roundness;
 
 //   xm = inner_box_dimension                 -2*roundness-2*slider_tolerance;
-   xym = inner_box_dimension+  wall_thickness-2*roundness;
+   xym = inner_box_dimension+2*wall_thickness-2*roundness;
 
 //   xi = inner_box_dimension-2*wall_thickness-2*roundness-2*slider_tolerance;
-   xyi = inner_box_dimension-  wall_thickness-2*roundness;
+   xyi = inner_box_dimension+0*  wall_thickness-2*roundness;
    difference()
     {
        translate([0.5*wall_thickness, 0.5*wall_thickness, 0])
