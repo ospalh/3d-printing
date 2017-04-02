@@ -24,8 +24,9 @@ honeycombish = false;  // set to true to get the hexagonal outer shapes and bott
 
 // ***************************************************
 // Change these if you have to
-bottom_height = 1.5;  // How thick (mm) the bottom will be
-// Will end up as a multiple of your layer height after slicing
+bottom_height = 1.2;  // How thick (mm) the bottom will be
+// Will end up as a multiple of your layer height after slicing.
+// Use enough top and bottom solid layers. Getting infil here is kind-of pointles.
 
 wall_width = 1.6;  // how thick the walls will be (mm).
 // Pick a multiple of your nozzle size and slice with enough perimeters that you
