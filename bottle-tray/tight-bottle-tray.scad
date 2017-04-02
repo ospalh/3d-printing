@@ -121,10 +121,7 @@ module one_hole(x_pos, y_pos)
       {
          translate([0,0, -ms])
          {
-            rotate(30)
-            {
-               cylinder(r=r_h/thf, h=bottom_height+2*ms, $fn=6);
-            }
+            cylinder(r=r_h, h=bottom_height+2*ms);
          }
       }
    }
@@ -135,6 +132,6 @@ module one_cylinder(x_pos, y_pos)
    translate([x_pos, y_pos, 0])
    {
       rotate(30)
-      cylinder(r=r_o/thf, h=height, $fn=6);
+      cylinder(r=r_o, h=height);
    }
 }
