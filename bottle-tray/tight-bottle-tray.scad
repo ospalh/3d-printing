@@ -16,11 +16,11 @@
 
 // ***************************************************
 // Change these to your needs:
-bottle_diameter = 50;  // In mm.
-x_count = 4;  // Number of bottles in a long row
-y_count = 7;  // Number of rows
+bottle_diameter = 57;  // In mm.
+x_count = 3;  // Number of bottles in a long row
+y_count = 2;  // Number of rows
 // You will get (x_count * y_count) - (y_count/2) bottle positions. Even y_counts >= 4 look a bit odd.
-
+honeycombish = false;  // set to true to get the hexagonal outer shapes and bottom holes
 
 // ***************************************************
 // Change these if you have to
@@ -38,7 +38,7 @@ clearance = 1; // Space added to the bottle diameter.
 height = 0.8 * bottle_diameter;  // Adjust to taste
 hole_diameter = 0.5 * bottle_diameter;   // Adjust to taste. 0 for no hole
 
-$fs = 0.1;
+$fn = 90;
 
 // ***************************************************
 // Change below only if you know what you are doing.
@@ -121,7 +121,17 @@ module one_hole(x_pos, y_pos)
       {
          translate([0,0, -ms])
          {
-            cylinder(r=r_h, h=bottom_height+2*ms);
+            if (honeycombish)
+            {
+               rotate(30)
+               {
+                  cylinder(r=r_h/thf, h=bottom_height+2*ms, $fn=6);
+               }
+            }
+            else
+            {
+               cylinder(r=r_h, h=bottom_height+2*ms);
+            }
          }
       }
    }
@@ -131,7 +141,16 @@ module one_cylinder(x_pos, y_pos)
 {
    translate([x_pos, y_pos, 0])
    {
-      rotate(30)
-      cylinder(r=r_o, h=height);
+      if (honeycombish)
+      {
+         rotate(30)
+         {
+            cylinder(r=r_o/thf, h=height, $fn=6);
+         }
+      }
+      else
+      {
+         cylinder(r=r_o, h=height);
+      }
    }
 }
