@@ -24,19 +24,19 @@ honeycombish = false;  // set to true to get the hexagonal outer shapes and bott
 
 // ***************************************************
 // Change these if you have to
-bottom_height = 1.8;  // How thick (mm) the bottom will be
+bottom_height = 1.5;  // How thick (mm) the bottom will be
 // Will end up as a multiple of your layer height after slicing
 
-wall_width = 2;  // how thick the walls will be (mm).
-// Pick a multiple of your nozzle size and enough perimeters that you
+wall_width = 1.6;  // how thick the walls will be (mm).
+// Pick a multiple of your nozzle size and slice with enough perimeters that you
 // don't get infill.
-min_wall_width = 0.4;
+min_wall_width = 0.4;  // Your nozzle diameter
 
 clearance = 1; // Space added to the bottle diameter.
 // Increase for looser fit and for shrinking prints.
 
 height = 0.8 * bottle_diameter;  // Adjust to taste
-hole_diameter = 0.5 * bottle_diameter;   // Adjust to taste. 0 for no hole
+hole_diameter = 0.8 * bottle_diameter;   // Adjust to taste. 0 for no hole
 
 $fn = 90;
 
