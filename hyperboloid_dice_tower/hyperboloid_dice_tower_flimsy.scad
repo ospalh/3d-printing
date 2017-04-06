@@ -36,8 +36,8 @@ hs = 0.859 * l;
 s = 360 / c;
 $fn = c;
 
-fl = 0.75*r_t;
-fa_o = 33.3;
+fl = 0.66*r_t;
+fa_o = 29;
 
 difference()
 {
@@ -123,20 +123,20 @@ module ramp(hl, rf, ao)
          {
             rotate([0, -40, 0])
             {
-               translate([0,0, 0.6*rf])
+               translate([0,0, 0.5*rf])
                {
-                  cube([w, w, 1.2*rf], center=true);
+                  cube([w, w, 1.0*rf], center=true);
                }
             }
 
          }
          rotate(10)
          {
-            translate([0.2*rf, -w, hl + 0.91*rf])
+            translate([0.33*rf, -2*w, hl + 0.76*rf])
             {
-               cube([w, 0.086*rf, w]);
+               cube([w, 0.13*rf, w]);
             }
-            translate([0.6*rf, -0.13*rf+w/2, hl + 0.455*rf])
+            translate([0.66*rf, -0.13*rf+w/2, hl + 0.38*rf])
             {
                cube([w, 0.225*rf, w]);
             }
@@ -149,9 +149,9 @@ module ramp(hl, rf, ao)
       {
          rotate([0, -40, 0])
          {
-            translate([0,0, 0.6*rf])
+            translate([0,0, 0.5*rf])
             {
-                  cube([w, w, 1.2*rf], center=true);
+                  cube([w, w, 1.0*rf], center=true);
             }
          }
 
