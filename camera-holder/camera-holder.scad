@@ -8,7 +8,7 @@
 
 // **********************************************************
 // Change these to taste. Lengths are in mm.
-t_b = 8;  // Bed thickness. I want to attach it to an 8 mm Acrylic bed carrier
+t_b = 8.2;  // Bed thickness. I want to attach it to an 8 mm Acrylic bed carrier
 cam_angle = 45;  // °
 l_c = 30;  // Clamp length. How big the clamping bit will be
 w_c = 20;  // Clamp width
@@ -19,9 +19,9 @@ x_a = 60;  // length of the arm
 z_a = 60;  // height of the arm
 r_af = 10;  // Radius of the fillet on the arm
 r_cf = 6;  // Radius of the fillet on the clamp
-r_h = 1.2;  // camera holder hole radius
+r_h = 2.6;  // camera holder hole radius
 h_w = 1.6;  // walls around that
-h_d = 12;  // camera holder hole depth
+h_d = 13;  // camera holder hole depth
 
 // **********************************************************
 ms = 0.01;
