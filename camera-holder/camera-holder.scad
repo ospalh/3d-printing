@@ -27,7 +27,7 @@ ms = 0.1;
 
 l_ce = w_c/tan(cam_angle);
 
-mirror()
+//mirror()
 {
    translate([-l_ce-w_c+t_c/cos(cam_angle), w_a-2*t_c-t_b,0])
    {
