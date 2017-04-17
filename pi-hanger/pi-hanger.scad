@@ -6,8 +6,8 @@
 // Licence: CC-BY-SA 4.0
 
 
-hd = 2.5; // Hole diameter, so that the screws acts thread cutting
-pd = 2.3; // Post diameter. Fix so it works with your printer tolerances
+hd = 2.6; // Hole diameter, so that the screws acts thread cutting
+pd = 2.5; // Post diameter. Fix so it works with your printer tolerances
 xd = 49;  // Distance between the hole centers in one direction
 yd = 58;  //  Distance between the hole centers in the other direction
 yeb = 23.5;  // Extra board dimension
@@ -16,15 +16,15 @@ xo = 2;  // Offset of the hanger hole.
 // another part of the frame by 2 mm too little for this thing to by
 // symmetrical.
 posts = true;  // Posts to clip the Pi on or screw holes (false)
-spr = 2.5;  // Screw post radius. How big a cylinder to put the screws in
+spr = 3;  // Screw post radius. How big a cylinder to put the screws in
 pbr = 2;  // Similar for the posts
 aw = 2;  // Arm width
 ah = 2;  // Arm height
-sph = 6;  // Height of the screw posts
-pbh = 4;  // Similar for the post bases
-ph = 2;  // Post height. Just needs to be higher than the PI PCB
+sph = 5;  // Height of the screw posts
+pbh = 5;  // Similar for the post bases
+ph = 5;  // Post height. Needs to be higher than the PI PCB
 ms = 0.01;  // Muggeseggele. To make the diferences render nicer in preview
-clear = 0.5;  // Clearnace distance
+clear = -3.5;  // Clearnace distance
 
 $fs=0.1;
 
