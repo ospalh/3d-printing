@@ -5,11 +5,13 @@
 // © 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
-r = 7.4/2;
-h=10;
+r1 = 8/2;
+h1=5;
+r2 = 7.4/2;
+h2=10;
 
-e = 12.5;
-ff=5.2;
+e = 13;
+ff=6;
 ms=0.01;
 
 difference()
@@ -24,7 +26,8 @@ difference()
          }
       }
    }
-   cylinder(r=r,h=h, $fn=45);
+   cylinder(r=r1,h=h1, $fn=45);
+   cylinder(r=r2,h=h2, $fn=45);
    translate([0, 0, -2*e])
    {
       cylinder(r=2*e, h=2*e+ms);
