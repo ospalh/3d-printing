@@ -14,13 +14,26 @@
 // CC-BY, Sep 2016
 
 
-// ***************************************************
-// Change these to your needs:
-bottle_diameter = 57;  // In mm.
-x_count = 3;  // Number of bottles in a long row
-y_count = 2;  // Number of rows
-// You will get (x_count * y_count) - (y_count/2) bottle positions. Even y_counts >= 4 look a bit odd.
-honeycombish = false;  // set to true to get the hexagonal outer shapes and bottom holes
+
+// All length are in mm.
+bottle_diameter = 57;  // [8:0.1:90]
+
+// Number of bottles in a long (odd) row.  Every other (even) row is one position shorter.
+x_count = 3;  // [2:1:10]
+// Number of rows.
+y_count = 2;  //   // [2:1:10]
+// Change the basic shape of one holder
+honeycombish = 0;  // [1:Use hexagons, 0:Use circles]
+// Height of the walls of the holders
+height = 30; // [8:0.1:90]
+// Size of the hole in the bottom of each holder. 0 for no hole, larger than the diameter for just cylinders
+hole_diameter = 30; // [0:0.1:91]
+
+
+module dummy()
+{
+   // My way to stop the Thingiverse customizer
+}
 
 // ***************************************************
 // Change these if you have to
@@ -28,16 +41,12 @@ bottom_height = 1.2;  // How thick (mm) the bottom will be
 // Will end up as a multiple of your layer height after slicing.
 // Use enough top and bottom solid layers. Getting infil here is kind-of pointles.
 
-wall_width = 1.6;  // how thick the walls will be (mm).
-// Pick a multiple of your nozzle size and slice with enough perimeters that you
-// don't get infill.
+wall_width = 2.0;  // how thick the walls will be (mm).
 min_wall_width = 0.4;  // Your nozzle diameter
 
 clearance = 1; // Space added to the bottle diameter.
 // Increase for looser fit and for shrinking prints.
 
-height = 0.8 * bottle_diameter;  // Adjust to taste
-hole_diameter = 0.8 * bottle_diameter;   // Adjust to taste. 0 for no hole
 
 $fn = 90;
 
