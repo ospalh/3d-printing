@@ -24,7 +24,7 @@ module end_customizer()
 // label_style = 1; [0:No label, 1:Raised Text, 2:Colored Text, 3:Braile];
 
 
-min_funnel_top_width = 80;
+min_funnel_top_width = 66.66667;
 
 // Define values for $fa and $fs (or $fn) to get smoother corners.
 // N.B.: Rendering of the funnel gets quite slow for small $fs and $fa values.
