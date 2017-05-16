@@ -1,1 +1,1 @@
-Klein: d = 75 mm
+75 mm,  90 mm, 95 mm, 110 mm
