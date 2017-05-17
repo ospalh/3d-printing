@@ -8,4 +8,4 @@
 
 
 cylinder(r=5, h=0.2);
-cylinder(r=0.8, h=32.2);
+cylinder(r=0.8, h=150);
