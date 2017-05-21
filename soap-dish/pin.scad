@@ -23,12 +23,8 @@ module p()
          [0,-gh-gr],
          [gr,-gh-gr],
          [gr,-gh],
-
-[gr+gh,0],
-
          [gr,gh],
          [gr,gh+gr],
-
          [0,gh+gr],
          [0,gh],
          [-h,gh],
@@ -38,16 +34,17 @@ module p()
 
 module pt()
 {
-   translate([-w/2,0,0])
+   linear_extrude(w)
    {
-      rotate([0, 90, 0])
-      {
-         linear_extrude(w)
-         {
-            p();
-         }
-      }
+      p();
    }
 }
 
 pt();
+translate([gr,0,w/2])
+{
+   rotate([0, 90,0])
+   {
+      cylinder(r1=w/2,r2=0,h=gr);
+   }
+}

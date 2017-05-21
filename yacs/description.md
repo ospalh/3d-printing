@@ -41,3 +41,9 @@ When you use euro coins, you can make yours a symbol of international cooperatio
 * the Netherlands
 
 Nine coins, nine countries! The last three are on the inside.
+
+
+The caps on some of the images are Gazorpa’s “Super Bearing Cap - 21
+mm” that you can find
+[over there](https://www.thingiverse.com/thing:2306009). Use them, no
+caps, or whichever bearing cap you like.
