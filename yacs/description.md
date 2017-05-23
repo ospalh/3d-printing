@@ -27,8 +27,7 @@ This is slightly parametric. I have included the FreeCAD files, and they include
 * Et voilà, you’re done. You have finished your first FreeCAD lesson and can now go ahead and slice and print your customized spinner.
 
 
-When you use euro coins, you can make yours a symbol of international cooperation. Mine is using coins from
-
+When you use euro coins, you can make yours a symbol of international cooperation. One of mine is using coins from
 
 * France
 * Greece
