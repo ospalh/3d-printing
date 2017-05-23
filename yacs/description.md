@@ -16,7 +16,7 @@ This is slightly parametric. I have included the FreeCAD files, and they include
 * Check that you have enough coins. The spreadsheet shows the number needed. Typically 8, 6 for thicker coins like 10 euro cent and up,
 * Go back to, wlog, the `yacs_2_arm` view
 * Check that the shown shape looks OK. There are view controls at the top
-* Check that in the tree view there are no exclamation marks as warknings
+* Check that in the tree view there are no exclamation marks as warnings
 * If the spinner looks good, select the last item, “spinner”. It should turn green in the main view.
 * Look for the dropdown in the tool bar and select “Mesh Design”
 * You should now have a “Meshes” menu. Select “Create mesh from shape …”
