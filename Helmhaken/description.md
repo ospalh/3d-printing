@@ -1,11 +1,9 @@
-Bicycle helmet wall hook
+Bicycle helmet (Bell Ukon) wall hook
 
-A hook to hang your bike helmet on the wall.
+A hook to hang an Bell Ukon or similar  bike helmet on the wall
 
-This is a hook to hang your bike helmet on the wall. This one hangs it with the top towards the wall, and you can hang it up in one motion by just doffing your helmet.
-The hook is designed with the Bell Ukon helmet in mind, but should work with others that have a similarly shaped hole at the crown. The screw holes are 60 mm apart and are sized for 4 mm screws.
-
-
+With this hook you hang up your bike helmet with the top towards the wall, you put it on the wall in one motion by just doffing your helmet.
+The hook is designed with the Bell Ukon helmet in mind, but should work with others that have a similarly shaped hole at the crown. See the red marks in the image. The screw holes are 60 mm apart and are sized for 4 mm screws.
 
 This should print easily in PLA. No rafts or falsework (“supports”) needed. A brim may be useful to avoid warping.
 
