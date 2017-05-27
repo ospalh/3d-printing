@@ -7,17 +7,19 @@
 
 ru = 18/2;
 /* ro = 4.3/2; */
-ro = 4.6/2;
+ro = 5/2;
 
 h = 25;
 
-ccr = 1;
-cch = 8;
-ccf = 0.8;
+ccr = 1.5;
+ccr_o = 0.6;
+cch = 6;
+ccf = 0.4;
 ccof = 0.35;
 
-wf = 1.2;
+wf = 1.1;
 ms = 0.01;
+
 
 translate([-2.5, 0, 0])
 {
@@ -36,11 +38,17 @@ module hcl()
    hc();
    translate([ccr*ccf, ro+ccof*(ru-ro), 0])
    {
-      cylinder(r=ccr, h=cch, $fn=45);
+      rotate(180)
+      {
+         cylinder(r1=ccr, r2=ccr_o, h=cch, $fn=3);
+      }
    }
    translate([ccr*ccf, -ro-ccof*(ru-ro), 0])
    {
-      cylinder(r=ccr, h=cch, $fn=45);
+      rotate(180)
+      {
+         cylinder(r1=ccr, r2=ccr_o, h=cch, $fn=3);
+      }
    }
 }
 
@@ -51,11 +59,11 @@ module hcr()
       hc();
       translate([-ccr*ccf, ro+ccof*(ru-ro), -ms])
       {
-         cylinder(r=ccr*wf, h=cch*wf+ms, $fn=45);
+         cylinder(r=ccr*wf, h=cch*wf+ms, $fn=3);
       }
       translate([-ccr*ccf, -ro-ccof*(ru-ro), -ms])
       {
-         cylinder(r=ccr*wf, h=cch*wf+ms, $fn=45);
+         cylinder(r=ccr*wf, h=cch*wf+ms, $fn=3);
       }
    }
 }
