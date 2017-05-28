@@ -6,11 +6,27 @@
 // Licence: CC-BY-SA 4.0
 // Remix of bda’s “Customizable comfy spinner caps. Cap for any bearing.”, https://www.thingiverse.com/thing:2319653
 
+
+// Inner (shaft) diameter of the bearing. (Sizes are in mm)
+d_in   = 8;  // [5:0.1:30]
+// Diameter of the cap. Match this to the bearing outer diameter, with or without gap
+d_cap  = 21;  // [5:0.1:40]
+// Thickness of the bearing. The cap shaft will be short enough to fit in two.
+h_bearing = 7;  // [2:0.1:20]
+
+//
+number_of_caps   = 5; // [1:36]
+// Create supports and brim
+supports=1; // [1:Supports and brim, 0: No supports only cap]
+
+module dummy_mod()
+{
+   // Stop the thingiverse customizer
+}
+
+
 // thickness of cap
 t_cap  = 2;
-// quantity
-/* qty   = 5; */
-qty   = 5;
 // tolerance > 0 for snug fit
 o     = 0.05;
 // true for slot
@@ -18,17 +34,15 @@ slot  = true;
 
 
 /* support=true; */
-support=true;
+
 nozzle = 0.4;
 layer  = 0.2;
 
+
 stem_height = 0.45;  // as part of bearing height
 
-d_in   = 8;
-d_cap  = 21;  // Match this to the outer diameter of the bearing,
-h_b = 7;
 
-h_stem = h_b * stem_height;
+h_stem = h_bearing * stem_height;
 
 r_in_e = d_in/2 + o;
 r_cap = d_cap/2;
@@ -42,9 +56,9 @@ ms  = 0.01; // Muggeseggele
 w_rim  = 1.6;  // width of rim
 t_rim  = 0.4;              // height of rim
 
-m     = ceil(sqrt(qty));
-n     = ceil(qty/m);
-lrc = n - ((n*m)-qty);
+m     = ceil(sqrt(number_of_caps));
+n     = ceil(number_of_caps/m);
+lrc = n - ((n*m)-number_of_caps);
 
 
 w_chamfer = 0.6; // chamfer width
@@ -97,7 +111,7 @@ module comfy_cap()
          }
       }
    }
-   if(support)
+   if(supports)
    {
       support(2*r_cap,h_stem+t_rim);
       support(2*r_in_e+2*w_rim,h_stem);
