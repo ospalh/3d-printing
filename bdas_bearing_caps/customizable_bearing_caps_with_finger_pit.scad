@@ -8,11 +8,14 @@
 
 
 // Inner (shaft) diameter of the bearing. (Sizes are in mm)
-d_in   = 8;  // [5:0.1:30]
+d_in   = 5;  // [5:0.1:30]
 // Diameter of the cap. Match this to the bearing outer diameter, with or without gap
-d_cap  = 21;  // [5:0.1:40]
+d_cap  = 10.5;  // [5:0.1:40]
 // Thickness of the bearing. The cap shaft will be short enough to fit in two.
-h_bearing = 7;  // [2:0.1:20]
+h_bearing = 5;  // [2:0.1:20]
+// thickness of the top part of the cap
+t_cap  = 1; // [0.5:0.1:5]
+
 
 //
 number_of_caps   = 5; // [1:36]
@@ -25,8 +28,6 @@ module dummy_mod()
 }
 
 
-// thickness of cap
-t_cap  = 2;
 // tolerance > 0 for snug fit
 o     = 0.05;
 // true for slot
@@ -64,7 +65,7 @@ lrc = n - ((n*m)-number_of_caps);
 w_chamfer = 0.6; // chamfer width
 w_slot = 0.6; // slot width
 spacing = 1;  // Spacing
-brim = 5;
+brim = 2.5;
 
 
 

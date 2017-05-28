@@ -10,16 +10,16 @@
 neck_diameter = 3;  // [0.3:0.1:8]
 
 // in cm. This is the top part
-rim_diameter = 8;  // [3:0.1:15]
+rim_diameter = 9;  // [3:0.1:15]
 
 // in cm.
-neck_length = 4; // [0.3:0.1:8]
+neck_length = 5; // [0.3:0.1:8]
 
 // Slope of the main conical part, in °. Beware of printing problems below 45°.
 funnel_angle = 60;  // [30:75]
 
 // Cut off angle to give the funnel a sharpened tip. 90° means flat bottom.
-neck_tip_angle = 80;  // [45:90]
+neck_tip_angle = 65;  // [45:90]
 
 // Create just the funnel, or a stand to go with it, with one or three supports
 stand_style = 1;  // [0:Just funnel, 1:Funnel and simple stand, 3:Funnel and tripod stand]
@@ -51,10 +51,10 @@ o_ta = 1 * (r_n + w) * tan(ta_b);
 
 // Uncomment these when running OpenSCAD at home for a smoother
 // (ronuder) funnel.
-// $fa= 1;
-// $fs=0.1;
+$fa= 1;
+$fs=0.1;
 
-wiggle_room_factor = 1.2;
+wiggle_room_factor = 1.1;
 
 // The small radius of the support pencil, from center to center of face
 r_p_s = 3.4 * wiggle_room_factor;
