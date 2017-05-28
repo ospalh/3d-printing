@@ -8,17 +8,17 @@
 
 
 // Inner (shaft) diameter of the bearing. (Sizes are in mm)
-d_in   = 5;  // [5:0.1:30]
+d_in   = 8;  // [5:0.1:30]
 // Diameter of the cap. Match this to the bearing outer diameter, with or without gap
-d_cap  = 10.5;  // [5:0.1:40]
+d_cap  = 21;  // [5:0.1:40]
 // Thickness of the bearing. The cap shaft will be short enough to fit in two.
-h_bearing = 5;  // [2:0.1:20]
+h_bearing = 7;  // [2:0.1:20]
 // thickness of the top part of the cap
-t_cap  = 1; // [0.5:0.1:5]
+t_cap  = 2; // [1:0.1:5]
 
 
 //
-number_of_caps   = 5; // [1:36]
+number_of_caps   = 4; // [1:36]
 // Create supports and brim
 supports=1; // [1:Supports and brim, 0: No supports only cap]
 
@@ -29,7 +29,7 @@ module dummy_mod()
 
 
 // tolerance > 0 for snug fit
-o     = 0.05;
+o     = -0.05;
 // true for slot
 slot  = true;
 
@@ -38,7 +38,8 @@ slot  = true;
 
 nozzle = 0.4;
 layer  = 0.2;
-
+t_nof = 3 * layer;  // no fillet for a bit
+r_fillet = t_cap - t_nof;
 
 stem_height = 0.45;  // as part of bearing height
 
@@ -48,8 +49,8 @@ h_stem = h_bearing * stem_height;
 r_in_e = d_in/2 + o;
 r_cap = d_cap/2;
 
-pit_depth   = 0.5*t_cap;
-r_pit_sphere = 4*(r_cap-t_cap);  // This is a bit hand-waved.
+pit_depth   = 0.3*t_cap;
+r_pit_sphere = 6*(r_cap-r_fillet);  // This is a bit hand-waved.
 
 $fn   = 70;
 ms  = 0.01; // Muggeseggele
@@ -62,10 +63,12 @@ n     = ceil(number_of_caps/m);
 lrc = n - ((n*m)-number_of_caps);
 
 
+
 w_chamfer = 0.6; // chamfer width
 w_slot = 0.6; // slot width
-spacing = 1;  // Spacing
+spacing = 2.5;  // Spacing
 brim = 2.5;
+
 
 
 
@@ -136,7 +139,9 @@ module plain_cap()
       [r_in_e, h_stem],
       [r_in_e+w_rim, h_stem],
       [r_in_e+w_rim, h_stem+t_rim],
-      [0, h_stem+t_rim],
+      [r_cap, h_stem+t_rim],
+      [r_cap, h_stem+t_rim+t_nof],
+      [0, h_stem+t_rim+t_nof],
       [0, 0]
       ];
    difference()
@@ -147,18 +152,18 @@ module plain_cap()
          {
             polygon(stem_poly);
          }
-         translate([0, 0, h_stem+t_rim])
+         translate([0, 0, h_stem+t_rim+t_nof])
          {
             difference()
             {
                union()
                {
-                  cylinder(r=r_cap-t_cap, h=t_cap);
+                  cylinder(r=r_cap-r_fillet, h=r_fillet);
                   rotate_extrude()
                   {
-                     translate([r_cap-t_cap, 0])
+                     translate([r_cap-r_fillet, 0])
                      {
-                        circle(r=t_cap);
+                        circle(r=r_fillet);
                      }
                   }
                }
