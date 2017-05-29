@@ -15,7 +15,7 @@ So, select “Falsework and brim” in the customizer and *no* “supports” in
 
 ## post printing
 
-Remove the falsework with a wood carving knife. (The small blade of a penknife might work as well.) Trim parts of the underside hanging below the rim. Clip into your bearing. Use a file, or the customizer, OpenSCAD or your slicer to change the scale when it doesn’t fit at first because of printer tolerances.
+Remove the falsework with a wood carving knife or similar. Trim parts of the underside hanging below the rim. Clip into your bearing. Use a file, or the customizer, OpenSCAD or your slicer to change the scale when it doesn’t fit at first because of printer tolerances.
 
 
 ## how designed:
