@@ -1,6 +1,6 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// Comfy spinner (bearing) caps with supports
+// Comfy spinner (bearing) caps with falsework
 //
 // © 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
@@ -19,8 +19,8 @@ t_cap  = 2; // [1:0.1:5]
 
 //
 number_of_caps   = 4; // [1:36]
-// Create supports and brim
-supports=1; // [1:Supports and brim, 0: No supports only cap]
+// Create falsework and brim
+falsework=1; // [1:Falsework and brim, 0: No falsework only cap]
 
 module dummy_mod()
 {
@@ -32,9 +32,6 @@ module dummy_mod()
 o     = -0.05;
 // true for slot
 slot  = true;
-
-
-/* support=true; */
 
 nozzle = 0.4;
 layer  = 0.2;
@@ -115,10 +112,10 @@ module comfy_cap()
          }
       }
    }
-   if(supports)
+   if(falsework)
    {
-      support(2*r_cap,h_stem+t_rim);
-      support(2*r_in_e+2*w_rim,h_stem);
+      falsework_(2*r_cap,h_stem+t_rim);
+      falsework_(2*r_in_e+2*w_rim,h_stem);
       difference()
       {
          cylinder(r=r_cap+brim,h=layer,$fn=30);
@@ -181,7 +178,7 @@ module plain_cap()
    }
 }
 
-module support(d,h)
+module falsework_(d,h)
 {
    step = 2*360/d/PI;
    r = d/2;
