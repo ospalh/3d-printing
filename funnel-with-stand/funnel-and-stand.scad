@@ -54,7 +54,7 @@ o_ta = 1 * (r_n + w) * tan(ta_b);
 $fa= 1;
 $fs=0.1;
 
-wiggle_room_factor = 1.1;
+wiggle_room_factor = 1.05;
 
 // The small radius of the support pencil, from center to center of face
 r_p_s = 3.4 * wiggle_room_factor;
