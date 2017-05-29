@@ -190,9 +190,9 @@ module funnel()
       // subtract a bit later.
       lp_poly = [
          [r_bp_s,r_r + w - 3*w],
-         [r_bp_s,r_r + w + r_bp_l + 0.5*r_bp_s],
+         [r_bp_s,r_r + w + 1.5 * r_bp_l],
          [0,r_r + w + 2*r_bp_l],
-         [-r_bp_s,r_r + w + r_bp_l + 0.5*r_bp_s],
+         [-r_bp_s,r_r + w + 1.5 * r_bp_l],
          [-r_bp_s,r_r + w - 3*w],
          ];
       linear_extrude(w)
@@ -201,7 +201,7 @@ module funnel()
          polygon(lp_poly);
       }
       // Extra support
-      translate([-es_w/2,r_n+w,0])
+      translate([-es_w/2,r_n+w+0.5*(r_bp_l-r_p_l),0])
       {
          cube([es_w,r_r-r_n, es_h]);
       }
