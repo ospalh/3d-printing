@@ -8,7 +8,7 @@ Some more things can be set up in the customizer, and even more things in the `s
 
 ## how print
 
-The reason i like this is that this design brings along its own falsework and brim. I had a real problem getting off the slic3r-generated falsework from [] caps and ended up printing them stem up.
+The reason i like this is that this design brings along its own falsework and brim. I had a real problem getting off the slic3r-generated falsework from the “[Super Bearing Cap - 21 mm](https://www.thingiverse.com/thing:2306009)”s and ended up printing them stem up.
 
 So, select “Falsework and brim” in the customizer and *no* “supports” in the slicer.
 
