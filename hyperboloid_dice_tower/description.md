@@ -1,26 +1,20 @@
 A [hyperboloid](https://en.wikipedia.org/wiki/Hyperboloid_structure) [diagrid](https://en.wikipedia.org/wiki/Diagrid)  lattice dice tower, looking like a mix of one of [Vladimir Shukhov](https://en.wikipedia.org/wiki/Vladimir_Shukhov)’s towers and a power plant’s cooling tower.
 
-I did print [David South](https://www.thingiverse.com/south2012/about)’s “bone” [dice tower](https://www.thingiverse.com/thing:621548). It works and looks fine, but i was a bit disappointed when i realized that the columns were curved and not straight lines.
+I did print David South’s “bone” dice tower (thing 621548). It works and looks fine, but i was a bit disappointed when i realized that the columns were curved and not straight lines.
 
 So, here are lots of straight beams or wires (even the rings are really polygons) that form a dice tower.
 
-There are two variants, one somewhat substantial, and one flimsy. That one prints out surprisingly easily, and is stable enough for its job. It is probably one of the lightest full size dice towers out there. (If somebody build one out of an aerogel, i want to see it!) Mine weighs g, the bone dice tower 66 g, and this [angular dice tower](https://www.thingiverse.com/thing:617991) 106 g without trays.
-
-
+There is also just the “cooling tower” shell. That is just a sculpture without much practical use.
 
 ## Printing
 
-Prints fine with standard settings. I used 200 µm, PLA @ 460 K and
-normal speeds. The way it’s oriented, with the feet up in the air.
+The thing prints out surprisingly easily, and is stable enough for its job. It is probably one of the lightest full size dice towers out there. (If somebody build one out of an [aerogel](https://en.wikipedia.org/wiki/Aerogel), i want to see it!) Mine weighs 15 g, the bone dice tower 66 g, and th “angular dice tower” (thing 617991) 106 g without trays.
 
-There are quite a few bridges, but hey worked fine for me.
-
-Supports: no
-Raft: no
+Use standard settings. I used PLA, 200 µm layers and normal speeds. Print it the way it’s oriented, with the feet up in the air. The one from the images were done in PETG, which works fine as well.
 
 You need reasonably good bed adhesion, as the contact area isn’t all that big. For the flimsy version, you may want to use blue tape, remove tower and tape together and then peel of the tape from the tower.
 
-Don’t use a raft. Trying to get it off will most likely break the tower instead. A brim might work, though. Supports would be just a waste of material.
+Don’t use a raft. Trying to get it off will most likely break the tower instead. A brim might work, though. Falsework (supports) would be just a waste of material.
 
 
 ## Post printing
