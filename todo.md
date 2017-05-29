@@ -1,5 +1,5 @@
 Bald mal:
-• cooling tower in Wand umbauen
+• cooling tower in Wand umbauen, irgendwie Breite aus Graf
 • Quarkpackungsklemme:
  — größere Lücke, als Aufschnitt- Käseklammer veröffentlichen
  — kleinere Abstände schmalste Stelle zum Ende, → Quarkbecherklemme
