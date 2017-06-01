@@ -2,7 +2,10 @@ Yet another coin fidget spinner. This one is a somewhat larger three arm version
 
 The centre hole is for the standard 608 skate bearing, 22 mm × 7 mm.
 
-There are a two ready-made STLs there, for coins i had lying around, for nine 20 eurocent coins, and for 12 UK pennies.
+There are a two ready-made STLs there, for coins i had lying around:
+
+* Nine 20 eurocent coins
+* 12 UK pennies
 
 When you use euro coins, you can make yours a symbol of international cooperation. One of mine is using coins from
 

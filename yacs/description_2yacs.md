@@ -1,12 +1,12 @@
-Zurzeit: Sieben.
-
-Yet another coin fidget spinner. This one is
-
-
-
+Yet another coin fidget spinner. This one is a somewhat larger two arm version.
 The centre hole is for the standard 608 skate bearing, 22 mm × 7 mm.
 
 There are a few ready-made STLs there, for coins i had lying around:
+
+* six 50 eurocent coins
+* eight UK 5p coins
+* eight 5 eurocent coins
+* eight 1 角人民币 (1 Jiao RMB) coins
 
 
 # How designed
@@ -20,7 +20,7 @@ This is slightly parametric. Whit a bit of work you can use your favourite coins
 * Put in the diameter and thickness in `B6` and `B7`. Make sure to keep the `=` and `mm`.
 * Check that you have enough coins. The spreadsheet shows the number needed. Typically 12, 9 for thicker coins like 10 euro cent and up.
 * Change other values in the “B” column, like the whole spinner’s size, to taste.
-* Go back to, wlog, the `yacs_2_arm` view
+* Go back to the `yacs_2_arm` view
 * Check that the shown shape looks OK. There are view controls at the top
 * Check that in the tree view there are no exclamation marks as warnings
 * If the spinner looks good, select the last item, “spinner”. It should turn green in the main view.
@@ -32,24 +32,3 @@ This is slightly parametric. Whit a bit of work you can use your favourite coins
 * There should be a “spinner (Meshed)” item in the tree view. Select it.
 * Click on the “Export a mesh to file” icon, enter a file name, select file type (STL or OBJ) and name and click “OK”,
 * Et voilà, you’re done. You have finished your first FreeCAD lesson and can now go ahead and slice and print your customized spinner.
-
-
-When you use euro coins, you can make yours a symbol of international cooperation. One of mine is using coins from
-
-* France
-* Greece
-* Ireland
-* Italy
-* Portugal
-* Slovenia
-* Austria
-* Germany
-* the Netherlands
-
-Nine coins, nine countries! The last three are on the inside.
-
-
-The caps on some of the images are Gazorpa’s “Super Bearing Cap - 21
-mm” that you can find
-[over there](https://www.thingiverse.com/thing:2306009). Use them, no
-caps, or whichever bearing cap you like.
