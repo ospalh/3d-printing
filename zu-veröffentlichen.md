@@ -1,7 +1,5 @@
-• Hakenverlängerung
-• Laptopstand: Fotos machen
+• Laptopstand
 • soap dish
-• bdas ‘comfy’ caps
 • yacs: 7 Stück
  — Mega (2, gedruckt und Rad)
  — 3-Arm, groß, 3 × 3 × 20 Eurocent,
@@ -10,5 +8,6 @@
  — 2-Arm, kompakt, ca. 20 p
  — 3-Arm, mini, 1 Eurocent
  — 1-Arm, kompakt, 2 Rupien, 1 Eurocent
+• bdas ‘comfy’ caps
 • Y-Riemenhalter
-• free wedges: Fotos machen
+• free wedges
