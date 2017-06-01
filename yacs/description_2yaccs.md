@@ -16,8 +16,8 @@ This is slightly parametric. Whit a bit of work you can use your favourite coins
 * In the tree view, double click on “Sizes”. You should see the spreadsheet
 * Measure your coin or look up its size (Wikipedia, search engine, &c.)
 * Put in the diameter and thickness in `B6` and `B7`. Make sure to keep the `=` and `mm`.
-* Check that you have enough coins. The spreadsheet shows the number needed. Typically 12, 9 for thicker coins like 10 euro cent and up.
-* Change other values in the “B” column, like the whole spinner’s size, to taste.
+* Check that you have enough coins. The spreadsheet shows the number needed. Typically 8, 6 for thicker coins like 10 euro cent and up.
+* Change other values in the “B” column, to taste.
 * Go back to the `yaccs_2_arm` view
 * Check that the shown shape looks OK. There are view controls at the top
 * Check that in the tree view there are no exclamation marks as warnings
