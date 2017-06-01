@@ -1,19 +1,24 @@
-Zurzeit: Aufteilen nach Armanzahl
+Zurzeit: Sieben.
 
-Yet another coin fidget spinner.
+Yet another coin fidget spinner. This one is
 
-These are {three,two} arm versions, in two variants, one compact, with the coins close to the bearing, and one with a gap and longer arms. The centre hole is for the standard 608 skate bearing, 22 mm × 7 mm.
 
-There are a few ready-made STLs there, for coins i had lying around.
+
+The centre hole is for the standard 608 skate bearing, 22 mm × 7 mm.
+
+There are a few ready-made STLs there, for coins i had lying around:
+
+
+# How designed
 
 This is slightly parametric. Whit a bit of work you can use your favourite coins, either local currencies, or parts of that little pile of foreign currency that travellers tend to collect. For that i have included the FreeCAD files. They include a spreadsheet called “sizes”. To get a new spinner, do this:
 
 * Download [FreeCAD](https://www.freecadweb.org/wiki/Download) and get it running
-* Load the `yacs_2_arm.fcstd` (long arm) or `yaccs_2_arm.fcstd` (compact) file
+* Load the `yacs_2_arm.fcstd` FreeCAD file
 * In the tree view, double click on “Sizes”. You should see the spreadsheet
 * Measure your coin or look up its size (Wikipedia, search engine, &c.)
 * Put in the diameter and thickness in `B6` and `B7`. Make sure to keep the `=` and `mm`.
-* Check that you have enough coins. The spreadsheet shows the number needed. Typically 8, 6 for thicker coins like 10 euro cent and up.
+* Check that you have enough coins. The spreadsheet shows the number needed. Typically 12, 9 for thicker coins like 10 euro cent and up.
 * Change other values in the “B” column, like the whole spinner’s size, to taste.
 * Go back to, wlog, the `yacs_2_arm` view
 * Check that the shown shape looks OK. There are view controls at the top
