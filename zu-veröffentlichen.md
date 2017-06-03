@@ -1,4 +1,3 @@
-• Laptopstand
 • soap dish
 • yacs: 7 Stück
  — Mega (2, gedruckt und Rad)
