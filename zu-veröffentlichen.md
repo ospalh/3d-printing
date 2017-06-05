@@ -1,4 +1,3 @@
-• soap dish
 • yacs: 7 Stück
  — Mega (2, gedruckt und Rad)
  — 3-Arm, groß, 3 × 3 × 20 Eurocent,
