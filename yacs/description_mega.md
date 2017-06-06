@@ -1,4 +1,4 @@
-Yet another coin fidget spinner. This one is a biggy. It uses 32 20 eurocent coins, in 8 stacks à 4 coins.
+Yet another coin fidget spinner. This one is a biggy. It uses 32 20 euro cent coins, in 8 stacks à 4 coins.
 The centre hole is for the standard 608 skate bearing, 22 mm × 7 mm.
 
 There are a two ready-made STLs, the one i have printed, and one without the notches, giving it a wheel-like appearance.

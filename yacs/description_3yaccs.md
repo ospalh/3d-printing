@@ -4,14 +4,14 @@ The centre hole is for the standard 608 skate bearing, 22 mm × 7 mm.
 
 There are a two ready-made STLs there, for coins i had lying around:
 
-* Nine 20 eurocent coins
-* Twelve 5 eurocent coins
-* Twelve 1 eurocent coins
+* Nine 20 euro cent coins
+* Twelve 5 euro cent coins
+* Twelve 1 euro cent coins
 * Nine UK 2p coins
 * Twelve UK pennies
 * Twelve 1 角人民币 (1 Jiao RMB) coins
 
-The 1 eurocent version is somewhat smaller than the other ones, with thin wall between the bearing and the coins, and an thinner outer wall, compared to the other STLs.
+The 1 euro cent version is somewhat smaller than the other ones, with thin wall between the bearing and the coins, and an thinner outer wall, compared to the other STLs.
 
 # How designed
 
@@ -22,7 +22,7 @@ This is slightly parametric. Whit a bit of work you can use your favourite coins
 * In the tree view, double click on “Sizes”. You should see the spreadsheet
 * Measure your coin or look up its size (Wikipedia, search engine, &c.)
 * Put in the diameter and thickness in `B6` and `B7`. Make sure to keep the `=` and `mm`.
-* Check that you have enough coins. The spreadsheet shows the number needed. Typically 12, 9 for thicker coins like 10 eurocent and up.
+* Check that you have enough coins. The spreadsheet shows the number needed. Typically 12, 9 for thicker coins like 10 euro cent and up.
 * Change other values in the “B” column, to taste.
 * Go back to the `yaccs_3_arm` view
 * Check that the shown shape looks OK. There are view controls at the top

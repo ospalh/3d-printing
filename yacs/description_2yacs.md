@@ -3,9 +3,9 @@ The centre hole is for the standard 608 skate bearing, 22 mm × 7 mm.
 
 There are a few ready-made STLs there, for coins i had lying around:
 
-* six 50 eurocent coins
+* six 50 euro cent coins
 * eight UK 5p coins
-* eight 5 eurocent coins
+* eight 5 euro cent coins
 * eight 1 角人民币 (1 Jiao RMB) coins
 
 

@@ -3,7 +3,7 @@ This is sized for the standard 608 skate bearing, 22 mm × 7 mm.
 
 There are two ready-made STLs there, for coins i had lying around:
 
-* four 1 eurocent coins
+* four 1 euro cent coins
 * five 2 Indian rupee coins, 2007 version, nominally 27 mm ⌀, but slightly smaller IRL
 
 
