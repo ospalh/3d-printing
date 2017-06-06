@@ -32,3 +32,5 @@ This is slightly parametric. Whit a bit of work you can use your favourite coins
 * Et voilà, you’re done. You have finished your first FreeCAD lesson and can now go ahead and slice and print your customized spinner.
 
 There is also some design history available at my [github repo](https://github.com/ospalh/3d-printing/tree/develop/yacs).
+
+All my “yacs” spinners are related and started out with the same bearing ring.

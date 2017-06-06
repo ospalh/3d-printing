@@ -40,3 +40,5 @@ This is slightly parametric. Whit a bit of work you can use your favourite coins
 The FreeCAD version is for the more compact (thin walled) version.
 
 There is also some design history available at my [github repo](https://github.com/ospalh/3d-printing/tree/develop/yacs).
+
+All my “yacs” spinners are related and started out with the same bearing ring.
