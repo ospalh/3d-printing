@@ -15,8 +15,8 @@ This is slightly parametric. Whit a bit of work you can use your favourite coins
 * Go back to the `685_coin_spinner_3_arm` view
 * Check that the shown shape looks OK. There are view controls at the top
 * Check that in the tree view there are no exclamation marks as warnings
+* If there *are* problems, it’s easiest to close *without* saving and to try again. Change fewer values, and only by small amounts, but the small size of the central bearings means you can’t really use coins much larger than the 1 euro cent.
 * If the spinner looks good, select the last item, “spinner”. It should turn green in the main view.
-* If not, it’s easiest to close *without* saving and to try again. Change fewer values, and only by small amounts, but the small size of the central bearings means you can’t really use coins much larger than the 1 euro cent.
 * Look for the dropdown in the tool bar and select “Mesh Design”
 * You should now have a “Meshes” menu. Select “Create mesh from shape …”
 * I have to select the “Standard” radio button. “Mefisto” produces empty meshes.
