@@ -22,7 +22,7 @@ This is slightly parametric. Whit a bit of work you can use your favourite coins
 * I have to select the “Standard” radio button. “Mefisto” produces empty meshes.
 * Click OK
 * There should be a “spinner (Meshed)” item in the tree view. Select it.
-* Click on the “Export a mesh to file” icon, enter a file name, select file type (STL or OBJ) and name and click “OK”,
+* Click on the “Export a mesh to file” icon, enter a file name, select the file type (STL or OBJ) and click “OK”,
 * Et voilà, you’re done. You have finished your first FreeCAD lesson and can now go ahead and slice and print your customized spinner.
 
 The FreeCAD version is for the more compact (thin walled) version.
