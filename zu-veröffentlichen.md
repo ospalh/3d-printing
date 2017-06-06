@@ -1,5 +1,4 @@
-• yacs: 7 Stück
- — Mega (2, gedruckt und Rad)
+• yacs: 6/7
  — 3-Arm, groß, 3 × 3 × 20 Eurocent,
  — 3-Arm, kompakt, 3 × 4 × 5 Eurocent, 3 × 4 × 1 Eurocent, britische
  — 2-Arm, groß, ca. 10 p,
