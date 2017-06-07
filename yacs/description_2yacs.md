@@ -8,6 +8,7 @@ There are a few ready-made STLs there, for coins i had lying around:
 * eight 5 euro cent coins
 * eight 1 角人民币 (1 Jiao RMB) coins
 
+(I did print all of these, but for the photo session could find only the one.)
 
 # How designed
 
