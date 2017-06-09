@@ -11,7 +11,7 @@ There are a two ready-made STLs there, for coins i had lying around:
 * Twelve UK pennies
 * Twelve 1 角人民币 (1 Jiao RMB) coins
 
-The 1 euro cent version is somewhat smaller than the other ones, with thin wall between the bearing and the coins, and an thinner outer wall, compared to the other STLs.
+The 1 euro cent version is somewhat smaller than the other ones, with a thin wall between the bearing and the coins, and a thinner outer wall, compared to the other STLs.
 
 # How designed
 
