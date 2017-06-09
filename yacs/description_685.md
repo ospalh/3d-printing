@@ -1,5 +1,6 @@
-Yet another coin fidget spinner. This one is tiny three arm version. it uses stacks of four 1 euro cent coins per arm and a 5 mm × 11 mm × 5 mm bearing, called “685”, in the centre.
+Yet another coin fidget spinner. This one is a tiny three arm version. it uses stacks of four 1 euro cent coins per arm and a 5 mm × 11 mm × 5 mm bearing, called “685”, in the centre.
 
+This one’s small enough to palm, which may come in handy when someone dosen’t want you to use one.
 
 # How designed
 
