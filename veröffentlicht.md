@@ -16,3 +16,5 @@
 • yacs: 1/7
  — Mega (2, gedruckt und Rad)
  — 2-Arm, groß, vier
+ — 2-Arm, kompakt, ca. 20 p
+ — 3-Arm, groß, 3 × 3 × 20 Eurocent,
