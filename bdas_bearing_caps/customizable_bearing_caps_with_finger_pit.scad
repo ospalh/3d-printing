@@ -10,7 +10,7 @@
 // Inner (shaft) diameter of the bearing. (Sizes are in mm)
 d_in   = 8;  // [5:0.1:30]
 // Diameter of the cap. Match this to the bearing outer diameter, with or without gap
-d_cap  = 21;  // [5:0.1:40]
+d_cap  = 22;  // [5:0.1:40]
 // Thickness of the bearing. The cap shaft will be short enough to fit in two.
 h_bearing = 7;  // [2:0.1:20]
 // thickness of the top part of the cap
@@ -18,7 +18,7 @@ t_cap  = 2; // [1:0.1:5]
 
 
 //
-number_of_caps   = 4; // [1:36]
+number_of_caps   = 2; // [1:36]
 // Create falsework and brim
 falsework=1; // [1:Falsework and brim, 0: No falsework only cap]
 
@@ -46,8 +46,8 @@ h_stem = h_bearing * stem_height;
 r_in_e = d_in/2 + o;
 r_cap = d_cap/2;
 
-pit_depth   = 0.3*t_cap;
-r_pit_sphere = 6*(r_cap-r_fillet);  // This is a bit hand-waved.
+pit_depth   = 0.6*t_cap;
+r_pit_sphere = 3.1*(r_cap-r_fillet);  // This is a bit hand-waved.
 
 $fn   = 70;
 ms  = 0.01; // Muggeseggele
