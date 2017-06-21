@@ -1,6 +1,6 @@
 ## 3d printing
 
-This is collection of FreeCAD and OpenSCAD files, scripts, and other files for 3d printing designs i came up with or found and remixed.
+This is a collection of FreeCAD and OpenSCAD files, scripts, and other files for 3d printing designs i came up with or found and remixed.
 
 Several have been published on [thingiverse](https://github.com/ospalh/3d-printing/tree/develop/y-belt-holder), a few on [YouMagine](https://www.youmagine.com/ospalh/designs).
 
