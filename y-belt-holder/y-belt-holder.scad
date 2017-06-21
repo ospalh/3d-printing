@@ -1,6 +1,6 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// Y Belt holder for the Průša-style PGGGTech i3 pro C
+// Y Belt holder for the Průša-style GeeTech i3 pro C
 //
 // © 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
@@ -8,8 +8,7 @@
 
 // The main dimensions of the printer
 belt_bed_d = 23; // Distance the belt should be below the bed.
-// When this is off too much, the belt tension varnies, and which
-// can’t be good.
+// When this is off too much, the belt tension varies, which can’t be good.
 // Measure from the bed to the bottom of the belt.
 
 hole_hole_y = 9.5;
