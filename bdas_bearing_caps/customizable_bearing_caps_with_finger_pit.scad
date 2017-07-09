@@ -18,7 +18,7 @@ t_cap  = 2; // [1:0.1:5]
 
 
 //
-number_of_caps   = 2; // [1:36]
+number_of_caps   = 4; // [1:36]
 // Create falsework and brim
 falsework=1; // [1:Falsework and brim, 0: No falsework only cap]
 
@@ -115,6 +115,10 @@ module comfy_cap()
    if(falsework)
    {
       falsework_(2*r_cap,h_stem+t_rim);
+      if (r_cap > 8)
+      {
+         falsework_(r_cap + w_rim + r_in_e,h_stem+t_rim);
+      }
       falsework_(2*r_in_e+2*w_rim,h_stem);
       difference()
       {
