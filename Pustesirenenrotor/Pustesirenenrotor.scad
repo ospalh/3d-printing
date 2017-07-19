@@ -6,7 +6,7 @@
 // Licence: CC-BY-SA 4.0
 
 
-h_l = 2.5;
+h_l = 3.5;
 r_l = 7/2;
 ms = 0.1;
 r_lh = r_l + 0.8;
@@ -17,9 +17,12 @@ difference()
 {
    union()
    {
-      translate([-90+1.5, -90, 0])
+      scale(4/3)
       {
-         import("siren_rotor.stl");
+         translate([-90+1.5, -90, 0])
+         {
+            import("siren_rotor.stl");
+         }
       }
       cylinder(r=r_lh, h=h_l);
    }
