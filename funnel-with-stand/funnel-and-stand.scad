@@ -10,16 +10,16 @@
 neck_diameter = 3;  // [0.3:0.1:8]
 
 // in cm. This is the top part
-rim_diameter = 8;  // [3:0.1:15]
+rim_diameter = 9;  // [3:0.1:15]
 
 // in cm.
-neck_length = 4; // [0.3:0.1:8]
+neck_length = 5; // [0.3:0.1:8]
 
 // Slope of the main conical part, in °. Beware of printing problems below 45°.
 funnel_angle = 60;  // [30:75]
 
 // Cut off angle to give the funnel a sharpened tip. 90° means flat bottom.
-neck_tip_angle = 75;  // [45:90]
+neck_tip_angle = 65;  // [45:90]
 
 // Create just the funnel, or a stand to go with it, with one or three supports
 stand_style = 1;  // [0:Just funnel, 1:Funnel and simple stand, 3:Funnel and tripod stand]
@@ -94,11 +94,11 @@ bp_s_h = r_bp_s / tan(tip_a/2);
 // (try to) maintain cross section area, not wall strength.)
 // Here we need the angle from one side to the center line.
 
-es_h = 15; // Extra support/stabilizer height
+es_h = 20; // Extra support/stabilizer height
 es_w = 0.8;
 // Extra support/stabilizer width. Need not be as stable as a normal
 // wall
-strake_r = es_w/2;
+strake_r = es_w;
 
 some_distance = 2 * (r_r + w) + 13 * w;
 
@@ -407,7 +407,7 @@ module stand()
          ];
       rotate([90, 0, 0])
       {
-         translate([r_p_l, 0.5*r_p_l, 0])
+         translate([0.9*r_p_l, 0.5*r_p_l, 0])
          {
             linear_extrude(es_w)
             {
