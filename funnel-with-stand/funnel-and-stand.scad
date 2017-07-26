@@ -33,6 +33,10 @@ module end_customizer()
    // This is a dummy module to stop users messing with the values below.
 }
 
+
+// Some of the values below can be carefully tweaked, changing others is a
+// bad idea. Try, and undo if it didn’t work.
+
 r_n = neck_diameter * 5;  // neck radius in mm
 r_r = rim_diameter * 5;  // rim radius in mm
 l_n = neck_length * 10;  // neck_length in mm
@@ -102,17 +106,19 @@ strake_r = es_w;
 
 some_distance = 2 * (r_r + w) + 13 * w;
 
-// The actual calls to generate the objects
-funnel();
-translate([some_distance, 0, 0])
-{
-   if (stand_style > 0)
-   {
-      stand();
-   }
-}
 
-// Demo: place stand over funnel
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+//
+// These lines generate the objects. Use one at a time to generate the
+// funnel and the stand.
+//
+//
+funnel();
+shifted_funnel();
+// stand();
+
+
+// Demo: place stand over funnel to check that they fit
 if (false)
 {
    rotate([0,180,0])
@@ -120,6 +126,21 @@ if (false)
       translate([0, 0, -3*l_n])
       {
          stand();
+      }
+   }
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+//
+// The code to create the shapes
+
+module shifted_stand()
+{
+translate([some_distance, 0, 0])
+{
+   if (stand_style > 0)
+   {
+      stand();
       }
    }
 }
