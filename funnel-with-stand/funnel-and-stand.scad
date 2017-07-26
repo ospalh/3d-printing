@@ -30,7 +30,7 @@ extra_height = 1; // [1:15]
 
 module end_customizer()
 {
-   // This is a dummy module to stop users messing with the values below.
+   // This is a dummy module to stop users from randomly changin things below.
 }
 
 
