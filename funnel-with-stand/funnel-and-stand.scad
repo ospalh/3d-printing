@@ -428,7 +428,7 @@ module stand()
          ];
       rotate([90, 0, 0])
       {
-         translate([0.9*r_p_l, 0.5*r_p_l, 0])
+         translate([r_p_s, 0.5*r_p_l, 0])
          {
             linear_extrude(es_w)
             {
