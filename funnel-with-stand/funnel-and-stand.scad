@@ -114,7 +114,7 @@ some_distance = 2 * (r_r + w) + 13 * w;
 //
 //
 funnel();
-shifted_funnel();
+shifted_stand();
 // stand();
 
 
