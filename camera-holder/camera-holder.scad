@@ -8,7 +8,8 @@
 
 // **********************************************************
 // Change these to taste. Lengths are in mm.
-t_b = 7.9;  // Bed thickness. I want to attach it to an 8 mm Acrylic bed carrier
+t_b_1 = 8;  // Bed thickness. I want to attach it to an 8 mm Acrylic bed carrier
+t_b_2 = 6;  // Clamp thickness.
 cam_angle = 45;  // °
 l_c = 30;  // Clamp length. How big the clamping bit will be
 w_c = 25;  // Clamp width
@@ -22,16 +23,18 @@ h_d = 13;  // camera holder hole depth
 
 // **********************************************************
 
+
 w_a = 2*r_h+2*h_w;  // Thickness of the cam arm
 ms = 0.1;
 
-l_ce = w_c/tan(cam_angle);
+w_ce = w_c/tan(cam_angle);
+l_ce = 1.2*l_c/tan(cam_angle);
+// Something like this. The 1.2 is ad-hocery. I cba to work it out too carefully.
 
 //mirror()
 {
-   translate([-l_ce-w_c+t_c/cos(cam_angle), w_a-2*t_c-t_b,0])
+   translate([-w_ce-w_c+t_c/cos(cam_angle), w_a-2*t_c-t_b_1,0])
    {
-
       clamp();
    }
    arm();
@@ -39,24 +42,34 @@ l_ce = w_c/tan(cam_angle);
 
 module clamp()
 {
-   h_c = t_b + 2 * t_c;
+   h_c = t_b_1 + 2 * t_c;
    difference()
    {
-      cube([w_c+l_ce, h_c, w_c]);
-      translate([w_c+l_ce, -ms,-ms])
+      cube([w_c+w_ce, h_c, w_c]);
+      translate([w_c+w_ce, -ms,-ms])
       {
          rotate([0, -cam_angle,0])
          {
             cube([w_c, h_c+2*ms, 3*w_c]);
          }
       }
-      translate([w_c+l_ce-t_c/cos(cam_angle), 0, 0])
+      translate([w_c+w_ce-t_c/cos(cam_angle), 0, 0])
       {
          rotate([0, -cam_angle,0])
          {
-            translate([-2*w_c, t_c, -0*w_c])
+            translate([0, t_c+t_b_1/2, 0])
             {
-               cube([2*w_c, t_b, 2*w_c]);
+               linear_extrude(2*w_c)
+               {
+                  polygon(
+                     [
+                        [-l_ce,-t_b_2/2],
+                        [-l_ce,t_b_2/2],
+                        [0,t_b_1/2],
+                        [0,-t_b_1/2],
+                        ]
+                     );
+               }
             }
          }
       }
