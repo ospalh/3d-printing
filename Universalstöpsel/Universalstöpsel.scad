@@ -5,12 +5,12 @@
 // © 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
-d_u = 43;
-d_o = 45;
-h= 5;
-h_k = 3;
-rand = 5;
-r_r = 1.2;
+d_u = 40;
+d_o = 43.8;
+h= 6;
+h_k = 2;
+rand = 3;
+r_r = 0.8;
 r_f = 1.6;
 
 r_u = d_u / 2;
