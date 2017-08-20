@@ -23,7 +23,7 @@ ms = 0.1;  // Muggeseggele
 r_k = 1.5;
 r_k_a = r_k+w;
 
-$fn=90;
+$fn = 90;
 dr = r_a_o - r_i_o;
 
 ms = 0.1;
