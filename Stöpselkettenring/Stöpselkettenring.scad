@@ -15,7 +15,7 @@ w=3.2;
 r_a_u = r_i_u + w;
 r_a_o = r_i_o + w;
 
-h = 2.1;
+h = 1.7;
 
 ms = 0.1;  // Muggeseggele
 
