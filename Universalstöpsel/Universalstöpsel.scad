@@ -1,30 +1,57 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// NN
+// Universalstöpsel. Aus flexiblem Filament zu drucken
 //
 // © 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
-d_u = 40;
-d_o = 43.8;
+d_u = 13;
+d_o = 18;
 h= 6;
 h_k = 2;
-rand = 3;
+rand = 3.2;
 r_r = 0.8;
 r_f = 1.6;
 
+notch_r = 0.8;
+squeeze=0.7;
+
+h_g = h + h_k;
 r_u = d_u / 2;
-r_o = d_o / 2;
+r_o = d_o / 2 - r_f;
 r_k = d_o/2 + rand;
 
+
 a_fn = 60; b_fn = 20;  // draft
-// a_fn = 270; b_bn = 45;  // final
+// a_fn = 270; b_fn = 45;  // final
 
 
 
 // stoepsel_form();
 // stoepsel();
-druck_stoepsel();
+// druck_stoepsel();
+// elliptischer_druckstoepsel();
+stoepsel_mit_nut();
+
+
+
+module stoepsel_mit_nut()
+{
+   difference()
+   {
+      elliptischer_druckstoepsel();
+      notches((d_o/2+rand)*squeeze, 0);
+   }
+}
+
+
+module elliptischer_druckstoepsel()
+{
+   scale([squeeze, 1, 1])
+   {
+      druck_stoepsel();
+   }
+}
 
 
 module druck_stoepsel()
@@ -87,4 +114,25 @@ module stoepsel_form()
   {
      circle(r=r_r, $fn=b_fn);
   }
+}
+
+
+module notches(w)
+{
+   rotate([0, 90, 0])
+   {
+      cylinder(r=notch_r, h=2*w, center=true, $fn=b_fn);
+   }
+   z_notch();
+   mirror()
+   {
+      z_notch();
+   }
+   module z_notch()
+   {
+      translate([w, 0, 0])
+      {
+         cylinder(r=notch_r, h=h_g, $fn=b_fn);
+      }
+   }
 }
