@@ -17,7 +17,8 @@ r_u = d_u / 2;
 r_o = d_o / 2;
 r_k = d_o/2 + rand;
 
-$fn = 30;
+a_fn = 60; b_fn = 20;  // draft
+// a_fn = 270; b_bn = 45;  // final
 
 
 
@@ -39,7 +40,7 @@ module druck_stoepsel()
 
 module stoepsel()
 {
-   rotate_extrude($fn=180)
+   rotate_extrude($fn=a_fn)
    {
       stoepsel_form();
    }
@@ -65,7 +66,7 @@ module stoepsel_form()
   polygon(rot_points);
   translate([r_u-r_r, r_r])
   {
-     circle(r=r_r, $fn=30);
+     circle(r=r_r, $fn=b_fn);
   }
   translate([r_o, h-r_f])
   {
@@ -74,16 +75,16 @@ module stoepsel_form()
         square([r_f, r_f]);
         translate([r_f,0])
         {
-           circle(r=r_f, $fn=30);
+           circle(r=r_f, $fn=b_fn);
         }
      }
   }
   translate([r_k-r_r, h+r_r])
   {
-     circle(r=r_r, $fn=30);
+     circle(r=r_r, $fn=b_fn);
   }
   translate([r_k-r_r, h+h_k-r_r])
   {
-     circle(r=r_r, $fn=30);
+     circle(r=r_r, $fn=b_fn);
   }
 }
