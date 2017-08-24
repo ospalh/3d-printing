@@ -13,6 +13,8 @@ rand = 3.2;
 r_r = 0.8;
 r_f = 1.6;
 
+// TODO: Thingiverse customizerfy
+
 notch_r = 0.8;
 squeeze=0.7;
 
