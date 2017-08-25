@@ -22,7 +22,7 @@ funnel_angle = 60;  // [30:75]
 neck_tip_angle = 65;  // [45:90]
 
 // Create just the funnel, or a stand to go with it, with one or three supports
-stand_style = 0;  // [0:Just funnel, 1:Funnel and simple stand, 3:Funnel and tripod stand]
+stand_style = 1;  // [0:Just funnel, 1:Funnel and simple stand, 3:Funnel and tripod stand]
 
 // Height added  to the stand, in cm. The height of the top of the funnel will be the length of your pencil plus this.
 extra_height = 1; // [1:15]
@@ -30,7 +30,7 @@ extra_height = 1; // [1:15]
 
 module end_customizer()
 {
-   // This is a dummy module to stop users from randomly changin things below.
+   // This is a dummy module to stop users from randomly changing things below.
 }
 
 // Some of the values below can be carefully tweaked, changing others is a
@@ -41,11 +41,11 @@ r_r = rim_diameter * 5;  // rim radius in mm
 l_n = neck_length * 10;  // neck_length in mm
 heh = extra_height * 5; // Half the extra height, in mm
 
-nozzle = 0.4;  // Used in a calculation below.
-neck_perimeter_count = 3;  // 3 == 1.2 mm neck wall, 4 = 1.6
-w = nozzle * neck_perimeter_count;
-// Wall thickness.  The funnel part will be slightly wider, it being tilted
-// and all.
+// w = 1.6;
+w = 1.8;  // To get four perimeters in slic3r, we have to add a bit here. WTF?
+// Wall thickness.  When you measure the conical part along the surfaces it
+// will appear thinner.
+
 
 
 ms = 0.01; // Muggeseggele
@@ -58,7 +58,7 @@ o_ta = 1 * (r_n + w) * tan(ta_b);
 
 // Uncomment these when running OpenSCAD at home for a smoother
 // (ronuder) funnel.
-//  $fa= 1;
+// $fa= 1;
 // $fs=0.1;
 
 wiggle_room_factor = 1.1;
@@ -108,7 +108,7 @@ bp_s_h = r_bp_s / tan(tip_a/2);
 // Here we need the angle from one side to the center line.
 
 es_h = 20; // Extra support/stabilizer height
-es_w = nozzle * ceil(neck_perimeter_count/2);
+es_w = 0.8;
 // Extra support/stabilizer width. Need not be as stable as a normal
 // wall
 strake_r = es_w;
@@ -160,24 +160,23 @@ module funnel()
 {
 
    ch = (r_r - r_n) / tan(fua_b);
-   o_rr = nozzle * ceil(neck_perimeter_count / sin(fua));
-   o_nl = w * tan((90-fua_b)/2);
    // Max height. I sort-of designed the funnel the right way up, but
    // want it come out upside down.
-   mh = l_n + o_nl + ch;
-   echo(ch);
+   // mh = l_n + o_nl + ch;
+   mh = l_n + ch;
    // just the rotationl symmetirc part
    module rot_funnel()
    {
       f_poly = [
-         [r_n,mh - 0],
-         [r_n+w,mh - 0],
+         [r_n, mh - 0],
+         [r_n+w, mh - 0],
          [r_n+w, mh - l_n],
-         [r_r + o_rr, mh - (l_n + o_nl + ch)],
-         [r_r, mh - (l_n + o_nl + ch)],
-         [r_n, mh - (l_n + o_nl)]
+         [r_r + w, mh-mh],
+         [r_r, mh-mh],
+         [r_n,  mh - l_n]
+         // Mathamatically less pure, but easier to print
          ];
-      rotate_extrude()
+      rotate_extrude(convexity=4)
       {
          polygon(f_poly);
       }
@@ -191,9 +190,9 @@ module funnel()
       c_poly = [
          [0 ,mh - 0],
          [r_n + w/2 ,mh - 0],
-         [r_n + w/2, mh - (l_n + o_nl)],
-         [r_r + w/2, mh - (l_n + o_nl + ch)],
-         [0, mh - (l_n + o_nl + ch)]
+         [r_n + w/2, mh - (l_n)],
+         [r_r + w/2, -ms],
+         [0, -ms]
          ];
       rotate_extrude()
       {
@@ -255,8 +254,8 @@ module funnel()
 
    }
    r_h_w = handle_w - 2*handle_cr;
-   e_h_l = handle_l - 2*handle_cr + r_r+o_rr;
-   e_h_l_2 = handle_l + r_r+o_rr;
+   e_h_l = handle_l - 2*handle_cr + r_r+w;
+   e_h_l_2 = handle_l + r_r+w;
 
    module funnel_grip()
    {
