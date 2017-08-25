@@ -96,7 +96,7 @@ usp_h = 10 * r_p_s;  // Height of the unsharpend pencil connector bit
 
 bp_s_h = r_bp_s / tan(tip_a/2);
 
-// Height of the sleve at the bottom (as printed) of the “big pencil”
+// Height of the sleeve at the bottom (as printed) of the “big pencil”
 // connector. The length of a pencil tip. (The angle of the outer wall
 // should come out slightly below tip_a, as the walls get thinner. We
 // (try to) maintain cross section area, not wall strength.)
