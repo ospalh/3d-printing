@@ -42,9 +42,13 @@ r_r = rim_diameter * 5;  // rim radius in mm
 l_n = neck_length * 10;  // neck_length in mm
 heh = extra_height * 5; // Half the extra height, in mm
 
-w = 1.6;
-// Wall thickness. Should be a multiple of your nozzle diameter. 1.2 may
-// be enough.
+nozzle = 0.4;  // Used in a calculation below.
+neck_perimeter_count = 3;  // 3 == 1.2 mm neck wall, 4 = 1.6
+w = nozzle * neck_perimeter_count;
+// Wall thickness.  The funnel part will be slightly wider, it being tilted
+// and all.
+
+
 
 
 fua = funnel_angle;
@@ -99,7 +103,7 @@ bp_s_h = r_bp_s / tan(tip_a/2);
 // Here we need the angle from one side to the center line.
 
 es_h = 20; // Extra support/stabilizer height
-es_w = 0.8;
+es_w = nozzle * ceil(neck_perimeter_count/2);
 // Extra support/stabilizer width. Need not be as stable as a normal
 // wall
 strake_r = es_w;
@@ -150,7 +154,7 @@ module funnel()
 {
 
    ch = (r_r - r_n) / tan(fua_b);
-   o_rr = w / sin(fua);
+   o_rr = nozzle * ceil(neck_perimeter_count / sin(fua));
    o_nl = w * tan((90-fua_b)/2);
    // Max height. I sort-of designed the funnel the right way up, but
    // want it come out upside down.
