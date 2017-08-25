@@ -22,7 +22,7 @@ funnel_angle = 60;  // [30:75]
 neck_tip_angle = 65;  // [45:90]
 
 // Create just the funnel, or a stand to go with it, with one or three supports
-stand_style = 1;  // [0:Just funnel, 1:Funnel and simple stand, 3:Funnel and tripod stand]
+stand_style = 0;  // [0:Just funnel, 1:Funnel and simple stand, 3:Funnel and tripod stand]
 
 // Height added  to the stand, in cm. The height of the top of the funnel will be the length of your pencil plus this.
 extra_height = 1; // [1:15]
@@ -32,7 +32,6 @@ module end_customizer()
 {
    // This is a dummy module to stop users from randomly changin things below.
 }
-
 
 // Some of the values below can be carefully tweaked, changing others is a
 // bad idea. Try, and undo if it didn’t work.
@@ -49,7 +48,7 @@ w = nozzle * neck_perimeter_count;
 // and all.
 
 
-
+ms = 0.01; // Muggeseggele
 
 fua = funnel_angle;
 fua_b = 90 - fua;
@@ -59,7 +58,7 @@ o_ta = 1 * (r_n + w) * tan(ta_b);
 
 // Uncomment these when running OpenSCAD at home for a smoother
 // (ronuder) funnel.
-// $fa= 1;
+//  $fa= 1;
 // $fs=0.1;
 
 wiggle_room_factor = 1.1;
@@ -73,8 +72,14 @@ r_p_s = 3.4 * wiggle_room_factor;
 r_p_l = r_p_s * 2 / 3 * sqrt(3);
 
 
-// Handle radius
-handle_r = 10;
+// Handle sizes:
+
+handle_w = 40;  // Wide eonugh for index and middle finger
+handle_l = 30;  // Long enough for the distal segments
+handle_cr = 2;  // Corner radius
+// Border radius: see below
+handle_handle_ch_ratio = 0.5;
+// Used to calculate how heigh the lug that holds the handle is
 
 // Tip angle
 tip_a = 21;  // °. Apparently standard in Germany
@@ -107,6 +112,7 @@ es_w = nozzle * ceil(neck_perimeter_count/2);
 // Extra support/stabilizer width. Need not be as stable as a normal
 // wall
 strake_r = es_w;
+handle_br = strake_r;  // Hanle border radius
 
 some_distance = 2 * (r_r + w) + 13 * w;
 
@@ -159,7 +165,7 @@ module funnel()
    // Max height. I sort-of designed the funnel the right way up, but
    // want it come out upside down.
    mh = l_n + o_nl + ch;
-
+   echo(ch);
    // just the rotationl symmetirc part
    module rot_funnel()
    {
@@ -248,27 +254,82 @@ module funnel()
       }
 
    }
+   r_h_w = handle_w - 2*handle_cr;
+   e_h_l = handle_l - 2*handle_cr + r_r+o_rr;
+   e_h_l_2 = handle_l + r_r+o_rr;
 
    module funnel_grip()
    {
-      handle_poly = [
-         [handle_r,r_r + w - 3*w],
-         [handle_r,r_r + w + handle_r],
-         [-handle_r,r_r + w + handle_r],
-         [-handle_r,r_r + w - 3*w]
-         ];
-
-      linear_extrude(w)
+      translate([-r_h_w/2, handle_cr, 0])
       {
-         // Holder plate
-         polygon(handle_poly);
-         translate([0,r_r+w+handle_r,0])
+         minkowski()
          {
-            circle(handle_r);
+            cube([r_h_w, e_h_l, w]);
+            cylinder(r=handle_cr, h=ms);
          }
       }
+
+      rotate([0, -90, 0])
+      {
+         translate([0,0,-handle_br/2])
+         {
+            linear_extrude(handle_br)
+            {
+               polygon([[w,0],[ch*handle_handle_ch_ratio+w,0],[w, e_h_l_2]]);
+            }
+         }
+      }
+      translate([0,0,w])
+      {
+         translate([0,e_h_l_2-handle_br])
+         {
+            rotate([0,90,0])
+            {
+               cylinder(h=r_h_w, r=handle_br, center=true);
+            }
+         }
+         side_cylinder();
+         mirror()
+         {
+            side_cylinder();
+         }
+
+      }
+
    }
 
+   module side_cylinder()
+   {
+      translate([handle_w/2-handle_br,0,0])
+      {
+         rotate([-90,0,0])
+         {
+            cylinder(h=e_h_l+handle_cr, r=handle_br);
+         }
+         translate([handle_br-handle_cr, e_h_l_2-handle_cr, 0])
+         {
+            difference()
+            {
+               rotate_extrude()
+               {
+                  translate([handle_cr-handle_br,0])
+                  {
+                     circle(r=handle_br);
+                  }
+               }
+               translate([-handle_cr,-2*handle_cr,0])
+               {
+                  cube([2*handle_cr,2*handle_cr, handle_br]);
+               }
+               translate([-2*handle_cr,-handle_cr,0])
+               {
+                  cube([2*handle_cr,2*handle_cr, handle_br]);
+               }
+            }
+         }
+      }
+
+   }
    module funnel_strake()
    {
 
