@@ -5,9 +5,9 @@
 // © 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
-d_u = 13;
-d_o = 18;
-h= 6;
+d_u = 10.0;
+d_o = 12;
+h= 4;
 h_k = 2;
 rand = 3.2;
 r_r = 0.8;
@@ -15,17 +15,17 @@ r_f = 1.6;
 
 // TODO: Thingiverse customizerfy
 
-notch_r = 0.8;
-squeeze=0.7;
+notch_r = 1.2;
+squeeze=0.75;
 
 h_g = h + h_k;
 r_u = d_u / 2;
-r_o = d_o / 2 - r_f;
+r_o = d_o / 2;
 r_k = d_o/2 + rand;
 
 
-a_fn = 60; b_fn = 20;  // draft
-// a_fn = 270; b_fn = 45;  // final
+// a_fn = 60; b_fn = 20;  // draft
+a_fn = 270; b_fn = 45;  // final
 
 
 
