@@ -30,9 +30,8 @@ extra_height = 1; // [1:15]
 
 module end_customizer()
 {
-   // This is a dummy module to stop users from randomly changin things below.
+   // This is a dummy module to stop users from randomly changing things below.
 }
-
 
 // Some of the values below can be carefully tweaked, changing others is a
 // bad idea. Try, and undo if it didn’t work.
@@ -42,10 +41,14 @@ r_r = rim_diameter * 5;  // rim radius in mm
 l_n = neck_length * 10;  // neck_length in mm
 heh = extra_height * 5; // Half the extra height, in mm
 
-w = 1.6;
-// Wall thickness. Should be a multiple of your nozzle diameter. 1.2 may
-// be enough.
+// w = 1.6;
+w = 1.8;  // To get four perimeters in slic3r, we have to add a bit here. WTF?
+// Wall thickness.  When you measure the conical part along the surfaces it
+// will appear thinner.
 
+
+
+ms = 0.01; // Muggeseggele
 
 fua = funnel_angle;
 fua_b = 90 - fua;
@@ -69,8 +72,14 @@ r_p_s = 3.4 * wiggle_room_factor;
 r_p_l = r_p_s * 2 / 3 * sqrt(3);
 
 
-// Handle radius
-handle_r = 10;
+// Handle sizes:
+
+handle_w = 40;  // Wide eonugh for index and middle finger
+handle_l = 30;  // Long enough for the distal segments
+handle_cr = 2;  // Corner radius
+// Border radius: see below
+handle_handle_ch_ratio = 0.5;
+// Used to calculate how heigh the lug that holds the handle is
 
 // Tip angle
 tip_a = 21;  // °. Apparently standard in Germany
@@ -92,7 +101,7 @@ usp_h = 10 * r_p_s;  // Height of the unsharpend pencil connector bit
 
 bp_s_h = r_bp_s / tan(tip_a/2);
 
-// Height of the sleve at the bottom (as printed) of the “big pencil”
+// Height of the sleeve at the bottom (as printed) of the “big pencil”
 // connector. The length of a pencil tip. (The angle of the outer wall
 // should come out slightly below tip_a, as the walls get thinner. We
 // (try to) maintain cross section area, not wall strength.)
@@ -103,6 +112,7 @@ es_w = 0.8;
 // Extra support/stabilizer width. Need not be as stable as a normal
 // wall
 strake_r = es_w;
+handle_br = strake_r;  // Hanle border radius
 
 some_distance = 2 * (r_r + w) + 13 * w;
 
@@ -150,24 +160,23 @@ module funnel()
 {
 
    ch = (r_r - r_n) / tan(fua_b);
-   o_rr = w / sin(fua);
-   o_nl = w * tan((90-fua_b)/2);
    // Max height. I sort-of designed the funnel the right way up, but
    // want it come out upside down.
-   mh = l_n + o_nl + ch;
-
+   // mh = l_n + o_nl + ch;
+   mh = l_n + ch;
    // just the rotationl symmetirc part
    module rot_funnel()
    {
       f_poly = [
-         [r_n,mh - 0],
-         [r_n+w,mh - 0],
+         [r_n, mh - 0],
+         [r_n+w, mh - 0],
          [r_n+w, mh - l_n],
-         [r_r + o_rr, mh - (l_n + o_nl + ch)],
-         [r_r, mh - (l_n + o_nl + ch)],
-         [r_n, mh - (l_n + o_nl)]
+         [r_r + w, mh-mh],
+         [r_r, mh-mh],
+         [r_n,  mh - l_n]
+         // Mathamatically less pure, but easier to print
          ];
-      rotate_extrude()
+      rotate_extrude(convexity=4)
       {
          polygon(f_poly);
       }
@@ -181,9 +190,9 @@ module funnel()
       c_poly = [
          [0 ,mh - 0],
          [r_n + w/2 ,mh - 0],
-         [r_n + w/2, mh - (l_n + o_nl)],
-         [r_r + w/2, mh - (l_n + o_nl + ch)],
-         [0, mh - (l_n + o_nl + ch)]
+         [r_n + w/2, mh - (l_n)],
+         [r_r + w/2, -ms],
+         [0, -ms]
          ];
       rotate_extrude()
       {
@@ -244,27 +253,82 @@ module funnel()
       }
 
    }
+   r_h_w = handle_w - 2*handle_cr;
+   e_h_l = handle_l - 2*handle_cr + r_r+w;
+   e_h_l_2 = handle_l + r_r+w;
 
    module funnel_grip()
    {
-      handle_poly = [
-         [handle_r,r_r + w - 3*w],
-         [handle_r,r_r + w + handle_r],
-         [-handle_r,r_r + w + handle_r],
-         [-handle_r,r_r + w - 3*w]
-         ];
-
-      linear_extrude(w)
+      translate([-r_h_w/2, handle_cr, 0])
       {
-         // Holder plate
-         polygon(handle_poly);
-         translate([0,r_r+w+handle_r,0])
+         minkowski()
          {
-            circle(handle_r);
+            cube([r_h_w, e_h_l, w]);
+            cylinder(r=handle_cr, h=ms);
          }
       }
+
+      rotate([0, -90, 0])
+      {
+         translate([0,0,-handle_br/2])
+         {
+            linear_extrude(handle_br)
+            {
+               polygon([[w,0],[ch*handle_handle_ch_ratio+w,0],[w, e_h_l_2]]);
+            }
+         }
+      }
+      translate([0,0,w])
+      {
+         translate([0,e_h_l_2-handle_br])
+         {
+            rotate([0,90,0])
+            {
+               cylinder(h=r_h_w, r=handle_br, center=true);
+            }
+         }
+         side_cylinder();
+         mirror()
+         {
+            side_cylinder();
+         }
+
+      }
+
    }
 
+   module side_cylinder()
+   {
+      translate([handle_w/2-handle_br,0,0])
+      {
+         rotate([-90,0,0])
+         {
+            cylinder(h=e_h_l+handle_cr, r=handle_br);
+         }
+         translate([handle_br-handle_cr, e_h_l_2-handle_cr, 0])
+         {
+            difference()
+            {
+               rotate_extrude()
+               {
+                  translate([handle_cr-handle_br,0])
+                  {
+                     circle(r=handle_br);
+                  }
+               }
+               translate([-handle_cr,-2*handle_cr,0])
+               {
+                  cube([2*handle_cr,2*handle_cr, handle_br]);
+               }
+               translate([-2*handle_cr,-handle_cr,0])
+               {
+                  cube([2*handle_cr,2*handle_cr, handle_br]);
+               }
+            }
+         }
+      }
+
+   }
    module funnel_strake()
    {
 
