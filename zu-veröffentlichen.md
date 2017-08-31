@@ -1,4 +1,3 @@
-• Gürtelschlaufe (für wasauchimmer)
 • Kantenschutz
 • diverse Packungsklemmen
 • Haken für Stöpsel
