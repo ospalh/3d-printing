@@ -7,10 +7,10 @@
 //
 
 // in cm. The neck is the thin bottom part
-neck_diameter = 3;  // [0.3:0.1:8]
+outer_neck_diameter = 3;  // [0.3:0.1:8]
 
 // in cm. This is the top part
-rim_diameter = 9;  // [3:0.1:15]
+inner_rim_diameter = 9;  // [3:0.1:15]
 
 // in cm.
 neck_length = 5; // [0.3:0.1:8]
@@ -36,16 +36,24 @@ module end_customizer()
 // Some of the values below can be carefully tweaked, changing others is a
 // bad idea. Try, and undo if it didn’t work.
 
-r_n = neck_diameter * 5;  // neck radius in mm
-r_r = rim_diameter * 5;  // rim radius in mm
-l_n = neck_length * 10;  // neck_length in mm
-heh = extra_height * 5; // Half the extra height, in mm
 
 // w = 1.6;
 w = 1.8;  // To get four perimeters in slic3r, we have to add a bit here. WTF?
 // Wall thickness.  When you measure the conical part along the surfaces it
 // will appear thinner.
 
+es_h = 20; // Extra support/stabilizer height
+es_w = 0.8;
+// Extra support/stabilizer width. Need not be as stable as a normal
+// wall
+strake_r = es_w;
+handle_br = strake_r;  // Hanle border radius
+
+
+r_n = (outer_neck_diameter * 5) - w -strake_r;  // inner neck radius in mm
+r_r = inner_rim_diameter * 5;  // inner rim radius in mm
+l_n = neck_length * 10;  // neck_length in mm
+heh = extra_height * 5; // Half the extra height, in mm
 
 
 ms = 0.01; // Muggeseggele
@@ -107,12 +115,6 @@ bp_s_h = r_bp_s / tan(tip_a/2);
 // (try to) maintain cross section area, not wall strength.)
 // Here we need the angle from one side to the center line.
 
-es_h = 20; // Extra support/stabilizer height
-es_w = 0.8;
-// Extra support/stabilizer width. Need not be as stable as a normal
-// wall
-strake_r = es_w;
-handle_br = strake_r;  // Hanle border radius
 
 some_distance = 2 * (r_r + w) + 13 * w;
 
