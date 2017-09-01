@@ -7,7 +7,7 @@ When i recently bought a replacement kitchen sink plug, it came with a chain, bu
 
 Print settings:
 Falsework: yes
-More importantly: When you don’t have a filament cooling fan, you should not print this alone. Put a second thing that is at least 11.1 mm high on the platter along with it to give it time to cool. If you can’t think of anything else to print just print two of this.
+When you don’t have a filament cooling fan, you should not print this alone. Put a second thing that is at least 11.1 mm high on the platter along with it to give it time to cool. If you can’t think of anything else to print just print two of this.
 
 
 There is some design history available at my [github repo](https://github.com/ospalh/3d-printing/tree/develop/Stöpselkettenring).
