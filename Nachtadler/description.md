@@ -6,3 +6,5 @@ This is, to a degree, sized for *my* ear. Especially the tragus gap. I included 
 print setup
 I used PETG, but i think PLA should work almost as well. The standard printer settings don’t matter much, but you need reasonably good bed adhesion. If this fails more then once you may want to use a brim.
 More importantly: When you don’t have a filament cooling fan, you should not print this alone. Put a second thing that is at least 15.4 mm high on the platter along with it to give it time to cool. Either print it along with that other thing you want, or just use a second Nachtadler. Mirror it and you have one for either ear.
+
+There is some design history available at my [github repo](https://github.com/ospalh/3d-printing/tree/develop/Nachtadler).
