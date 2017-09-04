@@ -1,4 +1,3 @@
-• Kantenschutz
 • diverse Packungsklemmen
 • versenkter bearing cap
 • verbesserte  bearing cap (extra Lehrgerüst)

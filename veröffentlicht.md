@@ -24,3 +24,4 @@
 • Y-Riemenhalter
 • free wedges
 • Stöpselkettenring
+• Kantenschutz
