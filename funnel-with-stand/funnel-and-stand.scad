@@ -7,22 +7,22 @@
 //
 
 // in cm. The neck is the thin bottom part
-outer_neck_diameter = 3;  // [0.3:0.1:8]
+outer_neck_diameter = 2;  // [0.3:0.1:8]
 
 // in cm. This is the top part
-inner_rim_diameter = 9;  // [3:0.1:15]
+inner_rim_diameter = 6;  // [3:0.1:15]
 
 // in cm.
-neck_length = 5; // [0.3:0.1:8]
+neck_length = 4; // [0.3:0.1:8]
 
 // Slope of the main conical part, in °. Beware of printing problems below 45°.
 funnel_angle = 60;  // [30:75]
 
 // Cut off angle to give the funnel a sharpened tip. 90° means flat bottom.
-neck_tip_angle = 65;  // [45:90]
+neck_tip_angle = 60;  // [45:90]
 
 // Create just the funnel, or a stand to go with it, with one or three supports
-stand_style = 1;  // [0:Just funnel, 1:Funnel and simple stand, 3:Funnel and tripod stand]
+stand_style = 0;  // [0:Just funnel, 1:Funnel and simple stand, 3:Funnel and tripod stand]
 
 // Height added  to the stand, in cm. The height of the top of the funnel will be the length of your pencil plus this.
 extra_height = 1; // [1:15]
@@ -46,8 +46,8 @@ es_h = 20; // Extra support/stabilizer height
 es_w = 0.8;
 // Extra support/stabilizer width. Need not be as stable as a normal
 // wall
-strake_r = es_w;
-handle_br = strake_r;  // Hanle border radius
+strake_r = 0;
+handle_br = 0.8;  // Hanle border radius
 
 
 r_n = (outer_neck_diameter * 5) - w -strake_r;  // inner neck radius in mm
@@ -66,8 +66,8 @@ o_ta = 1 * (r_n + w) * tan(ta_b);
 
 // Uncomment these when running OpenSCAD at home for a smoother
 // (ronuder) funnel.
-// $fa= 1;
-// $fs=0.1;
+$fa= 1;
+$fs=0.1;
 
 wiggle_room_factor = 1.1;
 
@@ -349,7 +349,7 @@ module funnel()
                   // It’s possibly a rounding error, but with
                   // r=strake_r here it doesn’t perfectly
                   // align with the funnel. Use a bit more.
-                  cylinder(r=es_w, h=(r_r - r_n) / cos(funnel_angle));
+                  cylinder(r=strake_r, h=(r_r - r_n) / cos(funnel_angle));
                }
             }
          }

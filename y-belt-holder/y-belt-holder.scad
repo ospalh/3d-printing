@@ -37,8 +37,8 @@ belt_bracket_y = 30; // Length  of one belt bracket
 
 
 
-swf = 1.1; // (wiggle factor)
-bwf = 1.1; // (wiggle factor)
+swf = 1.05; // (wiggle factor)
+bwf = 1.05; // (wiggle factor)
 ms = 0.01; // Muggeseggle
 
 enw = nut_w * swf;
@@ -184,13 +184,13 @@ module one_bracket()
          cube([tdl, truss_d_w, fz]);
       }
    }
-   bt = truss_r_w + ebr + ebt + belt_bracket_w;
+   bt =  ebr + ebt + 2*belt_bracket_w;
    translate([0, -tz, 0])
    {
       difference()
       {
          cube([ebby, bt, fz]);
-         translate([truss_r_w, bt-truss_r_w - ebt, belt_bracket_w])
+         translate([truss_r_w, bt-belt_bracket_w - ebt,belt_bracket_w])
          {
             n_belt();
          }
