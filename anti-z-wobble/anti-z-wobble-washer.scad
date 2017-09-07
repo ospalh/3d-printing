@@ -5,7 +5,7 @@
 // © 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-0 4.0
 
-d_i = 4.2;
+d_i = 8.2;
 r_i = d_i/2;
 h = 0.6;
 d_o = 17;
