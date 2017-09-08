@@ -16,11 +16,15 @@ fudge = 0.1;
 breite = 129.39;
 tiefe = 67.08;
 
+
 rand = 5;
+hw = 2;  // Halter weite
+hh = 0.5;
 
-
-positiver_Gruss();
-//negativer_Gruss();
+//schwaebische_gruesse(1); // lose
+//positiver_Gruss();
+// negativer_Gruss();
+schneller_Gruss();
 
 module positiver_Gruss()
 {
@@ -41,6 +45,12 @@ module negativer_Gruss()
          schwaebische_gruesse(1+fudge);
       }
    }
+}
+
+module schneller_Gruss()
+{
+   Halter();
+   schwaebische_gruesse(1+hh);
 }
 
 
@@ -832,4 +842,98 @@ module Platte(h)
    {
       cube([breite+2*rand, tiefe+2*rand, h], center=true);
    }
+}
+
+
+module Halter()
+{
+   wH(-45, 22, 4);
+   wH(-7, 23, 4);
+   wH(-3, 15, 8);
+   wH(-13, 16, 4);
+   sH(9, 23, 3);
+   dH(17.5, 25.5, 3);
+   qH(23, 26.5, 5);
+   sH(29, 10, 13);
+   sH(-6, 10, 10);
+   dH(-29, 14, 3);
+   dH(-36, 6, 3);
+   qH(-35, 5, 3);
+   wH(-31, 4, 3);
+   wH(-45, -2, 8);
+   wH(-16, 1, 3);
+   wH(-20, -3, 4);
+   sH(-36, -8, 11);
+   qH(-15, -8, 8);
+   dH(-13, -11.5, 7);
+   wH(-32, -15, 3);
+   wH(-26, -22, 3);
+   wH(-20, -20, 5);
+   xH(-9, -20.7, 12, 30);
+   wH(6, -4, 5);
+   wH(11, -10, 5);
+   dH(14, -17, 5);
+   dH(19, -10.6, 3);
+   wH(24, -11, 4);
+   wH(22, -20, 7);
+   wH(30, -10, 4);
+   wH(29, -18, 4);
+   wH(39, -18, 4);
+   wH(45, -18, 4);
+   wH(51, -20, 4);
+   wH(51, -7, 8);
+   xH(54, -16, 3, -60);
+   wH(50, 1.5, 12);
+   sH(16, 10, 9);
+
+   module wH(x, y, l)
+   {
+      // waagerechter Halter
+      translate([x, y, hh/2])
+      {
+         cube([l, hw, hh], center=true);
+      }
+   }
+   module sH(x, y, l)
+   {
+      // senkrechter Halter
+      translate([x, y, hh/2])
+      {
+         cube([hw, l, hh], center=true);
+      }
+   }
+   module dH(x, y, l)
+   {
+      // diagonaler Halter
+      translate([x, y, hh/2])
+      {
+         rotate(-45)
+         {
+            cube([hw, l, hh], center=true);
+         }
+      }
+   }
+   module qH(x, y, l)
+   {
+      // diagonaler Halter (quer)
+      translate([x, y, hh/2])
+      {
+         rotate(-45)
+         {
+            cube([l, hw, hh], center=true);
+         }
+      }
+   }
+   module xH(x, y, l, a)
+   {
+      // schräger Halter
+      translate([x, y, hh/2])
+      {
+         rotate(a)
+         {
+            cube([l, hw, hh], center=true);
+         }
+      }
+   }
+
 }
