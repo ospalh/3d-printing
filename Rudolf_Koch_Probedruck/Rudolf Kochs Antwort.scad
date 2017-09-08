@@ -12,19 +12,48 @@
 fudge = 0.1;
 
 
+// Wie groß das Ding laut slic3r ist
+breite = 129.39;
+tiefe = 67.08;
 
-schwaebische_gruesse(1);
+rand = 5;
 
-module schwaebische_gruesse(h)
+
+positiver_Gruss();
+//negativer_Gruss();
+
+module positiver_Gruss()
 {
-   scale([25.4/90, -25.4/90, 1])
+   Platte(1);
+   translate([0,0,1])
    {
-      schwaebische_gruesse_gross_kopfueber(h);
+      schwaebische_gruesse(1);
+   }
+}
+
+module negativer_Gruss()
+{
+   difference()
+   {
+      Platte(2);
+      translate([0,0,1])
+      {
+         schwaebische_gruesse(1+fudge);
+      }
    }
 }
 
 
-module schwaebische_gruesse_gross_kopfueber(h)
+
+module schwaebische_gruesse(h)
+{
+   mirror([0,1,0])
+   {
+      schwaebische_gruesse_kopfueber(h);
+   }
+}
+
+module schwaebische_gruesse_kopfueber(h)
 {
    difference()
    {
@@ -794,4 +823,13 @@ module bang_punkt()
        [56.967862, 22.851505], [55.170689, 24.798800],
        [54.870259, 25.243300], [54.599199, 25.412634],
        [54.110529, 25.454754]]);
+}
+
+
+module Platte(h)
+{
+   translate([0,0,h/2])
+   {
+      cube([breite+2*rand, tiefe+2*rand, h], center=true);
+   }
 }
