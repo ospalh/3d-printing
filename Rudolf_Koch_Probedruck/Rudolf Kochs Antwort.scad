@@ -22,16 +22,16 @@ hw = 2;  // Halter weite
 hh = 0.5;
 
 //schwaebische_gruesse(1); // lose
-//positiver_Gruss();
-// negativer_Gruss();
-schneller_Gruss();
+// positiver_Gruss();
+negativer_Gruss();
+// schneller_Gruss();
 
 module positiver_Gruss()
 {
-   Platte(1);
-   translate([0,0,1])
+   Platte(1.2);
+   translate([0,0,1.2])
    {
-      schwaebische_gruesse(1);
+      schwaebische_gruesse(0.4);
    }
 }
 
@@ -40,9 +40,9 @@ module negativer_Gruss()
    difference()
    {
       Platte(2);
-      translate([0,0,1])
+      translate([0, 0, 0.9])
       {
-         schwaebische_gruesse(1+fudge);
+         schwaebische_gruesse(1.2+fudge);
       }
    }
 }

@@ -16,7 +16,7 @@ r_f = 1.6;
 // TODO: Thingiverse customizerfy
 
 notch_r = 1.2;
-squeeze=0.75;
+squeeze=12/13;
 
 h_g = h + h_k;
 r_u = d_u / 2;

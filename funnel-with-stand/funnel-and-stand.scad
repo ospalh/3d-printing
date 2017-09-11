@@ -7,19 +7,19 @@
 //
 
 // in cm. The neck is the thin bottom part
-outer_neck_diameter = 2;  // [0.3:0.1:8]
+outer_neck_diameter = 2.8;  // [0.3:0.1:8]
 
 // in cm. This is the top part
-inner_rim_diameter = 6;  // [3:0.1:15]
+inner_rim_diameter = 7;  // [3:0.1:15]
 
 // in cm.
-neck_length = 4; // [0.3:0.1:8]
+neck_length = 2; // [0.3:0.1:8]
 
 // Slope of the main conical part, in °. Beware of printing problems below 45°.
 funnel_angle = 60;  // [30:75]
 
 // Cut off angle to give the funnel a sharpened tip. 90° means flat bottom.
-neck_tip_angle = 60;  // [45:90]
+neck_tip_angle = 90;  // [45:90]
 
 // Create just the funnel, or a stand to go with it, with one or three supports
 stand_style = 0;  // [0:Just funnel, 1:Funnel and simple stand, 3:Funnel and tripod stand]
