@@ -8,53 +8,53 @@
 // © 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
-
+/* [Standard] */
 
 // The main diameter of the sink’s hole, at the top
-sink_hole_diameter = 44;  // [10:100:0.1]
+sink_hole_diameter = 44;  // [10:0.1:100]
+
 // The depth of the sink hole, height of the body without the flange
-sink_hole_depth = 12;  // [1:20:0.1]
+sink_hole_depth = 12;  // [1:0.1:20]
 
 // Add a central handle
 with_handle = 1;  // [0: no handle, 1: with handle]
 
 // Width of the flange at the top
-flange_width = 2;  // [0:20:0.1]
+flange_width = 2;  // [0:0.1:20]
 
 // Set this to > 0 for a conical main part
-bottom_width_reduction = 3;
+bottom_width_reduction = 3;  // [0:0.1:10]
 
-side_slit_width = 2;
-bottom_gap_width = 2;
+// Width of one of the slits at the side.
+side_slit_width = 2;  // [0.2:0.1:10]
+// The width of the gaps between the bottom rings
+bottom_gap_width = 2;  // [0.2:0.1:10]
 
 // What angle to use at the bottom of the flange. Use falsework when you use 0 here.
 flange_support_angle = 0; // [0, 15, 30, 45, 60]
 
 
-// Advanced
+/* [Advanced] */
 
 // Wall width
-wall = 1.8;  // [0.1:5:0.1]
+wall = 1.8;  // [0.1:0.1:5]
 // Height of the bottom rings and the top flange at the end
-plates = 1.2;
+plates = 1.2;  // [0.1:0.1:5]
 
 //  What it says on the tin
-handle_lower_diameter = 6;  // [2:20:0.1]
+handle_lower_diameter = 6;  // [2:0.1:20]
 //  dto.
-handle_upper_diameter = 9;  // [3:25:0.1]
+handle_upper_diameter = 9;  // [3:0.1:25]
 
 // Change the height of the handle
-handle_height_tweak = 1.0;  // [0.1:5:0.1]
+handle_height_tweak = 1.0;  // [0.1:0.1:5]
 
 
 // Width of the four connector beams at the bottom in wall widths
-beam_strengthener = 2;  // [0.5:5:0.01]
+beam_strengthener = 2;  // [0.5:0.01:5]
 
-module stop_customizer()
-{
-   // Dummy module to stop the customizer
-}
 
+/* [Hidden] */
 
 $fs = 0.2;
 $fa = 1;
