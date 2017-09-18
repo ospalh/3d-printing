@@ -3,7 +3,7 @@ What to do, when you have told all your friends an colleagues that you own a 3D 
 Something like this happened to the German font designer and type artist
 [Rudolf Koch](https://de.wikipedia.org/wiki/Rudolf_Koch_(Schriftk%C3%BCnstler)). (Link in German) He had a postcard ready that he send as a reply to anyone who asked for a sample of his art.
 
-This is {a literal,an idiomatic} translation of that postcard. The original was a print made off hand-drawn calligraphy. This is done in a font similar to the original design, and of a style, “[Schwabacher](https://en.wikipedia.org/wiki/Schwabacher)”, that Koch was quite fond of.
+This is {a literal,an idiomatic} translation of that postcard. The original was a print made off hand-drawn calligraphy. This is done in a font ſimilar to the original deſign, and of a ﬅyle, “[Schwabacher](https://en.wikipedia.org/wiki/Schwabacher)”, that Koch was quite fond of.
 
 There are three variants:
 * `Rudolf Koch’s reply, {literal,idiomatic}, unconnected.stl`: A quick print that falls apart when you remove it from the print plate. Sort-of in line with the text.
