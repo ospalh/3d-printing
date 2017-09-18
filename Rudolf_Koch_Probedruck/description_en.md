@@ -14,4 +14,4 @@ There are three variants:
 
 
 Safety note:
-¹ Aceton isn’t really poisonous. Nonetheless you should open the window and wear (latex) gloves, as the fumes make you drowsy and the liquid dries out the skin.
+¹ Aceton isn’t too dangerous, bot not harmless either. Open a window and wear gloves and safety goggles or a face shield. Read a typical [MSDS](http://physics.utsa.edu/memslab/MSDS/Acetone.pdf).
