@@ -11,19 +11,19 @@
 /* [Standard] */
 
 // The main diameter of the sink’s hole, at the top
-sink_hole_diameter = 44;  // [10:0.1:100]
+sink_hole_diameter = 43;  // [10:0.1:100]
 
 // The depth of the sink hole, height of the body without the flange
-sink_hole_depth = 12;  // [1:0.1:20]
+sink_hole_depth = 8;  // [1:0.1:20]
 
 // Add a central handle
-with_handle = 1;  // [0: no handle, 1: with handle]
+with_handle = 0;  // [0: no handle, 1: with handle]
 
 // Width of the flange at the top
 flange_width = 2;  // [0:0.1:20]
 
 // Set this to > 0 for a conical main part
-bottom_width_reduction = 3;  // [0:0.1:10]
+bottom_width_reduction = 2;  // [0:0.1:10]
 
 // Width of one of the slits at the side.
 side_slit_width = 2;  // [0.2:0.1:10]
@@ -31,7 +31,7 @@ side_slit_width = 2;  // [0.2:0.1:10]
 bottom_gap_width = 2;  // [0.2:0.1:10]
 
 // What angle to use at the bottom of the flange. Use falsework when you use 0 here.
-flange_support_angle = 0; // [0, 15, 30, 45, 60]
+flange_support_angle = 15; // [0, 15, 30, 45, 60]
 
 
 /* [Advanced] */
