@@ -27,6 +27,7 @@ module dummy_mod()
    // Stop the thingiverse customizer
 }
 
+tau = 2 * PI;
 
 // tolerance > 0 for snug fit
 o     = -0.05;
@@ -39,6 +40,10 @@ t_nof = 3 * layer;  // no fillet for a bit
 r_fillet = t_cap - t_nof;
 
 stem_height = 0.45;  // as part of bearing height
+
+
+per_per = 8;  // Period of how many nozzle sizes per support connector
+per_mat = 2.5;  // How much of that is filled with material
 
 
 h_stem = h_bearing * stem_height;
@@ -184,9 +189,12 @@ module plain_cap()
 
 module falsework_(d,h)
 {
-   step = 2*360/d/PI;
    r = d/2;
-   r_s = r - nozzle*1.1;
+   r_s = r - nozzle*1.4;
+   c = r * tau;
+   cons = floor(c / (per_per * nozzle));
+   step = 360 / cons;
+
    difference()
    {
       cylinder(d=d, h=h-2*layer,$fn=30);
@@ -197,11 +205,11 @@ module falsework_(d,h)
    }
    for (a=[0:step:360])
    {
-      translate([r_s*sin(a),r_s*cos(a),h-2*layer])
+      rotate([0,0,-a])
       {
-         rotate([0,0,-a])
+         translate([r_s, 0, h-2*layer])
          {
-            cube([nozzle*1.1,nozzle*1.1,2*layer]);
+            cube([nozzle*1.4,nozzle*per_mat,2*layer]);
          }
       }
    }

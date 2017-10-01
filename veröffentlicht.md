@@ -25,3 +25,4 @@
 • free wedges
 • Stöpselkettenring
 • Kantenschutz
+• diverse Packungsklemmen

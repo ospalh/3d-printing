@@ -13,4 +13,4 @@ Es gibt verschiedene Versionen:
 (I plan on publishing an English version, see there for an explanation)
 
 Sicherheitshinweis:
-¹ Aceton ist zwar nicht wirklich giftig. Trotzdem sollte man aber nicht nur die Fenster öffnen, sondern auch (Latex-)Handschuhe tragen, da Aceton die Haut austrocknet.
+¹ Aceton ist nicht all zu gefährlich, aber auch nicht harmlos. Außer das Fenster zu öffnen sollte mensch noch (Latex-)Handschuh und Schutzbrille oder Gesichtsschild tragen. Und ein typisches [Sicherheitsdatenblatt](https://www.scharr.de/fileadmin/scharr/03_leistungen/Inhalt_Bilder_PDFs/Chemie_PDFs/Sicherheitsdatenblaetter/SDB_deutsch/Aceton-DE-de.pdf) lesen.

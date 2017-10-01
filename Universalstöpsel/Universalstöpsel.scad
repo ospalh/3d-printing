@@ -5,73 +5,99 @@
 // © 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
-d_u = 10.0;
-d_o = 12;
-h= 4;
+
+
+bottle_diameter = 20;
 h_k = 2;
 rand = 3.2;
 r_r = 0.8;
 r_f = 1.6;
 
+
+
 // TODO: Thingiverse customizerfy
 
 notch_r = 1.2;
-squeeze=12/13;
+squeeze=0.75;
 
+
+r_o = bottle_diameter/2 - 0.7 * r_f;
+r_u = r_o * 0.8;
+r_k = bottle_diameter/2 + rand;
+
+h = 0.6*r_o;
 h_g = h + h_k;
-r_u = d_u / 2;
-r_o = d_o / 2;
-r_k = d_o/2 + rand;
-
-
-// a_fn = 60; b_fn = 20;  // draft
-a_fn = 270; b_fn = 45;  // final
 
 
 
-// stoepsel_form();
-// stoepsel();
-// druck_stoepsel();
-// elliptischer_druckstoepsel();
-stoepsel_mit_nut();
+a_fn = 60; b_fn = 20;  // draft
+// a_fn = 270; b_fn = 45;  // final
+
+if (squeeze < 1)
+{
+   if (notch_r > 0)
+   {
+      elliptischer_stoepsel_mit_nut();
+   }
+   else
+   {
+      elliptischer_stoepsel();
+   }
+}
+else
+{
+   if (notch_r > 0)
+   {
+      stoepsel_mit_nut();
+   }
+   else
+   {
+      stoepsel();
+   }
+}
 
 
+
+
+module elliptischer_stoepsel_mit_nut()
+{
+   difference()
+   {
+      elliptischer_stoepsel();
+      notches(r_k*squeeze);
+   }
+}
+
+
+module elliptischer_stoepsel()
+{
+   scale([squeeze, 1, 1])
+   {
+      stoepsel();
+   }
+}
 
 module stoepsel_mit_nut()
 {
    difference()
    {
-      elliptischer_druckstoepsel();
-      notches((d_o/2+rand)*squeeze, 0);
+      elliptischer_stoepsel();
+      notches(r_k);
    }
 }
 
 
-module elliptischer_druckstoepsel()
-{
-   scale([squeeze, 1, 1])
-   {
-      druck_stoepsel();
-   }
-}
-
-
-module druck_stoepsel()
+module stoepsel()
 {
    translate([0,0,h+h_k])
    {
       mirror([0,0,1])
       {
-         stoepsel();
+         rotate_extrude($fn=a_fn)
+         {
+            stoepsel_form();
+         }
       }
-   }
-}
-
-module stoepsel()
-{
-   rotate_extrude($fn=a_fn)
-   {
-      stoepsel_form();
    }
 }
 

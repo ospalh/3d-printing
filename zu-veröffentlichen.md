@@ -1,9 +1,11 @@
-• diverse Packungsklemmen
-• versenkter bearing cap
-• verbesserte  bearing cap (extra Lehrgerüst)
-• Haken für X-Schlitten
 • Universalstöpsel
 • Keil für gekippte Fenster
 • Nachtadler
 • Ringuntersetzer
 • Probedruck
+ – deutsch
+ – literal
+ – idiomatic
+• Anti-Z-Wobble
+• Haken für X-Schlitten
+• aufrechte Messschaufel
