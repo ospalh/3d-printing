@@ -5,8 +5,6 @@
 // © 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
-/* [General] */
-
 // Basically the inner diameter of the bottle (glass, whatever)
 stopper_diameter = 20; // [5:0.1:90]
 // The height of the conical part
@@ -16,7 +14,7 @@ flange_height = 2.4; // [1.8:0.1:15]
 flange_width = 3.2;  // [1.8:0.1:24]
 
 // Add a notch for a string, rubber band or similar
-with_notch = 0; [0:No, 1:Yes]
+with_notch = 0; // [0:No, 1:Yes]
 // Radius of the string notch
 notch_r = 1.2;  // [0.1:0.1:3]
 
@@ -28,17 +26,16 @@ axis_ratio=0.75;  // [0.2:0.05:1]
 
 /* [Hidden] */
 
+r_f = 1.6;  // filleting radius
+r_r = 0.8;  // rounding radius
+
 r_o = stopper_diameter/2 - 0.7 * r_f;
 r_u = r_o * 0.8;
 r_k = stopper_diameter/2 + flange_width;
 
-r_r = 0.8;
-r_f = 1.6;
-
 
 h = stopper_height;
 h_g = h + flange_height;
-
 
 
 a_fn = 60; b_fn = 20;  // draft
@@ -92,7 +89,7 @@ module stoepsel_mit_nut()
 {
    difference()
    {
-      elliptischer_stoepsel();
+      stoepsel();
       notches(r_k);
    }
 }
