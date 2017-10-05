@@ -13,7 +13,7 @@
 • Hakenverlängerung
 • Laptopstand
 • soap dish
-• yacs: 1/7
+• yacs:
  — Mega (2, gedruckt und Rad)
  — 2-Arm, groß, vier
  — 2-Arm, kompakt, ca. 20 p
@@ -26,3 +26,4 @@
 • Stöpselkettenring
 • Kantenschutz
 • diverse Packungsklemmen
+• Universalstöpsel
