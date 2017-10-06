@@ -9,26 +9,30 @@
 // Licence: CC-BY-SA 4.0
 
 // … to preview. You will get both parts when you click “Create Thing”.
-part = "cup"; // [cup: The portioner cup, funnel: The funnel and striker]
+part = "cup"; // [cup: The portioner cup, funnel: The funnel and striker, stand: The stand to keep the cup clean]
 
 // cm³
 volume = 44;  // [8:1:150]
 // Maybe some shark fins?
-style = 0; // [0:plain, 1:Googie]
-// Use “preview” for a reasonably fast preview, set it to render and then click “Create Thing” to get your smoother finished STLs.
 preview = 1; // [0:render, 1:preview]
 
-// How wide the excess chute should be at the bottom. Thinner looks better, but it should be wide enough or your tea gets stuck. In mm.
-chute_bottom_size = 10;
+// Size of the stand. Set this to 0 to just get a tray to keep the cup clean for the striking. In mm.
+stand_diameter = 50;  // [0:1:80]
+
+// Funnel diameter
 
 /* [Hidden] */
 //
-h_in_r = 2;  // Height of the cylinder in radiuses. Tweaked by hand
+h_in_r = 1;  // Height of the cylinder in radiuses. Tweaked by hand
 
 tau = 2 * PI;  // π is still wrong. τ = ⌀ ÷ r
 
-w = 2.2;  // main wall width
-w2 = 1.4;  // thinner wall width
+w = 2.2;  // funnel &c. wall width
+min_stand_height = 15;
+flange_height = 10;
+
+chute_limit_diameter = 15;
+chute_limit_factor = 0.3;
 
 ms = 0.1;  // Muggeseggele
 
@@ -48,8 +52,10 @@ r_cm = pow(volume/(tau/3+tau/2*h_in_r),1/3);
 r = r_cm * 10;  // Volume is done in cm³, the rest of OpenSCAD uses mm.
 // (And you don’t uses mm³ a.k.a. µl in everyday settings.)
 
+r_cb = max(r*chute_limit_factor, chute_limit_diameter/2);
+echo(r,r_cb);
 
-some_distance = 5 * r;
+some_distance = 6 * r;
 
 // fn for differently sized objects, for preview or rendering.
 pfa = 40;
@@ -61,61 +67,37 @@ function fb() = (preview) ? pfb : rfb;
 
 
 // print_part();
-preview_part();
+preview_parts();
 
 module print_part()
 {
    if ("cup" == part)
    {
-      if (1 == style)
-      {
-         googie_cup();
-      }
-      else
-      {
-         cup();
-      }
+      cup();
    }
    if (part == "funnel")
    {
-      if (1 == style)
-      {
-         googie_funnel();
-      }
-      else
-      {
-         funnel();
-      }
-
+      funnel();
+   }
+   if (part == "stand")
+   {
+      stand();
    }
 }
 
-module preview_part()
+module preview_parts()
 {
-   if (1 == style)
-   {
-      googie_cup();
-   }
-   else
-   {
-      cup();
-   }
+   cup();
    translate([0, some_distance, 0])
    {
-      if (1 == style)
-      {
-         googie_funnel();
-      }
-      else
-      {
-         funnel();
-      }
+      funnel();
+   }
+   translate([some_distance, 0, 0])
+   {
+      stand();
    }
 }
 
-module googie_cup()
-{
-}
 
 module cup()
 {
@@ -124,16 +106,12 @@ module cup()
       union()
       {
          cup_body();
-         stand();
 
       }
       cup_hollow();
    }
 }
 
-module googie_funnel()
-{
-}
 
 module funnel()
 {
@@ -142,27 +120,42 @@ module funnel()
 
 module cup_body()
 {
-   translate([0, 0, r+w])
-   {
-      sphere(r=r+w, $fn=fa());
-      cylinder(r=r+w, h = r*h_in_r, $fn=fa());
-   }
 
+   cylinder(r=r+3*w, h = r*(h_in_r+1)+w+flange_height, $fn=fa());
+   translate([2*r+w, 0, 0])
+   {
+      cylinder(r=r+3*w, h = r*(h_in_r+1)+w+flange_height, $fn=fa());
+   }
+   translate([0, -r-3*w, 0])
+   {
+      cube([2*r+w, 2*r+6*w, r*(h_in_r+1)+w+flange_height]);
+   }
 }
 
 
 module cup_hollow()
 {
+   // Measuring hollow
    translate([0, 0, r+w])
    {
       sphere(r=r, $fn=fa());
       cylinder(r=r, h = r*h_in_r + ms, $fn=fa());
    }
-}
+   // chute
+   translate([2*r+w, 0, -ms])
+   {
+      cylinder(r1=r_cb, r2=r, h=r*(h_in_r+1)+w + 2*ms, $fn=fa());
+   }
+   // not flange hollow
+   translate([0,0,r*(h_in_r+1)+w])
+   {
+      cylinder(r=r+2*w, h = flange_height+ms, $fn=fa());
+      translate([0, -r-2*w, 0])
+      {
+         cube([3*r+4*w+ms, 2*r+4*w, flange_height+ms]);
+      }
 
-module googie_stand()
-{
-   stand();
+   }
 }
 
 module stand()
@@ -170,21 +163,10 @@ module stand()
    difference()
    {
       full_stand();
-      right_hand_cut();
    }
 }
 
 module full_stand()
 {
    cylinder(r1=2.5*r, r2=r+w, h=r, $fn=fa());
-}
-
-
-module right_hand_cut()
-{
-   // Cut off material to the right of the main cup.
-   translate([r+w, -5*r, -ms])
-   {
-      cube(10*r);
-   }
 }
