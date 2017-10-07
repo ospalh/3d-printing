@@ -12,8 +12,8 @@
 part = "cup"; // [cup: The portioner cup, funnel: The funnel and striker, stand: The stand to keep the cup clean]
 
 // cm³
-volume = 44;  // [8:1:150]
-// Maybe some shark fins?
+volume = 55;  // [8:1:150]
+// Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 // Size of the stand. Set this to 0 to just get a tray to keep the cup clean for the striking. In mm.
@@ -29,15 +29,17 @@ h_in_r = 1;  // Height of the cylinder in radiuses. Tweaked by hand
 tau = 2 * PI;  // π is still wrong. τ = ⌀ ÷ r
 
 w = 2.2;  // funnel &c. wall width
+p = 1.2;  // height of the bottomt plate
 stand_height = 15;
 flange_height = 10;
+stand_peg_height = 2;
 
 chute_limit_diameter = 15;
 chute_limit_factor = 0.3;
 
 ms = 0.1;  // Muggeseggele
 
-clearance = 1;  // mm for the parts that should fit into each other
+clearance = 0.5;  // mm for the parts that should fit into each other
 
 funnel_angle = 60;  // °
 
@@ -174,11 +176,11 @@ module stand()
          stand_base();
          ccc(r_5, stand_height, 0);
       }
-      ccc(r_4, stand_height, w+ms);
+      ccc(r_4, stand_height, p+ms);
    }
-   translate([d_cc, 0, 0])
+   translate([d_cc, 0, p])
    {
-      cylinder(r=r_cb_0, h=stand_height, $fn=fa());
+      cylinder(r=r_cb_0, h=stand_peg_height, $fn=fa());
    }
 }
 
@@ -240,8 +242,8 @@ module stand_base()
 {
    translate([r+0.5*w, 0, 0])
    {
-      cylinder(d=stand_diameter, h=w, $fn=fa());
-      translate([0,0,w])
+      cylinder(d=stand_diameter, h=p, $fn=fa());
+      translate([0,0,p])
       {
          cylinder(d1=stand_diameter, d2=2*r_5, h=stand_height-w, $fn=fa());
       }
