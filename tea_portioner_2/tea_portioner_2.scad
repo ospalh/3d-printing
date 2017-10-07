@@ -17,9 +17,10 @@ volume = 44;  // [8:1:150]
 preview = 1; // [0:render, 1:preview]
 
 // Size of the stand. Set this to 0 to just get a tray to keep the cup clean for the striking. In mm.
-stand_diameter = 50;  // [0:1:80]
+stand_diameter = 80;  // [0:1:100]
 
 // Funnel diameter
+funnel_diameter = 80;  // [30:1:120]
 
 /* [Hidden] */
 //
@@ -28,13 +29,17 @@ h_in_r = 1;  // Height of the cylinder in radiuses. Tweaked by hand
 tau = 2 * PI;  // π is still wrong. τ = ⌀ ÷ r
 
 w = 2.2;  // funnel &c. wall width
-min_stand_height = 15;
+stand_height = 15;
 flange_height = 10;
 
 chute_limit_diameter = 15;
 chute_limit_factor = 0.3;
 
 ms = 0.1;  // Muggeseggele
+
+clearance = 1;  // mm for the parts that should fit into each other
+
+funnel_angle = 60;  // °
 
 // Somewhat comprehensible math to get r from V
 // V = ½ (V sphere) + V cylinder
@@ -52,10 +57,23 @@ r_cm = pow(volume/(tau/3+tau/2*h_in_r),1/3);
 r = r_cm * 10;  // Volume is done in cm³, the rest of OpenSCAD uses mm.
 // (And you don’t uses mm³ a.k.a. µl in everyday settings.)
 
-r_cb = max(r*chute_limit_factor, chute_limit_diameter/2);
-echo(r,r_cb);
 
-some_distance = 6 * r;
+r_1 = r + w;  // outer diameter, striker
+r_2 = r_1 + clearance; // inner size of the measure cup flange
+r_3 = r_2 + w; // outer size of themeasure cup
+r_4 = r_3 + clearance;  // inner size of the stand tray
+r_5 = r_4 + w;  // outer size of the stand tray
+
+d_cc = 2*r + w;  // distance cylinder cylinder
+
+r_cb = max(r*chute_limit_factor, chute_limit_diameter/2);
+r_cb_0 = r_cb - clearance;
+
+r_f = funnel_diameter/2;
+d_ftb = r_f-r_1;
+h_f = d_ftb / tan(90-funnel_angle);
+
+some_distance = max(2*r_5,stand_diameter/2+r_3) + 10;
 
 // fn for differently sized objects, for preview or rendering.
 pfa = 40;
@@ -66,8 +84,8 @@ function fa() = (preview) ? pfa : rfa;
 function fb() = (preview) ? pfb : rfb;
 
 
-// print_part();
-preview_parts();
+print_part();
+
 
 module print_part()
 {
@@ -88,11 +106,11 @@ module print_part()
 module preview_parts()
 {
    cup();
-   translate([0, some_distance, 0])
+   translate([r_4+d_cc+funnel_diameter/2+10, 0, 0])
    {
       funnel();
    }
-   translate([some_distance, 0, 0])
+   translate([0, some_distance, 0])
    {
       stand();
    }
@@ -103,11 +121,7 @@ module cup()
 {
    difference()
    {
-      union()
-      {
-         cup_body();
-
-      }
+      cup_body();
       cup_hollow();
    }
 }
@@ -115,21 +129,34 @@ module cup()
 
 module funnel()
 {
+   difference()
+   {
+      funnel_body();
+      funnel_hollow();
+   }
 }
 
 
+module stand()
+{
+   difference()
+   {
+      union()
+      {
+         stand_base();
+         ccc(r_5, stand_height, 0);
+      }
+      ccc(r_4, stand_height, w+ms);
+   }
+   translate([d_cc, 0, 0])
+   {
+      cylinder(r=r_cb_0, h=stand_height);
+   }
+}
+
 module cup_body()
 {
-
-   cylinder(r=r+3*w, h = r*(h_in_r+1)+w+flange_height, $fn=fa());
-   translate([2*r+w, 0, 0])
-   {
-      cylinder(r=r+3*w, h = r*(h_in_r+1)+w+flange_height, $fn=fa());
-   }
-   translate([0, -r-3*w, 0])
-   {
-      cube([2*r+w, 2*r+6*w, r*(h_in_r+1)+w+flange_height]);
-   }
+   ccc(r_3, r*(h_in_r+1)+w+flange_height,0);
 }
 
 
@@ -146,27 +173,67 @@ module cup_hollow()
    {
       cylinder(r1=r_cb, r2=r, h=r*(h_in_r+1)+w + 2*ms, $fn=fa());
    }
-   // not flange hollow
-   translate([0,0,r*(h_in_r+1)+w])
+   // funnel flange hollow
+   ccc(r_2,flange_height+ms, r*(h_in_r+1)+w);
+   translate([0,0,])
    {
-      cylinder(r=r+2*w, h = flange_height+ms, $fn=fa());
-      translate([0, -r-2*w, 0])
+      translate([d_cc, -r_2, r*(h_in_r+1)+w])
       {
-         cube([3*r+4*w+ms, 2*r+4*w, flange_height+ms]);
+          cube([2*r_2, 2*r_2, flange_height+ms]);
       }
-
    }
 }
 
-module stand()
+
+module funnel_body()
 {
-   difference()
+   cylinder(r=r_1, h=flange_height+clearance+ms);
+   translate([0, 0, flange_height+clearance])
    {
-      full_stand();
+      cylinder(r1=r_1, r2=funnel_diameter/2+w, h=h_f, $fn=fa());
    }
 }
 
-module full_stand()
+
+module funnel_hollow()
 {
-   cylinder(r1=2.5*r, r2=r+w, h=r, $fn=fa());
+   translate([0, 0, -ms])
+   {
+      cylinder(r=r, h=flange_height+clearance+3*ms);
+
+      translate([0, 0, flange_height+clearance])
+      {
+         cylinder(r1=r, r2=funnel_diameter/2, h=h_f+2*ms, $fn=fa());
+      }
+   }
+}
+
+module stand_base()
+{
+   translate([r+0.5*w, 0, 0])
+   {
+      cylinder(d=stand_diameter, h=w, $fn=fa());
+      translate([0,0,w])
+      {
+         cylinder(d1=stand_diameter, d2=2*r_5, h=stand_height-w, $fn=fa());
+      }
+   }
+
+}
+
+module ccc(r_i, h_i, o)
+{
+   // The cylinder cube cylinder combo used several times
+   translate([0,0, o])
+   {
+      cylinder(r=r_i, h=h_i, $fn=fa());
+      translate([d_cc, 0, 0])
+      {
+         cylinder(r=r_i, h=h_i, $fn=fa());
+      }
+      translate([0, -r_i, 0])
+      {
+         cube([d_cc, 2*r_i, h_i]);
+      }
+   }
 }
