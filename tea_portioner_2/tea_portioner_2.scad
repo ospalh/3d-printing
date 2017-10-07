@@ -17,10 +17,10 @@ volume = 44;  // [8:1:150]
 preview = 1; // [0:render, 1:preview]
 
 // Size of the stand. Set this to 0 to just get a tray to keep the cup clean for the striking. In mm.
-stand_diameter = 80;  // [0:1:100]
+stand_diameter = 50;  // [0:1:100]
 
 // Funnel diameter
-funnel_diameter = 80;  // [30:1:120]
+funnel_diameter = 90;  // [30:1:120]
 
 /* [Hidden] */
 //
@@ -85,6 +85,8 @@ function fb() = (preview) ? pfb : rfb;
 
 
 print_part();
+// preview_parts();
+// stack_parts();
 
 
 module print_part()
@@ -115,6 +117,32 @@ module preview_parts()
       stand();
    }
 }
+
+module stack_parts()
+{
+   // intersection()
+   {
+      color("yellow")
+      {
+         stand();
+      }
+      translate([0,0,w+2*ms])
+      {
+         color("red")
+         {
+            cup();
+         }
+      }
+      translate([0,0,w+2*ms + r*(h_in_r + 1) + w + ms ])
+      {
+         color("black")
+         {
+            funnel();
+         }
+      }
+   }
+}
+
 
 
 module cup()
@@ -150,7 +178,7 @@ module stand()
    }
    translate([d_cc, 0, 0])
    {
-      cylinder(r=r_cb_0, h=stand_height);
+      cylinder(r=r_cb_0, h=stand_height, $fn=fa());
    }
 }
 
@@ -187,7 +215,7 @@ module cup_hollow()
 
 module funnel_body()
 {
-   cylinder(r=r_1, h=flange_height+clearance+ms);
+   cylinder(r=r_1, h=flange_height+clearance+ms, $fn=fa());
    translate([0, 0, flange_height+clearance])
    {
       cylinder(r1=r_1, r2=funnel_diameter/2+w, h=h_f, $fn=fa());
@@ -199,7 +227,7 @@ module funnel_hollow()
 {
    translate([0, 0, -ms])
    {
-      cylinder(r=r, h=flange_height+clearance+3*ms);
+      cylinder(r=r, h=flange_height+clearance+3*ms, $fn=fa());
 
       translate([0, 0, flange_height+clearance])
       {
