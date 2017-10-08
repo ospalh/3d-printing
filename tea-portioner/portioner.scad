@@ -12,7 +12,7 @@
 part = "portioner"; // [portioner: The portioner cup, funnel: The funnel and striker, stand: The stand to keep the portioner clean]
 
 // cm³
-volume = 55;  // [8:1:150]
+volume = 66;  // [8:1:150]
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
