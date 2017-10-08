@@ -85,6 +85,13 @@ rfb = 30;
 function fa() = (preview) ? pfa : rfa;
 function fb() = (preview) ? pfb : rfb;
 
+// *******************************************************
+// End settings
+
+
+
+// *******************************************************
+// Generate the parts
 
 print_part();
 // preview_parts();
@@ -145,6 +152,8 @@ module stack_parts()
    }
 }
 
+// *******************************************************
+// Code for the parts themselves
 
 
 module portioner()
@@ -185,9 +194,9 @@ module stand()
       union()
       {
          stand_base();
-         ccc(r_5, stand_height, 0);
+         ccc(r_5, stand_height, 0, 0);
       }
-      ccc(r_4, stand_height, p+ms);
+      ccc(r_4, stand_height, 0, p+ms);
    }
    translate([d_cc, 0, p])
    {
@@ -197,7 +206,7 @@ module stand()
 
 module portioner_body()
 {
-   ccc(r_3, r*(h_in_r+1)+w+flange_height,0);
+   ccc(r_3, r*(h_in_r+1)+w+flange_height, 0, 0);
 }
 
 
@@ -215,7 +224,7 @@ module portioner_hollow()
       cylinder(r1=r_cb, r2=r, h=r*(h_in_r+1)+w + 2*ms, $fn=fa());
    }
    // funnel flange hollow
-   ccc(r_2,flange_height+ms, r*(h_in_r+1)+w);
+   ccc(r_2, flange_height+ms, 0, r*(h_in_r+1)+w);
    translate([0,0,])
    {
       translate([d_cc, -r_5, r*(h_in_r+1)+w])
@@ -228,7 +237,7 @@ module portioner_hollow()
 
 module funnel_body()
 {
-   cylinder(r=r_1, h=flange_height+clearance+ms, $fn=fa());
+   ccc(r_1, flange_height+clearance+ms, r, 0);
    translate([0, 0, flange_height+clearance])
    {
       cylinder(r1=r_1, r2=funnel_diameter/2+w, h=h_f, $fn=fa());
@@ -262,19 +271,19 @@ module stand_base()
 
 }
 
-module ccc(r_i, h_i, o)
+module ccc(r_i, h_i, o_x, o_z)
 {
    // The cylinder cube cylinder combo used several times
-   translate([0,0, o])
+   translate([0,0, o_z])
    {
       cylinder(r=r_i, h=h_i, $fn=fa());
-      translate([d_cc, 0, 0])
+      translate([d_cc-o_x, 0, 0])
       {
          cylinder(r=r_i, h=h_i, $fn=fa());
       }
       translate([0, -r_i, 0])
       {
-         cube([d_cc, 2*r_i, h_i]);
+         cube([d_cc-o_x, 2*r_i, h_i]);
       }
    }
 }
