@@ -9,14 +9,14 @@
 // Licence: CC-BY-SA 4.0
 
 // … to preview. You will get both parts when you click “Create Thing”.
-part = "cup"; // [cup: The portioner cup, funnel: The funnel and striker, stand: The stand to keep the cup clean]
+part = "portioner"; // [portioner: The portioner cup, funnel: The funnel and striker, stand: The stand to keep the portioner clean]
 
 // cm³
 volume = 55;  // [8:1:150]
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
-// Size of the stand. Set this to 0 to just get a tray to keep the cup clean for the striking. In mm.
+// Size of the stand. Set this to 0 to just get a tray to keep the portioner clean for the striking. In mm.
 stand_diameter = 50;  // [0:1:100]
 
 // Funnel diameter
@@ -61,8 +61,8 @@ r = r_cm * 10;  // Volume is done in cm³, the rest of OpenSCAD uses mm.
 
 
 r_1 = r + w;  // outer diameter, striker
-r_2 = r_1 + clearance; // inner size of the measure cup flange
-r_3 = r_2 + w; // outer size of themeasure cup
+r_2 = r_1 + clearance; // inner size of the measureing cup flange
+r_3 = r_2 + w; // outer size of the measureing cup
 r_4 = r_3 + clearance;  // inner size of the stand tray
 r_5 = r_4 + w;  // outer size of the stand tray
 
@@ -93,9 +93,9 @@ print_part();
 
 module print_part()
 {
-   if ("cup" == part)
+   if ("portioner" == part)
    {
-      cup();
+      portioner();
    }
    if (part == "funnel")
    {
@@ -109,7 +109,7 @@ module print_part()
 
 module preview_parts()
 {
-   cup();
+   portioner();
    translate([r_4+d_cc+funnel_diameter/2+10, 0, 0])
    {
       funnel();
@@ -132,7 +132,7 @@ module stack_parts()
       {
          color("red")
          {
-            cup();
+            portioner();
          }
       }
       translate([0,0,w+2*ms + r*(h_in_r + 1) + w + ms ])
@@ -147,16 +147,23 @@ module stack_parts()
 
 
 
-module cup()
+module portioner()
 {
    difference()
    {
-      cup_body();
-      cup_hollow();
+      portioner_body();
+      portioner_hollow();
    }
-   translate([d_cc, r_2+w/2,(1+h_in_r)*r])
+   translate([d_cc, 0, (1+h_in_r)*r])
    {
-      cylinder(d=w, h=flange_height+w, $fn=fb());
+      translate([0, r_2+w/2, 0])
+      {
+         cylinder(d=w, h=flange_height+w, $fn=fb());
+      }
+      translate([0, -r_2-w/2, 0])
+      {
+         cylinder(d=w, h=flange_height+w, $fn=fb());
+      }
    }
 }
 
@@ -188,13 +195,13 @@ module stand()
    }
 }
 
-module cup_body()
+module portioner_body()
 {
    ccc(r_3, r*(h_in_r+1)+w+flange_height,0);
 }
 
 
-module cup_hollow()
+module portioner_hollow()
 {
    // Measuring hollow
    translate([0, 0, r+w])
