@@ -23,25 +23,32 @@ stand_diameter = 50;  // [0:1:100]
 funnel_diameter = 90;  // [30:1:120]
 
 /* [Hidden] */
-//
+
+// *******************************************************
+// Some more values that can be changed
+
 h_in_r = 1;  // Height of the cylinder in radiuses. Tweaked by hand
 
-tau = 2 * PI;  // π is still wrong. τ = ⌀ ÷ r
-
-w = 2.2;  // funnel &c. wall width
+w = 1.8;  // funnel &c. wall width
 p = 1.2;  // height of the bottomt plate
+w_i = 1.2;  // Internal wall width. The bit between the two circular holes
 stand_height = 15;
 flange_height = 10;
 stand_peg_height = 2;
 
-chute_limit_diameter = 15;
+chute_limit_diameter = 20;
 chute_limit_factor = 0.3;
 
-ms = 0.1;  // Muggeseggele
+ms = 0.1;  // Muggeseggele.
 
 clearance = 0.5;  // mm for the parts that should fit into each other
 
 funnel_angle = 60;  // °
+
+// *******************************************************
+// Some shortcuts. These shouldn’t be changed
+
+tau = 2 * PI;  // π is still wrong. τ = ⌀ ÷ r
 
 // Somewhat comprehensible math to get r from V
 // V = ½ (V sphere) + V cylinder
@@ -55,10 +62,10 @@ funnel_angle = 60;  // °
 // top and bottom. That gives the area as r × ½ circumference, or r ×
 // ½τr. No argument against τ or for π.)
 //
+
 r_cm = pow(volume/(tau/3+tau/2*h_in_r),1/3);
 r = r_cm * 10;  // Volume is done in cm³, the rest of OpenSCAD uses mm.
 // (And you don’t uses mm³ a.k.a. µl in everyday settings.)
-
 
 r_1 = r + w;  // outer diameter, striker
 r_2 = r_1 + clearance; // inner size of the measureing cup flange
@@ -66,9 +73,10 @@ r_3 = r_2 + w; // outer size of the measureing cup
 r_4 = r_3 + clearance;  // inner size of the stand tray
 r_5 = r_4 + w;  // outer size of the stand tray
 
-d_cc = 2*r + w;  // distance cylinder cylinder
+d_cc = 2*r + w_i;  // distance cylinder cylinder
 
-r_cb = max(r*chute_limit_factor, chute_limit_diameter/2);
+r_cb_i = max(r*chute_limit_factor, chute_limit_diameter/2);
+r_cb = min(r_cb_i, r);
 r_cb_0 = r_cb - clearance;
 
 r_f = funnel_diameter/2;
@@ -86,7 +94,7 @@ function fa() = (preview) ? pfa : rfa;
 function fb() = (preview) ? pfb : rfb;
 
 // *******************************************************
-// End settings
+// End setup
 
 
 
@@ -96,6 +104,11 @@ function fb() = (preview) ? pfb : rfb;
 print_part();
 // preview_parts();
 // stack_parts();
+
+// I used this cylinder as a modifier to set the infill to higher
+// values under the central bit of the portioner sphere, to get less
+// sag.
+// cylinder(r=0.7*r, h=r,$fn=fa());
 
 
 module print_part()
@@ -163,15 +176,15 @@ module portioner()
       portioner_body();
       portioner_hollow();
    }
-   translate([d_cc, 0, (1+h_in_r)*r])
+   translate([d_cc-w-clearance, 0, (1+h_in_r)*r])
    {
       translate([0, r_2+w/2, 0])
       {
-         cylinder(d=w, h=flange_height+w, $fn=fb());
+         cylinder(d=w, h=flange_height+p, $fn=fb());
       }
       translate([0, -r_2-w/2, 0])
       {
-         cylinder(d=w, h=flange_height+w, $fn=fb());
+         cylinder(d=w, h=flange_height+p, $fn=fb());
       }
    }
 }
@@ -194,9 +207,9 @@ module stand()
       union()
       {
          stand_base();
-         ccc(r_5, stand_height, 0, 0);
+         ccc(r_5, stand_height, , w+clearance, 0);
       }
-      ccc(r_4, stand_height, 0, p+ms);
+      ccc(r_4, stand_height, , w+clearance, p+ms);
    }
    translate([d_cc, 0, p])
    {
@@ -206,28 +219,28 @@ module stand()
 
 module portioner_body()
 {
-   ccc(r_3, r*(h_in_r+1)+w+flange_height, 0, 0);
+   ccc(r_3, r*(h_in_r+1)+p+flange_height, w+clearance, 0);
 }
 
 
 module portioner_hollow()
 {
    // Measuring hollow
-   translate([0, 0, r+w])
+   translate([0, 0, r+p])
    {
       sphere(r=r, $fn=fa());
       cylinder(r=r, h = r*h_in_r + ms, $fn=fa());
    }
    // chute
-   translate([2*r+w, 0, -ms])
+   translate([d_cc, 0, -ms])
    {
-      cylinder(r1=r_cb, r2=r, h=r*(h_in_r+1)+w + 2*ms, $fn=fa());
+      cylinder(r1=r_cb, r2=r, h=r*(h_in_r+1)+p + 2*ms, $fn=fa());
    }
    // funnel flange hollow
-   ccc(r_2, flange_height+ms, 0, r*(h_in_r+1)+w);
-   translate([0,0,])
+   ccc(r_2, flange_height+ms, w+clearance, r*(h_in_r+1)+p);
+   translate([0,0,0])
    {
-      translate([d_cc, -r_5, r*(h_in_r+1)+w])
+      translate([d_cc-w-clearance, -r_5, r*(h_in_r+1)+p])
       {
           cube([2*r_2, 2*r_5, flange_height+ms]);
       }
