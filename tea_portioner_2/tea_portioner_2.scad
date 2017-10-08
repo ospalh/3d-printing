@@ -79,9 +79,9 @@ some_distance = max(2*r_5,stand_diameter/2+r_3) + 10;
 
 // fn for differently sized objects, for preview or rendering.
 pfa = 40;
-pfb = 25;
+pfb = 15;
 rfa = 180;
-rfb = 90;
+rfb = 30;
 function fa() = (preview) ? pfa : rfa;
 function fb() = (preview) ? pfb : rfb;
 
@@ -154,6 +154,10 @@ module cup()
       cup_body();
       cup_hollow();
    }
+   translate([d_cc, r_2+w/2,(1+h_in_r)*r])
+   {
+      cylinder(d=w, h=flange_height+w, $fn=fb());
+   }
 }
 
 
@@ -207,9 +211,9 @@ module cup_hollow()
    ccc(r_2,flange_height+ms, r*(h_in_r+1)+w);
    translate([0,0,])
    {
-      translate([d_cc, -r_2, r*(h_in_r+1)+w])
+      translate([d_cc, -r_5, r*(h_in_r+1)+w])
       {
-          cube([2*r_2, 2*r_2, flange_height+ms]);
+          cube([2*r_2, 2*r_5, flange_height+ms]);
       }
    }
 }
