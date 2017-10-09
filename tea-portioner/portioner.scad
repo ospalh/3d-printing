@@ -2,7 +2,7 @@
 //
 // Another tea portioner.
 //
-// The same pot, funnel and striker, and ramp principle as the first, but
+// The same pot, funnel and striker, and chute principle as the first, but
 // using a number of design lessons i’ve since learned, and some new ideas.
 //
 // © 2017 Roland Sieker <ospalh@gmail.com>
@@ -19,7 +19,7 @@ preview = 1; // [0:render, 1:preview]
 // Size of the stand. Set this to 0 to just get a tray to keep the portioner clean for the striking. In mm.
 stand_diameter = 50;  // [0:1:100]
 
-// Funnel diameter
+// Size of the funnel at the top. Adjust this to how good your tea tossing aim is. 😀. In mm.
 funnel_diameter = 90;  // [30:1:120]
 
 /* [Hidden] */
@@ -29,9 +29,10 @@ funnel_diameter = 90;  // [30:1:120]
 
 h_in_r = 1;  // Height of the cylinder in radiuses. Tweaked by hand
 
-w = 1.8;  // funnel &c. wall width
+w = 1.8;  // wall width for the horizontal flanges
 p = 1.2;  // height of the bottomt plate
 w_i = 1.2;  // Internal wall width. The bit between the two circular holes
+w_f = 1.8;  // Wall for the funnel. I had some problems with varying wall widths, but fixed it otherwise.
 stand_height = 15;
 flange_height = 10;
 stand_peg_height = 2;
@@ -67,7 +68,7 @@ r_cm = pow(volume/(tau/3+tau/2*h_in_r),1/3);
 r = r_cm * 10;  // Volume is done in cm³, the rest of OpenSCAD uses mm.
 // (And you don’t uses mm³ a.k.a. µl in everyday settings.)
 
-r_1 = r + w;  // outer diameter, striker
+r_1 = r + w_f;  // outer diameter, striker
 r_2 = r_1 + clearance; // inner size of the measureing cup flange
 r_3 = r_2 + w; // outer size of the measureing cup
 r_4 = r_3 + clearance;  // inner size of the stand tray
@@ -81,7 +82,8 @@ r_cb_0 = r_cb - clearance;
 
 r_f = funnel_diameter/2;
 d_ftb = r_f-r_1;
-h_f = d_ftb / tan(90-funnel_angle);
+h_f = d_ftb / tan(90-funnel_angle);  // Funnel height
+h_fg = flange_height+clearance;  // funnel grip height
 
 some_distance = max(2*r_5,stand_diameter/2+r_3) + 10;
 
@@ -197,6 +199,19 @@ module funnel()
       funnel_body();
       funnel_hollow();
    }
+
+   translate([d_cc, 0, 0])
+   {
+      translate([0, r+w_f/2, 0])
+      {
+         cylinder(d=w_f, h=h_fg+ms, $fn=fb());
+      }
+      translate([0, -r-w_f/2, 0])
+      {
+         cylinder(d=w_f, h=h_fg+ms, $fn=fb());
+      }
+   }
+
 }
 
 
@@ -250,10 +265,15 @@ module portioner_hollow()
 
 module funnel_body()
 {
-   ccc(r_1, flange_height+clearance+ms, r, 0);
-   translate([0, 0, flange_height+clearance])
+   // almost a ccc, w/o the last cylinder
+   cylinder(r=r_1, h=h_fg+ms, $fn=fa());
+   translate([0, -r_1, 0])
    {
-      cylinder(r1=r_1, r2=funnel_diameter/2+w, h=h_f, $fn=fa());
+      cube([d_cc, 2*r_1, h_fg+ms]);
+   }
+   translate([0, 0, h_fg])
+   {
+      cylinder(r1=r_1, r2=funnel_diameter/2+w_f, h=h_f, $fn=fa());
    }
 }
 
@@ -263,11 +283,20 @@ module funnel_hollow()
    translate([0, 0, -ms])
    {
       cylinder(r=r, h=flange_height+clearance+3*ms, $fn=fa());
-
-      translate([0, 0, flange_height+clearance])
-      {
-         cylinder(r1=r, r2=funnel_diameter/2, h=h_f+2*ms, $fn=fa());
-      }
+   }
+   translate([0, 0, flange_height+clearance])
+   {
+      // N.B.: now ms here. Necessary for a consistant wall width.
+      cylinder(r1=r, r2=funnel_diameter/2, h=h_f, $fn=fa());
+   }
+   translate([d_cc, 0, -ms])
+   {
+      cylinder(r=r, h=flange_height+clearance+3*ms, $fn=fa());
+   }
+   // Just for the preview
+   translate([0, 0, flange_height+clearance+h_f-ms])
+   {
+      cylinder(d=funnel_diameter-2*ms, h=2*ms, $fn=fa());
    }
 }
 
