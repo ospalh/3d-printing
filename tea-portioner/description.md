@@ -25,9 +25,11 @@ Of course there’s nothing wrong with using measuring spoons or scoops like thi
 
 * Supports: no
 * Raft: no
+* 10 %
 * 200 µm
 * Stand with 300 µm
 
+Print this with low infill and enough top layers and perimeters.
 
 ### how
 
