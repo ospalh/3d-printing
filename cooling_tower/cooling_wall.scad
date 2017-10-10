@@ -5,20 +5,52 @@
 // © 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
-h_top=150;
-h_bottom = 10;
+// … to preview
+part = "wall"; // [wall: The cooling wall, modifier: The modifier cuboid. See description]
+top_height=150; // [0,0.1:200]
+modifier_bottom_height = 10;  // [0,0.1:200]
 
 
+/* [Hidden] */
 
+ms = 0.01;
 
-cylinder(r=5, h=0.2);
-cube([0.4,0.4,h_top]);
-translate([100,0,0])
+print_part();
+
+module print_part()
 {
-   cylinder(r=5, h=0.2);
-   cube([0.4,0.4,h_top]);
+   if ("wall" == part)
+   {
+      wall();
+   }
+   if ("modifier" == part)
+   {
+      modifier();
+   }
 }
-translate([0,0,h_bottom])
+
+
+module wall()
 {
-   cube([100, 0.4, h_top-h_bottom]);
+   translate([-2.5, -51, 0])
+   {
+      cube([5, 0.8, top_height]);
+   }
+   translate([-2.5, 51, 0])
+   {
+   cube([5, 0.8, top_height]);
+   }
+   translate([0,0,top_height/2])
+   {
+      cube([0.4, 102, top_height], center=true);
+   }
+}
+
+module modifier()
+{
+   translate([0,0,(top_height-modifier_bottom_height)/2+modifier_bottom_height+ms])
+   {
+      cube([1.2, 100, top_height-modifier_bottom_height+2*ms], center=true);
+   }
+
 }
