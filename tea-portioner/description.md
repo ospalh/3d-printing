@@ -6,16 +6,14 @@ Quickly measure the right amount of tea leaves for one pot, or other granular ma
 * Slide off the funnel, striking the measuring cup and pouring the extra tea back into the tin.
 * The measure now contains the right amount of tea. Pour it into the filter or teapot. I use my [funnel and stand](https://www.thingiverse.com/thing:2144990) for this.
 
+It works reasonably well one handed.
 
 This is the second design for this purpose. I renamed the first one to [old tea portioner](https://www.thingiverse.com/thing:2183718).
 
 The stand is not strictly required, but useful to keep the bottom of the portioner clean, and, depending on the sizes, to stabilize it a bit.
 
 There are  STL files for a number of sizes. 47 cm³ and 66 cm³ are the right amount of rooibos tea for my two teapots, 1 dm³ and 1.4
-dm³. For other sizes use the customizer.  When you have a mass, look up the density in the [FAO list](http://www.fao.org/docrep/017/ap815e/ap815e.pdf), elsewhere, or measure yourself.
-
-
-Americans should look up the millilitres per teaspoon &c. in [this list](http://www.jsward.com/cooking/conversion.shtml), and visit [metric4us](http://metric4us.com/) at their leisure after they printed their portioner.
+dm³. For other sizes use the customizer.  When you have a mass, look up the density in the [FAO list](http://www.fao.org/docrep/017/ap815e/ap815e.pdf), elsewhere, or measure yourself. Americans should look up the millilitres per teaspoon &c. in [this list](http://www.jsward.co m/cooking/conversion.shtml), and visit [metric4us](http://metric4us.com/) at their leisure after they printed their portioner.
 As a reminder to everybody, millilitre and ml are just synonyms for cubic centimetre and cm³, as are litre, l, for cubic decimetre and dm³.
 
 Of course there’s nothing wrong with using measuring spoons or scoops like things [682146](https://www.thingiverse.com/thing:682146) or [619626](https://www.thingiverse.com/thing:619626). Except from the use of lots of useless units, like *two* “fl.oz.”. The difference between those to is minimal, well below the precision of a typical 3d print.
