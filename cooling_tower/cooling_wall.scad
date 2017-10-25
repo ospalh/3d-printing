@@ -32,17 +32,17 @@ module print_part()
 
 module wall()
 {
-   translate([-2.5, -51, 0])
+   translate([-2.5, -50, 0])
    {
       cube([5, 0.8, top_height]);
    }
-   translate([-2.5, 51, 0])
+   translate([-2.5, 50, 0])
    {
    cube([5, 0.8, top_height]);
    }
    translate([0,0,top_height/2])
    {
-      cube([0.4, 102, top_height], center=true);
+      cube([0.4, 100, top_height], center=true);
    }
 }
 
@@ -50,7 +50,7 @@ module modifier()
 {
    translate([0,0,(top_height-modifier_bottom_height)/2+modifier_bottom_height+ms])
    {
-      cube([1.2, 100, top_height-modifier_bottom_height+2*ms], center=true);
+      cube([1.2, 102, top_height-modifier_bottom_height+2*ms], center=true);
    }
 
 }
