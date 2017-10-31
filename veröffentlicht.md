@@ -28,3 +28,4 @@
 • diverse Packungsklemmen
 • Universalstöpsel
 • Nachtadler
+• Keil für gekippte Fenster

@@ -1,4 +1,3 @@
-• Keil für gekippte Fenster
 • Ringuntersetzer
 • Probedruck
  – deutsch
