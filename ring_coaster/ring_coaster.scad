@@ -1,22 +1,28 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// NN
+// A ring coaster
 //
 // © 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
-tau = 2*PI;
+
+// Size of the coaster’s hole (mm)
+inner_diameter = 20;  // [10:1:90]
+// Size of the coaster as a whole (mm)
+outer_diameter = 49;  // [20:1:100]
+
+module dummy()
+{
+   // My quick way to stop the customizer.
+}
+
 h = 1.2;
 b = 0.8;
 w = 1.2;
-d_i = 20;
-d_o = 49;
+r_i = inner_diameter/2;
+r_o = outer_diameter/2;
+tau = 2*PI;
 g = 2*w;
-
-r_i = d_i/2;
-r_o = d_o/2;
-
-
 
 ts = [
    [r_i, 0],
