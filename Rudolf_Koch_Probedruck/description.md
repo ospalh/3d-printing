@@ -1,4 +1,4 @@
-Was tun, wenn mensch Freund\_innen und Kolleg\_innen erzählt hat, dass man einen 3D-Drucker hat, und die nun bitten »Druck mir doch auch mal was!«?
+Was tun, wenn mensch Freund\_innen und Kolleg\_innen erzählt hat, dass mensch einen 3D-Drucker hat, und die nun bitten »Druck mir doch auch mal was!«?
 
 Dem Schriftdesigner [Rudolf Koch](https://de.wikipedia.org/wiki/Rudolf_Koch_(Schriftk%C3%BCnstler)) ging es ähnlich. Er hatte ein Postkarte entworfen, die er Leuten schickte, die eine Gratisprobe seiner Kunst wollten. Hier also das Motiv von Kochs Postkarte, zum 3D-drucken und verteilen.
 
@@ -14,3 +14,18 @@ Es gibt verschiedene Versionen:
 
 Sicherheitshinweis:
 ¹ Aceton ist nicht all zu gefährlich, aber auch nicht harmlos. Außer das Fenster zu öffnen sollte mensch noch (Latex-)Handschuh und Schutzbrille oder Gesichtsschild tragen. Und ein typisches [Sicherheitsdatenblatt](https://www.scharr.de/fileadmin/scharr/03_leistungen/Inhalt_Bilder_PDFs/Chemie_PDFs/Sicherheitsdatenblaetter/SDB_deutsch/Aceton-DE-de.pdf) lesen.
+
+
+Tags:
+typography
+annoyance
+font design
+fraktur
+scherzartikel
+german
+novelty item
+gift
+geschenk
+filament change
+schwabacher
+print sample
