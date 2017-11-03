@@ -1,6 +1,4 @@
-• Ringuntersetzer
 • Probedruck
- – deutsch
  – literal
  – idiomatic
 • Anti-Z-Wobble
