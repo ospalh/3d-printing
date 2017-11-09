@@ -31,3 +31,5 @@
 • Keil für gekippte Fenster
 • Probedruck
  – deutsch
+ – literal
+ – idiomatic
