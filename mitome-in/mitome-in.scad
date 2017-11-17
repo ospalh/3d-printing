@@ -200,22 +200,7 @@ module mitome_in(sh, tp, sb)
    {
       linear_extrude(height=char_h+0.5*sh, scale=1, convexity=10)
       {
-         translate([ox, ol])
-         {
-            scale([blow,1,1])
-            {
-               text(
-                  char_1, font=font, size=ts, halign="center", valign="center");
-            }
-         }
-         translate([ox, -ol])
-         {
-            scale([blow,1,1])
-            {
-               text(
-                  char_2, font=font, size=ts, halign="center", valign="center");
-            }
-         }
+         all_text();
       }
       translate([0,0,-ms-char_h])
       {
@@ -286,6 +271,27 @@ module ink_pad()
       translate([0,0,w2])
       {
          cylinder(r=r_4, h=20, $fn=fa());
+      }
+   }
+}
+
+
+
+module all_text()
+{
+ one_text(line_1, ox, ol);
+ one_text(line_2, ox, 0);
+ one_text(line_3, ox, -ol);
+}
+
+module one_text(t, x, y)
+{
+   translate([x, y])
+   {
+      scale([blow,1])
+      {
+         text(
+            t, font=font, size=ts, halign="center", valign="center");
       }
    }
 }
