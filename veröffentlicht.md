@@ -33,3 +33,4 @@
  – deutsch
  – literal
  – idiomatic
+• Anti z-wobble
