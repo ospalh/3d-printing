@@ -31,3 +31,6 @@
 • Keil für gekippte Fenster
 • Probedruck
  – deutsch
+ – literal
+ – idiomatic
+• Anti z-wobble
