@@ -7,7 +7,7 @@
 
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
-preview = 1; // [0:render, 1:preview]
+preview = 0; // [0:render, 1:preview]
 
 M = 10;  // M6
 s = 5.2; // M6
@@ -29,15 +29,16 @@ angle = 60; // Overhangs much below 60° are a problem for me
 
 wf = 1.2;
 
-e = M * sqrt(3);
+e = M * 2/sqrt(3);
 
 
 some_distance = 50;
 ms = 0.01;  // Muggeseggele.
 
-rme = e/2 * wf;
+rme = e/2  * wf;
 rse = d/2 * wf;
 se = s * wf;
+wp = w *2/sqrt(3);
 
 // fn for differently sized objects, for preview or rendering.
 pfa = 40;
@@ -62,7 +63,7 @@ module extractor()
 {
    difference()
    {
-      cylinder(r=rme+w, h=se+p, $fn=6);
+      cylinder(r=rme+wp, h=se+p, $fn=6);
       translate([0,0,-ms])
       {
          cylinder(r=rse, h=se+p+2*ms, $fn=fb());
