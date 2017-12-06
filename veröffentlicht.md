@@ -34,3 +34,4 @@
  – literal
  – idiomatic
 • Anti z-wobble
+• Haken für X-Schlitten
