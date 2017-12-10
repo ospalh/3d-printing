@@ -8,20 +8,20 @@
 
 
 // Size of the can
-r_can = 80/2;  // diameter of the con itself
-h_tip = 130;  // height of the oiling tip above ground
-x_tip = 140;  // distance of the tip from the center of the can
+r_can = 79/2;  // diameter of the con itself
+h_tip = 133;  // height of the oiling tip above ground
+x_tip = 142;  // distance of the tip from the center of the can
 
-// sizes of the scand
-clearance = 1;  // extra size for the can
+// sizes of the stand
+clearance = 0.5;  // extra size for the can
 b = 1.5;  // Thickness of the bottom plate
 b_c = 4;  // Thickness of the connector
 r_catcher = 10;  // radius of the oil catcher pot
 w = 1.8;  // wall strength;
 r_stem = 3;  // diameter of the oil catcher pot stem
 h_can = 10;  // height of the can wall
-h_clear = 10;  // distance from the tip to the catcher pot
-pot_bottom_height = 5;  // To give the catcher got a bit of a flat bottom
+h_clear = 2;  // distance from the tip to the catcher pot
+pot_bottom_height = 8;  // To give the catcher got a bit of a flat bottom
 
 // other
 preview = 1; // [0:render, 1:preview]
