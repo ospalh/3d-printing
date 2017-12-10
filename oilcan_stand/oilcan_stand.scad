@@ -20,8 +20,9 @@ r_catcher = 10;  // radius of the oil catcher pot
 w = 1.8;  // wall strength;
 r_stem = 3;  // diameter of the oil catcher pot stem
 h_can = 10;  // height of the can wall
-h_clear = 2;  // distance from the tip to the catcher pot
+h_clear = 5;  // distance from the tip to the catcher pot
 pot_bottom_height = 8;  // To give the catcher got a bit of a flat bottom
+l_horns = 20;
 
 // other
 preview = 1; // [0:render, 1:preview]
@@ -52,6 +53,7 @@ module oilcan_stand()
          connector();
          stem();
          solid_catcher();
+         horns();
       }
       can_hollow();
       catcher_hollow();
@@ -88,6 +90,25 @@ module solid_catcher()
    }
 }
 
+module horns()
+{
+   horn();
+   mirror([0,1,0])
+   {
+      horn();
+   }
+}
+
+module horn()
+{
+   translate([x_tip-r_catcher-w, -2*w, h_ct-ms-w])
+   {
+      rotate([30, 0, 0])
+      {
+         cube([w, 2*w, l_horns+2*w]);
+      }
+   }
+}
 
 module can_hollow()
 {
