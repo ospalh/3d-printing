@@ -15,7 +15,7 @@
 volume = 42; // [10:0.5:150]
 
 // Text in the second row. (First row is the size)
-label_text="!Kalk";
+label_text="Wasch";
 
 /* [Hidden] */
 
@@ -35,8 +35,6 @@ wall_thickness_ = 1.8;  // I like the strong. Reduce this for more flimsy scoops
 label_thickness = 1.5;
 label1_height = 10.0;
 label2_height = 8.5;
-
-
 
 label1_text= str(volume, " cm³");
 
