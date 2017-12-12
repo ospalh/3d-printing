@@ -1,58 +1,53 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-
+// Messschaufel (measuring scoop)
+// based on
 // 'Measuring Cup' Version 1.0 by wstein
-
+//
 // is licensed under the Attribution - Non-Commercial - Share Alike license.
 // (c) December 2014
 // please refer the complete license here: http://creativecommons.org/licenses/by-nc-sa/3.0/legalcode
 // © 2017 Roland Sieker <ospalh@gmail.com>
 
 
-/* [Size] */
-// unit of measurement
-unit=1.0; // [1.0:ml, 16.387064:cubic inch (international inch), 28.4130625:imperial fluid ounce (Imp.fl.oz.), 29.5735295625: US fluid ounce (US fl.oz.)]
 
-// capacity of the cup
-volume=40;
+// Capacity of the scoop in cm³ (ml)
+volume = 42; // [10:0.5:150]
 
-
-label1_text="40 cm³";
-label2_text="!Kalk";
-
-/* [Font] */
-
-// default: 1.5
-label_thickness = 1.5;
-
-//default: 8.0
-label1_height = 10.0;
-
-//default: orbitron.dxf
-label1_font="Praxis LT"; //[orbitron.dxf,Letters.dxf,knewave.dxf,BlackRose.dxf,braille.dxf]
-
-//default: 8.0
-label2_height = 8.5;
-
-//default: orbitron.dxf
-label2_font="Demos LT"; //[orbitron.dxf,Letters.dxf,knewave.dxf,BlackRose.dxf,braille.dxf]
-
-
-/* [Advanced] */
-
-// If the printed size does to much differ, you can adjust here. It is easy to calculate: [desired volume] / [printed volume] -> adjust.
-adjust=1;
-
-// default: 1.0 (should be enough up to 100ml)
-wall_thickness_=1.8;
-
+// Text in the second row. (First row is the size)
+label_text="!Kalk";
 
 /* [Hidden] */
+
+// label1_font="Demos LT";
+// label2_font="Demos LT";
+
+label1_font = "Barlow";
+label2_font = "Barlow Condensed";
+
+// If the printed size does to much differ, you can adjust here. It is easy
+// to calculate: [desired volume] / [printed volume] -> adjust.
+adjust=1;
+
+wall_thickness_ = 1.8;  // I like the strong. Reduce this for more flimsy scoops
+
+// Tweak these to modify the label sizes
+label_thickness = 1.5;
+label1_height = 10.0;
+label2_height = 8.5;
+
+
+
+label1_text= str(volume, " cm³");
+
+
 
 // set to true, to get a model of the content volume. This can be measure with MeshLab or other tools
 build_measure_volume_reference=0; // [1:true, 0:false]
 
-// this is the unscaled cup volume (calculated with MeshLab)
+// This is the unscaled volume (calculated with MeshLab) of the original
+// cup. Some corners have been cut when i put this upright again.
+// N.B.: This is not a precision measure.
 ref_volume=137.2013;
 
 
@@ -60,17 +55,14 @@ r_fn=12;  // used for $fn
 
 
 labels=[
-   [0,label1_text,label1_font,label1_height,label_thickness],
-   [1,label2_text,label2_font,label2_height,label_thickness],
+   [0,label1_text, label1_font,label1_height,label_thickness],
+   [1,label_text, label2_font,label2_height,label_thickness],
    ];
 
-volume_ml=volume*unit;
-echo("capacity in ml:", volume_ml);
 
 // calculate correct scale to get the exact volume
-factor=pow(volume_ml/ref_volume*adjust,1/3);
+factor=pow(volume/ref_volume*adjust,1/3);
 wall_thickness=wall_thickness_/factor;
-echo("factor: ",factor);
 
 r1=1;
 r2=r1+wall_thickness;
