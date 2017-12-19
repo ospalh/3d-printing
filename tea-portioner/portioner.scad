@@ -8,7 +8,7 @@
 // © 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
-// … to preview. You will get both parts when you click “Create Thing”.
+// … to preview. You will get all three parts when you click “Create Thing”.
 part = "portioner"; // [portioner: The portioner cup, funnel: The funnel and striker, stand: The stand to keep the portioner clean]
 
 // cm³
