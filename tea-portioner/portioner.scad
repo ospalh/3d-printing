@@ -3,23 +3,23 @@
 // Another tea portioner.
 //
 // The same pot, funnel and striker, and chute principle as the first, but
-// using a number of design lessons i’ve since learned, and some new ideas.
+// using a number of design lessons i've since learned, and some new ideas.
 //
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// (c) 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
-// … to preview. You will get both parts when you click “Create Thing”.
+// ... to preview. You will get both parts when you click "Create Thing".
 part = "portioner"; // [portioner: The portioner cup, funnel: The funnel and striker, stand: The stand to keep the portioner clean]
 
-// cm³
+// cubic cm
 volume = 66;  // [8:1:150]
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 // Size of the stand. Set this to 0 to just get a tray to keep the portioner clean for the striking. In mm.
 stand_diameter = 50;  // [0:1:100]
 
-// Size of the funnel at the top. Adjust this to how good your tea tossing aim is. 😀. In mm.
+// Size of the funnel at the top. Adjust this to how good your tea tossing aim is. ;) In mm.
 funnel_diameter = 90;  // [30:1:120]
 
 /* [Hidden] */
@@ -44,29 +44,29 @@ ms = 0.1;  // Muggeseggele.
 
 clearance = 0.5;  // mm for the parts that should fit into each other
 
-funnel_angle = 60;  // °
+funnel_angle = 60;  // degrees
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
-tau = 2 * PI;  // π is still wrong. τ = ⌀ ÷ r
+tau = 2 * PI;  // pi is still wrong. tau = diameter/r
 
 // Somewhat comprehensible math to get r from V
-// V = ½ (V sphere) + V cylinder
-// V = ½ × (2τ r² × ⅓ r) + ½ τ r² × h
+// V = 1/2 (V sphere) + V cylinder
+// V = 1/2 (2 tau r^2 * 1/3 r) + 1/2 tau r*r *h
 //
-// (The V = 2τ/3 × r³ can be split in 2τr² × ⅓r: think of infinitesimal
-// pyramids with the base area of the surface area of a sphere, 2τr², and
-// the Volume of base area × ⅓ h, with h = r.)
+// (The V = 2tau/3 * r^3 can be split in 2taur^2 * 1/3r: think of infinitesimal
+// pyramids with the base area of the surface area of a sphere, 2tau r^2, and
+// the Volume of base area * 1/3 h, with h = r.)
 // (Similarly, the area of a circle can be seen as a rectangle of
 // infinitesimal circle sectors, with the outer bit alternatively at the
-// top and bottom. That gives the area as r × ½ circumference, or r ×
-// ½τr. No argument against τ or for π.)
+// top and bottom. That gives the area as r * 1/2 circumference, or r *
+// 1/2tau*r. No argument against tau or for pi.)
 //
 
 r_cm = pow(volume/(tau/3+tau/2*h_in_r),1/3);
-r = r_cm * 10;  // Volume is done in cm³, the rest of OpenSCAD uses mm.
-// (And you don’t uses mm³ a.k.a. µl in everyday settings.)
+r = r_cm * 10;  // Volume is done in cm^3, the rest of OpenSCAD uses mm.
+// (And you don't uses mm^3 a.k.a. microlitre in everyday settings.)
 
 r_1 = r + w_f;  // outer diameter, striker
 r_2 = r_1 + clearance; // inner size of the measureing cup flange
