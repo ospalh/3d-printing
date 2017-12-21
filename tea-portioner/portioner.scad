@@ -9,15 +9,15 @@
 // Licence: CC-BY-SA 4.0
 
 // … to preview. You will get all three parts when you click “Create Thing”.
-part = "portioner"; // [portioner: The portioner cup, funnel: The funnel and striker, stand: The stand to keep the portioner clean]
+part = "portioner"; // [portioner: portioner cup, funnel: funnel/striker, stand: stand]
 
 // cm³
-volume = 66;  // [8:1:150]
+volume = 42;  // [8:1:150]
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 // Size of the stand. Set this to 0 to just get a tray to keep the portioner clean for the striking. In mm.
-stand_diameter = 50;  // [0:1:100]
+stand_diameter = 80;  // [0:1:100]
 
 // Size of the funnel at the top. Adjust this to how good your tea tossing aim is. 😀. In mm.
 funnel_diameter = 90;  // [30:1:120]
@@ -37,8 +37,8 @@ stand_height = 15;
 flange_height = 10;
 stand_peg_height = 2;
 
-chute_limit_diameter = 20;
-chute_limit_factor = 0.3;
+chute_limit_diameter = 20;  // Make a hole at least this big
+chute_limit_factor = 0.3;  // … or at least this part of the top hole
 
 ms = 0.1;  // Muggeseggele.
 
@@ -69,8 +69,8 @@ r = r_cm * 10;  // Volume is done in cm³, the rest of OpenSCAD uses mm.
 // (And you don’t uses mm³ a.k.a. µl in everyday settings.)
 
 r_1 = r + w_f;  // outer diameter, striker
-r_2 = r_1 + clearance; // inner size of the measureing cup flange
-r_3 = r_2 + w; // outer size of the measureing cup
+r_2 = r_1 + clearance; // inner size of the measuring cup flange
+r_3 = r_2 + w; // outer size of the measuring cup
 r_4 = r_3 + clearance;  // inner size of the stand tray
 r_5 = r_4 + w;  // outer size of the stand tray
 
@@ -222,9 +222,9 @@ module stand()
       union()
       {
          stand_base();
-         ccc(r_5, stand_height, , w+clearance, 0);
+         ccc(r_5, stand_height, w+clearance, 0);
       }
-      ccc(r_4, stand_height, , w+clearance, p+ms);
+      ccc(r_4, stand_height, w+clearance, p+ms);
    }
    translate([d_cc, 0, p])
    {
