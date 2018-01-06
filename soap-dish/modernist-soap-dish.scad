@@ -18,7 +18,16 @@ rs = 3;
 rk = 4 * rx;
 zmax=30;
 
-$fs = 0.2;
+
+p = w+g; // period
+ms = 0.01; // Muggeseggele
+
+// render:
+// $fs = 0.2;
+// $fa = 1;
+// preview:
+$fs = 0.5;
+$fa = 3;
 
 intersection()
 {
@@ -28,7 +37,7 @@ intersection()
       {
          union()
          {
-            for (roff =[0:w+g:rx])
+            for (roff =[0:p:rx])
             {
                // The main dish
                rotate_extrude()
@@ -48,6 +57,19 @@ intersection()
             {
                cylinder(r=rs, h=2*ry, center=true);
             }
+            // Ad hoc supports for the three outer ring bits
+            short_support(30, ry);
+            short_support(-30, ry);
+            short_support(180-30, ry);
+            short_support(180+30, ry);
+            short_support(55, ry+p);
+            short_support(-55, ry+p);
+            short_support(180-55, ry+p);
+            short_support(180+55, ry+p);
+            short_support(75, ry+2*p);
+            short_support(-75, ry+2*p);
+            short_support(180-75, ry+2*p);
+            short_support(180+75, ry+2*p);
          }
          // The hollow
          translate([0,0,zmin+rk])
@@ -65,5 +87,20 @@ intersection()
    scale([1, ry/rx, 1.01])
    {
       cylinder(r=rx+w, h=zmax);
+   }
+}
+
+
+module short_support(a,o)
+{
+   rotate(a)
+   {
+      translate([0, o-ms, 0])
+      {
+         rotate([90, 0, 0])
+         {
+            cylinder(r=rs, h=p+2*ms, center=true);
+         }
+      }
    }
 }
