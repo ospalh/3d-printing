@@ -1,9 +1,4 @@
 Bald mal:
-• cooling tower in Wand umbauen, irgendwie Breite aus Graf
-• Quarkpackungsklemme:
- — größere Lücke, als Aufschnitt- Käseklammer veröffentlichen
- — kleinere Abstände schmalste Stelle zum Ende, → Quarkbecherklemme
- — kleinere Abstände schmalste Stelle zum Ende, radien anpassen → Joghurtbecherklemme
 • Suppentassenkeil, passend zum Topfkeil
 
 Später:

@@ -35,3 +35,5 @@
  – idiomatic
 • Anti z-wobble
 • Haken für X-Schlitten
+• aufrechte Messschaufel
+• neuen Teeportionierer
