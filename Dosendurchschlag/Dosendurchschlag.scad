@@ -68,7 +68,7 @@ module can_colander()
    {
       difference()
       {
-         rotate_extrude()
+         rotate_extrude($fn=fa())
          {
             translate([r_can-wall, 0, 0])
             {
