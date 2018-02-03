@@ -9,12 +9,38 @@
 //food can of vegetables, etc. to strain them.  The size and other
 //parameters can be changed using the values below.
 
-can_inner_d = 66;  //can inner diameter
+can_diameter = 66;  //can inner diameter
 height = 15;
-wall_thick = 2;
-slat_width = 2;
 
-size = can_inner_d / 2;
+slat_width = 2.4;
+
+preview = 1; // [0:render, 1:preview]
+
+/* [Hidden] */
+
+// *******************************************************
+// Some more values that can be changed
+
+wall = 1.6;
+p_h = 1.8;
+r_can = can_diameter / 2;
+ms = 0.05; // Muggeseggele
+
+// fn for differently sized objects, for preview or rendering.
+pfa = 40;
+pfb = 15;
+rfa = 180;
+rfb = 30;
+function fa() = (preview) ? pfa : rfa;
+function fb() = (preview) ? pfb : rfb;
+
+// *******************************************************
+// End setup
+
+
+
+// *******************************************************
+// Generate the part
 
 can_colander();
 
@@ -23,23 +49,16 @@ module can_colander()
    //main strainer
    difference()
    {
-      cylinder(r=size, height);
-      translate([0,0,wall_thick])
+      cylinder(r=r_can, height, $fn=fa());
+      translate([0,0,p_h])
       {
-         cylinder(r=size-wall_thick, height);
+         cylinder(r=r_can - wall, height, $fn=fa());
       }
-      intersection()
+      for(x = [-r_can + wall: slat_width * 2 : r_can - wall])
       {
-         for(x = [-size : slat_width * 2 : size])
+         translate([x, -r_can, -ms])
          {
-            translate([x, -size, -1])
-            {
-               cube([slat_width, size * 2, wall_thick + 2]);
-            }
-         }
-         translate ([0, 0, -wall_thick])
-         {
-            cylinder(r=size-wall_thick*2, wall_thick * 2);
+            cube([slat_width, r_can * 2, height]);
          }
       }
    }
@@ -51,18 +70,18 @@ module can_colander()
       {
          rotate_extrude()
          {
-            translate([size-wall_thick, 0, 0])
+            translate([r_can-wall, 0, 0])
             {
-               circle(r=wall_thick*2);
+               circle(r=wall*2, $fn=fb());
             }
          }
-         translate([0,0,-wall_thick*3])
+         translate([0,0,-wall*3])
          {
-            cylinder(r=size-wall_thick, wall_thick*6);
+            cylinder(r=r_can-wall, wall*6, $fn=fa());
          }
-         translate([0, 0, wall_thick + height/2])
+         translate([0, 0, wall + height/2])
          {
-            cube([size*2+4*wall_thick, size*2+4*wall_thick, height], true);
+            cube([r_can*2+4*wall, r_can*2+4*wall, height], true);
          }
       }
    }
