@@ -2,9 +2,12 @@
 //
 // Parametric funnel with stand
 //
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// © 2017–18 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 //
+
+// … to preview. You will get both parts, if you select a stand
+part = "funnel"; // [funnel: funnel, stand: stand or nothing]
 
 // in cm. The neck is the thin bottom part
 outer_neck_diameter = 2.8;  // [0.3:0.1:8]
@@ -12,14 +15,14 @@ outer_neck_diameter = 2.8;  // [0.3:0.1:8]
 // in cm. This is the top part
 inner_rim_diameter = 7;  // [3:0.1:15]
 
-// in cm.
+// in cm. The sharped tip is added to this length
 neck_length = 2; // [0.3:0.1:8]
 
 // Slope of the main conical part, in °. Beware of printing problems below 45°.
 funnel_angle = 60;  // [30:75]
 
-// Cut off angle to give the funnel a sharpened tip. 90° means flat bottom.
-neck_tip_angle = 90;  // [45:90]
+// Cut off angle to give the funnel a sharpened tip. 0° means flat bottom.
+neck_tip_angle = 22.5;  // [0:0.5:60]
 
 // Create just the funnel, or a stand to go with it, with one or three supports
 stand_style = 0;  // [0:Just funnel, 1:Funnel and simple stand, 3:Funnel and tripod stand]
@@ -27,11 +30,10 @@ stand_style = 0;  // [0:Just funnel, 1:Funnel and simple stand, 3:Funnel and tri
 // Height added  to the stand, in cm. The height of the top of the funnel will be the length of your pencil plus this.
 extra_height = 1; // [1:15]
 
+// Set this to “render” and click on “Create Thing” when done with the setup.
+preview = 1; // [0:render, 1:preview]
 
-module end_customizer()
-{
-   // This is a dummy module to stop users from randomly changing things below.
-}
+/* Hidden */
 
 // Some of the values below can be carefully tweaked, changing others is a
 // bad idea. Try, and undo if it didn’t work.
@@ -46,28 +48,27 @@ es_h = 20; // Extra support/stabilizer height
 es_w = 0.8;
 // Extra support/stabilizer width. Need not be as stable as a normal
 // wall
-strake_r = 0;
+
+function strake_r() = (stand_style) ? 0 : 0.8;
 handle_br = 0.8;  // Hanle border radius
 
 
-r_n = (outer_neck_diameter * 5) - w -strake_r;  // inner neck radius in mm
+r_n = (outer_neck_diameter * 5) - w -strake_r();  // inner neck radius in mm
 r_r = inner_rim_diameter * 5;  // inner rim radius in mm
 l_n = neck_length * 10;  // neck_length in mm
 heh = extra_height * 5; // Half the extra height, in mm
-
+ond = outer_neck_diameter * 10;
+ncl = ond / cos(neck_tip_angle) * 1.05;
+nth = ond * tan(neck_tip_angle);
 
 ms = 0.01; // Muggeseggele
 
 fua = funnel_angle;
 fua_b = 90 - fua;
-ta_b = 90 - neck_tip_angle;
-o_ta = 1 * (r_n + w) * tan(ta_b);
 
 
-// Uncomment these when running OpenSCAD at home for a smoother
-// (ronuder) funnel.
-$fa= 1;
-$fs=0.1;
+
+
 
 wiggle_room_factor = 1.1;
 
@@ -118,44 +119,83 @@ bp_s_h = r_bp_s / tan(tip_a/2);
 
 some_distance = 2 * (r_r + w) + 13 * w;
 
+// fn for differently sized objects, for preview or rendering.
+pfa = 40;
+pfb = 15;
+pfc = 15;
+rfa = 180;
+rfb = 60;
+rfc = 20;
+function fa() = (preview) ? pfa : rfa;
+function fb() = (preview) ? pfb : rfb;
+function fc() = (preview) ? pfc : rfc;
 
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-//
-// These lines generate the objects. Use one at a time to generate the
-// funnel and the stand.
-//
-//
-funnel();
-shifted_stand();
-// stand();
+// *******************************************************
+// End setup
 
 
-// Demo: place stand over funnel to check that they fit
-if (false)
+
+// *******************************************************
+// Generate the parts
+
+print_part();
+// preview_parts();
+// stack_parts();
+
+// I used this cylinder as a modifier to set the infill to higher
+// values under the central bit of the portioner sphere, to get less
+// sag.
+// cylinder(r=0.7*r, h=r,$fn=fa());
+
+
+module print_part()
 {
-   rotate([0,180,0])
+   if (part == "funnel")
    {
-      translate([0, 0, -3*l_n])
+      funnel();
+   }
+   if (part == "stand" && stand_style)
+   {
+      stand();
+   }
+}
+
+module preview_parts()
+{
+   funnel();
+   translate([some_distance, 0, 0])
+   {
+      if (stand_style)
       {
          stand();
       }
    }
 }
 
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-//
-// The code to create the shapes
-
-module shifted_stand()
+module stack_parts()
 {
-translate([some_distance, 0, 0])
-{
-   if (stand_style > 0)
+   // intersection()
    {
-      stand();
+      color("yellow")
+      {
+         stand();
+      }
+      rotate([0,180,0])
+      {
+         translate([0, 0, -3*l_n])
+         {
+            color("red")
+            {
+               funnel();
+            }
+         }
       }
    }
 }
+
+// *******************************************************
+// Code for the parts themselves
+
 
 // And the definitions
 module funnel()
@@ -165,20 +205,21 @@ module funnel()
    // Max height. I sort-of designed the funnel the right way up, but
    // want it come out upside down.
    // mh = l_n + o_nl + ch;
+
    mh = l_n + ch;
    // just the rotationl symmetirc part
    module rot_funnel()
    {
       f_poly = [
-         [r_n, mh - 0],
-         [r_n+w, mh - 0],
+         [r_n, mh + nth],
+         [r_n+w, mh + nth],
          [r_n+w, mh - l_n],
          [r_r + w, mh-mh],
          [r_r, mh-mh],
          [r_n,  mh - l_n]
          // Mathamatically less pure, but easier to print
          ];
-      rotate_extrude(convexity=4)
+      rotate_extrude(convexity=4, $fn=fa())
       {
          polygon(f_poly);
       }
@@ -190,13 +231,13 @@ module funnel()
    module funnel_core()
    {
       c_poly = [
-         [0 ,mh - 0],
-         [r_n + w/2 ,mh - 0],
+         [0 ,mh + nth],
+         [r_n + w/2 ,mh + nth],
          [r_n + w/2, mh - (l_n)],
          [r_r + w/2, -ms],
          [0, -ms]
          ];
-      rotate_extrude()
+      rotate_extrude(, $fn=fa())
       {
          polygon(c_poly);
       }
@@ -206,11 +247,11 @@ module funnel()
    module funnel_neck_cutoff()
    {
       // The bit that creates the slant an the neck
-      translate([0, 0, mh + 6*r_n-o_ta])
+      translate([-ond/2-ms, -ond/2-ms, mh])
       {
-         rotate(a=ta_b,v=[-1, 0, 0])
+         rotate(a=neck_tip_angle, v=[1, 0, 0])
          {
-            cube(size=12*r_n, center=true);
+            cube([ond+2*ms, ncl, ncl]);
          }
       }
    }
@@ -266,7 +307,7 @@ module funnel()
          minkowski()
          {
             cube([r_h_w, e_h_l, w]);
-            cylinder(r=handle_cr, h=ms);
+            cylinder(r=handle_cr, h=ms, $fn=fb());
          }
       }
 
@@ -286,7 +327,7 @@ module funnel()
          {
             rotate([0,90,0])
             {
-               cylinder(h=r_h_w, r=handle_br, center=true);
+               cylinder(h=r_h_w, r=handle_br, center=true, $fn=fc());
             }
          }
          side_cylinder();
@@ -305,17 +346,17 @@ module funnel()
       {
          rotate([-90,0,0])
          {
-            cylinder(h=e_h_l+handle_cr, r=handle_br);
+            cylinder(h=e_h_l+handle_cr, r=handle_br, $fn=fc());
          }
          translate([handle_br-handle_cr, e_h_l_2-handle_cr, 0])
          {
             difference()
             {
-               rotate_extrude()
+               rotate_extrude($fn=fb())
                {
                   translate([handle_cr-handle_br,0])
                   {
-                     circle(r=handle_br);
+                     circle(r=handle_br, $fn=fc());
                   }
                }
                translate([-handle_cr,-2*handle_cr,0])
@@ -336,7 +377,7 @@ module funnel()
 
       translate([0, r_n+w, mh-l_n])
       {
-         cylinder(r=strake_r, h=l_n);
+         cylinder(r=strake_r(), h=l_n+nth, $fn=fc());
       }
       rotate(30)
       {
@@ -349,7 +390,7 @@ module funnel()
                   // It’s possibly a rounding error, but with
                   // r=strake_r here it doesn’t perfectly
                   // align with the funnel. Use a bit more.
-                  cylinder(r=strake_r, h=(r_r - r_n) / cos(funnel_angle));
+                  cylinder(r=strake_r(), h=(r_r - r_n) / cos(funnel_angle), $fn=fc());
                }
             }
          }
