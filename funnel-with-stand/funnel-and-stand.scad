@@ -22,10 +22,10 @@ neck_length = 2; // [0.3:0.1:8]
 funnel_angle = 60;  // [30:75]
 
 // Cut off angle to give the funnel a sharpened tip. 0° means flat bottom.
-neck_tip_angle = 15;  // [0:0.5:60]
+neck_tip_angle = 22.5;  // [0:0.5:60]
 
 // Create just the funnel, or a stand to go with it, with one or three supports
-stand_style = 1;  // [0:Just funnel, 1:Funnel and simple stand, 3:Funnel and tripod stand]
+stand_style = 0;  // [0:Just funnel, 1:Funnel and simple stand, 3:Funnel and tripod stand]
 
 // Height added  to the stand, in cm. The height of the top of the funnel will be the length of your pencil plus this.
 extra_height = 1; // [1:15]
@@ -48,11 +48,12 @@ es_h = 20; // Extra support/stabilizer height
 es_w = 0.8;
 // Extra support/stabilizer width. Need not be as stable as a normal
 // wall
-strake_r = 0;
+
+function strake_r() = (stand_style) ? 0 : 0.8;
 handle_br = 0.8;  // Hanle border radius
 
 
-r_n = (outer_neck_diameter * 5) - w -strake_r;  // inner neck radius in mm
+r_n = (outer_neck_diameter * 5) - w -strake_r();  // inner neck radius in mm
 r_r = inner_rim_diameter * 5;  // inner rim radius in mm
 l_n = neck_length * 10;  // neck_length in mm
 heh = extra_height * 5; // Half the extra height, in mm
@@ -121,10 +122,13 @@ some_distance = 2 * (r_r + w) + 13 * w;
 // fn for differently sized objects, for preview or rendering.
 pfa = 40;
 pfb = 15;
+pfc = 15;
 rfa = 180;
-rfb = 30;
+rfb = 60;
+rfc = 20;
 function fa() = (preview) ? pfa : rfa;
 function fb() = (preview) ? pfb : rfb;
+function fc() = (preview) ? pfc : rfc;
 
 // *******************************************************
 // End setup
@@ -215,7 +219,7 @@ module funnel()
          [r_n,  mh - l_n]
          // Mathamatically less pure, but easier to print
          ];
-      rotate_extrude(convexity=4)
+      rotate_extrude(convexity=4, $fn=fa())
       {
          polygon(f_poly);
       }
@@ -233,7 +237,7 @@ module funnel()
          [r_r + w/2, -ms],
          [0, -ms]
          ];
-      rotate_extrude()
+      rotate_extrude(, $fn=fa())
       {
          polygon(c_poly);
       }
@@ -303,7 +307,7 @@ module funnel()
          minkowski()
          {
             cube([r_h_w, e_h_l, w]);
-            cylinder(r=handle_cr, h=ms);
+            cylinder(r=handle_cr, h=ms, $fn=fb());
          }
       }
 
@@ -323,7 +327,7 @@ module funnel()
          {
             rotate([0,90,0])
             {
-               cylinder(h=r_h_w, r=handle_br, center=true);
+               cylinder(h=r_h_w, r=handle_br, center=true, $fn=fc());
             }
          }
          side_cylinder();
@@ -342,17 +346,17 @@ module funnel()
       {
          rotate([-90,0,0])
          {
-            cylinder(h=e_h_l+handle_cr, r=handle_br);
+            cylinder(h=e_h_l+handle_cr, r=handle_br, $fn=fc());
          }
          translate([handle_br-handle_cr, e_h_l_2-handle_cr, 0])
          {
             difference()
             {
-               rotate_extrude()
+               rotate_extrude($fn=fb())
                {
                   translate([handle_cr-handle_br,0])
                   {
-                     circle(r=handle_br);
+                     circle(r=handle_br, $fn=fc());
                   }
                }
                translate([-handle_cr,-2*handle_cr,0])
@@ -373,7 +377,7 @@ module funnel()
 
       translate([0, r_n+w, mh-l_n])
       {
-         cylinder(r=strake_r, h=l_n);
+         cylinder(r=strake_r(), h=l_n+nth, $fn=fc());
       }
       rotate(30)
       {
@@ -386,7 +390,7 @@ module funnel()
                   // It’s possibly a rounding error, but with
                   // r=strake_r here it doesn’t perfectly
                   // align with the funnel. Use a bit more.
-                  cylinder(r=strake_r, h=(r_r - r_n) / cos(funnel_angle));
+                  cylinder(r=strake_r(), h=(r_r - r_n) / cos(funnel_angle), $fn=fc());
                }
             }
          }
