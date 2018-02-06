@@ -56,8 +56,8 @@ function fb() = (preview) ? pfb : rfb;
 // *******************************************************
 // Generate the parts
 
-// print_part();
-preview_parts();
+print_part();
+// preview_parts();
 
 
 module print_part()
@@ -133,7 +133,7 @@ module foot(pw)
          {
             rotate([0,90,0])
             {
-               cylinder(r=itr,h=2*or+2*ms,center=true);
+               cylinder(r=itr,h=2*or+2*ms,center=true, $fn=fa());
             }
          }
       }
