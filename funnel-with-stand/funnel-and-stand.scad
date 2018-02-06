@@ -2,7 +2,7 @@
 //
 // Parametric funnel with stand
 //
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// © 2017–18 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 //
 
