@@ -26,6 +26,10 @@ p = 1.2;  // height of the bottomt plate
 
 tau = 2 * PI;  // π is still wrong. τ = ⌀ ÷ r
 angle = 60; // Overhangs much below 60° are a problem for me
+xy_factor = 1/tan(angle);  // To get from a height to a horizontal width
+                           // inclined correctly
+z_factor = tan(angle);  // the other way around
+
 
 some_distance = 50;
 ms = 0.01;  // Muggeseggele.
