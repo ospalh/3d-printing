@@ -22,7 +22,7 @@ neck_length = 2; // [0.3:0.1:8]
 funnel_angle = 60;  // [30:75]
 
 // Cut off angle to give the funnel a sharpened tip. 0° means flat bottom.
-neck_tip_angle = 30;  // [0:0.5:60]
+neck_tip_angle = 15;  // [0:0.5:60]
 
 // Create just the funnel, or a stand to go with it, with one or three supports
 stand_style = 1;  // [0:Just funnel, 1:Funnel and simple stand, 3:Funnel and tripod stand]
@@ -57,14 +57,13 @@ r_r = inner_rim_diameter * 5;  // inner rim radius in mm
 l_n = neck_length * 10;  // neck_length in mm
 heh = extra_height * 5; // Half the extra height, in mm
 ond = outer_neck_diameter * 10;
-ncl = ond / sin(neck_tip_angle);
+ncl = ond / cos(neck_tip_angle) * 1.05;
+nth = ond * tan(neck_tip_angle);
 
 ms = 0.01; // Muggeseggele
 
 fua = funnel_angle;
 fua_b = 90 - fua;
-ta_b = 90 - neck_tip_angle;
-o_ta = 1 * (r_n + w) * tan(ta_b);
 
 
 
@@ -135,8 +134,8 @@ function fb() = (preview) ? pfb : rfb;
 // *******************************************************
 // Generate the parts
 
-// print_part();
-preview_parts();
+print_part();
+// preview_parts();
 // stack_parts();
 
 // I used this cylinder as a modifier to set the infill to higher
@@ -202,13 +201,14 @@ module funnel()
    // Max height. I sort-of designed the funnel the right way up, but
    // want it come out upside down.
    // mh = l_n + o_nl + ch;
+
    mh = l_n + ch;
    // just the rotationl symmetirc part
    module rot_funnel()
    {
       f_poly = [
-         [r_n, mh - 0],
-         [r_n+w, mh - 0],
+         [r_n, mh + nth],
+         [r_n+w, mh + nth],
          [r_n+w, mh - l_n],
          [r_r + w, mh-mh],
          [r_r, mh-mh],
@@ -227,8 +227,8 @@ module funnel()
    module funnel_core()
    {
       c_poly = [
-         [0 ,mh - 0],
-         [r_n + w/2 ,mh - 0],
+         [0 ,mh + nth],
+         [r_n + w/2 ,mh + nth],
          [r_n + w/2, mh - (l_n)],
          [r_r + w/2, -ms],
          [0, -ms]
@@ -243,11 +243,11 @@ module funnel()
    module funnel_neck_cutoff()
    {
       // The bit that creates the slant an the neck
-      translate([0, 0, mh + 6*r_n-o_ta])
+      translate([-ond/2-ms, -ond/2-ms, mh])
       {
-         rotate(a=neck_tip_angle, v=[-1, 0, 0])
+         rotate(a=neck_tip_angle, v=[1, 0, 0])
          {
-            #cube(size=12*r_n, center=true);
+            cube([ond+2*ms, ncl, ncl]);
          }
       }
    }
