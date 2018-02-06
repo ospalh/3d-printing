@@ -6,32 +6,34 @@
 // Licence: CC-BY-SA 4.0
 //
 
+// … to preview. You will get both parts, if you select a stand
+part = "funnel"; // [funnel: funnel, stand: stand or nothing]
+
 // in cm. The neck is the thin bottom part
 outer_neck_diameter = 2.8;  // [0.3:0.1:8]
 
 // in cm. This is the top part
 inner_rim_diameter = 7;  // [3:0.1:15]
 
-// in cm.
+// in cm. The sharped tip is added to this length
 neck_length = 2; // [0.3:0.1:8]
 
 // Slope of the main conical part, in °. Beware of printing problems below 45°.
 funnel_angle = 60;  // [30:75]
 
-// Cut off angle to give the funnel a sharpened tip. 90° means flat bottom.
-neck_tip_angle = 90;  // [45:90]
+// Cut off angle to give the funnel a sharpened tip. 0° means flat bottom.
+neck_tip_angle = 30;  // [0:0.5:60]
 
 // Create just the funnel, or a stand to go with it, with one or three supports
-stand_style = 0;  // [0:Just funnel, 1:Funnel and simple stand, 3:Funnel and tripod stand]
+stand_style = 1;  // [0:Just funnel, 1:Funnel and simple stand, 3:Funnel and tripod stand]
 
 // Height added  to the stand, in cm. The height of the top of the funnel will be the length of your pencil plus this.
 extra_height = 1; // [1:15]
 
+// Set this to “render” and click on “Create Thing” when done with the setup.
+preview = 1; // [0:render, 1:preview]
 
-module end_customizer()
-{
-   // This is a dummy module to stop users from randomly changing things below.
-}
+/* Hidden */
 
 // Some of the values below can be carefully tweaked, changing others is a
 // bad idea. Try, and undo if it didn’t work.
@@ -54,7 +56,8 @@ r_n = (outer_neck_diameter * 5) - w -strake_r;  // inner neck radius in mm
 r_r = inner_rim_diameter * 5;  // inner rim radius in mm
 l_n = neck_length * 10;  // neck_length in mm
 heh = extra_height * 5; // Half the extra height, in mm
-
+ond = outer_neck_diameter * 10;
+ncl = ond / sin(neck_tip_angle);
 
 ms = 0.01; // Muggeseggele
 
@@ -64,10 +67,8 @@ ta_b = 90 - neck_tip_angle;
 o_ta = 1 * (r_n + w) * tan(ta_b);
 
 
-// Uncomment these when running OpenSCAD at home for a smoother
-// (ronuder) funnel.
-$fa= 1;
-$fs=0.1;
+
+
 
 wiggle_room_factor = 1.1;
 
@@ -118,44 +119,80 @@ bp_s_h = r_bp_s / tan(tip_a/2);
 
 some_distance = 2 * (r_r + w) + 13 * w;
 
+// fn for differently sized objects, for preview or rendering.
+pfa = 40;
+pfb = 15;
+rfa = 180;
+rfb = 30;
+function fa() = (preview) ? pfa : rfa;
+function fb() = (preview) ? pfb : rfb;
 
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-//
-// These lines generate the objects. Use one at a time to generate the
-// funnel and the stand.
-//
-//
-funnel();
-shifted_stand();
-// stand();
+// *******************************************************
+// End setup
 
 
-// Demo: place stand over funnel to check that they fit
-if (false)
+
+// *******************************************************
+// Generate the parts
+
+// print_part();
+preview_parts();
+// stack_parts();
+
+// I used this cylinder as a modifier to set the infill to higher
+// values under the central bit of the portioner sphere, to get less
+// sag.
+// cylinder(r=0.7*r, h=r,$fn=fa());
+
+
+module print_part()
 {
-   rotate([0,180,0])
+   if (part == "funnel")
    {
-      translate([0, 0, -3*l_n])
+      funnel();
+   }
+   if (part == "stand" && stand_style)
+   {
+      stand();
+   }
+}
+
+module preview_parts()
+{
+   funnel();
+   translate([some_distance, 0, 0])
+   {
+      if (stand_style)
       {
          stand();
       }
    }
 }
 
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-//
-// The code to create the shapes
-
-module shifted_stand()
+module stack_parts()
 {
-translate([some_distance, 0, 0])
-{
-   if (stand_style > 0)
+   // intersection()
    {
-      stand();
+      color("yellow")
+      {
+         stand();
+      }
+      rotate([0,180,0])
+      {
+         translate([0, 0, -3*l_n])
+         {
+            color("red")
+            {
+               funnel();
+            }
+         }
       }
    }
 }
+
+// *******************************************************
+// Code for the parts themselves
+
 
 // And the definitions
 module funnel()
@@ -208,9 +245,9 @@ module funnel()
       // The bit that creates the slant an the neck
       translate([0, 0, mh + 6*r_n-o_ta])
       {
-         rotate(a=ta_b,v=[-1, 0, 0])
+         rotate(a=neck_tip_angle, v=[-1, 0, 0])
          {
-            cube(size=12*r_n, center=true);
+            #cube(size=12*r_n, center=true);
          }
       }
    }
