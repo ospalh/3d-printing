@@ -1,467 +1,331 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// Tea portioner
+// Another tea portioner.
+//
+// The same pot, funnel and striker, and chute principle as the first, but
+// using a number of design lessons i’ve since learned, and some new ideas.
 //
 // © 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
-// Using material (or inspirations) by
-// Soren_Furbo (https://www.thingiverse.com/thing:43899/)
+
+// … to preview. You will get all three parts when you click “Create Thing”.
+part = "portioner"; // [portioner: portioner cup, funnel: funnel/striker, stand: stand]
+
+// cm³
+volume = 42;  // [8:1:150]
+// Set this to “render” and click on “Create Thing” when done with the setup.
+preview = 1; // [0:render, 1:preview]
+
+// Size of the stand. Set this to 0 to just get a tray to keep the portioner clean for the striking. In mm.
+stand_diameter = 80;  // [0:1:100]
+
+// Size of the funnel at the top. Adjust this to how good your tea tossing aim is. 😀. In mm.
+funnel_diameter = 90;  // [30:1:120]
+
+/* [Hidden] */
+
+// *******************************************************
+// Some more values that can be changed
+
+h_in_r = 1;  // Height of the cylinder in radiuses. Tweaked by hand
+
+w = 1.8;  // wall width for the horizontal flanges
+p = 1.2;  // height of the bottomt plate
+w_i = 1.2;  // Internal wall width. The bit between the two circular holes
+w_f = 1.8;  // Wall for the funnel. I had some problems with varying wall widths, but fixed it otherwise.
+stand_height = 15;
+flange_height = 10;
+stand_peg_height = 2;
+
+chute_limit_diameter = 20;  // Make a hole at least this big
+chute_limit_factor = 0.3;  // … or at least this part of the top hole
+
+ms = 0.1;  // Muggeseggele.
+
+clearance = 0.5;  // mm for the parts that should fit into each other
+
+funnel_angle = 60;  // °
+
+// *******************************************************
+// Some shortcuts. These shouldn’t be changed
+
+tau = 2 * PI;  // π is still wrong. τ = ⌀ ÷ r
+
+// Somewhat comprehensible math to get r from V
+// V = ½ (V sphere) + V cylinder
+// V = ½ × (2τ r² × ⅓ r) + ½ τ r² × h
+//
+// (The V = 2τ/3 × r³ can be split in 2τr² × ⅓r: think of infinitesimal
+// pyramids with the base area of the surface area of a sphere, 2τr², and
+// the Volume of base area × ⅓ h, with h = r.)
+// (Similarly, the area of a circle can be seen as a rectangle of
+// infinitesimal circle sectors, with the outer bit alternatively at the
+// top and bottom. That gives the area as r × ½ circumference, or r ×
+// ½τr. No argument against τ or for π.)
 //
 
-// How many cm³ (ml) for one portion
-volume = 55;  // [3:0.1:250]
+r_cm = pow(volume/(tau/3+tau/2*h_in_r),1/3);
+r = r_cm * 10;  // Volume is done in cm³, the rest of OpenSCAD uses mm.
+// (And you don’t uses mm³ a.k.a. µl in everyday settings.)
 
-// Don’t
-use_american_customary_units = 0;  // [1:Yes, please. What’s a meter?, 0:Of course not! Use SI units.]
+r_1 = r + w_f;  // outer diameter, striker
+r_2 = r_1 + clearance; // inner size of the measuring cup flange
+r_3 = r_2 + w; // outer size of the measuring cup
+r_4 = r_3 + clearance;  // inner size of the stand tray
+r_5 = r_4 + w;  // outer size of the stand tray
 
-module end_customizer()
+d_cc = 2*r + w_i;  // distance cylinder cylinder
+
+r_cb_i = max(r*chute_limit_factor, chute_limit_diameter/2);
+r_cb = min(r_cb_i, r);
+r_cb_0 = r_cb - clearance;
+
+r_f = funnel_diameter/2;
+d_ftb = r_f-r_1;
+h_f = d_ftb / tan(90-funnel_angle);  // Funnel height
+h_fg = flange_height+clearance;  // funnel grip height
+
+some_distance = max(2*r_5,stand_diameter/2+r_3) + 10;
+
+// fn for differently sized objects, for preview or rendering.
+pfa = 40;
+pfb = 15;
+rfa = 180;
+rfb = 30;
+function fa() = (preview) ? pfa : rfa;
+function fb() = (preview) ? pfb : rfb;
+
+// *******************************************************
+// End setup
+
+
+
+// *******************************************************
+// Generate the parts
+
+print_part();
+// preview_parts();
+// stack_parts();
+
+// I used this cylinder as a modifier to set the infill to higher
+// values under the central bit of the portioner sphere, to get less
+// sag.
+// cylinder(r=0.7*r, h=r,$fn=fa());
+
+
+module print_part()
 {
-   // This is a dummy module so stop users messing with the values below.
-}
-
-// TODO: labels
-// TODO²: Braile labels
-// label_style = 1; [0:No label, 1:Raised Text, 2:Colored Text, 3:Braile];
-
-
-// Smoother than normal
-$fa=5;
-
-$fs=1;  // Use 0.1 here when runnig OpenSCAD at home.
-
-// And use the lower value here. This avoids odd edges caused by
-// rounding errors.
-// odd_offset = 0.02;
-odd_offset = 0.1;
-
-
-// Should be a multiple of your nozzle diameter
-wall_thickness = 1.6; // [1.2, 1.5, 1.6, 1.8]
-
-
-
-// π is still wrong. Even if we use the area of a circle below. Use τ.
-tau = 2 * PI;
-
-// Curvature of sides (Sphere radius)
-roundness = 5;
-inner_radius = roundness-wall_thickness;
-
-chute_angle = 55;  // Degrees
-funnel_angle = 60;
-
-v_cmm = volume * 1000;
-
-// Crazy math to get the volume with the rounding right Basically we
-// have V = l³ - lost_volume, with lost volume = the fillets in the
-// edges and corners, ½ (cube - sphere), and a bit, depending on l,
-// (square rod - cylinder), with no l² term.  Transformed to 0 = l³ +
-// al + b, plugged into Wolfram Alpha, put in here.
-a = -8*(4-tau/2)*inner_radius*inner_radius;
-b = -v_cmm +
-      ((4-tau/3) -12 * (4 - tau/2)) * inner_radius*inner_radius*inner_radius;
-// echo(a);
-// echo(b);
-// The solution of x³+ax+b=0, accordinrg to Wolfram alpha
-cube_root_bit = pow(sqrt(3) * sqrt(4*a*a*a + 27*b*b) - 9*b, 1/3);
-inner_box_dimension = cube_root_bit / (pow(2, 1/3) * pow(3, 2/3)) -
-   pow(2/3, 1/3) * a / cube_root_bit;
-// echo(inner_box_dimension);
-// echo(pow(v_cmm,1/3));
-// Quck tests showed reasonable values, so i’ll keep this version
-// until somebody spots an error.
-
-// End crazy math.
-
-some_distance = 1.95 * inner_box_dimension + 10 * wall_thickness;
-
-
-if (use_american_customary_units)
-{
-   how_rude();
-}
-else
-{
-   translate([some_distance,0,0])
+   if ("portioner" == part)
    {
-      rotate(90)
-      {
-         measure();
-         chute();
-      }
+      portioner();
    }
-   //translate([0,some_distance,0])
+   if (part == "funnel")
    {
       funnel();
    }
+   if (part == "stand")
+   {
+      stand();
+   }
 }
 
-module how_rude()
+module preview_parts()
 {
-   linear_extrude(height = 0.5) {
-      text(text="Please visit", size=5);
-      translate([0,-5,0])
+   portioner();
+   translate([r_4+d_cc+funnel_diameter/2+10, 0, 0])
+   {
+      funnel();
+   }
+   translate([0, some_distance, 0])
+   {
+      stand();
+   }
+}
+
+module stack_parts()
+{
+   // intersection()
+   {
+      color("yellow")
       {
-         text(text="metric4us.com", size=5);
+         stand();
+      }
+      translate([0,0,w+2*ms])
+      {
+         color("red")
+         {
+            portioner();
+         }
+      }
+      translate([0,0,w+2*ms + r*(h_in_r + 1) + w + ms ])
+      {
+         color("black")
+         {
+            funnel();
+         }
       }
    }
 }
 
-// Length of the inner cube
-icl_xy = inner_box_dimension - 2 * inner_radius;
-// Measure shell dimension
-icl_z = inner_box_dimension - inner_radius;
-msd = inner_box_dimension + 2*wall_thickness;
+// *******************************************************
+// Code for the parts themselves
 
 
-module measure()
+module portioner()
 {
-   // The precisely shaped box
-
-   icl_z_plus =  icl_z + 2*wall_thickness;
    difference()
    {
-      union()
-      {
-         translate([0,0,icl_z_plus/2+roundness])
-         {
-            difference()
-            {
-               union()
-               {
-                  minkowski()
-                  {
-                     // This is the outer shell
-                     cube([icl_xy, icl_xy, icl_z_plus], center=true);
-                     sphere(roundness);
-                  }
-                  // The thicker walls at the top
-                  delta_x = (inner_box_dimension +4*wall_thickness)/
-                     (inner_box_dimension + 2*wall_thickness);
-                  translate([0,0,icl_z/2-4*wall_thickness])
-                  {
-                     linear_extrude(height=2*wall_thickness,scale=delta_x)
-                     {
-                        offset(r=roundness)
-                        {
-                           square([icl_xy,icl_xy],center=true);
-                        }
-                     }
-                  }
-                  translate([0,0,icl_z/2-2*wall_thickness])
-                  {
-                     linear_extrude(height=3*wall_thickness)
-                     {
-                        offset(r=roundness)
-                        {
-                           square([icl_xy+2*wall_thickness,icl_xy+2*wall_thickness],center=true);
-                        }
-                     }
-                  }
-               }
-               minkowski()
-               {
-                  // This is the main hollow shell
-                  cube([icl_xy, icl_xy, icl_z_plus], center=true);
-                  sphere(inner_radius);
-               }
-               // Cut off the top. A big enough cube. important is the
-               // lower face height.
-               translate([-msd/2,-msd/2,icl_z_plus/2])
-               {
-                  cube([msd,msd,2*roundness]);
-               }
-            }
-         }
-      } // The measuring cup, with thick walls
-      // Cutting out space where to put on the funnel. (No rails, just
-      // lay it on top.)
-      xyl_extra = 5*wall_thickness;
-      xyl = inner_box_dimension+2*wall_thickness-2*roundness;
-      translate([xyl_extra/2, xyl_extra/2, wall_thickness+inner_box_dimension])
-      {
-         linear_extrude(2.5*wall_thickness)
-         {
-            offset(roundness)
-            {
-               square([xyl + xyl_extra, xyl + xyl_extra],center=true);
-            }
-         }
-      }
+      portioner_body();
+      portioner_hollow();
    }
-
-
-}
-
-module chute()
-{
-   // The length were done by hand, rather than
-   // calculated. looks good, is good enough.
-   w = inner_box_dimension + 2*wall_thickness - odd_offset;
-   h = inner_box_dimension + wall_thickness;
-   l = h / sin(chute_angle);
-   p = l * cos(chute_angle);
-   o = w/2 + p/2 + wall_thickness;
-   difference()
+   translate([d_cc-w-clearance, 0, (1+h_in_r)*r])
    {
-      union()
+      translate([0, r_2+w/2, 0])
       {
-         rotate([0,0,180])
-         {
-            translate([0,-o, h/2])
-            {
-               rotate(a=[chute_angle, 0, 0])
-               {
-                  cube([w, l, wall_thickness], center=true);
-                  translate([w/2-wall_thickness/2,0,2.5*wall_thickness])
-                  {
-                     cube([wall_thickness, 2*l, 5*wall_thickness], center=true);
-                  }
-                  translate([-w/2+wall_thickness/2,0,2.5*wall_thickness])
-                  {
-                     cube([wall_thickness, 2*l, 5*wall_thickness], center=true);
-                  }
-               }
-            }
-            // Better connection between chute and measure
-            difference()
-            {
-               translate([0,-w/2,
-                          inner_box_dimension - inner_radius + roundness])
-               {
-                  rotate(a=[-chute_angle, 0, 0])
-                  {
-                     translate([-w/2, -wall_thickness, -2 * roundness + 1 * wall_thickness])
-                     {
-                        cube([w, 0.85*h, 2 * roundness]);
-                     }
-                  }
-               }
-               translate([0,-o, h/2])
-               {
-                  rotate(a=[chute_angle, 0, 0])
-                  {
-                     translate([0, 3*wall_thickness, 5*wall_thickness])
-                     {
-                        cube([w-odd_offset, l, 10*wall_thickness], center=true);
-                     }
-                  }
-               }
-               // I wanted to round the connection off. Too much work
-               // to position the cylinder to do it.
-               // translate([0,0,0])
-               // {
-               //    rotate(a=[0,90,0])
-               //    {
-               //       translate([0,0,-w/2])
-               //       {
-               //          cylinder(r=inner_radius, h=w);
-               //       }
-               //    }
-               // }
-            }
-         }
+         cylinder(d=w, h=flange_height+p, $fn=fb());
       }
-      // Honking big boxes to cut off too large stuff
-      translate([0,0,-10*inner_box_dimension])
+      translate([0, -r_2-w/2, 0])
       {
-         cube(20*inner_box_dimension,center=true);
+         cylinder(d=w, h=flange_height+p, $fn=fb());
       }
-      translate(
-         [0,0,10*inner_box_dimension + inner_box_dimension -
-          inner_radius +roundness])
-      {
-         cube(20*inner_box_dimension,center=true);
-      }
-      cube([inner_box_dimension+wall_thickness/2,inner_box_dimension+wall_thickness/2,3*inner_box_dimension],center=true);
    }
 }
+
 
 module funnel()
 {
-   // First the base
-//   xo = inner_box_dimension+2*wall_thickness-2*roundness-2*slider_tolerance;
-   xyo = inner_box_dimension+2*wall_thickness-2*roundness;
-
-//   xm = inner_box_dimension                 -2*roundness-2*slider_tolerance;
-   xym = inner_box_dimension+  wall_thickness-2*roundness;
-
-//   xi = inner_box_dimension-2*wall_thickness-2*roundness-2*slider_tolerance;
-   xyi = inner_box_dimension-  wall_thickness-2*roundness;
    difference()
-    {
-       translate([0.5*wall_thickness, 0.5*wall_thickness, 0])
-       {
-          union()
-          {
-             linear_extrude(wall_thickness)
-             {
-                offset(roundness)
-                {
-                   square([xyo,xyo],center=true);
-                }
-             }
-             // Half of this is hidden in the bit below. This covers some edges
-             translate([0,0, wall_thickness])
-             {
-
-                linear_extrude(height=1.5*wall_thickness, scale=xym/xyo)
-                {
-                   offset(roundness)
-                   {
-                      square([xyo,xyo],center=true);
-                   }
-                }
-             }
-          }
-       }
-       translate([wall_thickness, wall_thickness, -0.5*wall_thickness])
-       {
-          linear_extrude(4*wall_thickness)
-          {
-             offset(roundness)
-             {
-                square([xyi, xyi],center=true);
-             }
-          }
-       }
-
-    }
-
-   difference()
-    {
-       translate([wall_thickness, wall_thickness, wall_thickness])
-       {
-          linear_extrude(1.5*wall_thickness)
-          {
-             offset(roundness)
-             {
-                square([xym, xym],center=true);
-             }
-          }
-       }
-       translate([wall_thickness, wall_thickness, -0.5*wall_thickness])
-       {
-          linear_extrude(4*wall_thickness)
-          {
-             offset(roundness)
-             {
-                square([xyi, xyi],center=true);
-             }
-          }
-       }
-    }
-   // funnel_angle is typically 60°, tan(60°) == sqrt(3)
-   funnel_offset = wall_thickness / sin(funnel_angle);
-   funnel_z_offset = roundness * sin(funnel_angle);
-//   xf = xm + roundness * cos(funnel_angle);
-   xyf = xym + roundness * cos(funnel_angle);
-   funnel_height = xyf/2 * tan(funnel_angle);
-   translate([wall_thickness, wall_thickness,
-              2*wall_thickness + funnel_z_offset])
    {
-       difference()
-       {
-           hull()
-           {
-               translate([xyf/2, xyf/2, 0])
-               {
-                   sphere(roundness);
-               }
-               translate([-xyf/2, xyf/2, 0])
-               {
-                   sphere(roundness);
-               }
-               translate([xyf/2, -xyf/2, 0])
-               {
-                   sphere(roundness);
-               }
-               translate([-xyf/2, -xyf/2, 0])
-               {
-                   sphere(roundness);
-               }
-               translate([0,0,funnel_height])
-               {
-                   translate([xyf, xyf, 0])
-                   {
-                       sphere(roundness);
-                   }
-                   translate([-xyf, xyf, 0])
-                   {
-                       sphere(roundness);
-                   }
-                   translate([xyf, -xyf, 0])
-                   {
-                       sphere(roundness);
-                   }
-                   translate([-xyf, -xyf, 0])
-                   {
-                       sphere(roundness);
-                   }
-               }
-           }
-           translate([0,0,funnel_offset])
-           {
-               hull()
-               {
-                   translate([xyf/2, xyf/2, 0])
-                   {
-                       sphere(roundness);
-                   }
-                   translate([-xyf/2, xyf/2, 0])
-                   {
-                       sphere(roundness);
-                   }
-                   translate([xyf/2, -xyf/2, 0])
-                   {
-                       sphere(roundness);
-                   }
-                   translate([-xyf/2, -xyf/2, 0])
-                   {
-                       sphere(roundness);
-                   }
-                   translate([0,0,funnel_height])
-                   {
-                       translate([xyf, xyf, 0])
-                       {
-                           sphere(roundness);
-                       }
-                       translate([-xyf, xyf, 0])
-                       {
-                           sphere(roundness);
-                       }
-                       translate([xyf, -xyf, 0])
-                       {
-                           sphere(roundness);
-                       }
-                       translate([-xyf, -xyf, 0])
-                       {
-                           sphere(roundness);
-                       }
-                   }
-               }
-           }
-           translate([0,0,-2*roundness])
-           {
-               linear_extrude(4*roundness)
-               {
-                   offset(roundness)
-                   {
-                       square([xyi, xyi],center=true);
-                   }
-               }
-           }
-           translate([0,0,funnel_height-roundness])
-           {
-               linear_extrude(2*roundness)
-               {
-                   offset(roundness)
-                   {
-                       square([3*xyf, 3*xyf],center=true);
-                   }
-               }
-           }
+      funnel_body();
+      funnel_hollow();
+   }
 
-       }
+   translate([d_cc, 0, 0])
+   {
+      translate([0, r+w_f/2, 0])
+      {
+         cylinder(d=w_f, h=h_fg+ms, $fn=fb());
+      }
+      translate([0, -r-w_f/2, 0])
+      {
+         cylinder(d=w_f, h=h_fg+ms, $fn=fb());
+      }
+   }
+
+}
+
+
+module stand()
+{
+   difference()
+   {
+      union()
+      {
+         stand_base();
+         ccc(r_5, stand_height, w+clearance, 0);
+      }
+      ccc(r_4, stand_height, w+clearance, p+ms);
+   }
+   translate([d_cc, 0, p])
+   {
+      cylinder(r=r_cb_0, h=stand_peg_height, $fn=fa());
+   }
+}
+
+module portioner_body()
+{
+   ccc(r_3, r*(h_in_r+1)+p+flange_height, w+clearance, 0);
+}
+
+
+module portioner_hollow()
+{
+   // Measuring hollow
+   translate([0, 0, r+p])
+   {
+      sphere(r=r, $fn=fa());
+      cylinder(r=r, h = r*h_in_r + ms, $fn=fa());
+   }
+   // chute
+   translate([d_cc, 0, -ms])
+   {
+      cylinder(r1=r_cb, r2=r, h=r*(h_in_r+1)+p + 2*ms, $fn=fa());
+   }
+   // funnel flange hollow
+   ccc(r_2, flange_height+ms, w+clearance, r*(h_in_r+1)+p);
+   translate([0,0,0])
+   {
+      translate([d_cc-w-clearance, -r_5, r*(h_in_r+1)+p])
+      {
+          cube([2*r_2, 2*r_5, flange_height+ms]);
+      }
+   }
+}
+
+
+module funnel_body()
+{
+   // almost a ccc, w/o the last cylinder
+   cylinder(r=r_1, h=h_fg+ms, $fn=fa());
+   translate([0, -r_1, 0])
+   {
+      cube([d_cc, 2*r_1, h_fg+ms]);
+   }
+   translate([0, 0, h_fg])
+   {
+      cylinder(r1=r_1, r2=funnel_diameter/2+w_f, h=h_f, $fn=fa());
+   }
+}
+
+
+module funnel_hollow()
+{
+   translate([0, 0, -ms])
+   {
+      cylinder(r=r, h=flange_height+clearance+3*ms, $fn=fa());
+   }
+   translate([0, 0, flange_height+clearance])
+   {
+      // N.B.: now ms here. Necessary for a consistant wall width.
+      cylinder(r1=r, r2=funnel_diameter/2, h=h_f, $fn=fa());
+   }
+   translate([d_cc, 0, -ms])
+   {
+      cylinder(r=r, h=flange_height+clearance+3*ms, $fn=fa());
+   }
+   // Just for the preview
+   translate([0, 0, flange_height+clearance+h_f-ms])
+   {
+      cylinder(d=funnel_diameter-2*ms, h=2*ms, $fn=fa());
+   }
+}
+
+module stand_base()
+{
+   translate([r+0.5*w, 0, 0])
+   {
+      cylinder(d=stand_diameter, h=p, $fn=fa());
+      translate([0,0,p])
+      {
+         cylinder(d1=stand_diameter, d2=2*r_5, h=stand_height-w, $fn=fa());
+      }
+   }
+
+}
+
+module ccc(r_i, h_i, o_x, o_z)
+{
+   // The cylinder cube cylinder combo used several times
+   translate([0,0, o_z])
+   {
+      cylinder(r=r_i, h=h_i, $fn=fa());
+      translate([d_cc-o_x, 0, 0])
+      {
+         cylinder(r=r_i, h=h_i, $fn=fa());
+      }
+      translate([0, -r_i, 0])
+      {
+         cube([d_cc-o_x, 2*r_i, h_i]);
+      }
    }
 }

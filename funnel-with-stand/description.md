@@ -2,22 +2,20 @@
 
 A funnel where the main parameters can be changed. You either get a special stand with it or not.
 
-When the stand is selected, about half of a stand is printed connected to the funnel, the other half to the holder plate. Just stick the funnel’s part onto the stand, and you can place your receptacle under the funnel.
+Stick a sharpened pencil into the stand and the funnel on top of this pencil. Then you can place your receptacle under the funnel. This is intended for light use. A few tea leaves rather than kilogrammes of sugar.
 
-I use it to fill paper tea filters with tea. For those you need a stand like this.
-
-
+I wanted a funnel with a rather low throat ratio, if that is the
+term,to fill paper tea filters. The tea leaves always jam in the necks
+of supermarket funnels.
 
 ### Customizer
 
-I wanted a funnel with a rather low throat ratio, if that is the
-term. For the tea i wanted to use it with, the necks of supermarket
-funnels were too tight. This starts with a 3 cm neck, but change it to
-taste.
+Not all slider value combinations in the customizer produce reasonable results. Especially a too high tip angle may cut off parts of the funnel proper. Just use different values when you get odd shapes.
 
-The wall thickness should be a multiple of your nozzle diameter, but then again, large parts are sloped, which throws of this value.
-
-A too low neck tip angle, combined with a too low neck length doesn’t work. Check that you still have some funnel left before printing.
+The included STL files are smoother than what you get out of the
+customizer. You can download the SCAD file, open it in OpenSCAD and
+uncomment the `$fs` and `$fa` lines according to the comment to get
+this smoothness.
 
 ### Print Settings
 
@@ -28,9 +26,9 @@ A too low neck tip angle, combined with a too low neck length doesn’t work. Ch
 
 ### Food safety concerns
 
-* When you want to funnel foodstuffs, you should probably PLA, food grade PLA when you are concerned.
+* When you want to funnel foodstuffs, you should probably use PLA, food grade PLA when you are concerned.
 * You should probably clean your nozzle once, to get rid of mineral oil and other residues.
-* When you use an oiler, use a suitable oil. Maybe a vegetable oil or something like balistol oil.
+* When you use an oiler, use a suitable oil. Maybe a vegetable oil or something like Ballistol oil.
 * The funnelled material comes into contact with the printed parts for only a short time, so it should not be effected by the plastic too much. Especially when you use dry stuff.
 
 These two articles shed some more light on the issue:

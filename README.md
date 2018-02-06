@@ -1,20 +1,37 @@
 ## 3d printing
 
-This is collection of OpenSCAD files, scripts and other files for 3d printing designs i came up with or found and remixed.
+This is a collection of FreeCAD and OpenSCAD files, scripts, and other files for 3d printing designs i came up with or found and remixed.
 
-### Universal teapot lid
+Several have been published on [thingiverse](https://github.com/ospalh/3d-printing/tree/develop/y-belt-holder), a few on [YouMagine](https://www.youmagine.com/ospalh/designs).
 
-A lid for teapots with lots of parameters to adapt to basically all teapots and other containers.
+Some of the more intresting ones:
 
-Early design phase.
+### yacs
 
-### Tea portioner and hopper
+*Y*et *A*nother *C*oin *S*pinner.
+Yeah, it’s a collection of fidget spinners. These use coins and you can set up *which* coin by changing values in a spreadsheet in the FreeCAD files.
 
-An idea of a gadget to portion my roibos tea leaves and pour it into
+### Tea portioner
+
+A gadget to portion my roibos tea leaves and pour it into
 the filter holder.
 
-Just an idea at the moment.
+### Funnel with stand
 
-### Thingiverse
+A parametric funnel. I use it to hold the paper tea filter when i poor in the roibos out of the tea portioner.
 
-Finished designs, these and others, will be uploaded to my [thingiveres account](https://www.thingiverse.com/ospalh/about).
+### Bottle tray
+
+Rings to hold bottles close together and upright in your fridge and elsewhere.
+
+### Hyperboloid dice tower
+
+A very light dice tower that looks like the cooling tower of a (nuclear) power station.
+
+
+### Helmet hook
+
+Two different ways to hang up a bicycle helmet.
+
+
+Some of the others are just ideas or work in progress.

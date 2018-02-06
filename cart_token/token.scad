@@ -17,13 +17,27 @@ font_name = "Praxis LT";  // Use one you actually have …
 font_size = 6;  // Play around with this
 radius = diameter/2;
 
+$fa=1;
+$fs=0.5;
 
-holey_message_token();
+two_sided_message_token();
+
+module two_sided_message_token()
+{
+   translate([0, 0, thickness/2])
+   {
+      difference()
+      {
+         cylinder(r=radius, h=thickness, center=true);
+         text_reverse();
+         text_obverse();
+      }
+   }
+}
 
 
 module holey_message_token()
 {
-
    translate([0, 0, thickness/2])
    {
       difference()
