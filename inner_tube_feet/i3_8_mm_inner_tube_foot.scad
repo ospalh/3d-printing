@@ -14,7 +14,10 @@ plate_width = 8.0;  // [2:0.1:15]
 inner_tube_diameter = 32;  // [20:1:50]
 
 // … to preview. You will get all parts when you click “Create Thing”.
-part = "single"; // [single: foot for single acrylic plaet, double: foot for double plates]
+part = "single width ⟍ foot"; // [single width ⟍ foot: single width ⟍ foot, double width ⟍ foot: double width ⟍ foot, single width ⟋ foot: single width ⟋ foot, double width ⟋ foot: double width ⟋ foot]
+
+// Cylinder section style. *Flat* is slightly smaller, *half* is exactly a half cylinder, *high* grabs the tube a bit
+style = -1;  // [-1: flat, 0: half, 0.5 high]
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
@@ -37,7 +40,7 @@ angle = 45; // The overhangs are not expected to look good here.
 z_factor = tan(angle);
 
 
-some_distance = 2*inner_tube_diameter;
+some_distance = 1.2*inner_tube_diameter;
 ms = 0.01;  // Muggeseggele.
 
 // fn for differently sized objects, for preview or rendering.
@@ -56,19 +59,33 @@ function fb() = (preview) ? pfb : rfb;
 // *******************************************************
 // Generate the parts
 
-print_part();
-// preview_parts();
+// print_part();
+preview_parts();
 
 
 module print_part()
 {
-   if ("single" == part)
+   if ("single width ⟍ foot" == part)
    {
       foot(plate_width);
    }
-   if ("double" == part)
+   if ("double width ⟍ foot" == part)
    {
       foot(2*plate_width);
+   }
+   if ("single width ⟋ foot" == part)
+   {
+      mirror()
+      {
+         foot(plate_width);
+      }
+   }
+   if ("double width ⟋ foot" == part)
+   {
+      mirror()
+      {
+         foot(2*plate_width);
+      }
    }
 
 }
@@ -79,6 +96,20 @@ module preview_parts()
    translate([some_distance, 0, 0])
    {
       foot(2*plate_width);
+   }
+   translate([0, some_distance, 0])
+   {
+      mirror()
+      {
+         foot(plate_width);
+      }
+   }
+   translate([some_distance, some_distance, 0])
+   {
+      mirror()
+      {
+         foot(2*plate_width);
+      }
    }
 }
 
@@ -91,8 +122,9 @@ module preview_parts()
 module foot(pw)
 {
    itr = inner_tube_diameter/2;
-   ir = itr + w;
-   or = ir*1.082;  // Inner to outer radius of an octagon
+   function orm() = (style > -1) ? w : 0;
+   or = itr + orm();
+   ir = or/1.082;
 
    po = ir - pw/2 - w; // offset. How far we have to butress the thing
 
@@ -130,7 +162,7 @@ module foot(pw)
       {
          rotate(22.5)
          {
-            cylinder(r=or, h=itr+p+ms, $fn=8);
+            cylinder(r=or, h=itr+p+style*itt_e+ms, $fn=8);
          }
       }
       translate([0, 0, ph+p+itr])
