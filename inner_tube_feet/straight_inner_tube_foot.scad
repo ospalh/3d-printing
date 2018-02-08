@@ -59,8 +59,8 @@ function fb() = (preview) ? pfb : rfb;
 // *******************************************************
 // Generate the parts
 
-// print_part();
-preview_parts();
+print_part();
+// preview_parts();
 
 
 module print_part()
