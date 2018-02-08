@@ -46,7 +46,7 @@ ms = 0.01;  // Muggeseggele.
 // fn for differently sized objects, for preview or rendering.
 pfa = 40;
 pfb = 15;
-rfa = 180;
+rfa = 360;
 rfb = 30;
 function fa() = (preview) ? pfa : rfa;
 function fb() = (preview) ? pfb : rfb;
