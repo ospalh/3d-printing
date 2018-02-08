@@ -17,7 +17,7 @@ inner_tube_diameter = 32;  // [20:1:50]
 part = "single width ⟍ foot"; // [single width ⟍ foot: single width ⟍ foot, double width ⟍ foot: double width ⟍ foot, single width ⟋ foot: single width ⟋ foot, double width ⟋ foot: double width ⟋ foot]
 
 // Cylinder section style. *Flat* is slightly smaller, *half* is exactly a half cylinder, *high* grabs the tube a bit
-style = -1;  // [-1: flat, 0: half, 0.5 high]
+style = -0.5;  // [-0.5: flat, 0: half, 0.5 high]
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
@@ -122,9 +122,9 @@ module preview_parts()
 module foot(pw)
 {
    itr = inner_tube_diameter/2;
-   function orm() = (style > -1) ? w : 0;
-   or = itr + orm();
-   ir = or/1.082;
+   function orm() = (style >= 0) ? w : -style*w;
+   ir = itr + orm();
+   or = ir*1.082;
 
    po = ir - pw/2 - w; // offset. How far we have to butress the thing
 
