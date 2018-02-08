@@ -11,7 +11,7 @@
 plate_width = 8.0;  // [2:0.1:15]
 
 // Inflate it accordingly… Millimetres
-inner_tube_diameter = 40;  // [20:1:50]
+inner_tube_diameter = 32;  // [20:1:50]
 
 // … to preview. You will get all parts when you click “Create Thing”.
 part = "single"; // [single: foot for single acrylic plaet, double: foot for double plates]
@@ -26,7 +26,7 @@ preview = 1; // [0:render, 1:preview]
 // Done with the customizer
 
 w = 2.4;  // external wall width
-p = 1.2;  // height of the connecting plate
+p = 2.0;  // height of the connecting plate
 min_ph = 10;  // Minimum height of the plate thing
 
 // *******************************************************
@@ -99,6 +99,12 @@ module foot(pw)
    ph = max(po*z_factor, min_ph);
    st_l = sqrt(ph*ph+po*po);
    st_a = acos((ph)/st_l);
+
+   itt_r = itr - w;
+   // how wide the inner tube thing should be in the end. The circle has
+   // the radius of the inner tube, but the height is so that we get w on
+   // either side.
+   itt_e = sqrt(itr*itr - itt_r*itt_r);
 
    // The clip top part
    intersection()
