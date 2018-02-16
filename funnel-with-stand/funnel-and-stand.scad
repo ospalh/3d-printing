@@ -33,7 +33,7 @@ extra_height = 1; // [1:15]
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
-/* Hidden */
+/* [Hidden] */
 
 // Some of the values below can be carefully tweaked, changing others is a
 // bad idea. Try, and undo if it didn’t work.
