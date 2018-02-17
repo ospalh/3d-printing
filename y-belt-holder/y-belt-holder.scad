@@ -151,7 +151,7 @@ module center_bracket()
             cylinder(r=r_sh, h=truss_r_w+nut_t+2*ms, $fn=45);
          }
       }
-      translate([hole_hole_y/2, -truss_r_w-nut_t-ms, belt_bracket_w + belt_w/2])
+      translate([hole_hole_y/2, -truss_r_w-nut_t-0.5, belt_bracket_w + belt_w/2])
       {
          rotate([90, 0, 0])
          {
@@ -171,7 +171,9 @@ module one_bracket()
    tz = belt_bed_d + belt_bracket_w;
    truss_z_a = belt_bed_d - ebr -ebt;
    translate([0, -belt_bed_d-belt_bracket_w,0])
-      cube([truss_r_w, belt_bed_d+belt_bracket_w, fzc]);
+   {
+      cube([truss_r_w+ms, belt_bed_d+belt_bracket_w, fzc]);
+   }
 
    translate([0, -truss_z_a, 0])
    {
