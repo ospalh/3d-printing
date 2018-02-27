@@ -21,6 +21,10 @@ nut_t = 1.7;
 nut_w = 5.6;
 // screw_length = 10;
 
+h_nut_t = 2.3;
+h_nut_d = 5.4;
+h_nut_r =  h_nut_d/sqrt(3);
+
 
 // Dimensions of the belt (apparently GT2)
 belt_pitch = 2;
@@ -58,8 +62,9 @@ r_waho = d_washer/2 * swf;
 y_0 = 0; // Datum
 
 
-belt_holder();
-// nut_holder();
+// belt_holder();
+// square_nut_holder();
+hex_nut_holder();
 
 
 module belt_holder()
@@ -79,9 +84,79 @@ module belt_holder()
    center_bracket();
 }
 
-module nut_holder()
+module square_nut_holder()
 {
+   difference()
+   {
+      translate([0,0,(truss_r_w+nut_t)/2])
+      {
+         cube(
+            [hole_hole_y+nut_w+2*truss_r_w, nut_w+2*truss_r_w, (truss_r_w+nut_t)],
+            center=true);
 
+      }
+
+      holes();
+      mirror()
+      {
+         holes();
+      }
+   }
+   module holes()
+   {
+      translate([hole_hole_y/2, 0, 0])
+      {
+         translate([0,0,-ms])
+         {
+            cylinder(r=r_sh, h=truss_r_w+nut_t+2*ms, $fn=45);
+         }
+         translate([0,0,truss_r_w+nut_t/2+ms])
+         {
+            cube([nut_w, nut_w, nut_t+ms], center=true);
+         }
+      }
+   }
+// nut_t = 1.7;
+// nut_w = 5.6;
+// hole_hole_y = 9.5;
+}
+
+
+module hex_nut_holder()
+{
+   difference()
+   {
+      translate([0,0,(truss_r_w+h_nut_t)/2])
+      {
+         cube(
+            [hole_hole_y+h_nut_d+2*truss_r_w, nut_w+2*truss_r_w, (truss_r_w+nut_t)],
+            center=true);
+
+      }
+
+      holes();
+      mirror()
+      {
+         holes();
+      }
+   }
+   module holes()
+   {
+      translate([hole_hole_y/2, 0, 0])
+      {
+         translate([0,0,-ms])
+         {
+            cylinder(r=r_sh, h=truss_r_w+h_nut_t+2*ms, $fn=45);
+         }
+         translate([0,0,truss_r_w])
+         {
+            cylinder(r=h_nut_r, h=h_nut_t+ms, $fn=6);
+         }
+      }
+   }
+// nut_t = 1.7;
+// nut_w = 5.6;
+// hole_hole_y = 9.5;
 }
 
 module center_bracket()
