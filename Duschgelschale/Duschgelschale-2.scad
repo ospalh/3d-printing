@@ -75,7 +75,7 @@ module tray()
 module railing()
 {
    round_railing(r_main, fa());
-   round_railing(r_hole+w, fb());
+   round_railing(r_hole+w, fc());
    translate([0, r_hole, 0])
    {
       cube([w, r_main-r_hole, h+p]);
@@ -135,7 +135,7 @@ module plate_quarter_circle()
       }
       translate([0,0,-2*ms])
       {
-         cylinder(r=r_corner, h=p+4*ms, $fn=fb());
+         cylinder(r=r_corner, h=p+4*ms, $fn=fc());
 
       }
 
@@ -191,11 +191,14 @@ module a_plate_hole(dx, dy)
 {
    translate([dx, dy, -ms])
    {
-      cylinder(r=r_hole, h=p+2*ms, $fn=fc());  // Or h=p_1+2*ms
-      translate([0, 0, p_1])
+      rotate(30)
       {
-         cylinder(r1=r_hole-ms, r2=y_step/sqrt(2), h=p_2+2*ms, $fn=fb());
-         // The sqrt(2) is … experimental math.
+         cylinder(r=r_hole, h=p+2*ms, $fn=6);  // Or h=p_1+2*ms
+         translate([0, 0, p_1])
+         {
+            cylinder(r1=r_hole-ms, r2=y_step/sqrt(2)-w, h=p_2+2*ms, $fn=6);
+            // The sqrt(2) is … experimental math.
+         }
       }
    }
 
