@@ -9,8 +9,8 @@
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
-r_main = 150;  // main radius of the tray
-r_corner = 3;  // space for silicone joint
+r_main = 155;  // main radius of the tray
+r_corner = 10;  // space for silicone joint
 h=32; // Height (inner)
 
 
@@ -18,11 +18,11 @@ h=32; // Height (inner)
 
 // Done with the customizer
 
-w = 1.8;  // external wall width
-p_1 = 0.8;  // height of the bottomt plate with the cylindrical holes
-p_2 = 1.8;  // height of the bottomt plate with the conical shapes
-x_step = 20;  // hole to hole distance
-r_hole = 2.5;  // drain holes
+w = 2.1;  // external wall width
+p_1 = 1.2;  // height of the bottomt plate with the cylindrical holes
+p_2 = 1.5;  // height of the bottomt plate with the conical shapes
+x_step = 14.1;  // hole to hole distance
+r_hole = 1.5;  // drain holes
 
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed
@@ -75,14 +75,14 @@ module tray()
 module railing()
 {
    round_railing(r_main, fa());
-   round_railing(r_hole+w, fc());
-   translate([0, r_hole, 0])
+   round_railing(r_corner+w, fc());
+   translate([0, r_corner, 0])
    {
-      cube([w, r_main-r_hole, h+p]);
+      cube([w, r_main-r_corner, h+p]);
    }
-   translate([r_hole, 0, 0])
+   translate([r_corner, 0, 0])
    {
-      cube([r_main-r_hole, w, h+p]);
+      cube([r_main-r_corner, w, h+p]);
    }
 
 }
@@ -196,7 +196,7 @@ module a_plate_hole(dx, dy)
          cylinder(r=r_hole, h=p+2*ms, $fn=6);  // Or h=p_1+2*ms
          translate([0, 0, p_1])
          {
-            cylinder(r1=r_hole-ms, r2=y_step/sqrt(2)-w, h=p_2+2*ms, $fn=6);
+            cylinder(r1=r_hole-ms, r2=y_step/sqrt(2)-0.8*w, h=p_2+2*ms, $fn=6);
             // The sqrt(2) is … experimental math.
          }
       }
