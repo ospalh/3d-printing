@@ -45,12 +45,18 @@ ms = 0.01;  // Muggeseggele.
 pfa = 40;
 pfb = 15;
 pfc = 15;
+pfs = 3;
+pfd = 1;
 rfa = 180;
 rfb = 45;
 rfc = 30;
+rfs = 0.2;
+rfd = 0.2;
 function fa() = (preview) ? pfa : rfa;
 function fb() = (preview) ? pfb : rfb;
 function fc() = (preview) ? pfc : rfc;
+function fs() = (preview) ? pfs : rfs;
+function fd() = (preview) ? pfd : rfd;
 
 // *******************************************************
 // End setup
@@ -74,8 +80,8 @@ module tray()
 
 module railing()
 {
-   round_railing(r_main, fa());
-   round_railing(r_corner+w, fc());
+   round_railing(r_main, fa(), fs(), fd());
+   round_railing(r_corner+w, fc(), 0, 0);
    translate([0, r_corner, 0])
    {
       cube([w, r_main-r_corner, h+p]);
@@ -89,16 +95,30 @@ module railing()
 
 
 
-module round_railing(r, f)
+module round_railing(r, f, s, d)
 {
    intersection()
    {
       difference()
       {
-         cylinder(r=r, h=h+p, $fn=f);
+         if (0 == s * d)
+         {
+            cylinder(r=r, h=h+p, $fn=f);
+         }
+         else
+         {
+            cylinder(r=r, h=h+p, $fs=s, $fa=d);
+         }
          translate([0,0,-ms])
          {
-            cylinder(r=r-w, h=h+p+2*ms, $fn=f);
+            if (0 == s * d)
+            {
+               cylinder(r=r-w, h=h+p+2*ms, $fn=f);
+            }
+            else
+            {
+               cylinder(r=r-w, h=h+p+2*ms, $fs=s, $fa=d);
+            }
          }
       }
       translate([0,0,-2*ms])
