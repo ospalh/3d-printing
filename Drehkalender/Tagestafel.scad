@@ -14,15 +14,18 @@
 // https://www.thingiverse.com/thing:1785261
 // http://www.otvinta.com/download04.html
 
-text_32_1 = "nächster";
-text_32_2 = "Monat";
-text_33_1 = "Langsam";
+text_32_1 = "Monat";
+text_32_2 = "drehen";
+text_33_1 = "langsam";
 text_33_2 = "drehen";
-text_34_1 = "";
-text_34_1 = "";
+text_34_1 = "☮";
+// text_34_2 = "";
+// text_34_1 = "";
 // logo_34 = "NN.dxf";
 
-
+font = "Demos LT:style=Semibold";
+// font_34 = "DejaVu Sans:style=Bold";
+font_34 = "FreeSerif";
 
 w = 50; // width of the plate
 p = 3;  // height of the plate
@@ -30,6 +33,14 @@ p = 3;  // height of the plate
 bw = 4.3;  // Border width
 nw = 1.2;
 td = 0.4;  // Text depth
+
+textsize_day = 0.55* (w-2*bw);
+textsize_32 = 0.18 * (w-2*bw);
+textsize_33 = 0.15 * (w-2*bw);
+// textsize_34 = 0.15 * (w-2*bw);
+textsize_34 = 0.7 * (w-2*bw);
+spacing = 1.5;
+
 
 some_distance = 55;
 ms = 0.01;  // Muggeseggele.
@@ -43,9 +54,13 @@ function fa() = (preview) ? pfa : rfa;
 function fb() = (preview) ? pfb : rfb;
 
 // Generate cards from 1 through 17.
-front_day = 1;
+front_day = 17;
 
-calender_card(front_day);
+translate([0,0,p/2])
+{
+   calender_card(front_day);
+}
+
 
 module calender_card(front_day)
 {
@@ -53,7 +68,7 @@ module calender_card(front_day)
    {
       notched_card();
       day_text(front_day);
-      rotate([0,180,0])
+      rotate([180,0,0])
       {
          day_text(front_day+17);
       }
@@ -80,7 +95,6 @@ module notches()
    {
       rotate(quad)
       {
-         echo(quad);
          notch();
       }
    }
@@ -97,4 +111,96 @@ module notch()
 
 module day_text(day)
 {
+   translate([0,0,p/2-td])
+   {
+      linear_extrude(2*td)
+      {
+         day_text_2d(day);
+      }
+   }
 }
+
+
+module day_text_2d(day)
+{
+   if (day <= 31)
+   {
+      big_text(day);
+   }
+   if (32 == day)
+   {
+      text_32();
+   }
+   if (33 == day)
+   {
+      text_33();
+   }
+   if (34 == day)
+   {
+      text_34();
+   }
+}
+
+module big_text(day)
+{
+   text(
+      text=str(day), halign="center", valign="center", font=font,
+      size=textsize_day);
+}
+
+
+module text_32()
+{
+   translate([0, 0.5*spacing*textsize_32])
+   {
+      text(
+         text=text_32_1, halign="center", valign="center", font=font,
+         size=textsize_32);
+   }
+   translate([0, -0.5*spacing*textsize_32])
+   {
+      text(
+         text=text_32_2, halign="center", valign="center", font=font,
+         size=textsize_32);
+   }
+
+}
+module text_33()
+{
+   translate([0, 0.5*spacing*textsize_33])
+   {
+      text(
+         text=text_33_1, halign="center", valign="center", font=font,
+         size=textsize_33);
+   }
+   translate([0, -0.5*spacing*textsize_33])
+   {
+      text(
+         text=text_33_2, halign="center", valign="center", font=font,
+         size=textsize_33);
+   }
+
+}
+
+module text_34()
+{
+   text(
+      text=text_34_1, halign="center", valign="center", font=font_34,
+      size=textsize_34);
+}
+
+//module text_34()
+//{
+//   translate([0, 0.5*spacing*textsize_34])
+//   {
+//      text(
+//         text=text_34_1, halign="center", valign="center", font=font,
+//         size=textsize_34);
+//   }
+//   translate([0, -0.5*spacing*textsize_34])
+//   {
+//      text(
+//         text=text_34_2, halign="center", valign="center", font=font,
+//         size=textsize_34);
+//   }
+//}
