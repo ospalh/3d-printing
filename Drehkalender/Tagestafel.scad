@@ -45,13 +45,6 @@ spacing = 1.5;
 some_distance = 55;
 ms = 0.01;  // Muggeseggele.
 
-// fn for differently sized objects, for preview or rendering.
-pfa = 40;
-pfb = 15;
-rfa = 180;
-rfb = 30;
-function fa() = (preview) ? pfa : rfa;
-function fb() = (preview) ? pfb : rfb;
 
 // Generate cards from 1 through 17.
 front_day = 17;
