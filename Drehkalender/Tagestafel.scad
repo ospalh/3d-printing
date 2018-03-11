@@ -14,11 +14,11 @@
 // https://www.thingiverse.com/thing:1785261
 // http://www.otvinta.com/download04.html
 
-text_32_1 = "🙈";
+text_32_1 = "🕴";
 // text_32_2 = "drehen";
-text_33_1 = "🙉";
+text_33_1 = "😈";
 // text_33_2 = "drehen";
-text_34_1 = "🙊";
+text_34_1 = "☮";
 // text_34_2 = "";
 // text_34_1 = "";
 // logo_34 = "NN.dxf";
@@ -29,8 +29,7 @@ font = "Demos LT:style=Semibold";
 font_32 = "Symbola";
 // font_33 = "FreeSerif";
 font_33 = "Symbola";
-// font_34 = "FreeSerif";
-font_34 = "Symbola";
+font_34 = "FreeSerif";
 
 w = 50; // width of the plate
 p = 3;  // height of the plate
@@ -41,7 +40,7 @@ td = 0.4;  // Text depth
 
 textsize_day = 0.55* (w-2*bw);
 textsize_32 = 0.7 * (w-2*bw);
-textsize_33 = 0.7 * (w-2*bw);
+textsize_33 = 0.6 * (w-2*bw);
 // textsize_34 = 0.15 * (w-2*bw);
 textsize_34 = 0.7 * (w-2*bw);
 spacing = 1.5;
@@ -52,7 +51,7 @@ ms = 0.01;  // Muggeseggele.
 
 
 // Generate cards from 1 through 17.
-front_day = 17;
+front_day = 16;
 
 translate([0,0,p/2])
 {
