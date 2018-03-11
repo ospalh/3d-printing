@@ -14,10 +14,11 @@
 // https://www.thingiverse.com/thing:1785261
 // http://www.otvinta.com/download04.html
 
-text_32_1 = "Monat";
-text_32_2 = "drehen";
-text_33_1 = "langsam";
-text_33_2 = "drehen";
+text_32_1 = "🕴";
+// text_32_2 = "drehen";
+//text_33_1 = "u♨";
+text_33_1 = "జ్ఞ‌ా";
+// text_33_2 = "drehen";
 text_34_1 = "☮";
 // text_34_2 = "";
 // text_34_1 = "";
@@ -25,6 +26,10 @@ text_34_1 = "☮";
 
 font = "Demos LT:style=Semibold";
 // font_34 = "DejaVu Sans:style=Bold";
+// font_32 =  "DejaVu Sans:style=Bold";
+font_32 = "Symbola";
+//font_33 = "FreeSerif";
+font_33 = "Lohit Telugu:style=Regular";
 font_34 = "FreeSerif";
 
 w = 50; // width of the plate
@@ -35,8 +40,8 @@ nw = 1.2;
 td = 0.4;  // Text depth
 
 textsize_day = 0.55* (w-2*bw);
-textsize_32 = 0.18 * (w-2*bw);
-textsize_33 = 0.15 * (w-2*bw);
+textsize_32 = 0.7 * (w-2*bw);
+textsize_33 = 0.7 * (w-2*bw);
 // textsize_34 = 0.15 * (w-2*bw);
 textsize_34 = 0.7 * (w-2*bw);
 spacing = 1.5;
@@ -47,7 +52,7 @@ ms = 0.01;  // Muggeseggele.
 
 
 // Generate cards from 1 through 17.
-front_day = 17;
+front_day = 16;
 
 translate([0,0,p/2])
 {
@@ -144,32 +149,19 @@ module big_text(day)
 
 module text_32()
 {
-   translate([0, 0.5*spacing*textsize_32])
+   // translate([0, 0.5*spacing*textsize_32])
    {
       text(
-         text=text_32_1, halign="center", valign="center", font=font,
+         text=text_32_1, halign="center", valign="center", font=font_32,
          size=textsize_32);
    }
-   translate([0, -0.5*spacing*textsize_32])
-   {
-      text(
-         text=text_32_2, halign="center", valign="center", font=font,
-         size=textsize_32);
-   }
-
 }
 module text_33()
 {
-   translate([0, 0.5*spacing*textsize_33])
+   // translate([0, 0.5*spacing*textsize_33])
    {
       text(
-         text=text_33_1, halign="center", valign="center", font=font,
-         size=textsize_33);
-   }
-   translate([0, -0.5*spacing*textsize_33])
-   {
-      text(
-         text=text_33_2, halign="center", valign="center", font=font,
+         text=text_33_1, halign="center", valign="center", font=font_33,
          size=textsize_33);
    }
 
