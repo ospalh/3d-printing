@@ -11,29 +11,12 @@
 // https://www.thingiverse.com/otvinta3d/about
 // Licence: CC-BY
 
-month =
-   ["Nullvember",  // month[0]
-      "Jan",  // month[1] = Januar(y) &c.
-      "Feb",
-      "Mär",
-      "Apr",
-      "Mai",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Okt",
-      "Nov",
-      "Dez"
-      ];
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 
-w = 1.8;  // external wall width
-p = 1.2;  // height of the bottomt plate
-d = 1.2;  // Depth of the text
+w = 0.8;  // external wall width
 
 //r1 = 55;
 r1 = 55.1;
@@ -42,7 +25,6 @@ h = 16.86;
 ri = 37;
 ri2 = 36.5;
 lh = 8;
-font = "Praxis LT:style=Regular";
 ld = 3;
 
 // *******************************************************
@@ -65,8 +47,9 @@ angle = atan(dx/h);
 hs = sqrt(dx*dx+h*h);
 
 
-// lang_ring();
 gear_core();
+
+plain_ring();
 
 module lang_ring()
 {
@@ -80,24 +63,12 @@ module lang_ring()
 
 module gear_core()
 {
-   intersection()
-   {
-      translate([0,0,50])
-      {
-         import("molds/Monatsring, englisch.stl");
-      }
-      translate([0,0,-ms])
-      {
-         cylinder(r=ri2, h=h+2*ms, $fn=12);
-      }
-   }
+   import("molds/Monatsring, 12.stl");
 }
+
 module plain_ring()
 {
-   translate([0,0,50])
-   {
-      import("molds/Monatsring, englisch.stl");
-   }
+   gear_core();
    ringer();
 }
 
@@ -105,10 +76,10 @@ module ringer()
 {
    difference()
    {
-      cylinder(r1=r1+ms, r2=r2+ms, h=h, $fn=fa());
+      cylinder(r=r1+ms, r2=r2+ms, h=h, $fn=12);
       translate([0, 0, -ms])
       {
-         cylinder(r=ri, h=h+2*ms, $fn=fa());
+         cylinder(r=ri2-ms, h=h+2*ms, $fn=12);
       }
    }
 }
