@@ -16,7 +16,7 @@
 preview = 1; // [0:render, 1:preview]
 
 
-w = 0.8;  // external wall width
+w = 1.2;  // external wall width
 
 //r1 = 55;
 r1 = 55.1;
@@ -25,7 +25,9 @@ h = 16.86;
 ri = 37;
 ri2 = 36.5;
 lh = 8;
-ld = 3;
+bm = 17;
+km = 20;
+mko = 3.6;
 
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed
@@ -43,21 +45,22 @@ function fb() = (preview) ? pfb : rfb;
 
 
 dx = r1-r2;
-angle = atan(dx/h);
+angle = atan(dx/h)-0.5;
 hs = sqrt(dx*dx+h*h);
 
 
-gear_core();
+// gear_core();
+// plain_ring();
+// month_hollows();
+slot_ring();
 
-plain_ring();
-
-module lang_ring()
+module slot_ring()
 {
 
    difference()
    {
       plain_ring();
-      months();
+      month_hollows();
    }
 }
 
@@ -84,34 +87,31 @@ module ringer()
    }
 }
 
-module months()
+module month_hollows()
 {
    for (m=[1:12])
    {
-      rotate(m*30)
+      rotate(m*30+15)
       {
-         month_text(m);
+         month_hollow();
       }
    }
 }
 
 
-module month_text(m)
+module month_hollow(m)
 {
    translate([r1+ms, 0, 0])
    {
       rotate([0, -angle, 0])
       {
-         translate([-ld+ms, 0, hs/2])
+         translate([-1.55*w, 0, hs/2+mko])
          {
-            rotate([90, 0, 90])
+            // No idea why it has to be 1.55 and not 2 here.
+            cube([w+2*ms, bm, km], center=true);
+            translate([-w,0,0])
             {
-               linear_extrude(ld)
-               {
-                  text(
-                     text=month[m], halign="center", valign="center", font=font,
-                     size=lh);
-               }
+               cube([w, bm+2*w, km+2*w], center=true);
             }
          }
       }
