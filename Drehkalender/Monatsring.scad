@@ -40,6 +40,7 @@ r1 = 55.1;
 r2 = 40.9;
 h = 16.86;
 ri = 37;
+ri2 = 36.5;
 lh = 8;
 font = "Praxis LT:style=Regular";
 ld = 3;
@@ -64,7 +65,8 @@ angle = atan(dx/h);
 hs = sqrt(dx*dx+h*h);
 
 
-lang_ring();
+// lang_ring();
+gear_core();
 
 module lang_ring()
 {
@@ -76,7 +78,20 @@ module lang_ring()
    }
 }
 
-
+module gear_core()
+{
+   intersection()
+   {
+      translate([0,0,50])
+      {
+         import("molds/Monatsring, englisch.stl");
+      }
+      translate([0,0,-ms])
+      {
+         cylinder(r=ri2, h=h+2*ms, $fn=12);
+      }
+   }
+}
 module plain_ring()
 {
    translate([0,0,50])
