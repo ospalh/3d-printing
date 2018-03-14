@@ -11,6 +11,7 @@
 // https://www.thingiverse.com/otvinta3d/about
 // Licence: CC-BY
 
+
 month =
    ["Nullvember",  // month[0]
       "Jan",  // month[1] = Januar(y) &c.
@@ -34,11 +35,12 @@ preview = 1; // [0:render, 1:preview]
 p = 0.8;  // height of the edge
 d = 0.4;  // Depth of the text
 
+// font = "Praxis LT:style=Regular";
 font = "Praxis LT:style=Regular";
 pw = 17;  // month plate width
 ph = 18; // month plate height
 gap = 3;
-
+lh = 6.5;  // Text height
 
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed
@@ -53,22 +55,22 @@ phb = ph + 2 * p;
 gx = pwb + gap;
 gy = phb + gap;
 
-cpc = 4; // cards per column
+cpr = 3; // cards per column
 
 twelve_months();
 
 module twelve_months()
 {
-   translate([-1.5*gx + gap/2, -3*gy + gap/2, 0])
+   translate([-2.5*gx + gap/2, 1*gy + gap/2, 0])
    {
-      for (r=[0:cpc:11])
+      for (c=[0:cpr:11])
       {
-         for (c=[1:cpc])
+         for (r=[1:cpr])
          {
             m = r+c;
-            translate([r*gx/cpc, c*gy, 0])
+            translate([r*gx, -c*gy/cpr, 0])
             {
-               echo(r*gx/cpc, c*gy);
+               echo(r*gx/cpr, c*gy);
                month_card(m);
             }
          }
@@ -87,7 +89,7 @@ module month_card(m)
 
 module plain_month_card()
 {
-   cube([pwb, phb, w]);
+   cube([pwb, phb, p]);
    translate([p, p, p-ms])
    {
       cube([pw, ph, p+ms]);
@@ -96,4 +98,14 @@ module plain_month_card()
 }
 
 module month_text(m)
-{}
+{
+   translate([pwb/2,phb/2, 2*p-d])
+   {
+      linear_extrude(d+ms)
+      {
+         text(
+            text=month[m], halign="center", valign="center", font=font,
+            size=lh, $fs=0.1, $fa=1);
+      }
+   }
+}
