@@ -1,18 +1,15 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// deutscher Monatsring für den Drehkalender
+// Monatkarten für den Drehkalender
 //
 // © 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
-// STL used:
-// Vintage "Perpetual" Flip Calendar
-// https://www.thingiverse.com/thing:1785261
-// © 2016 Otvinta 3D
-// https://www.thingiverse.com/otvinta3d/about
-// Licence: CC-BY
 
+// Several versions of the moth cards, in different languages or scripts
+// N.B.: Pick a font you actually have!
 
-month =
+// German (de = deutsch)
+month_de =
    ["Nullvember",  // month[0]
       "Jan",  // month[1] = Januar(y) &c.
       "Feb",
@@ -27,31 +24,94 @@ month =
       "Nov",
       "Dez"
       ];
+font_de = "Praxis LT:style=Regular";
+lh_de = 6.5;  // Text height
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
-preview = 1; // [0:render, 1:preview]
+// English
+month_en =
+   ["Nullvember",  // month[0]
+      "Jan",  // month[1] = Januar(y) &c.
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+      ];
+font_en = "Praxis LT:style=Regular";
+lh_en = 6.5;  // Text height
 
+// Using European-Arabic numerals. This is easier then using str(m) later
+// for only this version.
+month_ea =
+   ["Nullvember",  // month[0]
+      "1",  // month[1] = Januar(y) &c.
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12"
+      ];
+font_ea = "Praxis LT:style=Bold";
+lh_ea = 11;  // Text height
+
+
+month_rom =
+   ["Nullvember",  // month[0]
+      "I",  // month[1] = Januar(y) &c.
+      "II",
+      "III",
+      "IV",
+      "V",
+      "VI",
+      "VII",
+      "VIII",
+      "IX",
+      "X",
+      "XI",
+      "XII"
+      ];
+font_rom = "Praxis LT:style=Bold";
+lh_rom = 8;  // Text height
+
+// Change here to pick the language or version you want
+month = month_de;
+font = font_de;
+lh = lh_de;
+
+// *****************************************************
+// End language setting section
 
 p = 0.8;  // height of the edge
 d = 0.4;  // Depth of the text
 
 // font = "Praxis LT:style=Regular";
-font = "Praxis LT:style=Regular";
+
 pw = 17;  // month plate width
 ph = 18; // month plate height
 gap = 3;
-lh = 6.5;  // Text height
+
+
+
 
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed
 
-// Not really needed.
-
-tau = 2 * PI;  // π is still wrong. τ = ⌀ ÷ r
 ms = 0.01;  // Muggeseggele.
 
 pwb = pw + 2 * p;
-phb = ph + 2 * p;
+phb = ph + p;  // Grove only at the bottom
 gx = pwb + gap;
 gy = phb + gap;
 
@@ -70,7 +130,6 @@ module twelve_months()
             m = r+c;
             translate([r*gx, -c*gy/cpr, 0])
             {
-               echo(r*gx/cpr, c*gy);
                month_card(m);
             }
          }
