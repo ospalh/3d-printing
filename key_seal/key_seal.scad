@@ -34,9 +34,6 @@ shoulder_width = 3;  // [1:0.1:10]
 // Distance from the bow to the shoulder.
 shoulder_length = 5;  // [1:0.1:15]
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
-preview = 1; // [0:render, 1:preview]
-
 // Key ring hole diameter
 ring_hole_diameter = 2.5;  // [0.5:0.1:5]
 
@@ -45,6 +42,9 @@ ring_hole_land = 2.0;  // [0.5:0.1:5]
 
 // How much the ring hole is offset towards the cuts and shoulder side. Manual correction of the land width needed for circular bows.
 ring_hole_offset = 0;  // [-20:0.1:20]
+
+// Set this to “render” and click on “Create Thing” when done with the setup.
+preview = 1; // [0:render, 1:preview]
 
 
 /* [Hidden] */
