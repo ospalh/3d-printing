@@ -11,7 +11,7 @@
 // https://www.thingiverse.com/otvinta3d/about
 // Licence: CC-BY
 
-ri = 4.8;
+ri = 4.7;
 ro = 6.5;
 h = 7.5;
 
