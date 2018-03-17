@@ -19,26 +19,26 @@ bow_length = 12;  // [5:0.1:40]
 
 
 // Thickness of the key.
-thickness = 1.5;  // [0.5:0.1:5]
+thickness = 2;  // [0.5:0.1:5]
 
 
 // The length of the bit you insert into the lock from tip to bow
-blade_length = 12;  // [5:0.1:40]
+blade_length = 18.5;  // [5:0.1:40]
 
 // The width of the blade
-blade_width = 4;  // [1:0.1:20]
+blade_width = 5.3;  // [1:0.1:20]
 
 // The shoulder is the bit that stops you from pushing in the key too far. This is the extra width of the protrusion.
-shoulder_width = 3;  // [1:0.1:10]
+shoulder_width = 2.5;  // [1:0.1:10]
 
 // Distance from the bow to the shoulder.
-shoulder_length = 5;  // [1:0.1:15]
+shoulder_length = 6.5;  // [1:0.1:15]
 
 // Key ring hole diameter
-ring_hole_diameter = 2.5;  // [0.5:0.1:5]
+ring_hole_diameter = 4;  // [0.5:0.1:5]
 
 // Distance of the ring hole from the edge of the key
-ring_hole_land = 2.0;  // [0.5:0.1:5]
+ring_hole_land = 2.5;  // [0.5:0.1:5]
 
 // How much the ring hole is offset towards the cuts and shoulder side. Manual correction of the land width needed for circular bows.
 ring_hole_offset = 0;  // [-20:0.1:20]
