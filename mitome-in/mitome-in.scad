@@ -2,72 +2,88 @@
 //
 // Mitome in
 //
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// © 2017–2018 Roland Sieker <ospalh@gmail.com>
 // All rights reserved
 
-// preview
-part = "set";
+// … to preview. You will get all parts when you click “Create Thing”.
+part = "NN"; // [NN: foo, bar: baz]
 
-line_1 = "馬";
-line_2 = "鹿";
-line_3 = "";
-
-text_size_y = 4.3;
-text_y_offset = 2;
-text_x_offset = 0;
-text_x_scale_factor = 0.9;
-
-style = "rubber"; // or one-part or rubber_flat
+// Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 
-// done
+line_1 = "馬";
+line_2 = "";
+line_3 = "鹿";
+
+size = 12; // Max size for men’s Mitome-in
+
+text_x_scale = 1.2;
+seal_x_scale = 0.7;
+seal_y_scale = 1;
+
+
+// squeeze=0.9;  // width/height. Or give r_1x directly.
+w=1.6;
+w2=3.2;
+clearance = 0.5;
+bd=0.4;  // print border
+
 
 // Main size
-r_1 = 6;
+r_1y = size/2 * seal_y_scale;
+r_1x = size/2 * seal_x_scale;
+// r_1x = 8;
 
 
-w = 1.6;
-w2 = 3.2;
-clearance = 0.5;
-bd = 0.4;  // print border
 
 // inner print area size
-r_0 = r_1 - bd;
+r_0y = r_1y - bd;
+r_0x = r_1x - bd;
 
 // cap inner size
-r_2 = r_1 + clearance;
+r_2y = r_1y + clearance;
+r_2x = r_1x + clearance;
 
 // cap outer size
-r_3 = r_2 + w;
+r_3y = r_2y + w;
+r_3x = r_2x + w;
 
 
 // ink pad inner size. Circular.
-r_4 = r_1 + 3*clearance;
+ink_pad_height = 15;
+
+r_1max = max(r_1x, r_1y);
+r_4 = r_1max + 3*clearance;
 
 // ink pad outer size.
 r_5 = r_4 + w2;
 
-r_b = 0.2*r_1;
+punch_clearance = 0.1;
+punch_wall = 0.4;
 
-font = "Google Noto Japanese";
+// ink pad foam punch outer diameter
+r_7 = r_4 - punch_clearance;
+// inpk pad foam punch inner diameter
+r_6 = r_7 - punch_wall;
+
+
+
+r_b = 0.2*r_1y;
+
+// font = "Demos LT";
+font = "IPAexGothic:style=Regular";
 
 height = 60;
 
 
-// fn for differently sized objects, for preview or rendering.
-pfa = 30;
-pfb = 30;
-pfc = 20;
-rfa = 180;
-rfb = 60;
-rfc = 45;
-function fa() = (preview) ? pfa : rfa;
-function fb() = (preview) ? pfb : rfb;
-function fc() = (preview) ? pfc : rfc;
 
 
-parts = "";
+// ts=0.345*size;
+ts = 0.72*r_1y;  // text size
+ol = 0.35*r_1y;  // offset y
+// ox=-0.01*r_1x; // offset x
+ox = 0; // offset x
 
 
 // char_h = 1; // Much less chance for the charactels to topple over
@@ -76,7 +92,7 @@ rubber_h = 2; // How much stuff on top to hold it together
 cap_h=10;
 
 
-ms=0.01; // Muggeseggele
+ms=0.01; // Muggesäggele
 
 notch_r = 0.8;
 notch_a = 3;
@@ -84,30 +100,95 @@ grip_a = 3.2;
 ball_df = 0.35;
 connector_z=2;
 
+some_distance = r_5 + r_1max + w2;
 
-sd = r_5 + r_1 + w2;
 
-rest();
-rubber_mitome_in();
-// notched_high_mitome_in();
-translate([0, 2*sd, 0])
+
+// fn for differently sized objects and fs, fa; all for preview or rendering.
+pna = 40;
+pnb = 15;
+pa = 5;
+ps = 1;
+rna = 180;
+rnb = 30;
+ra = 1;
+rs = 0.1;
+function na() = (preview) ? pna : rna;
+function nb() = (preview) ? pnb : rnb;
+$fs = (preview) ? ps : rs;
+$fa = (preview) ? pa : ra;
+
+// *******************************************************
+// End setup
+
+
+
+// *******************************************************
+// Generate the parts
+
+// print_part();
+preview_parts();
+// stack_parts();
+
+
+
+module print_part()
 {
-   //notched_high_mitome_in();
+   if ("NN" == part)
+   {
+      nn();
+   }
+   if ("foo" == part)
+   {
+      foo();
+   }
 }
 
-module rest()
+module stack_parts()
 {
-   translate([sd, sd, 0])
+   // intersection()
+   {
+      color("yellow")
+      {
+         foo();
+      }
+      translate([0,0,30])
+      {
+         color("red")
+         {
+            NN();
+         }
+      }
+   }
+}
+
+// *******************************************************
+// Code for the parts themselves
+
+
+
+module preview_parts()
+{
+   rubber_mitome_in();
+   translate([some_distance, some_distance, 0])
    {
       notched_grip();
    }
-   translate([0, sd, 0])
+   translate([0, some_distance, 0])
    {
       notched_cap();
    }
-   translate([sd, 0, 0])
+   translate([some_distance, 0, 0])
    {
       notched_ink_pad();
+   }
+   translate([some_distance, 2*some_distance, 0])
+   {
+      ink_pad_punch();
+   }
+   translate([0, 2*some_distance, 0])
+   {
+      notched_high_mitome_in();
    }
 }
 
@@ -116,7 +197,7 @@ module notched_cap()
    difference()
    {
       cap();
-      notches(r_3, notch_a);
+      notches(r_3x, r_3y, notch_a);
    }
 }
 
@@ -125,7 +206,7 @@ module notched_ink_pad()
    difference()
    {
       ink_pad();
-      notches(r_5, notch_a);
+      notches(r_5, r_5, notch_a);
    }
 }
 
@@ -134,16 +215,31 @@ module notched_grip()
    difference()
    {
       grip();
-      notches(r_1, grip_a);
+      notches(r_1x, r_1y, grip_a);
    }
 }
 
 
-module notches(w, a)
+module notches(wx, wy, a)
+{
+   if (wx < wy)
+   {
+      notches_x(wx, a);
+   }
+   else
+   {
+      rotate(90)
+      {
+         notches_x(wy, a);
+      }
+   }
+}
+
+module notches_x(w, a)
 {
    rotate([0, 90, 0])
    {
-      cylinder(r=notch_r, h=2*w, center=true, $fn=fc());
+      cylinder(r=notch_r, h=2*w, center=true);
    }
    z_notch();
    mirror()
@@ -155,7 +251,7 @@ module notches(w, a)
       translate([w, 0, 0])
       {
          rotate([0, a, 0])
-         cylinder(r=notch_r, h=height, $fn=fc());
+         cylinder(r=notch_r, h=height);
       }
    }
 }
@@ -169,7 +265,7 @@ module notched_high_mitome_in()
       {
          rotate([180, 0, 0])
          {
-            notches(r_1, grip_a);
+            notches(r_1x, r_1y, grip_a);
          }
       }
    }
@@ -189,37 +285,46 @@ module mitome_in(sh, tp, sb)
    {
       difference()
       {
-         cylinder(r=r_1, h=mti_h, $fn=fa());
-         translate([0,0,-ms])
+         scale([r_1x/r_1y, 1, 1])
          {
-            cylinder(r=r_0, h=char_h+2*ms, $fn=fa());
+            cylinder(r=r_1y, h=mti_h);
          }
-      }
-   }
+         scale([r_0x/r_0y, 1, 1])
+         {
+            translate([0,0,-ms])
+            {
+               cylinder(r=r_0y, h=char_h+2*ms);
+            }
+              }
+           }
+        }
    intersection()
    {
       linear_extrude(height=char_h+0.5*sh, scale=1, convexity=10)
       {
          all_text();
       }
-      translate([0,0,-ms-char_h])
+      scale([(r_1x/r_1y), 1, 1])
       {
-         cylinder(r=r_1-ms, h=2*char_h+sh, $fn=fa());
+         translate([0,0,-ms-char_h])
+         {
+            cylinder(r=r_1y-ms, h=2*char_h+sh);
+         }
       }
    }
 
    if (tp)
    {
-      translate([-w/2, -r_1, mti_h-ms])
+      translate([-w/2, -r_1y, mti_h-ms])
       {
-         cube([w, r_1, connector_z+ms]);
+         cube([w, r_1y, connector_z+ms]);
       }
    }
    if (sb)
    {
-      translate([-r_1*ball_df, 0, char_h+sh/2])
+      translate([-r_1x+r_b*ball_df, 0, char_h+sh/2])
       {
-         sphere(r=r_b, $fn=fb());
+         sphere(r=r_b);
       }
 
    }
@@ -227,27 +332,32 @@ module mitome_in(sh, tp, sb)
 
 module grip()
 {
-   translate([0, 0, height/2])
-   {
-      difference()
-      {
-         union()
-         {
-            cylinder(r=r_1, h=height, center=true, $fn=fa());
-            translate([-r_1+r_b*ball_df,0,0])
-            {
-               sphere(r=r_b, $fn=fb());
-            }
-         }
-         translate([w/2+clearance, -clearance, height/2+ms])
-         {
-            rotate([0, 180, 0])
-            {
-               cube([w+ 2*clearance, r_2, connector_z+w+ms]);
-            }
-         }
-      }
-   }
+   // rotate([180,0,0])
+    translate([0, 0, height/2])
+    {
+       difference()
+       {
+          union()
+          {
+             scale([r_1x/r_1y, 1, 1])
+             {
+                cylinder(r=r_1y, h=height, center=true);
+             }
+
+             translate([-r_1x+r_b*ball_df,0,0])
+             {
+                sphere(r=r_b);
+             }
+          }
+          translate([w/2+clearance, -clearance, height/2+ms])
+          {
+             rotate([0, 180, 0])
+             {
+                cube([w+ 2*clearance, r_2y, connector_z+w+ms]);
+             }
+          }
+       }
+    }
 }
 
 
@@ -255,10 +365,16 @@ module cap()
 {
    difference()
     {
-       cylinder(r=r_3, h=cap_h, $fn=fa());
+      scale([r_3x/r_3y, 1, 1])
+      {
+         cylinder(r=r_3y, h=cap_h);
+      }
       translate([0,0,w])
       {
-         cylinder(r=r_2, h=cap_h, $fn=fa());
+         scale([r_2x/r_2y, 1, 1])
+         {
+            cylinder(r=r_2y, h=cap_h);
+         }
       }
     }
 }
@@ -266,15 +382,26 @@ module ink_pad()
 {
    difference()
    {
-
-      cylinder(r=r_5, h=15, $fn=fa());
+      cylinder(r=r_5, h=ink_pad_height);
       translate([0,0,w2])
       {
-         cylinder(r=r_4, h=20, $fn=fa());
+         cylinder(r=r_4, h=ink_pad_height);
       }
    }
 }
 
+
+module ink_pad_punch()
+{
+   difference()
+   {
+      cylinder(r=r_7, h=ink_pad_height);
+      translate([0,0,w])
+      {
+         cylinder(r=r_6, h=ink_pad_height);
+      }
+   }
+}
 
 
 module all_text()
@@ -288,7 +415,7 @@ module one_text(t, x, y)
 {
    translate([x, y])
    {
-      scale([blow,1])
+      scale([text_x_scale,1])
       {
          text(
             t, font=font, size=ts, halign="center", valign="center");
