@@ -7,35 +7,75 @@
 
 // … to preview. You will get all parts when you click “Create Thing”.
 part = "NN"; // [NN: foo, bar: baz]
+// rubber_seal, grip, seal_with_grip, cap, ink_pad, foam_punch, ink_pad_cap
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
-preview = 1; // [0:render, 1:preview]
 
 
 line_1 = "馬";
 line_2 = "";
 line_3 = "鹿";
 
-size = 12; // Max size for men’s Mitome-in
+font = "IPAexGothic:style=Regular";
+
+size = 12; // Standard non-registerend seals, usually aren’t much bigger than about 12 mm high
+
+text_size = 4.32;
+
 
 text_x_scale = 1.2;
 seal_x_scale = 0.7;
 seal_y_scale = 1;
 
+vertical_text_offset = 2.1;
+horizontal_text_offset = 0;
 
-// squeeze=0.9;  // width/height. Or give r_1x directly.
-w=1.6;
-w2=3.2;
+// Set this to “render” and click on “Create Thing” when done with the setup.
+preview = 1; // [0:render, 1:preview]
+
+
+
+// *******************************************************
+// Extra parameters. These can be changed reasonably safely.
+
+height = 60;  // of the seal or grip
+
+w=1.8;  // Wall width
+w2=3.2;  // Wall width for ink pad
 clearance = 0.5;
-bd=0.4;  // print border
+bd=0.4;  // Width of the ring around the characetrs
+
+ink_pad_height = 15;
+
+punch_clearance = 0.1;
+punch_wall = 0.4;
+
+
+char_h = 2; // How much air for the characters
+rubber_h = 2; // How much stuff on top to hold it together
+cap_h=10;  // How high the cap should be
+
+pad_cap_h = 5;
+
+// Sizes for smaller parts &c.
+notch_r = 0.8;
+notch_a = 3;
+grip_a = 3.2;
+ball_df = 0.35;
+connector_z=2;
+
+// For the ink pad cap
+r_f = 1.2;  // filleting radius
+r_r = 0.8;  // rounding radius
+
+
+// *******************************************************
+// Some shortcuts. These shouldn’t be changed
 
 
 // Main size
 r_1y = size/2 * seal_y_scale;
 r_1x = size/2 * seal_x_scale;
 // r_1x = 8;
-
-
 
 // inner print area size
 r_0y = r_1y - bd;
@@ -49,18 +89,11 @@ r_2x = r_1x + clearance;
 r_3y = r_2y + w;
 r_3x = r_2x + w;
 
-
-// ink pad inner size. Circular.
-ink_pad_height = 15;
-
 r_1max = max(r_1x, r_1y);
 r_4 = r_1max + 3*clearance;
 
 // ink pad outer size.
 r_5 = r_4 + w2;
-
-punch_clearance = 0.1;
-punch_wall = 0.4;
 
 // ink pad foam punch outer diameter
 r_7 = r_4 - punch_clearance;
@@ -68,41 +101,15 @@ r_7 = r_4 - punch_clearance;
 r_6 = r_7 - punch_wall;
 
 
-
 r_b = 0.2*r_1y;
 
-// font = "Demos LT";
-font = "IPAexGothic:style=Regular";
+// for the ink pad cap
+r_8 = r_4 - 0.7 * r_f;
+r_9 = r_8 * 0.9;  // ex r_u
 
-height = 60;
-
-
-
-
-// ts=0.345*size;
-ts = 0.72*r_1y;  // text size
-ol = 0.35*r_1y;  // offset y
-// ox=-0.01*r_1x; // offset x
-ox = 0; // offset x
-
-
-// char_h = 1; // Much less chance for the charactels to topple over
-char_h = 2; // Less chance for the bridges to droop down
-rubber_h = 2; // How much stuff on top to hold it together
-cap_h=10;
-
-
-ms=0.01; // Muggesäggele
-
-notch_r = 0.8;
-notch_a = 3;
-grip_a = 3.2;
-ball_df = 0.35;
-connector_z=2;
+ms=0.01; // Muggeseggele
 
 some_distance = r_5 + r_1max + w2;
-
-
 
 // fn for differently sized objects and fs, fa; all for preview or rendering.
 pna = 40;
@@ -129,7 +136,6 @@ $fa = (preview) ? pa : ra;
 // print_part();
 preview_parts();
 // stack_parts();
-
 
 
 module print_part()
@@ -162,9 +168,6 @@ module stack_parts()
    }
 }
 
-// *******************************************************
-// Code for the parts themselves
-
 
 
 module preview_parts()
@@ -190,7 +193,17 @@ module preview_parts()
    {
       notched_high_mitome_in();
    }
+   translate([2*some_distance, some_distance, 0])
+   {
+      notched_ink_pad_cap();
+   }
 }
+
+
+// *******************************************************
+// Code for the parts themselves
+
+
 
 module notched_cap()
 {
@@ -404,11 +417,77 @@ module ink_pad_punch()
 }
 
 
+module notched_ink_pad_cap()
+{
+   difference()
+   {
+      ink_pad_cap();
+      notches(r_5, r_5, notch_a);
+   }
+}
+
+module ink_pad_cap()
+{
+   translate([0,0,pad_cap_h+w2])
+   {
+      mirror([0,0,1])
+      {
+         rotate_extrude()
+         {
+            2d_ink_pad_cap();
+         }
+      }
+   }
+}
+
+module 2d_ink_pad_cap()
+{
+   rot_points = [
+      [0, 0],
+      [r_9-r_r, 0],
+      [r_9-r_r, r_r],
+      [r_9, r_r],
+      [r_8, pad_cap_h-r_f],
+      [r_8, pad_cap_h],
+      [r_5-r_r, pad_cap_h],
+      [r_5-r_r, pad_cap_h+r_r],
+      [r_5, pad_cap_h+r_r],
+      [r_5, pad_cap_h+w2-r_r],
+      [r_5-r_r, pad_cap_h+w2-r_r],
+      [r_5-r_r, pad_cap_h+w2],
+      [0, pad_cap_h+w2],
+      ];
+  polygon(rot_points);
+  translate([r_9-r_r, r_r])
+  {
+     circle(r=r_r);
+  }
+  translate([r_8, pad_cap_h-r_f])
+  {
+     difference()
+     {
+        square([r_f, r_f]);
+        translate([r_f,0])
+        {
+           circle(r=r_f);
+        }
+     }
+  }
+  translate([r_5-r_r, pad_cap_h+r_r])
+  {
+     circle(r=r_r);
+  }
+  translate([r_5-r_r, pad_cap_h+w2-r_r])
+  {
+     circle(r=r_r);
+  }
+}
+
 module all_text()
 {
- one_text(line_1, ox, ol);
- one_text(line_2, ox, 0);
- one_text(line_3, ox, -ol);
+ one_text(line_1, horizontal_text_offset, vertical_text_offset);
+ one_text(line_2, horizontal_text_offset, 0);
+ one_text(line_3, horizontal_text_offset, -vertical_text_offset);
 }
 
 module one_text(t, x, y)
@@ -418,7 +497,7 @@ module one_text(t, x, y)
       scale([text_x_scale,1])
       {
          text(
-            t, font=font, size=ts, halign="center", valign="center");
+            t, font=font, size=text_size, halign="center", valign="center");
       }
    }
 }
