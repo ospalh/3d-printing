@@ -9,16 +9,20 @@
 // © 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
-
+// How wide the glass to put on this is
 glass_diameter = 70; // [30:1:100]
+
+// … and how tall.
 glass_height = 90; // [20:1:200]
+
+// Angle at which the glass rests
 angle = 45; // [20:1:70]
 
-// Percent of glass diameter
+// Width of the wedge as a percentage of the glass diameter
 wedge_width = 85; // [50:1:99]
 
-// How much border to be left
-wedge_cutout_width = 10;
+// Distance between the outside and the hole in the inside. The width of the wedge.
+wedge_cutout_width = 10; // [3:0.5:30]
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
@@ -33,8 +37,8 @@ preview = 1; // [0:render, 1:preview]
 // Extra parameters. These can be changed reasonably safely.
 
 
-w = 1.8;  // Wall width
-p = 1.2;  // Bottom, top plate height
+w = 1.8;  // Wall width. Not used here, i think.
+p = 1.2;  // Bottom, top plate height. In this case, distance of the glass from the freezer floor
 c = 0.4;  // Clearance
 
 // *******************************************************
@@ -73,12 +77,12 @@ $fa = (preview) ? pa : ra;
 
 
 // *******************************************************
-// Generate the parts
+// Generate the part
 
 glass_wedge();
 
 // *******************************************************
-// Code for the parts themselves
+// Code for the part itself
 
 
 module glass_wedge()
