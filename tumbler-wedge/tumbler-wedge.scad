@@ -1,6 +1,10 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// NN
+// A wedge to keep a glass angled.
+//
+// This is a re-imagining of Thing 2784800, matt sauter’s “Whiskey Wedge -
+// Angled Ice”. (https://www.thingiverse.com/thing:2784800) This is not
+// based on that thing, but a new thing to achieve the same effect.
 //
 // © 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
