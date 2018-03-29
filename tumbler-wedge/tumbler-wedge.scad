@@ -108,7 +108,7 @@ module glass_cutout()
          cylinder(r=r_ge, h=glass_height);
          translate([-r_ge-glass_height,0,0])
          {
-            cylinder(r=r_ge, h=glass_height);
+            cylinder(r=r_ge, h=2*glass_height);
          }
       }
    }
