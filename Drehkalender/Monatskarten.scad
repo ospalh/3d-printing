@@ -24,8 +24,9 @@ month_de =
       "Nov",
       "Dez"
       ];
-font_de = "Praxis LT:style=Regular";
+font_de = "Praxis LT:style=Heavy";
 lh_de = 6.5;  // Text height
+
 
 // English
 month_en =
@@ -43,7 +44,7 @@ month_en =
       "Nov",
       "Dec"
       ];
-font_en = "Praxis LT:style=Regular";
+font_en = "Praxis LT:style=Heavy";
 lh_en = 6.5;  // Text height
 
 // Using European-Arabic numerals. This is easier then using str(m) later
@@ -101,7 +102,7 @@ d = 0.4;  // Depth of the text
 pw = 17;  // month plate width
 ph = 18; // month plate height
 gap = 3;
-
+tyo = -2; // Text y offset. Shif the text down slightly.
 
 
 
@@ -158,7 +159,7 @@ module plain_month_card()
 
 module month_text(m)
 {
-   translate([pwb/2,phb/2, 2*p-d])
+   translate([pwb/2, phb/2+tyo, 2*p-d])
    {
       linear_extrude(d+ms)
       {
