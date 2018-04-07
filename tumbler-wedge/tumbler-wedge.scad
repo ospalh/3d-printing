@@ -19,7 +19,10 @@ glass_height = 90; // [20:1:200]
 angle = 45; // [20:1:70]
 
 // Width of the wedge as a percentage of the glass diameter
-wedge_width = 85; // [50:1:99]
+wedge_width = 70; // [50:1:99]
+
+// Length of the wedge as a percentage of the glass height
+wedge_length = 70; // [50:1:99]
 
 // Distance between the outside and the hole in the inside. The width of the wedge.
 wedge_cutout_width = 10; // [3:0.5:30]
@@ -49,10 +52,12 @@ r_w = glass_diameter/2 * wedge_width/100;
 
 tau = 2 * PI;  // π is still wrong. τ = ⌀ ÷ r
 
+gh = glass_height*wedge_length/100;
+
 xy_factor = 1/tan(angle);
 // To get from a height to a horizontal width inclined correctly
 z_factor = tan(angle);  // The other way around
-hb = glass_height*sin(angle);
+hb = gh*sin(angle);
 
 
 ms = 0.01;  // Muggeseggele.
@@ -105,10 +110,10 @@ module glass_cutout()
    {
       hull()
       {
-         cylinder(r=r_ge, h=glass_height);
-         translate([-r_ge-glass_height,0,0])
+         cylinder(r=r_ge, h=gh);
+         translate([-r_ge-gh,0,0])
          {
-            cylinder(r=r_ge, h=2*glass_height);
+            cylinder(r=r_ge, h=2*gh);
          }
       }
    }
@@ -131,7 +136,7 @@ module 2d_glass_base()
    {
       rotate([0,angle,0])
       {
-         cylinder(r=r_w, h=glass_height+c);
+         cylinder(r=r_w, h=gh+c);
       }
    }
 }
@@ -150,7 +155,7 @@ module inner_cutout()
 module 2d_inner_cutout()
 {
    sy = (r_w-wedge_cutout_width)/r_w;
-   lh = cos(angle)*(glass_height+c);
+   lh = cos(angle)*(gh+c);
    lx = sin(angle)*r_w+lh;
    sx = (lx-2*wedge_cutout_width)/lx;
 
