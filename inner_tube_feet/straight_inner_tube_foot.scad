@@ -31,7 +31,7 @@ preview = 1; // [0:render, 1:preview]
 w = 1.6;  // Wall width of the tube part
 tw = 5; // Width at the top. This is the
 p = 2.0;  // height of the connecting plate
-ph = 10;  // Height of the plate connector
+min_ph = 10;  // Height of the plate connector
 cs = 0.2; // clearance
 
 // *******************************************************
@@ -68,8 +68,8 @@ $fa = (preview) ? pa : ra;
 // *******************************************************
 // Generate the parts
 
-// print_part();
-preview_parts();
+print_part();
+// preview_parts();
 
 
 module print_part()
@@ -135,6 +135,12 @@ module foot(pw)
    ir = itr + orm();
    or = ir*1.082;
 
+   xo = (pw+cs)/2  + tw;  // X offset. Where the cut begins.
+   po = ir - xo ; // The rest. The width of the top cut
+
+   ph = max(po*z_factor, min_ph);
+   st_l = sqrt(ph*ph+po*po);
+   st_a = acos((ph)/st_l);
 
    itt_r = itr - w;
    // how wide the inner tube thing should be in the end. The circle has
@@ -147,11 +153,16 @@ module foot(pw)
    {
       rotate(22.5)
       {
-         cylinder(r1=pw/2+tw, r2=or, h=ph, $fn=8);
+         cylinder(r=or, h=ph, $fn=8);
       }
       translate([0,0,ph/2-ms])
       {
          cube([pw+cs, 2*or+2*ms, ph+2*ms], center=true);
+      }
+      side_cut();
+      mirror()
+      {
+         side_cut();
       }
    }
 
@@ -171,6 +182,19 @@ module foot(pw)
             rotate([0,90,0])
             {
                cylinder(r=itr,h=2*or+2*ms,center=true);
+            }
+         }
+      }
+   }
+
+   module side_cut()
+   {
+      translate([xo, -or-ms, -ms])
+      {
+         rotate([0, st_a, 0])
+         {
+            {
+               cube([or, 2*or+2*ms, st_l+2*ms]);
             }
          }
       }
