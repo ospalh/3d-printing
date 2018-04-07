@@ -28,9 +28,11 @@ preview = 1; // [0:render, 1:preview]
 
 // Done with the customizer
 
-w = 2.4;  // external wall width
+w = 1.6;  // Wall width of the tube part
+tw = 5; // Width at the top. This is the
 p = 2.0;  // height of the connecting plate
-ph = 10;  // Minimum height of the plate thing
+ph = 10;  // Height of the plate connector
+cs = 0.2; // clearance
 
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed
@@ -42,7 +44,7 @@ z_factor = tan(angle);
 
 some_distance = 1.2*inner_tube_diameter;
 ms = 0.01;  // Muggeseggele.
-cs = 0.2; // clearance
+
 
 // fn for differently sized objects and fs, fa; all for preview or rendering.
 pna = 40;
@@ -143,19 +145,9 @@ module foot(pw)
    // The top part
    difference()
    {
-      intersection()
+      rotate(22.5)
       {
-         translate([0,0,ph])
-         {
-            scale([1,1,(or*pw)/400])
-            {
-               sphere(r=or);
-            }
-         }
-         rotate(22.5)
-         {
-            cylinder(r=or, h=ph, $fn=8);
-         }
+         cylinder(r1=pw/2+tw, r2=or, h=ph, $fn=8);
       }
       translate([0,0,ph/2-ms])
       {
