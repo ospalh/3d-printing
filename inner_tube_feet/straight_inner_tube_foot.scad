@@ -30,7 +30,7 @@ preview = 1; // [0:render, 1:preview]
 
 w = 2.4;  // external wall width
 p = 2.0;  // height of the connecting plate
-min_ph = 10;  // Minimum height of the plate thing
+ph = 10;  // Minimum height of the plate thing
 
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed
@@ -42,14 +42,21 @@ z_factor = tan(angle);
 
 some_distance = 1.2*inner_tube_diameter;
 ms = 0.01;  // Muggeseggele.
+cs = 0.2; // clearance
 
-// fn for differently sized objects, for preview or rendering.
-pfa = 40;
-pfb = 15;
-rfa = 360;
-rfb = 30;
-function fa() = (preview) ? pfa : rfa;
-function fb() = (preview) ? pfb : rfb;
+// fn for differently sized objects and fs, fa; all for preview or rendering.
+pna = 40;
+pnb = 15;
+pa = 5;
+ps = 1;
+rna = 180;
+rnb = 30;
+ra = 1;
+rs = 0.1;
+function na() = (preview) ? pna : rna;
+function nb() = (preview) ? pnb : rnb;
+$fs = (preview) ? ps : rs;
+$fa = (preview) ? pa : ra;
 
 // *******************************************************
 // End setup
@@ -59,8 +66,8 @@ function fb() = (preview) ? pfb : rfb;
 // *******************************************************
 // Generate the parts
 
-print_part();
-// preview_parts();
+// print_part();
+preview_parts();
 
 
 module print_part()
@@ -126,11 +133,6 @@ module foot(pw)
    ir = itr + orm();
    or = ir*1.082;
 
-   po = ir - pw/2 - w; // offset. How far we have to butress the thing
-
-   ph = max(po*z_factor, min_ph);
-   st_l = sqrt(ph*ph+po*po);
-   st_a = acos((ph)/st_l);
 
    itt_r = itr - w;
    // how wide the inner tube thing should be in the end. The circle has
@@ -138,21 +140,26 @@ module foot(pw)
    // either side.
    itt_e = sqrt(itr*itr - itt_r*itt_r);
 
-   // The clip top part
-   intersection()
+   // The top part
+   difference()
    {
-      union()
+      intersection()
       {
-         side_plate();
-         mirror([0,1,0])
+         translate([0,0,ph])
          {
-            side_plate();
+            scale([1,1,(or*pw)/400])
+            {
+               sphere(r=or);
+            }
          }
-
+         rotate(22.5)
+         {
+            cylinder(r=or, h=ph, $fn=8);
+         }
       }
-      rotate(22.5)
+      translate([0,0,ph/2-ms])
       {
-         cylinder(r=or, h=ph, $fn=8);
+         cube([pw+cs, 2*or+2*ms, ph+2*ms], center=true);
       }
    }
 
@@ -171,29 +178,10 @@ module foot(pw)
          {
             rotate([0,90,0])
             {
-               cylinder(r=itr,h=2*or+2*ms,center=true, $fn=fa());
+               cylinder(r=itr,h=2*or+2*ms,center=true);
             }
          }
       }
-   }
-   module side_plate()
-   {
-      translate([0, -pw/2-w, 0])
-      {
-         translate([-or, 0, 0])
-         cube([2*or, w, ph]);
-         //w-w*tan(st_a),
-         translate([-or/2, w-w*cos(st_a), 0])
-         {
-            rotate([st_a, 0, 0])
-            {
-               {
-                  cube([or, w, st_l+w]);
-               }
-            }
-         }
-      }
-
    }
 
 }
