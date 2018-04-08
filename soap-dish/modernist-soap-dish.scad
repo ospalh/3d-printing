@@ -14,7 +14,7 @@ w = 3;
 g = 3;
 
 //
-rs = 3;
+r_spar = 3;
 rk = 4 * rx;
 zmax=30;
 
@@ -22,12 +22,22 @@ zmax=30;
 p = w+g; // period
 ms = 0.01; // Muggeseggele
 
-// render:
-// $fs = 0.2;
-// $fa = 1;
-// preview:
-$fs = 0.5;
-$fa = 3;
+preview = 1; // [0:render, 1:preview]
+
+
+// fn for differently sized objects and fs, fa; all for preview or rendering.
+pna = 40;
+pnb = 15;
+pa = 5;
+ps = 1;
+rna = 180;
+rnb = 30;
+ra = 1;
+rs = 0.1;
+function na() = (preview) ? pna : rna;
+function nb() = (preview) ? pnb : rnb;
+$fs = (preview) ? ps : rs;
+$fa = (preview) ? pa : ra;
 
 intersection()
 {
@@ -51,11 +61,11 @@ intersection()
             // Two support members holding it together
             rotate([0, 90, 0])
             {
-               cylinder(r=rs, h=2*rx, center=true);
+               cylinder(r=r_spar, h=2*rx, center=true);
             }
             rotate([90, 0, 0])
             {
-               cylinder(r=rs, h=2*ry, center=true);
+               cylinder(r=r_spar, h=2*ry, center=true);
             }
             // Ad hoc supports for the three outer ring bits
             short_support(30, ry);
@@ -74,7 +84,7 @@ intersection()
          // The hollow
          translate([0,0,zmin+rk])
          {
-            sphere(r=rk);
+            sphere(r=rk, $fn=na());
          }
          // Cut off half of the supports
          translate([0, 0, -zmin])
@@ -99,7 +109,7 @@ module short_support(a,o)
       {
          rotate([90, 0, 0])
          {
-            cylinder(r=rs, h=p+2*ms, center=true);
+            cylinder(r=r_spar, h=p+2*ms, center=true);
          }
       }
    }
