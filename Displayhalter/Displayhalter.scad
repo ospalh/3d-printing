@@ -24,10 +24,10 @@ Display_nut_d = 5.4;
 Dx_Rahmen = 170;
 
 // X-Abstand der Displayschraubenlöcher
-Dx_Display = 120;
+Dx_Display = 144.3;
 
 // Y-Abstand der Displayschraubenlöcher
-Dy_Display = 50;
+Dy_Display = 49.7;
 
 // Abstand der Hauptrahmenschrauben zur Oberkante des Rahmnens
 Dy_Rahmen = 30;
