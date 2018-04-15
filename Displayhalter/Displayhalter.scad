@@ -33,7 +33,7 @@ Dy_Display = 49.7;
 Dy_Rahmen = 30;
 
 // Extra-Höhe des kurzen Arms. Damit das Display nicht an den Rahmen kommt.
-h_Oberarm = 15;
+h_Oberarm = 17;
 
 // Je nach Displaywinkel steht es nach unten über oder nicht
 angle = 45;
@@ -48,8 +48,8 @@ h_Buchse = 8;
 // *******************************************************
 // Extra parameters. These can be changed reasonably safely.
 
-r_waag = 5;
-r_senk = 5;
+r_waag = 6;
+r_senk = 6;
 
 w = 3;  // Wall width
 p = 3;  //  Plate. Amount of material the nut works against
@@ -261,7 +261,10 @@ module m3_down()
       cylinder(r=M_Display/2+cs, h=2*ms+2*r_senk+2*r_waag);
       translate([0,0,-ms])
       {
-         cylinder(r=h_nut_r + cs , h=2*ms+2*r_senk+2*r_waag-p, $fn=6);
+         rotate(30)
+         {
+            cylinder(r=h_nut_r + cs , h=2*ms+2*r_senk+2*r_waag-p, $fn=6);
+         }
       }
    }
 
