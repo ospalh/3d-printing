@@ -1,18 +1,34 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// Buchse für M3, grob, 10 mm
+// Buchsen oder Unterlegscheiben, nach Bedarf
 //
 // © 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-0 4.0
 
-d_i = 4;
+d_i = 10.5;
 r_i = d_i/2;
-h = 6;
-d_o = 7.6;
+h = 1;
+d_o = 20;
 r_o = d_o/2;
-ms = 0.1;  // Muggeseggele
+ms = 0.01;  // Muggeseggele
 
-$fn=90;
+
+preview = 1;
+
+// fn for differently sized objects and fs, fa; all for preview or rendering.
+pna = 40;
+pnb = 15;
+pa = 5;
+ps = 1;
+rna = 180;
+rnb = 30;
+ra = 1;
+rs = 0.1;
+function na() = (preview) ? pna : rna;
+function nb() = (preview) ? pnb : rnb;
+$fs = (preview) ? ps : rs;
+$fa = (preview) ? pa : ra;
+
 
 difference()
 {
