@@ -6,9 +6,9 @@
 // Licence: CC-BY-SA 4.0
 
 // Basically the inner diameter of the bottle (glass, whatever)
-stopper_diameter = 20; // [5:0.1:90]
+stopper_diameter = 8.0; // [5:0.1:90]
 // The height of the conical part
-stopper_height = 12;  // [2.5:0.1:60]
+stopper_height = 5;  // [2.5:0.1:60]
 //
 flange_height = 2.4; // [1.8:0.1:15]
 flange_width = 3.2;  // [1.8:0.1:24]
@@ -26,11 +26,11 @@ axis_ratio=0.75;  // [0.2:0.05:1]
 
 /* [Hidden] */
 
-r_f = 1.6;  // filleting radius
-r_r = 0.8;  // rounding radius
+r_f = 1.2;  // filleting radius
+r_r = 0.4;  // rounding radius
 
 r_o = stopper_diameter/2 - 0.7 * r_f;
-r_u = r_o * 0.8;
+r_u = r_o * 0.6;
 r_k = stopper_diameter/2 + flange_width;
 
 
@@ -38,8 +38,8 @@ h = stopper_height;
 h_g = h + flange_height;
 
 
-a_fn = 60; b_fn = 20;  // draft
-// a_fn = 270; b_fn = 45;  // final
+// a_fn = 60; b_fn = 20;  // draft
+a_fn = 270; b_fn = 45;  // final
 
 if (elliptical)
 {
