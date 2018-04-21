@@ -6,7 +6,7 @@
 // Licence: CC-BY-SA 4.0
 
 // Radius of the cap
-r = 20;
+r = 15;
 
 // size of the “chain” hole
 hl = 4;
