@@ -94,7 +94,7 @@ module anchor_cap()
          cylinder(r1=r_i-p, r2=r-p, h=h+2*ms);
       }
    }
-   cylinder(r1=r_i, h=p);
+   cylinder(r=r_i, h=p);
 }
 
 module anchor_stem()
