@@ -16,7 +16,7 @@ height = 17;
 diameter = 56;
 flange = 3;
 
-count = 5;
+count = 3;
 
 /* [Hidden] */
 
@@ -60,6 +60,8 @@ function nb() = (preview) ? pnb : rnb;
 $fs = (preview) ? ps : rs;
 $fa = (preview) ? pa : ra;
 
+function fe() = (count > 1) ? flange : 0;
+
 // *******************************************************
 // End setup
 
@@ -92,8 +94,11 @@ module fridge_coaster()
          }
          hull ()
          {
-            cylinder(r=rie+w+flange, h=2*p-ms);
-            translate([0,(count-1)*de,0])
+            translate([0, fe(), 0])
+            {
+               cylinder(r=rie+w+flange, h=2*p-ms);
+            }
+            translate([0, (count-1)*de -fe(),0])
             {
             cylinder(r=rie+w+flange, h=2*p-ms);
             }
