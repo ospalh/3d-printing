@@ -12,9 +12,11 @@ preview = 1; // [0:render, 1:preview]
 
 spacing = 18.4;
 bar_width = 2.8;
-height = 8;
-diameter = 45;
-flange = 5;
+height = 17;
+diameter = 56;
+flange = 3;
+
+count = 5;
 
 /* [Hidden] */
 
@@ -75,23 +77,40 @@ fridge_coaster();
 module fridge_coaster()
 {
    hrc = ceil((rie+w+bar_width+flange)/spacing) + 1;
+   de = 2*rie+w;
    difference()
    {
       union()
       {
-         cylinder(r=rie+w, h=2*p+height);
-         cylinder(r=rie+w+flange, h=2*p-ms);
+         for (o=[0:count-1])
+         {
+            translate([0,o*de,0])
+            {
+               echo("o",o);
+               cylinder(r=rie+w, h=2*p+height);
+            }
+         }
+         hull ()
+         {
+            cylinder(r=rie+w+flange, h=2*p-ms);
+            translate([0,(count-1)*de,0])
+            {
+            cylinder(r=rie+w+flange, h=2*p-ms);
+            }
+         }
       }
-      translate([0,0,2*p])
-      {
-         cylinder(r=rie, h=height+ms);
+      for (o=[0:count-1])
+      {  translate([0,o*de,2*p])
+         {
+            cylinder(r=rie, h=height+ms);
+         }
       }
       for (o=[-hrc:hrc])
       {
          echo(o);
-         translate([(o+0.5)*spacing,0, 0])
+         translate([(o+0.5)*spacing, (count-1)*de*0.5, 0])
          {
-            cube([bar_width, 2*(rie+w+c+bar_width+flange+ms), 2*p], center=true);
+            cube([bar_width, 2*(rie+w+c+bar_width+flange+ms)+(count-1)*de, 2*p], center=true);
          }
       }
    }
