@@ -16,7 +16,7 @@
 
 
 // All length are in mm.
-bottle_diameter = 57;  // [8:0.1:90]
+bottle_diameter = 56;  // [8:0.1:90]
 
 // Number of bottles in a long (odd) row.  Every other (even) row is one position shorter.
 x_count = 3;  // [2:1:10]
@@ -25,9 +25,11 @@ y_count = 2;  //   // [2:1:10]
 // Change the basic shape of one holder
 honeycombish = 0;  // [1:Use hexagons, 0:Use circles]
 // Height of the walls of the holders
-height = 30; // [8:0.1:90]
+height = 18; // [8:0.1:90]
 // Size of the hole in the bottom of each holder. 0 for no hole, larger than the diameter for just cylinders
 hole_diameter = 30; // [0:0.1:91]
+
+with_fridge_ridges = true;
 
 
 module dummy()
@@ -44,16 +46,35 @@ bottom_height = 1.2;  // How thick (mm) the bottom will be
 wall_width = 2.0;  // how thick the walls will be (mm).
 min_wall_width = 0.4;  // Your nozzle diameter
 
-clearance = 1; // Space added to the bottle diameter.
+cs = 0.4; // Space added to the bottle diameter.
 // Increase for looser fit and for shrinking prints.
 
+rie = diameter/2 + c;
 
-$fn = 90;
+some_distance = 50;
+ms = 0.01;  // Muggeseggele.
+
+// fn for differently sized objects and fs, fa; all for preview or rendering.
+pna = 40;
+pnb = 15;
+pa = 5;
+ps = 1;
+rna = 180;
+rnb = 30;
+ra = 1;
+rs = 0.1;
+function na() = (preview) ? pna : rna;
+function nb() = (preview) ? pnb : rnb;
+$fs = (preview) ? ps : rs;
+$fa = (preview) ? pa : ra;
+
+
+be = (with_fridge_ridges) ? bottom_height : 2*bottom_height;
 
 // ***************************************************
 // Change below only if you know what you are doing.
 
-r_i = bottle_diameter/2 + clearance;
+r_i = bottle_diameter/2 + cs;
 r_h = hole_diameter/2;
 r_o = r_i + wall_width;
 
@@ -67,6 +88,10 @@ difference()
 {
    full_shape();
    holes();
+   if (with_fridge_ridges)
+   {
+      ridges();
+   }
 }
 
 
@@ -123,7 +148,7 @@ module one_hole(x_pos, y_pos)
 {
    translate([x_pos, y_pos, 0])
    {
-      translate([0, 0, bottom_height])
+      translate([0, 0, be])
       {
          cylinder(r=r_i, h=height);
       }
@@ -135,12 +160,12 @@ module one_hole(x_pos, y_pos)
             {
                rotate(30)
                {
-                  cylinder(r=r_h/thf, h=bottom_height+2*ms, $fn=6);
+                  cylinder(r=r_h/thf, h=be+2*ms, $fn=6);
                }
             }
             else
             {
-               cylinder(r=r_h, h=bottom_height+2*ms);
+               cylinder(r=r_h, h=be+2*ms);
             }
          }
       }
