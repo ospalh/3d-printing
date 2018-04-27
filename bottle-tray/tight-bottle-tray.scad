@@ -2,7 +2,7 @@
 //
 // Parametric hex-grid bottle tray
 //
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// © 2017–2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 // Loosely based on thingiverse thing  1345795,
 // https://www.thingiverse.com/thing:1345795
@@ -29,7 +29,17 @@ height = 18; // [8:0.1:90]
 // Size of the hole in the bottom of each holder. 0 for no hole, larger than the diameter for just cylinders
 hole_diameter = 30; // [0:0.1:91]
 
-with_fridge_ridges = true;
+// Add ridges at the bottom to fit this onto the shelfs of a fridge
+with_fridge_ridges = false;  //
+
+// Distance from one rod of the fridge shelf to the next.
+grating_spacing = 18.4; // [5:0.1:40]
+
+// Diameter of one of these rods or bars
+grating_bar_width = 2.8;  //  [0.4:0.1:5]
+
+
+preview = true;
 
 
 module dummy()
@@ -43,13 +53,12 @@ bottom_height = 1.2;  // How thick (mm) the bottom will be
 // Will end up as a multiple of your layer height after slicing.
 // Use enough top and bottom solid layers. Getting infil here is kind-of pointles.
 
-wall_width = 2.0;  // how thick the walls will be (mm).
-min_wall_width = 0.4;  // Your nozzle diameter
+wall_width = 1.8;  // how thick the walls will be (mm).
+min_wall_width = 0.85;  // Your nozzle diameter
 
 cs = 0.4; // Space added to the bottle diameter.
 // Increase for looser fit and for shrinking prints.
 
-rie = diameter/2 + c;
 
 some_distance = 50;
 ms = 0.01;  // Muggeseggele.
@@ -69,7 +78,7 @@ $fs = (preview) ? ps : rs;
 $fa = (preview) ? pa : ra;
 
 
-be = (with_fridge_ridges) ? bottom_height : 2*bottom_height;
+be = (with_fridge_ridges) ? 2*bottom_height : bottom_height;
 
 // ***************************************************
 // Change below only if you know what you are doing.
@@ -188,4 +197,24 @@ module one_cylinder(x_pos, y_pos)
          cylinder(r=r_o, h=height);
       }
    }
+}
+
+
+module ridges()
+{
+   de = 2*r_i+wall_width;
+   hrl = ceil((r_i+wall_width+grating_bar_width)/grating_spacing) + 1;
+   hrr = ceil((r_i+2*wall_width+grating_bar_width+(y_count-1)*y_step)/grating_spacing) + 1;
+   // The count are too high more or less on purpose. Works fine to
+   // subtract a few of them from nothing.
+
+   for (o=[-hrl:hrr])
+   {
+         echo(o);
+         translate([(x_count-1)*de*0.5, (o+0.5)*grating_spacing, 0])
+         {
+            cube([2*(r_i+wall_width+cs+grating_bar_width+ms)+(x_count-1)*de, grating_bar_width, 2*bottom_height], center=true);
+         }
+      }
+
 }
