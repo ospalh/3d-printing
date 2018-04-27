@@ -16,7 +16,7 @@ height = 17;
 diameter = 56;
 flange = 3;
 
-count = 3;
+count = 1;
 
 /* [Hidden] */
 
