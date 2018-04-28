@@ -1,6 +1,6 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// shower gel tray
+// shower gel shelf
 //
 // © 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
@@ -11,7 +11,6 @@ preview = 1; // [0:render, 1:preview]
 
 r_main = 155;  // main radius of the tray
 r_corner = 10;  // space for silicone joint
-h=32; // Height (inner)
 
 
 /* [Hidden] */
@@ -23,6 +22,10 @@ p_1 = 1.2;  // height of the bottomt plate with the cylindrical holes
 p_2 = 1.5;  // height of the bottomt plate with the conical shapes
 x_step = 14.1;  // hole to hole distance
 r_hole = 1.5;  // drain holes
+
+h=22; // Height (inner)
+r_slot = 3.7;
+r_keyhole = 5.2;
 
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed
@@ -41,22 +44,20 @@ y_step = x_step * thf;
 some_distance = 50;
 ms = 0.01;  // Muggeseggele.
 
-// fn for differently sized objects, for preview or rendering.
-pfa = 40;
-pfb = 15;
-pfc = 15;
-pfs = 3;
-pfd = 1;
-rfa = 180;
-rfb = 45;
-rfc = 30;
-rfs = 0.2;
-rfd = 0.2;
-function fa() = (preview) ? pfa : rfa;
-function fb() = (preview) ? pfb : rfb;
-function fc() = (preview) ? pfc : rfc;
-function fs() = (preview) ? pfs : rfs;
-function fd() = (preview) ? pfd : rfd;
+// fn for differently sized objects and fs, fa; all for preview or rendering.
+pna = 40;
+pnb = 15;
+pa = 5;
+ps = 1;
+rna = 180;
+rnb = 30;
+ra = 1;
+rs = 0.1;
+function na() = (preview) ? pna : rna;
+function nb() = (preview) ? pnb : rnb;
+$fs = (preview) ? ps : rs;
+$fa = (preview) ? pa : ra;
+
 
 // *******************************************************
 // End setup
@@ -68,20 +69,29 @@ function fd() = (preview) ? pfd : rfd;
 
 tray();
 
+// keyhole();
+
 // *******************************************************
 // Code for the parts themselves
 
 module tray()
 {
-   plate();
-   railing();
+   difference()
+   {
+      union()
+      {
+         plate();
+         railing();
+      }
+      keyholes();
+   }
 }
 
 
 module railing()
 {
-   round_railing(r_main, fa(), fs(), fd());
-   round_railing(r_corner+w, fc(), 0, 0);
+   round_railing(r_main);
+   round_railing(r_corner+w);
    translate([0, r_corner, 0])
    {
       cube([w, r_main-r_corner, h+p]);
@@ -95,30 +105,16 @@ module railing()
 
 
 
-module round_railing(r, f, s, d)
+module round_railing(r)
 {
    intersection()
    {
       difference()
       {
-         if (0 == s * d)
-         {
-            cylinder(r=r, h=h+p, $fn=f);
-         }
-         else
-         {
-            cylinder(r=r, h=h+p, $fs=s, $fa=d);
-         }
+         cylinder(r=r, h=h+p);
          translate([0,0,-ms])
          {
-            if (0 == s * d)
-            {
-               cylinder(r=r-w, h=h+p+2*ms, $fn=f);
-            }
-            else
-            {
-               cylinder(r=r-w, h=h+p+2*ms, $fs=s, $fa=d);
-            }
+            cylinder(r=r-w, h=h+p+2*ms);
          }
       }
       translate([0,0,-2*ms])
@@ -150,13 +146,12 @@ module plate_quarter_circle()
          }
          translate([0,0,-ms])
          {
-            cylinder(r=r_main, p+2*ms, $fn=fa());
+            cylinder(r=r_main, p+2*ms);
          }
       }
       translate([0,0,-2*ms])
       {
-         cylinder(r=r_corner, h=p+4*ms, $fn=fc());
-
+         cylinder(r=r_corner, h=p+4*ms);
       }
 
    }
@@ -222,4 +217,46 @@ module a_plate_hole(dx, dy)
       }
    }
 
+}
+
+
+module keyholes()
+{
+   keyhole();
+   translate([-r_main+6*r_keyhole+r_corner, 0, 0])
+   {
+      keyhole();
+   }
+   mirror([1,-1,0])
+   {
+      keyhole();
+   }
+
+}
+
+module keyhole()
+{
+   translate([r_main-4*r_keyhole,w,p_1+p_2+h/2-1.1*r_keyhole])
+   {
+      rotate([90,0,0])
+      {
+         simple_keyhole();
+      }
+   }
+}
+
+module simple_keyhole()
+{
+   translate([0,0,-ms])
+   {
+      cylinder(r=r_keyhole, h=w+2*ms);
+      translate([-r_slot,0,0])
+      {
+         cube([2*r_slot, 1.5*r_keyhole, w+2*ms]);
+      }
+      translate([0,1.5*r_keyhole,0])
+      {
+         cylinder(r=r_slot, h=w+2*ms);
+      }
+   }
 }
