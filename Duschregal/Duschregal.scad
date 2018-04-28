@@ -6,6 +6,10 @@
 // Licence: CC-BY-SA 4.0
 
 
+// … to preview. You will get all parts when you click “Create Thing”.
+// part = "shelf"; // [shelf: shower shelf, fastener: mushroom head fastener]
+// part = "fastener"; // [shelf: shower shelf, fastener: mushroom head fastener]
+
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
@@ -23,15 +27,20 @@ p_2 = 1.5;  // height of the bottomt plate with the conical shapes
 x_step = 14.1;  // hole to hole distance
 r_hole = 1.5;  // drain holes
 
+w_f = 20;  // width of the fastener
+l_f = 70;  // its length
+
 h=22; // Height (inner)
-r_slot = 3.7;
-r_keyhole = 5.2;
+r_slot = 3.5;
+r_keyhole = 5.0;
+l_fs = 2*r_slot;
+r_ff = 2;  // fastener (bottom) fillet radius
 
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed
 
 tau = 2 * PI;  // π is still wrong. τ = ⌀ ÷ r
-angle = 60; // Overhangs much below 60° are a problem for me
+angle = 35; // Overhangs much below 60° are a problem for me
 xy_factor = 1/tan(angle);  // To get from a height to a horizontal width
                            // inclined correctly
 z_factor = tan(angle);  // the other way around
@@ -41,8 +50,9 @@ p = p_1 + p_2;
 thf = sqrt(3)/2;  // (equilateral) triangle height factor
 y_step = x_step * thf;
 
-some_distance = 50;
+some_distance = 1.2 * r_main;
 ms = 0.01;  // Muggeseggele.
+cs = 0.2;
 
 // fn for differently sized objects and fs, fa; all for preview or rendering.
 pna = 40;
@@ -67,9 +77,56 @@ $fa = (preview) ? pa : ra;
 // *******************************************************
 // Generate the parts
 
-tray();
+// print_part();
+// preview_parts();
+stack_parts();
 
-// keyhole();
+
+module print_part()
+{
+   if ("tray" == part)
+   {
+      tray();
+   }
+   if ("fastener" == part)
+   {
+      fastener();
+   }
+}
+
+module preview_parts()
+{
+   tray();
+   translate([some_distance, 0, 0])
+   {
+      fastener();
+   }
+}
+
+module stack_parts()
+{
+   //  intersection()
+   {
+      color("yellow")
+      {
+         tray();
+      }
+      union()
+      {
+         moved_fastener();
+         translate([-r_main+4.5*r_keyhole+r_corner, 0, 0])
+         {
+            moved_fastener();
+         }
+         mirror([1,-1,0])
+         {
+            moved_fastener();
+         }
+      }
+
+   }
+}
+
 
 // *******************************************************
 // Code for the parts themselves
@@ -223,7 +280,7 @@ module a_plate_hole(dx, dy)
 module keyholes()
 {
    keyhole();
-   translate([-r_main+6*r_keyhole+r_corner, 0, 0])
+   translate([-r_main+4.5*r_keyhole+r_corner, 0, 0])
    {
       keyhole();
    }
@@ -236,7 +293,7 @@ module keyholes()
 
 module keyhole()
 {
-   translate([r_main-4*r_keyhole,w,p_1+p_2+h/2-1.1*r_keyhole])
+   translate([r_main-2*r_keyhole,w,p_1+p_2+1.05*r_keyhole])
    {
       rotate([90,0,0])
       {
@@ -259,4 +316,53 @@ module simple_keyhole()
          cylinder(r=r_slot, h=w+2*ms);
       }
    }
+}
+
+
+module moved_fastener()
+{
+
+   translate([r_main-2*r_keyhole,-w,p_1+p_2+2.25*r_keyhole])
+   {
+      rotate([90,0,180])
+      {
+            fastener();
+
+      }
+   }
+}
+
+module fastener()
+{
+   translate([-w_f/2, -w_f/2, 0])
+   {
+      cube([w_f, l_f, p_2]);
+   }
+   rotate_extrude()
+   {
+      2d_fastener();
+   }
+}
+
+
+module 2d_fastener()
+{
+   difference()
+   {
+      polygon(
+         [
+            [0, 0],
+            [r_slot, 0],
+            [r_slot+r_ff, p_2],
+            [r_slot, p_2+r_ff],
+            [r_slot, p_2+r_ff+l_fs],
+            [r_keyhole, p_2+r_ff+l_fs+z_factor*(r_keyhole-r_slot)],
+            [r_keyhole, p_2+r_ff+l_fs+z_factor*(r_keyhole-r_slot)+p_2],
+            [0, p_2+r_ff+l_fs+z_factor*(r_keyhole-r_slot)+p_2]
+            ]);
+         translate([r_slot+r_ff, p_2+r_ff])
+         {
+           circle(r=r_ff);
+         }
+      }
 }
