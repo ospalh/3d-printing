@@ -8,7 +8,8 @@
 
 // … to preview. You will get all parts when you click “Create Thing”.
 // part = "shelf"; // [shelf: shower shelf, fastener: mushroom head fastener]
-// part = "fastener"; // [shelf: shower shelf, fastener: mushroom head fastener]
+part = "fastener"; // [shelf: shower shelf, fastener: mushroom head fastener]
+
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
@@ -24,17 +25,18 @@ r_corner = 10;  // space for silicone joint
 w = 2.1;  // external wall width
 p_1 = 1.2;  // height of the bottomt plate with the cylindrical holes
 p_2 = 1.5;  // height of the bottomt plate with the conical shapes
+p_3 = 1.8;  // height of the bottomt plate with the conical shapes
 x_step = 14.1;  // hole to hole distance
 r_hole = 1.5;  // drain holes
 
 w_f = 20;  // width of the fastener
-l_f = 70;  // its length
+l_f = 40;  // its length
 
 h=22; // Height (inner)
 r_slot = 3.5;
 r_keyhole = 5.0;
-l_fs = 2*r_slot;
-r_ff = 2;  // fastener (bottom) fillet radius
+l_fs = 3;
+r_ff = 1.8;  // fastener (bottom) fillet radius
 
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed
@@ -77,9 +79,9 @@ $fa = (preview) ? pa : ra;
 // *******************************************************
 // Generate the parts
 
-// print_part();
+print_part();
 // preview_parts();
-stack_parts();
+// stack_parts();
 
 
 module print_part()
@@ -336,7 +338,39 @@ module fastener()
 {
    translate([-w_f/2, -w_f/2, 0])
    {
-      cube([w_f, l_f, p_2]);
+      cube([w_f, l_f, p_3]);
+   }
+   translate([-w_f/2+r_ff, -w_f/2+r_ff, p_3])
+   {
+      sphere(r=r_ff);
+      rotate([0,90,0])
+      {
+         cylinder(r=r_ff, h=w_f-2*r_ff);
+      }
+      rotate([-90,0,0])
+      {
+         cylinder(r=r_ff, h=l_f-2*r_ff);
+      }
+   }
+   translate([-w_f/2+r_ff, -w_f/2-r_ff+l_f, p_3])
+   {
+      sphere(r=r_ff);
+      rotate([0,90,0])
+      {
+         cylinder(r=r_ff, h=w_f-2*r_ff);
+      }
+   }
+   translate([+w_f/2-r_ff, -w_f/2+r_ff, p_3])
+   {
+      sphere(r=r_ff);
+      rotate([-90,0,0])
+      {
+         cylinder(r=r_ff, h=l_f-2*r_ff);
+      }
+   }
+   translate([+w_f/2-r_ff, -w_f/2-r_ff+l_f, p_3])
+   {
+      sphere(r=r_ff);
    }
    rotate_extrude()
    {
@@ -353,14 +387,14 @@ module 2d_fastener()
          [
             [0, 0],
             [r_slot, 0],
-            [r_slot+r_ff, p_2],
-            [r_slot, p_2+r_ff],
-            [r_slot, p_2+r_ff+l_fs],
-            [r_keyhole, p_2+r_ff+l_fs+z_factor*(r_keyhole-r_slot)],
-            [r_keyhole, p_2+r_ff+l_fs+z_factor*(r_keyhole-r_slot)+p_2],
-            [0, p_2+r_ff+l_fs+z_factor*(r_keyhole-r_slot)+p_2]
+            [r_slot+r_ff, p_3],
+            [r_slot, p_3+r_ff],
+            [r_slot, p_3+r_ff+l_fs],
+            [r_keyhole, p_3+r_ff+l_fs+z_factor*(r_keyhole-r_slot)],
+            [r_keyhole, p_3+r_ff+l_fs+z_factor*(r_keyhole-r_slot)+p_3],
+            [0, p_3+r_ff+l_fs+z_factor*(r_keyhole-r_slot)+p_3]
             ]);
-         translate([r_slot+r_ff, p_2+r_ff])
+         translate([r_slot+r_ff, p_3+r_ff])
          {
            circle(r=r_ff);
          }
