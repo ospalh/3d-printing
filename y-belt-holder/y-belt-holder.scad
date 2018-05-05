@@ -389,8 +389,8 @@ module belt_test_shape()
 {
    difference()
    {
-      cube([ebby, bt, fz]);
-      translate([truss_r_w, bt-belt_bracket_w - ebt,belt_bracket_w])
+      cube([ebby-belt_pitch, bt, fz]);
+      translate([truss_r_w-belt_pitch, bt-belt_bracket_w - ebt,belt_bracket_w])
       {
          n_belt();
       }
