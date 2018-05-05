@@ -6,7 +6,7 @@
 // Licence: CC-BY-SA 4.0
 
 // … to preview. You will get all parts when you click “Create Thing”.
-part = "holder"; // [holder: the y belt holder, square: square nut holder, hex: hex nut holder, test: test shape for sizing the belt]
+part = "test"; // [holder: the y belt holder, square: square nut holder, hex: hex nut holder, test: test shape for sizing the belt]
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
@@ -34,9 +34,8 @@ h_nut_r =  h_nut_d/sqrt(3);
 
 // Dimensions of the belt (apparently GT2)
 belt_pitch = 2;
-/* belt_w = 6; */
 belt_w = 6;
-belt_t1 = 0.7;
+belt_t1 = 0.9;
 belt_r = 0.7;
 
 
@@ -51,7 +50,7 @@ extra_z = 4; // for the screw holes
 
 
 swf = 1.05; // (wiggle factor)
-bwf = 1.10; // (wiggle factor)
+bwf = 1.02; // (wiggle factor)
 ms = 0.01; // Muggeseggle
 
 // fn for differently sized objects and fs, fa; all for preview or rendering.
