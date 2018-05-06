@@ -35,7 +35,7 @@ h_nut_r =  h_nut_d/sqrt(3);
 // Dimensions of the belt (apparently GT2)
 belt_pitch = 2;
 belt_w = 6;
-belt_t1 = 0.9;
+belt_t1 = 1.05;
 belt_r = 0.7;
 
 
