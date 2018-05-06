@@ -253,7 +253,7 @@ module display()
                [Dx_Display + 2*r_senk+ms,
                 Dy_Display + (2+2*ixy_factor)*r_senk+ms, ymax], center=true);
          }
-         translate([-Dx_Display, 0, -h_sd])
+         translate([-Dx_Display, -Dy_Display/2+dy_sd, -h_sd])
          {
             // Ausschnitt für den Displayhalter
             cube([Dx_Display, Dy_Display/2-dy_sd, h_sd+ms]);
