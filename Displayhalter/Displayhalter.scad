@@ -115,27 +115,18 @@ module print_part()
 {
    if ("links" == part)
    {
-      halterung();
+      halterung(true);
    }
    if ("rechts" == part)
    {
-      mirror()
-      {
-         halterung();
-      }
+      halterung(false);
    }
 }
 
 module preview_parts()
 {
-   halterung();
-   // translate([Dx_Rahmen, 0, 0])
-   {
-      mirror()
-      {
-         halterung();
-      }
-   }
+   halterung(true);
+   halterung(false);
 }
 
 
@@ -143,20 +134,35 @@ module preview_parts()
 // Code for the parts themselves
 
 
-module halterung()
+module halterung(links)
 {
    difference()
    {
-      translate([-Dx_Rahmen/2, 0, 0])
+      if (links)
       {
-         halterung_massiv();
+         halterung_minus_rs();
       }
-      translate([-Dx_Rahmen/2, 0, 0])
+      else
       {
-         rahmenschraube();
+         mirror()
+         {
+            halterung_minus_rs();
+         }
       }
       display();
       boden();
+   }
+}
+
+module halterung_minus_rs()
+{
+   translate([-Dx_Rahmen/2, 0, 0])
+   {
+      difference()
+      {
+         halterung_massiv();
+         rahmenschraube();
+      }
    }
 }
 
@@ -231,7 +237,6 @@ module unterarm_s()
 module display()
 {
    ymax = Dy_Display * max(1, xy_factor, z_factor);
-   echo (ymax);
    translate([0, -dy_o+dy/2, h_Oberarm+1/2*Dy_Display * iz_factor])
    {
       rotate([-angle,0,0])
@@ -247,6 +252,14 @@ module display()
             m3_down();
          }
          translate([-Dx_Display/2, +Dy_Display/2, 0])
+         {
+            m3_down();
+         }
+         translate([+Dx_Display/2, -Dy_Display/2, 0])
+         {
+            m3_down();
+         }
+         translate([+Dx_Display/2, +Dy_Display/2, 0])
          {
             m3_down();
          }
