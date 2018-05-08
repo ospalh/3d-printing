@@ -6,7 +6,7 @@
 // Licence: CC-BY-SA 4.0
 
 // … to preview. You will get all parts when you click “Create Thing”.
-part = "test"; // [holder: the y belt holder, square: square nut holder, hex: hex nut holder, test: test shape for sizing the belt]
+part = "holder"; // [holder: the y belt holder, square: square nut holder, hex: hex nut holder, test: test shape for sizing the belt]
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
@@ -327,9 +327,9 @@ module one_bracket()
 
    translate([0, -truss_z_a, 0])
    {
-      translate([belt_bracket_y, 0, 0])
+      translate([belt_bracket_y, ms, 0])
       {
-         cube([truss_r_w, truss_z_a, fz]);
+         cube([truss_r_w, truss_z_a-ms, fz]);
       }
    }
    one_truss();
@@ -358,7 +358,7 @@ module one_bracket()
       difference()
       {
          cube([ebby, bt, fz]);
-         translate([truss_r_w, bt-belt_bracket_w - ebt,belt_bracket_w])
+         translate([truss_r_w+ms, bt-belt_bracket_w - ebt,belt_bracket_w])
          {
             n_belt();
          }
