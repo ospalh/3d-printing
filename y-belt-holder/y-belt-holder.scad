@@ -138,13 +138,13 @@ module preview_parts()
 module belt_holder()
 {
 // Create the actual shapes
-   translate([inner_truss_y/2, 0, 0])
+   translate([inner_truss_y/2-ms, 0, 0])
    {
       one_bracket();
    }
    mirror()
    {
-      translate([inner_truss_y/2, 0, 0])
+      translate([inner_truss_y/2-ms, 0, 0])
       {
          one_bracket();
       }
