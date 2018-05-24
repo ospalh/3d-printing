@@ -9,7 +9,7 @@ d_i = 4.2;
 d_a = 5;
 h = 10;
 
-preview = false;
+preview = true;
 
 ms = 0.1;  // Muggeseggele
 

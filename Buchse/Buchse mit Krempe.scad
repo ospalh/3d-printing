@@ -11,7 +11,7 @@ h = 4.5;
 d_k = 6;
 h_k = 0.4;
 
-preview = false;
+preview = true;
 
 ms = 0.1;  // Muggeseggele
 
