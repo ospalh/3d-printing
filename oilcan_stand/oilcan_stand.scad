@@ -7,12 +7,26 @@
 
 
 
-// Size of the can
-r_can = 79/2;  // diameter of the con itself
-h_tip = 133;  // height of the oiling tip above ground
-x_tip = 142;  // distance of the tip from the center of the can
+// Diameter of the oil can
+d_can = 79;  // [20:1:150]
+// Height of the oiling tip above ground
+h_tip = 133;  // [20:1:170]
+// Distance of the tip from the center of the can
+x_tip = 142;   // [20:1:200]
 
-// sizes of the stand
+
+// Uncheck this when done, then hit “Create Thing”
+preview = true; // [false:render, true:preview]
+
+
+/* [Hidden] */
+
+// Done with the customizer
+
+// *******************************************************
+// Extra parameters. These can be changed reasonably safely.
+
+
 clearance = 0.5;  // extra size for the can
 b = 1.5;  // Thickness of the bottom plate
 b_c = 4;  // Thickness of the connector
@@ -24,21 +38,39 @@ h_clear = 5;  // distance from the tip to the catcher pot
 pot_bottom_height = 8;  // To give the catcher got a bit of a flat bottom
 l_horns = 20;
 
-// other
-preview = 1; // [0:render, 1:preview]
-// fn for differently sized objects, for preview or rendering.
-pfa = 40;
-pfb = 15;
-rfa = 180;
-rfb = 30;
-function fa() = (preview) ? pfa : rfa;
-function fb() = (preview) ? pfb : rfb;
-ms = 0.1;  // Muggeseggele
+
+// *******************************************************
+// Some shortcuts. These shouldn’t be changed
+
+tau = 2 * PI;  // π is still wrong. τ = ⌀ ÷ r
+
+r_can = d_can/2;
+
+some_distance = 50;
+ms = 0.01;  // Muggeseggele.
+
+// fn for differently sized objects and fs, fa; all for preview or rendering.
+pna = 40;
+pnb = 15;
+pa = 5;
+ps = 1;
+rna = 180;
+rnb = 30;
+ra = 1;
+rs = 0.1;
+function na() = (preview) ? pna : rna;
+function nb() = (preview) ? pnb : rnb;
+$fs = (preview) ? ps : rs;
+$fa = (preview) ? pa : ra;
 
 // Calculated
 h_ct = h_tip-h_clear+b;
 h_cc = 2*r_catcher;
 h_cb = h_ct - h_cc;
+
+// *******************************************************
+// End setup
+
 
 
 oilcan_stand();
@@ -63,7 +95,7 @@ module oilcan_stand()
 module solid_can_stand()
 {
 
-   cylinder(r=r_can+w+clearance, h=h_can+b, $fn=fa());
+   cylinder(r=r_can+w+clearance, h=h_can+b);
 }
 
 module connector()
@@ -78,7 +110,7 @@ module stem()
 {
    translate([x_tip,0,0])
    {
-      cylinder(r=r_stem, h=h_ct, $fn=fb());
+      cylinder(r=r_stem, h=h_ct);
    }
 }
 
@@ -86,7 +118,7 @@ module solid_catcher()
 {
    translate([x_tip,0,h_cb-2*w])
    {
-      cylinder(r1=ms, r2=r_catcher+w, h=h_cc+2*w, $fn=fb());
+      cylinder(r1=ms, r2=r_catcher+w, h=h_cc+2*w);
    }
 }
 
@@ -114,7 +146,7 @@ module can_hollow()
 {
    translate([0,0, b])
    {
-      cylinder(r=r_can, h=h_can+ms, $fn=fa());
+      cylinder(r=r_can, h=h_can+ms);
    }
 }
 
@@ -125,10 +157,10 @@ module catcher_hollow()
    {
       intersection()
       {
-         cylinder(r1=ms, r2=r_catcher+ms, h=h_cc+2*ms, $fn=fb());
+         cylinder(r1=ms, r2=r_catcher+ms, h=h_cc+2*ms);
          translate([0,0,pot_bottom_height])
          {
-            cylinder(r=r_catcher+2*ms, h=h_cc+2, $fn=fb());
+            cylinder(r=r_catcher+2*ms, h=h_cc+2);
          }
       }
    }
