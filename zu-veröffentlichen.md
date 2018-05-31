@@ -6,6 +6,9 @@
 • Schlüsselsiegel
 • Topfkeil
 • nut puller
-• Zweihandflaschenöffner
+• Zweihandflaschenöffner, Warnlabel
+• Dosendurchschlag (mit Quelle)
 • Displayhalter
 • Pilzanker
+• Magnethaken
+• Radienlehre (ggf. in thingiverese-Verzeichnis suchen)
