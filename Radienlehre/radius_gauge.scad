@@ -16,10 +16,12 @@
 // 3 June 2018: Use heavy font, my render/preview trick.
 
 view = 1; // 0 = assembly view; 1 = arranged for printing
-part = 2; // 1 = stationary part; 2 = moving part; 3 = both;
+part = 1; // 1 = stationary part; 2 = moving part; 3 = both;
           // 4 = gauge w/ hole; 5 = gauge w/ pin; 6 = both gauges
 
-preview = true;
+preview = true; // Set this to false before you create the STL.
+font_ = "Praxis LT:style=Heavy";  // Set this to a font you actually have.
+// Look up which ones are available under OpenSCAD’s Help/Font List menu.
 
 // fn for differently sized objects and fs, fa; all for preview or rendering.
 pna = 40;
@@ -61,7 +63,6 @@ convex_number_list = [5, 10, 20, 50];
 
 text_extrude_height = 0.9;
 text_character_height = 5.5;
-font_ = "Praxis LT:style=Heavy";
 
 if ( view == 0 ) // 0 = assembly view
 {
