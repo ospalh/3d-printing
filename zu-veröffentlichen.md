@@ -2,6 +2,7 @@
 • cube-Ventilkappe
 • Drehkalender
 • Kühlwand
+• Kühlschrankuntersetzer mit Rillen
 • Fahrradschlauchfüße
 • Schlüsselsiegel
 • Topfkeil
