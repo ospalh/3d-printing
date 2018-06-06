@@ -1,5 +1,5 @@
 • Duschgelschale:
-  Separate Klebepadhalter. Ggf. mit Schraube
+  größere Klebepads, Schlitze unten offen
 • Mitome-in:
   Warnungen
   Deckel

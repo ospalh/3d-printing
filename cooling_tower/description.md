@@ -2,21 +2,23 @@ A trick for people without a filament fan.
 
 Put this on the build plate along with your object to print, and your part will have a bit of time to cool down whil this is printed.
 
-Set the heights to the bottom and top heights where you have problems with your part.
 
-I think printing this in y rather than x direction reduces the chance of it tipping over on Průša-style printers. (Here the wind, along with the accelaration, might play a role.)
 
 Print settings
 
-This needs some advanced setup. I know slic3r, and this is how to do it there:
-* You need both `STL`s, the wall and the modifier
-* Load the wall as a normal part. Place it on the build plate. Away from the real parts, if possible.
-* Open the wall’s settings.
-* Click on “Load modifier...” and load the modifier `STL`.
-* Select the modifier in the tree view
-* Click the green “+” and pick “Speed > Perimeters”
-* Set this to a low value. The lower, the longer the print head loiters on the wall.
-* The wall is 100 mm long. A perimeter speed of, for example, 10 mm/s gives you ten seconds cooling time for your part.
+There are two ways to use this: with OpenSCAD or with your slicer.
+
+For both ways you first have to check the critical height of your real part. That is, the top and bottom height of those small bits where you need (passive) cooling.
+
+* Set the top and bottom height in the `scad` file or, when it’s working, the customizer.
+* Use either the solid or half wall `STL` and use your slicer to cut it to the right height.
+* Use your slicer to print the wall slowly while keeping the normal speed for the real part.
+
+I use slic3r, and this is how to do the speed setting there:
+* Select the wall
+* Click on “Settings”
+* Add (+) “Speed (perimeters)”
+* Put in a low value like 10 mm/s.
 
 Post printing:
 
