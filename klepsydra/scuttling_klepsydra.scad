@@ -10,16 +10,15 @@
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = true; // [false:render, true:preview]
 
-// Diameter of the balast cylinders, mm
-d_coin = 17;
-// Height of the balast cylinders, mm
-h_coins=3;
+// Size of the balast nuts, per DIN. Standard: M12
+S = 19;
+m = 10;
+d_1 = 10.1;
 
-d_nozzle = 0.4;
+d_nozzle = 1;
 
-r_b_min = 20;
-h = 50;
-r_t = 70;
+h = 50;  // Height of bowl
+r_t = 70; // Radius at top of bowl
 
 
 /* [Hidden] */
@@ -32,13 +31,22 @@ r_t = 70;
 
 w = 1.2;  // Wall width
 p = 1.2;  // Bottom, top plate height
-c = 0.4;  // Clearance
+cs = 0.4;  // Clearance (horizontal)
+cs_v = 0.2; // Vertical clearance
 angle = 60; // Overhangs much below 60° are a problem for me
+lh = 0.2;  // Layer height
+nw = 0.4;  // Nozzle width
 
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed
 
 tau = 2 * PI;  // π is still wrong. τ = ⌀ ÷ r
+
+e_2 = S / sqrt(3);
+e = S * 2 / sqrt(3);
+
+r_2 = S/2;
+r_1 = d_1/2;
 
 xy_factor = 1/tan(angle);
 // To get from a height to a horizontal width inclined correctly
@@ -70,50 +78,83 @@ $fa = (preview) ? pa : ra;
 // *******************************************************
 // Generate the parts
 
-// print_part();
-preview_parts();
-// stack_parts();
+scuttle_klepsydra();
+
+// *******************************************************
+// Code for the parts themselves
 
 
-
-module print_part()
+module scuttle_klepsydra()
 {
-   if ("NN" == part)
+   one_nut();
+
+}
+
+module bottom_plate()
+{
+   linear_extrude(p)
    {
-      nn();
-   }
-   if ("foo" == part)
-   {
-      foo();
+
    }
 }
 
-module preview_parts()
+module one_nut()
 {
-   nn();
-   translate([some_distance, 0, 0])
+   difference()
    {
-      foo();
+      one_solid_nut();
+      one_nut_space();
+
+   }
+   nut_core();
+   nut_helper();
+}
+
+module one_solid_nut()
+{
+   cylinder(r=e_2+w+cs, h=m+2*p+2*cs_v+lh, $fn=6);
+}
+
+module 2d_outer_nut()
+{
+   circle(r=e_2+w+cs, $fn=6);
+}
+
+module one_nut_space()
+{
+   translate([0,0,p])
+   {
+      cylinder(r=e_2+cs, h=m+2*cs_v+lh, $fn=6);
    }
 }
 
-module stack_parts()
+module nut_core()
 {
-   // intersection()
+   cylinder(r=r_1-cs-w, h=m+2*p+2*cs_v);
+}
+
+module nut_helper()
+{
+   translate([0,0,m+2*cs_v+p])
    {
-      color("yellow")
+      for (a=[0:60:179])
       {
-         foo();
-      }
-      translate([0,0,30])
-      {
-         color("red")
+         b = a+30;
+         echo(a,b);
+         rotate(a)
          {
-            NN();
+            translate([0,nw/2,lh/2])
+            {
+               cube([e+2*w+cs,nw,lh],center=true);
+            }
+         }
+         rotate(b)
+         {
+            translate([0,nw/2,lh/2])
+            {
+               cube([S+2*w+cs,nw,lh],center=true);
+            }
          }
       }
    }
 }
-
-// *******************************************************
-// Code for the parts themselves
