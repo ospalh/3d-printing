@@ -78,25 +78,47 @@ $fa = (preview) ? pa : ra;
 // *******************************************************
 // Generate the parts
 
-scuttle_klepsydra();
+// scuttle_klepsydra();
+six_plate(1);
 
 // *******************************************************
 // Code for the parts themselves
 
+px
+
 
 module scuttle_klepsydra()
 {
-   one_nut();
-
+   scuttle_klepsydra_base();
 }
 
-module bottom_plate()
+module scuttle_klepsydra_base()
 {
-   linear_extrude(p)
+   one_nut();
+   for (a=[0:60:359])
    {
-
+      rotate(a)
+      {
+         translate([0,S+w+2*cs,0])
+         {
+            one_nut();
+         }
+      }
    }
 }
+
+module six_plate(f)
+{
+   scale(f)
+   {
+      projection()
+      {
+         scuttle_klepsydra_base();
+      }
+   }
+}
+
+
 
 module one_nut()
 {
@@ -143,16 +165,16 @@ module nut_helper()
          echo(a,b);
          rotate(a)
          {
-            translate([0,nw/2,lh/2])
+            translate([0,0,lh/2])
             {
                cube([e+2*w+cs,nw,lh],center=true);
             }
          }
          rotate(b)
          {
-            translate([0,nw/2,lh/2])
+            translate([0,0,lh/2])
             {
-               cube([S+2*w+cs,nw,lh],center=true);
+               cube([S+2*w,nw,lh],center=true);
             }
          }
       }
