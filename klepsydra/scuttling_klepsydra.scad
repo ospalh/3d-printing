@@ -78,18 +78,31 @@ $fa = (preview) ? pa : ra;
 // *******************************************************
 // Generate the parts
 
-// scuttle_klepsydra();
-six_plate(1);
+scuttle_klepsydra();
+// six_plate(1);
 
 // *******************************************************
 // Code for the parts themselves
 
-px
-
-
 module scuttle_klepsydra()
 {
-   scuttle_klepsydra_base();
+   //scuttle_klepsydra_base();
+   difference()
+   {
+      // hull()
+      {
+         for (a=[0:60:359])
+         {
+            rotate(a)
+            {
+               translate([0,S+w+2*cs,0])
+               {
+                  one_solid_nut();
+               }
+            }
+         }
+      }
+   }
 }
 
 module scuttle_klepsydra_base()
