@@ -6,18 +6,14 @@
 // Licence: CC-BY-SA 4.0
 
 
-// … to preview. You will get all parts when you click “Create Thing”.
-part = "NN"; // [NN: foo, bar: baz]
-
 // Set this to “render” and click on “Create Thing” when done with the setup.
-preview = 1; // [0:render, 1:preview]
+preview = false; // [0:render, 1:preview]
 
 d_x = 82;
 d_x2 = 79;
 d_y = 55;
-h_1 = 2;
-h_2 = 2;
-h_3 = 6;
+h_1 = 4;
+h_2 = 6;
 r_r = 2;
 
 /* [Hidden] */
@@ -52,7 +48,7 @@ r_x2 = d_x2/2;
 r_y = d_y/2;
 k = r_x-r_x2;
 
-r_sph = (h_3*h_3-k*k)/(2*k);
+r_sph = (h_2*h_2-k*k)/(2*k);
 echo(r_sph);
 
 // fn for differently sized objects and fs, fa; all for preview or rendering.
@@ -95,6 +91,47 @@ module vollseifenldeckel()
 
 module 2d_vollseifendeckel()
 {
-   r_3 = r_x+w-r_r;
-   rect([w,r_3]);
+   r_3 = r_x+w-r_r2;
+   square([r_3, w]);
+   translate([r_3, r_r2])
+   {
+      difference()
+      {
+         circle(r_r2);
+         circle(r_r);
+         translate([-r_r2-ms,0])
+         {
+            square([2*r_r2+2*ms, r_r2+ms, ]);
+         }
+         translate([-r_r2-ms, -r_r2-ms])
+         {
+             square([r_r2+ms, 2*r_r2+2*ms]);
+         }
+      }
+   }
+   translate([r_x, r_r2])
+   {
+      square([w, h_1-r_r2+p]);
+   }
+   translate([r_x-r_sph, p+h_1])
+   {
+      difference()
+      {
+         circle(r=r_sph+w);
+         circle(r=r_sph);
+
+         translate([-r_sph-w-ms,h_2])
+         {
+            square([2*r_sph+2*w+2*ms, 2*r_sph+2*w+2*ms]);
+         }
+         translate([-r_sph-w-ms, -r_sph-w-ms])
+         {
+            square([2*r_sph+2*w+2*ms, r_sph+w+ms]);
+         }
+         translate([-r_sph-w-ms, -ms])
+         {
+            square([r_sph+w+ms, r_sph+w+2*ms]);
+         }
+      }
+   }
 }
