@@ -7,15 +7,16 @@
 
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
-preview = false; // [0:render, 1:preview]
+preview = true; // [0:render, 1:preview]
 
 d_x = 82;
 d_x2 = 79;
 d_y = 55;
 h_1 = 4;
 h_2 = 6;
+h_3 = 2;
 r_r = 2;
-
+x_h = 5;
 /* [Hidden] */
 
 // Done with the customizer
@@ -25,7 +26,7 @@ r_r = 2;
 
 
 w = 1.8;  // Wall width
-p = 1.8;  // Bottom, top plate height
+p = w;  // Bottom, top plate height
 c = 0.4;  // Clearance
 angle = 60; // Overhangs much below 60° are a problem for me
 
@@ -47,7 +48,7 @@ r_x = d_x/2;
 r_x2 = d_x2/2;
 r_y = d_y/2;
 k = r_x-r_x2;
-
+h_h = p + h_3;
 r_sph = (h_2*h_2-k*k)/(2*k);
 echo(r_sph);
 
@@ -72,16 +73,34 @@ $fa = (preview) ? pa : ra;
 // *******************************************************
 // Generate the parts
 
+seifendeckel();
 // runder_seifendeckel();
 // vollseifenldeckel();
-2d_vollseifendeckel();
+// 2d_vollseifendeckel();
 
 // *******************************************************
 // Code for the parts themselves
 
 
+module seifendeckel()
+{
+   scale([1, d_y/d_x, 1])
+   {
+      runder_seifendeckel();
+   }
+}
 
-module vollseifenldeckel()
+
+module runder_seifendeckel()
+{
+   difference()
+   {
+      vollseifendeckel();
+      hohlraum();
+   }
+}
+
+module vollseifendeckel()
 {
    rotate_extrude()
    {
@@ -132,6 +151,42 @@ module 2d_vollseifendeckel()
          {
             square([r_sph+w+ms, r_sph+w+2*ms]);
          }
+      }
+   }
+}
+
+
+module hohlraum()
+{
+   rotate([90,0,0])
+   {
+      translate([0, 0, -r_x-w-ms])
+      {
+         linear_extrude(d_x+2*w+2*ms)
+         {
+            halbhohlflaeche();
+            mirror()
+            {
+               halbhohlflaeche();
+            }
+         }
+      }
+   }
+}
+
+
+module halbhohlflaeche()
+{
+   translate([0,h_h])
+   {
+      translate([r_x-x_h-r_r,r_r])
+      {
+         circle(r_r);
+      }
+      square([r_x-x_h-r_r,2*r_r]);
+      translate([0,r_r])
+      {
+         square([r_x-x_h,h_2+r_r]);
       }
    }
 }
