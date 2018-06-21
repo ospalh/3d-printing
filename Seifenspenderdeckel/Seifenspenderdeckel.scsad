@@ -12,8 +12,12 @@ part = "NN"; // [NN: foo, bar: baz]
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
-d_x = 81;
+d_x = 82;
+d_x2 = 79;
 d_y = 55;
+h_1 = 2;
+h_2 = 2;
+h_3 = 6;
 
 /* [Hidden] */
 
