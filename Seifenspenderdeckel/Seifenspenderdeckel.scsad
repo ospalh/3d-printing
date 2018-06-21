@@ -18,6 +18,7 @@ d_y = 55;
 h_1 = 2;
 h_2 = 2;
 h_3 = 6;
+r_r = 2;
 
 /* [Hidden] */
 
@@ -28,7 +29,7 @@ h_3 = 6;
 
 
 w = 1.8;  // Wall width
-p = 1.2;  // Bottom, top plate height
+p = 1.8;  // Bottom, top plate height
 c = 0.4;  // Clearance
 angle = 60; // Overhangs much below 60° are a problem for me
 
@@ -44,6 +45,15 @@ z_factor = tan(angle);  // The other way around
 
 some_distance = 50;
 ms = 0.01;  // Muggeseggele.
+
+r_r2 = r_r+w;
+r_x = d_x/2;
+r_x2 = d_x2/2;
+r_y = d_y/2;
+k = r_x-r_x2;
+
+r_sph = (h_3*h_3-k*k)/(2*k);
+echo(r_sph);
 
 // fn for differently sized objects and fs, fa; all for preview or rendering.
 pna = 40;
@@ -63,54 +73,28 @@ $fa = (preview) ? pa : ra;
 // End setup
 
 
-
 // *******************************************************
 // Generate the parts
 
-// print_part();
-preview_parts();
-// stack_parts();
-
-
-
-module print_part()
-{
-   if ("NN" == part)
-   {
-      nn();
-   }
-   if ("foo" == part)
-   {
-      foo();
-   }
-}
-
-module preview_parts()
-{
-   nn();
-   translate([some_distance, 0, 0])
-   {
-      foo();
-   }
-}
-
-module stack_parts()
-{
-   // intersection()
-   {
-      color("yellow")
-      {
-         foo();
-      }
-      translate([0,0,30])
-      {
-         color("red")
-         {
-            NN();
-         }
-      }
-   }
-}
+// runder_seifendeckel();
+// vollseifenldeckel();
+2d_vollseifendeckel();
 
 // *******************************************************
 // Code for the parts themselves
+
+
+
+module vollseifenldeckel()
+{
+   rotate_extrude()
+   {
+      2d_vollseifendeckel();
+   }
+}
+
+module 2d_vollseifendeckel()
+{
+   r_3 = r_x+w-r_r;
+   rect([w,r_3]);
+}
