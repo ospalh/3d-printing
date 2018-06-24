@@ -50,7 +50,6 @@ r_y = d_y/2;
 k = r_x-r_x2;
 h_h = p + h_3;
 r_sph = (h_2*h_2-k*k)/(2*k);
-echo(r_sph);
 
 // fn for differently sized objects and fs, fa; all for preview or rendering.
 pna = 40;
