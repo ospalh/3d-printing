@@ -7,8 +7,7 @@
 
 
 // … to preview. You will get all parts when you click “Create Thing”.
-// part = "shelf"; // [shelf: shower shelf, fastener: mushroom head fastener]
-part = "fastener"; // [shelf: shower shelf, fastener: mushroom head fastener]
+part = "tray"; // [tray: shower tray, fastener: mushroom head fastener, big fastener: big mushroom head fastener]
 
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
@@ -23,20 +22,24 @@ r_corner = 10;  // space for silicone joint
 // Done with the customizer
 
 w = 2.1;  // external wall width
-p_1 = 1.2;  // height of the bottomt plate with the cylindrical holes
-p_2 = 1.5;  // height of the bottomt plate with the conical shapes
+p_1 = 0.6;  // height of the bottomt plate with the cylindrical holes
+p_2 = 1.2;  // height of the bottomt plate with the conical shapes
 p_3 = 1.8;  // height of the bottomt plate with the conical shapes
 x_step = 14.1;  // hole to hole distance
 r_hole = 1.5;  // drain holes
 
 w_f = 20;  // width of the fastener
 l_f = 40;  // its length
+w_bf = 41; // big fastener
+l_bf = 60;  //
 
 h=22; // Height (inner)
 r_slot = 3.5;
 r_keyhole = 5.0;
 l_fs = 3;
 r_ff = 1.8;  // fastener (bottom) fillet radius
+
+f_cs = 3;  // clearance for the third fastener
 
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed
@@ -48,7 +51,7 @@ xy_factor = 1/tan(angle);  // To get from a height to a horizontal width
 z_factor = tan(angle);  // the other way around
 
 p = p_1 + p_2;
-
+h_msh = p_3+r_ff+l_fs+z_factor*(r_keyhole-r_slot)+p_3;
 thf = sqrt(3)/2;  // (equilateral) triangle height factor
 y_step = x_step * thf;
 
@@ -83,7 +86,6 @@ print_part();
 // preview_parts();
 // stack_parts();
 
-
 module print_part()
 {
    if ("tray" == part)
@@ -94,6 +96,10 @@ module print_part()
    {
       fastener();
    }
+   if ("big fastener" == part)
+   {
+      big_fastener();
+   }
 }
 
 module preview_parts()
@@ -102,6 +108,10 @@ module preview_parts()
    translate([some_distance, 0, 0])
    {
       fastener();
+   }
+   translate([some_distance, 2*w_bf, 0])
+   {
+      big_fastener();
    }
 }
 
@@ -115,14 +125,14 @@ module stack_parts()
       }
       union()
       {
-         moved_fastener();
+         moved_fastener(w_f, l_f);
          translate([-r_main+4.5*r_keyhole+r_corner, 0, 0])
          {
-            moved_fastener();
+            moved_fastener(w_f, l_f);
          }
          mirror([1,-1,0])
          {
-            moved_fastener();
+            moved_fastener(w_bf, l_bf);
          }
       }
 
@@ -281,25 +291,30 @@ module a_plate_hole(dx, dy)
 
 module keyholes()
 {
-   keyhole();
+   keyhole(false);
    translate([-r_main+4.5*r_keyhole+r_corner, 0, 0])
    {
-      keyhole();
+      keyhole(false);
    }
    mirror([1,-1,0])
    {
-      keyhole();
+      keyhole(true);
    }
 
 }
 
-module keyhole()
+module keyhole(bc)
 {
    translate([r_main-2*r_keyhole,w,p_1+p_2+1.05*r_keyhole])
    {
       rotate([90,0,0])
       {
          simple_keyhole();
+         if (bc)
+         {
+            echo("hey");
+            keyhole_bottom_cut();
+         }
       }
    }
 }
@@ -320,55 +335,76 @@ module simple_keyhole()
    }
 }
 
+module keyhole_bottom_cut()
+{
+   translate([0,0,-h_msh-f_cs-ms])
+   {
+      translate([-r_keyhole,-h,0])
+      {
+         cube([2*r_keyhole, h,h_msh+f_cs+w+2*ms]);
+      }
+   }
 
-module moved_fastener()
+}
+
+
+module moved_fastener(ww, ll)
 {
 
    translate([r_main-2*r_keyhole,-w,p_1+p_2+2.25*r_keyhole])
    {
       rotate([90,0,180])
       {
-            fastener();
-
+         fastener(ww, ll);
       }
    }
 }
 
 module fastener()
 {
-   translate([-w_f/2, -w_f/2, 0])
+   generic_fastener(w_f, l_f);
+}
+
+module big_fastener()
+{
+   generic_fastener(w_bf, l_bf);
+}
+
+module generic_fastener(ww, ll)
+{
+   translate([-ww/2, -ww/2, 0])
    {
-      cube([w_f, l_f, p_3]);
+      cube([ww, ll, p_3]);
    }
-   translate([-w_f/2+r_ff, -w_f/2+r_ff, p_3])
-   {
-      sphere(r=r_ff);
-      rotate([0,90,0])
-      {
-         cylinder(r=r_ff, h=w_f-2*r_ff);
-      }
-      rotate([-90,0,0])
-      {
-         cylinder(r=r_ff, h=l_f-2*r_ff);
-      }
-   }
-   translate([-w_f/2+r_ff, -w_f/2-r_ff+l_f, p_3])
+   translate([-ww/2+r_ff, -ww/2+r_ff, p_3])
    {
       sphere(r=r_ff);
       rotate([0,90,0])
       {
-         cylinder(r=r_ff, h=w_f-2*r_ff);
+         cylinder(r=r_ff, h=ww-2*r_ff);
+      }
+      rotate([-90,0,0])
+      {
+         cylinder(r=r_ff, h=ll-2*r_ff);
       }
    }
-   translate([+w_f/2-r_ff, -w_f/2+r_ff, p_3])
+   translate([-ww/2+r_ff, -ww/2-r_ff+ll, p_3])
+   {
+      sphere(r=r_ff);
+      rotate([0,90,0])
+      {
+         cylinder(r=r_ff, h=ww-2*r_ff);
+      }
+   }
+   translate([+ww/2-r_ff, -ww/2+r_ff, p_3])
    {
       sphere(r=r_ff);
       rotate([-90,0,0])
       {
-         cylinder(r=r_ff, h=l_f-2*r_ff);
+         cylinder(r=r_ff, h=ll-2*r_ff);
       }
    }
-   translate([+w_f/2-r_ff, -w_f/2-r_ff+l_f, p_3])
+   translate([+ww/2-r_ff, -ww/2-r_ff+ll, p_3])
    {
       sphere(r=r_ff);
    }
@@ -390,9 +426,9 @@ module 2d_fastener()
             [r_slot+r_ff, p_3],
             [r_slot, p_3+r_ff],
             [r_slot, p_3+r_ff+l_fs],
-            [r_keyhole, p_3+r_ff+l_fs+z_factor*(r_keyhole-r_slot)],
-            [r_keyhole, p_3+r_ff+l_fs+z_factor*(r_keyhole-r_slot)+p_3],
-            [0, p_3+r_ff+l_fs+z_factor*(r_keyhole-r_slot)+p_3]
+            [r_keyhole, h_msh-p_3],
+            [r_keyhole, h_msh],
+            [0, h_msh]
             ]);
          translate([r_slot+r_ff, p_3+r_ff])
          {
