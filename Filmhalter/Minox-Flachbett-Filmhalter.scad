@@ -1,13 +1,16 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// NN
+// Holder for Minox film strips
+//
+// A holder for Minox 10 picture film strips for use with generic flatbed
+// scanners with a transparency unit and holder for 135 (35 mm) film.
 //
 // © 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 
 // … to preview. You will get all parts when you click “Create Thing”.
-part = "Halter"; // [Halter: Halte, Klemme: Klemme]
+part = "Halter"; // [Halter: Halter, Klemme: Klemme]
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
@@ -19,7 +22,6 @@ l_streifen = 131;
 
 p_h = 2;
 p_k = 3;
-h_h = p_h + p_k;
 
 /* [Hidden] */
 
@@ -46,9 +48,19 @@ z_factor = tan(angle);  // The other way around
 w_halter = w_loch - c;
 w_k = w_streifen + c;
 w_nut = w_k + c;
-w_steg = (w_halter - w_nut) / 3;
+w_steg = (w_halter - 2* w_nut) / 3;
 echo("w_steg", w_steg);
+w_x = 1.8;
+b_nase = 3;
+g_nase = b_nase + c;
+l_loch_k = l_streifen + c;
+l_loch_h = l_loch_k + c;
+l_k = l_loch_k + 2 * w_x + c;
+l_halter = l_k  + c + 2 * w_x;
+w_loch_h = w_bild + c;
+h_halter = p_h + p_k;
 
+y_nut = w_steg/2 + w_nut/2;
 
 some_distance = 50;
 ms = 0.01;  // Muggeseggele.
@@ -83,22 +95,22 @@ preview_parts();
 
 module print_part()
 {
-   if ("NN" == part)
+   if ("Halter" == part)
    {
-      nn();
+      halter();
    }
-   if ("foo" == part)
+   if ("Klemme" == part)
    {
-      foo();
+      klemme();
    }
 }
 
 module preview_parts()
 {
-   nn();
+   halter();
    translate([some_distance, 0, 0])
    {
-      foo();
+      klemme();
    }
 }
 
@@ -108,13 +120,20 @@ module stack_parts()
    {
       color("yellow")
       {
-         foo();
+         halter();
       }
-      translate([0,0,30])
+      translate([0,-ko, p_h])
       {
          color("red")
          {
-            NN();
+            klemme();
+         }
+      }
+      translate([0,+ko, p_h])
+      {
+         color("red")
+         {
+            klemme();
          }
       }
    }
@@ -122,3 +141,36 @@ module stack_parts()
 
 // *******************************************************
 // Code for the parts themselves
+
+
+module halter()
+{
+   difference()
+   {
+      translate([0, 0, h_halter/2])
+      {
+         cube([l_halter, w_halter, h_halter], center=true);
+      }
+      filmloch_halter();
+      mirror([0,1,0])
+      {
+         filmloch_halter();
+      }
+   }
+}
+
+module filmloch_halter()
+{
+   translate([0, y_nut, 0])
+   {
+      cube([l_loch_h, w_loch_h, 2*h_halter+2*ms], center=true);
+      translate([0,0, p_h+p_k/2+ms])
+      {
+         cube([l_halter+2*ms, w_nut, p_k+2*ms], center=true);
+      }
+   }
+
+}
+
+module klemme()
+{}
