@@ -2,6 +2,8 @@ Yet another lid for Sagrotan/Dettol hands-free hand soap dispenser.
 
 An original 250 cm³ re-fil for this costs € 3.45 in my local supermarket, or € 13.8 / 1 dm³. Store brand liquid soap costs € 0.79 per 750 cm³ pouch, or € 1.05 / 1 dm³. Savings of over an order of margnitude is something a Swabian can’t skip, really.
 
+
+
 ## Print settings
 
 easy print
