@@ -10,7 +10,7 @@
 
 
 // … to preview. You will get all parts when you click “Create Thing”.
-part = "Halter"; // [Halter: Halter, Klemme: Klemme]
+part = "Klemme"; // [Halter: Halter, Klemme: Klemme]
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
