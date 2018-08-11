@@ -37,7 +37,8 @@ p_k = 3;
 
 // w = 1.8;  // Wall width
 // p = 1.2;  // Bottom, top plate height
-c = 0.2;  // Clearance
+c = 0.4;  // Clearance
+c_x = 1.2;
 angle = 60; // Overhangs much below 60° are a problem for me
 
 // *******************************************************
@@ -55,7 +56,7 @@ w_nut = w_k + c;
 w_steg = (w_halter - 2 * w_nut) / 3;
 w_x = 1.8;
 b_nase = 3;
-b_nnut = b_nase + c;
+b_nnut = b_nase + c_x;
 l_streifen = l_bild * bilder_ps;
 l_loch_k = l_streifen + c;
 l_loch_h = l_loch_k + c;
