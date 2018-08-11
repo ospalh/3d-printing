@@ -9,13 +9,13 @@
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = true; // [0:render, 1:preview]
 
-d_x = 110;
-d_x2 = 107;
-d_y = 110;
-h_1 = 8;
-h_2 = 13;
+d_x = 110.5;
+d_x2 = 105;
+h_1 = 45;
+h_2 = 5;
 h_3 = 5;
-r_r = 2;
+r_r = 1;
+r_ra = 5;
 x_h = 9;
 
 d_schn = 35;
@@ -48,7 +48,6 @@ ms = 0.01;  // Muggeseggele.
 r_r2 = r_r+w;
 r_x = d_x/2;
 r_x2 = d_x2/2;
-r_y = d_y/2;
 k = r_x-r_x2;
 h_h = p + h_3;
 r_sph = (h_2*h_2-k*k)/(2*k);
@@ -85,10 +84,7 @@ seifendeckel();
 
 module seifendeckel()
 {
-   scale([1, d_y/d_x, 1])
-   {
-      runder_seifendeckel();
-   }
+   runder_seifendeckel();
 }
 
 
@@ -181,14 +177,15 @@ module halbhohlflaeche()
 {
    translate([0,h_h])
    {
-      translate([r_x-x_h-r_r,r_r])
+      translate([r_x-x_h-r_ra,r_ra])
       {
-         circle(r_r);
+         circle(r_ra);
       }
-      square([r_x-x_h-r_r,2*r_r]);
-      translate([0,r_r])
+      square([r_x-x_h-r_ra,2*r_ra]);
+      translate([0,r_ra])
       {
-         square([r_x-x_h,h_2+r_r]);
+         square([r_x-x_h,h_1+h_2+h_3+r_ra]);
+         // Hoch. Einfach ein bisschen mehr
       }
    }
 }
@@ -196,7 +193,7 @@ module halbhohlflaeche()
 
 module schnaupenausschnitt()
 {
-   translate([0,d_y/2,-ms])
+   translate([0,d_x/2,-ms])
    {
       rotate([45, 0, 0])
       {
