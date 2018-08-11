@@ -16,9 +16,9 @@ part = "Halter"; // [Halter: Halter, Klemme: Klemme]
 preview = 1; // [0:render, 1:preview]
 // I put this in every design, but it shouldn’t make a difference on this one.
 
-w_loch = 26;
+w_loch = 24.6;
 // w_streifen = 9.2;  // real width
-w_streifen = 9.7;  // slightly more so the movable part becomes more stable
+w_streifen = 9.6;  // slightly more so the movable part becomes more stable
 w_bild = 8;
 l_bild = 13.1;
 bilder_ps = 11;
@@ -94,8 +94,8 @@ $fa = (preview) ? pa : ra;
 // *******************************************************
 // Generate the parts
 
-// print_part();
-preview_parts();
+print_part();
+// preview_parts();
 // stack_parts();
 
 module print_part()
