@@ -195,12 +195,9 @@ module schnaupenausschnitt()
 {
    translate([0,d_x/2,-ms])
    {
-      rotate([45, 0, 0])
+      scale([1,0.5,1])
       {
-         scale([1,0.5,1])
-         {
-            cylinder(d=d_schn,h=p+h_1+h_2+h_3);
-         }
+         cylinder(d=d_schn,h=p+h_1+h_2+h_3);
       }
    }
 }
