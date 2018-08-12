@@ -7,7 +7,7 @@
 
 
 // … to preview. You will get all parts when you click “Create Thing”.
-part = "Stapler"; // [Stapler: stack, Deckel: lid]
+part = "stack"; // [stack: Stapler, lid: Deckel]
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
@@ -69,8 +69,8 @@ $fa = (preview) ? pa : ra;
 // *******************************************************
 // Generate the parts
 
-// print_part();
-preview_parts();
+print_part();
+//preview_parts();
 // stack_parts();
 
 

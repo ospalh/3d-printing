@@ -95,9 +95,9 @@ $fa = (preview) ? pa : ra;
 // *******************************************************
 // Generate the parts
 
-print_part();
+// print_part();
 // preview_parts();
-// stack_parts();
+stack_parts();
 
 module print_part()
 {
@@ -130,14 +130,14 @@ module stack_parts()
       }
       union()
       {
-         translate([0, -y_nut, p_h+ms])
+         translate([0, -y_nut, p_h+2*ms])
          {
             color("red")
             {
                klemme();
             }
          }
-         translate([0, y_nut, p_h+ms])
+         translate([0, y_nut, p_h+2*ms])
          {
             color("red")
             {
