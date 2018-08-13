@@ -72,9 +72,9 @@ $fa = (preview) ? pa : ra;
 // *******************************************************
 // Generate the parts
 
-// print_part();
-//preview_parts();
-stack_parts();
+print_part();
+// preview_parts();
+// stack_parts();
 
 
 
