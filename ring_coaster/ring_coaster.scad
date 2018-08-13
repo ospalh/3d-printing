@@ -11,45 +11,94 @@ inner_diameter = 20;  // [10:1:90]
 // Size of the coaster as a whole (mm)
 outer_diameter = 49;  // [20:1:100]
 
-module dummy()
-{
-   // My quick way to stop the customizer.
-}
+// Set this to “render” and click on “Create Thing” when done with the setup.
+preview = 1; // [0:render, 1:preview]
+
+
+/* [Hidden] */
+
+// Done with the customizer
 
 h = 1.2;
 b = 0.8;
 w = 1.2;
 r_i = inner_diameter/2;
 r_o = outer_diameter/2;
+
+st_rad = 13;
+r_is = r_i + 2*w;
+r_os = r_o - 2*w;
+nsr = ceil((r_os-r_is)/st_rad);
+echo("# Stegringe", nsr);
+ms = 0.01;  // Muggeseggele.
+
+// fn for differently sized objects and fs, fa; all for preview or rendering.
+pna = 40;
+pnb = 15;
+pa = 5;
+ps = 1;
+rna = 180;
+rnb = 30;
+ra = 1;
+rs = 0.1;
+function na() = (preview) ? pna : rna;
+function nb() = (preview) ? pnb : rnb;
+$fs = (preview) ? ps : rs;
+$fa = (preview) ? pa : ra;
+
+
 tau = 2*PI;
 g = 2*w;
 
-ts = [
-   [r_i, 0],
-   [r_o, 0],
-   [r_o, h+b],
-   [r_o-w, h+b],
-   [r_o-w, b],
-   [r_i+w, b],
-   [r_i+w, h+b],
-   [r_i, h+b],
-   ];
 
-stege = floor((r_i + 2*w) * tau / (w+g));
-winkel = 360/stege;
 
-rotate_extrude($fa=1)
+
+ring_coaster();
+
+module ring_coaster()
 {
-   polygon(ts);
+   dish();
+   stegring(r_is, (r_as-r_is));
 }
 
-for (a = [0:winkel:360-0.001])
+
+
+module dish()
 {
-   rotate(a)
+   ts = [
+      [r_i, 0],
+      [r_o, 0],
+      [r_o, h+b],
+      [r_o-w, h+b],
+      [r_o-w, b],
+      [r_i+w, b],
+      [r_i+w, h+b],
+      [r_i, h+b],
+      ];
+
+
+   rotate_extrude()
    {
-      translate([w/2, r_i+2*w, b])
+      polygon(ts);
+   }
+
+}
+
+
+
+module stegring(r_ir, sl)
+{
+   stege = floor(r_ir * tau / (w+g));
+   winkel = 360/stege;
+
+   for (a = [0:winkel:360-0.001])
+   {
+      rotate(a)
       {
-         cube([w,r_o-r_i-4*w ,h]);
+         translate([w/2, r_ir, b])
+         {
+            cube([w, l ,h]);
+         }
       }
    }
 }
