@@ -13,7 +13,9 @@ part = "stack"; // [stack: Stapler, lid: Deckel]
 preview = 1; // [0:render, 1:preview]
 
 ll = 152;
-wst = 35.5;
+lld = 148;
+wst = 36;
+wld = 34;
 h = 66;
 epl = 10;
 spl = 20;
@@ -69,9 +71,9 @@ $fa = (preview) ? pa : ra;
 // *******************************************************
 // Generate the parts
 
-print_part();
+// print_part();
 //preview_parts();
-// stack_parts();
+stack_parts();
 
 
 
@@ -119,7 +121,10 @@ module stack_parts()
 
 module stack()
 {
-   lid();
+   translate([0,0,p/2])
+   {
+      cube([ll, wst, p], center=true);
+   }
    plates();
 }
 
@@ -128,7 +133,7 @@ module lid()
 {
    translate([0,0,p/2])
    {
-      cube([ll, wst, p], center=true);
+      cube([lld, wld, p], center=true);
    }
 }
 
