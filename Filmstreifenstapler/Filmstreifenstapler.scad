@@ -11,12 +11,13 @@ part = "stack"; // [stack: Stapler, lid: Deckel]
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
+// not needed
 
-ll = 152;
+ll = 154;  // “official” length is 152 mm, or 4×8 holes × 4.75 mm pitch
 lld = 148;
-wst = 36;
-wld = 34;
-h = 66;
+wst = 36; // 35 mm + clearance
+wld = 34; // Make it fit between the plates without problems
+h = 66; // I have a lot of film strips i want to stack
 epl = 10;
 spl = 20;
 spo = 10;
