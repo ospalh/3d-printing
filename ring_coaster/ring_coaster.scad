@@ -25,11 +25,14 @@ w = 1.2;
 r_i = inner_diameter/2;
 r_o = outer_diameter/2;
 
-st_rad = 13;
+sl_m = 13;
 r_is = r_i + 2*w;
 r_os = r_o - 2*w;
-nsr = ceil((r_os-r_is)/st_rad);
+sl_t = min(sl_m, r_is);
+nsr = ceil((r_os-r_is)/sl_t);
+sl_e = (r_os-r_is) / nsr;
 echo("# Stegringe", nsr);
+echo("# Steglänge", sl_e);
 ms = 0.01;  // Muggeseggele.
 
 // fn for differently sized objects and fs, fa; all for preview or rendering.
@@ -58,7 +61,10 @@ ring_coaster();
 module ring_coaster()
 {
    dish();
-   stegring(r_is, (r_as-r_is));
+   for (r_ie=[r_is:sl_e:r_os-ms])
+   {
+      stegring(r_ie, sl_e);
+   }
 }
 
 
@@ -97,7 +103,7 @@ module stegring(r_ir, sl)
       {
          translate([w/2, r_ir, b])
          {
-            cube([w, l ,h]);
+            cube([w, sl ,h]);
          }
       }
    }
