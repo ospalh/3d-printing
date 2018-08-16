@@ -31,8 +31,6 @@ r_os = r_o - 2*w;
 sl_t = min(sl_m, r_is);
 nsr = ceil((r_os-r_is)/sl_t);
 sl_e = (r_os-r_is) / nsr;
-echo("# Stegringe", nsr);
-echo("# Steglänge", sl_e);
 ms = 0.01;  // Muggeseggele.
 
 // fn for differently sized objects and fs, fa; all for preview or rendering.
