@@ -21,7 +21,7 @@ w_loch = 24.6;
 w_streifen = 9.6;  // slightly more so the movable part becomes more stable
 w_bild = 8;
 l_bild = 13.1;
-bilder_ps = 11;
+bilder_ps = 10;
 
 
 p_h = 1;
@@ -38,7 +38,7 @@ p_k = 3;
 // w = 1.8;  // Wall width
 // p = 1.2;  // Bottom, top plate height
 c = 0.4;  // Clearance
-c_x = 1.2;
+c_x = 0.4;
 angle = 60; // Overhangs much below 60° are a problem for me
 
 // *******************************************************
@@ -94,9 +94,9 @@ $fa = (preview) ? pa : ra;
 // *******************************************************
 // Generate the parts
 
-// print_part();
+print_part();
 // preview_parts();
-stack_parts();
+// stack_parts();
 
 module print_part()
 {
@@ -207,7 +207,7 @@ module eine_nase()
 {
    translate([xo_o, w_streifen/2-ms, 0])
    {
-      cube([b_nase, w_steg - c + ms, p_k+ms]);
+      cube([b_nase, w_steg + 0.5*c , p_k+ms]);
    }
 
 }
@@ -216,6 +216,6 @@ module eine_kerbe()
 {
    translate([xo_o-c_x, w_nut/2-ms, p_h])
    {
-      cube([b_nase+w_x+2*c_x, w_steg + c + ms, p_k+ms]);
+      cube([b_nase+2*w_x+2*c_x, w_steg + c + ms, p_k+ms]);
    }
 }
