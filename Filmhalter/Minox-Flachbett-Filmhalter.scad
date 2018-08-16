@@ -10,7 +10,7 @@
 
 
 // … to preview. You will get all parts when you click “Create Thing”.
-part = "Klemme"; // [Halter: Halter, Klemme: Klemme]
+part = "Halter"; // [Halter: Halter, Klemme: Klemme]
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
@@ -67,8 +67,7 @@ h_halter = p_h + p_k;
 
 y_nut = w_steg/2 + w_nut/2;
 
-xo_o = l_k/2 - w_x - 1.5 * b_nnut;
-xo_u = l_k/6;
+xo_o = l_k/2 - b_nase;
 
 some_distance = 0.6 * w_halter + 0.6 * w_streifen + w_steg;
 ms = 0.01;  // Muggeseggele.
@@ -122,7 +121,7 @@ module preview_parts()
 
 module stack_parts()
 {
-   // intersection()
+   //intersection()
    {
       color("yellow")
       {
@@ -175,31 +174,16 @@ module filmloch_halter(ot)
       {
          cube([l_halter+2*ms, w_nut, p_k+2*ms], center=true);
       }
-      vier_nn(true);
+      eine_kerbe();
+      mirror()
+      {
+         eine_kerbe();
+      }
    }
 }
 
-module eine_nn(xo, ot, nutnase)
-{
-   w_nn = nutnase ? b_nnut : b_nase;
-   y_nn = nutnase ? w_steg + 2*ms : w_steg - c + ms;
-   w_b = nutnase ? w_nut : w_streifen;
-   yo = w_b/2 + y_nn/2 - ms;
-   yot = ot ? yo : -yo;
-   zo = nutnase ? p_h + ms : 0;
-   translate([xo, yot, zo+p_k/2])
-   {
-      cube([w_nn, y_nn, p_k+ms], center=true);
-   }
-}
 
-module vier_nn(nutnase)
-{
-   eine_nn(xo_o, true, nutnase);
-   eine_nn(-xo_o, true, nutnase);
-   eine_nn(xo_u, false, nutnase);
-   eine_nn(-xo_u, false, nutnase);
-}
+
 
 module klemme()
 {
@@ -211,5 +195,27 @@ module klemme()
       }
       cube([l_streifen, w_bild, 3*p_k], center=true);
    }
-   vier_nn(false);
+   eine_nase();
+   mirror()
+   {
+      eine_nase();
+   }
+}
+
+
+module eine_nase()
+{
+   translate([xo_o, w_streifen/2-ms, 0])
+   {
+      cube([b_nase, w_steg - c + ms, p_k+ms]);
+   }
+
+}
+
+module eine_kerbe()
+{
+   translate([xo_o-c_x, w_nut/2-ms, p_h])
+   {
+      cube([b_nase+w_x+2*c_x, w_steg + c + ms, p_k+ms]);
+   }
 }
