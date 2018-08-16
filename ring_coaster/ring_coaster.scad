@@ -2,7 +2,7 @@
 //
 // A ring coaster
 //
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// © 2017–2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 
@@ -19,13 +19,18 @@ preview = 1; // [0:render, 1:preview]
 
 // Done with the customizer
 
+
+// These can be changed reasonably safely
+
 h = 1.2;
 b = 0.8;
 w = 1.2;
+sl_m = 13;
+g = 2*w;
+
+// You should know what you are doing when you change these:
 r_i = inner_diameter/2;
 r_o = outer_diameter/2;
-
-sl_m = 13;
 r_is = r_i + 2*w;
 r_os = r_o - 2*w;
 sl_t = min(sl_m, r_is);
@@ -47,14 +52,15 @@ function nb() = (preview) ? pnb : rnb;
 $fs = (preview) ? ps : rs;
 $fa = (preview) ? pa : ra;
 
-
+// Pi is wrong.
 tau = 2*PI;
-g = 2*w;
 
 
-
+// Done with setup. No create the thing
 
 ring_coaster();
+
+// The real code
 
 module ring_coaster()
 {
@@ -80,12 +86,10 @@ module dish()
       [r_i, h+b],
       ];
 
-
    rotate_extrude()
    {
       polygon(ts);
    }
-
 }
 
 
