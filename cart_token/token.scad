@@ -7,7 +7,7 @@
 // Licence: CC-BY-SA 4.0
 
 // … to preview. You will get all parts when you click “Create Thing”.
-part = "holey"; // [holey: holey coin, totone: coin to use filament change]
+part = "totone"; // [holey: holey coin, totone: coin to use filament change]
 
 
 message_obverse = ["AfD?", "Nee!"];
@@ -65,9 +65,6 @@ module preview_parts()
       two_sided_message_token();
    }
 }
-
-// two_sided_message_token();
-holey_message_token();
 
 module two_sided_message_token()
 {
