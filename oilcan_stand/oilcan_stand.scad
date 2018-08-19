@@ -15,8 +15,8 @@ h_tip = 133;  // [20:1:170]
 x_tip = 142;   // [20:1:200]
 
 
-// Uncheck this when done, then hit “Create Thing”
-preview = true; // [false:render, true:preview]
+// Set this to “render” when done, then hit “Create Thing”
+preview = 1; // [0: render, 1: preview]
 
 
 /* [Hidden] */
