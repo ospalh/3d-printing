@@ -1,4 +1,3 @@
-• Ölkannenuntersetzer
 • cube-Ventilkappe
 • Drehkalender
 • Kühlwand
