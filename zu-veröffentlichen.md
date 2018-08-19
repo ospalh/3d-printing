@@ -6,6 +6,7 @@
 • Fahrradschlauchfüße
 • Schlüsselsiegel
 • Topfkeil
+• Glseiskeil
 • nut puller
 • Zweihandflaschenöffner, Warnlabel
 • Dosendurchschlag (mit Quelle)
