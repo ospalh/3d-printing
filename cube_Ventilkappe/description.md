@@ -12,4 +12,4 @@ There is some design history available at my [github repo](https://github.com/os
 
 #postprinting
 
-This has *no* screw thread grooves. Screw it on with sufficient force.
+This has *no* screw thread grooves. Screw it on with sufficient force, but take care not to tear off the whole valve stem.
