@@ -1,22 +1,84 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// NN
+// Holder to scan Minox film strips with a Reflecta ProScan 10T
 //
 // © 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 
-// … to preview. You will get all parts when you click “Create Thing”.
-part = "NN"; // [NN: foo, bar: baz]
+// Customizer-code rausgenommen. Hier gibt’s nicht viel zu verstellen.
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
-preview = 1; // [0:render, 1:preview]
+// Ausser vielleicht den Filmstreifengrößen.
+
+// *******************
+// These are for Minox
+// *******************
+// Comment them out for 110
+w_streifen = 9.2;
+w_bild = 8;
+l_bild = 13.1;
+bilder_ps = 11;
+
+// // ********************
+// // Try this set for 110
+// // ********************
+// // Uncomment these in for 110
+// w_streifen = 16;
+// w_bild = 14; // Nominally 13. This should work out
+// l_bild = 25.4;
+// // Total pitch, picture plus number and hole. Measured. Might be exactly
+// // 25.4 mm, as the format was made by Americans.
+// bilder_ps = 7;
+// // The strips i got were all 5. Otoh, the 135 holder you get with the
+// // scanner has 6 holes and the strips i have all have 4. So, +2.
+
+// Größen des Halters.
+
+// Länge == Maß in Richtung des Filmlaus.
+// Höhe == Maß normal zum Film
+// Breite oder Weite == Maß in Richtung Filmkante zu Filmkante
+
+// Die beiden wichtigen. Wenn diese falsch sind passt’s nicht oder wackelt.
+h_ue_a = 6.2;  // Höhe über alles
+w_ges = 60;  // Gesamtbreite
+
+// Auch wichtig:
+l_zk = 4;  // Länge Zentrierkerbe
+b_zk = 4;  // Breite Zentrierkerbe
+h_zk = 1.2;  // Tiefe der Zentrierkerbe
+w_zk = 1;  // Wand bzw Abstand der Zentrierkerbe vom Rand
+
+// Nicht so wichtig
+// l_e = 22;  // Originallänge der Endstücke.
+l_e = 8;  // Länge der Endstücke. Braucht mensch nicht wirklich
+
+// Halbwegs wichtig
+h_nut = 1;  // Tiefe für Stücke, auf denen der Film nicht aufliegt
+h_steg = 1;  // Höhe für Stücke, die den Film zentrieren.
+
+w_boden = 2.4;  // Wand des Bodenteils, den der Deckel schmaler ist.
+l_filmsteg = 0.4;
+// Steg zwischen zwei Bildern. Ein mal rüber mit der Düse sollte funktionieren.
 
 
+// Größen der Haltemagnete
+d_mag = 2;
+h_mag = 1;
 
-/* [Hidden] */
+// Zahl der Haltemagnete
+n_mag = ceil(bilder_ps/2);
 
-// Done with the customizer
+h_ue_mag = 0.4;
+// Zwei Schichten über den Magneten sollte reichen, sie im Zaum zu halten
+
+w_schraeg = 1.5;  // Breite der Abschrägung rund um die Filmfenster
+
+l_scharnier = 13;  // Zielbreite für eine Scharnierstück
+
+// Auf false schalten, ums STL zu erzeugen
+preview = true;
+
+
 
 // *******************************************************
 // Extra parameters. These can be changed reasonably safely.
@@ -54,6 +116,11 @@ function nb() = (preview) ? pnb : rnb;
 $fs = (preview) ? ps : rs;
 $fa = (preview) ? pa : ra;
 
+
+l_ue_a = l_e + w_schraeg + l_bild * bilder_ps + w_schraeg + l_e;
+
+echo("Länge über alles", l_ue_a);
+
 // *******************************************************
 // End setup
 
@@ -62,50 +129,56 @@ $fa = (preview) ? pa : ra;
 // *******************************************************
 // Generate the parts
 
-// print_part();
-preview_parts();
-// stack_parts();
+// Was wir wollen
+filmhalter();
 
+// Zum Testen
+halterboden();
+halterdeckel();
+scharnier();
 
-
-module print_part()
-{
-   if ("NN" == part)
-   {
-      nn();
-   }
-   if ("foo" == part)
-   {
-      foo();
-   }
-}
-
-module preview_parts()
-{
-   nn();
-   translate([some_distance, 0, 0])
-   {
-      foo();
-   }
-}
-
-module stack_parts()
-{
-   // intersection()
-   {
-      color("yellow")
-      {
-         foo();
-      }
-      translate([0,0,30])
-      {
-         color("red")
-         {
-            NN();
-         }
-      }
-   }
-}
 
 // *******************************************************
 // Code for the parts themselves
+
+
+module filmhalter()
+{
+   halterboden();
+   halterdeckel();
+   scharnier();
+
+}
+
+module halterboden()
+{
+   difference()
+   {
+      halterboden_massiv();
+      fenster();
+      boden_ausschnitt();
+      magnet_ausschnitte();
+   }
+   boden_stege();
+   fenster_stege();
+}
+
+
+module halterdeckel()
+{
+   difference()
+   {
+      halterdeckel_massiv();
+      fenster();
+      deckel_ausschnitt();
+      magnet_ausschnitte();
+   }
+   deckel_griff();
+   fenster_stege();
+}
+
+
+module scharnier()
+{
+
+}
