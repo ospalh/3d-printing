@@ -1,6 +1,27 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 // A butt hinge library. Based on thing 2187167
 
+
+// ****************************
+// Change this for the length of the holder (110, Minox). Use the “Länge über alles” value from the OpenSCAD output.
+leaf_height = 163.1;
+// ****************************
+
+// Maybe tweak these
+// Change this if yours is too loose or the hinge broke instead of freed itself
+component_clearance = 0.5;
+
+// Change this if the knuckles, the pins or tubes, get too long or short. Must be odd.
+knuckle_count = 27;  // [3:2:31]
+
+// Chnage this for other scanner makers with thicker or flater holders.
+leaf_gauge = 3.1;
+
+
+// Original, only slightly modified, code below.
+
+
+
 // Title:        Parametric Butt Hinge
 // Version:      3.5.2os
 // Release Date: 2017-05-26 (ISO)
@@ -106,7 +127,6 @@ C_HEXAGONAL = 2;
 
 C_FUNCTION_LINEAR = 1;  //   y = a*x + b
 C_FUNCTION_CIRCULAR = 2;  // r^2 = x^2 + y^2
-C_FUNCTION_PARABOLIC = 3;  //   y = (a^2)*(x - j)^2 + k    ...Vertex form.
 
 // Minimum and maximum constraints.
 
@@ -116,7 +136,7 @@ C_MIN_LEAF_GAUGE = 1.0;
 C_MIN_COMPONENT_CLEARENCE = 0.1;
 C_MAX_COMPONENT_CLEARENCE = 1.0;
 C_MIN_KNUCKLE_COUNT = 3;
-C_MAX_KNUCKLE_COUNT = 15;
+C_MAX_KNUCKLE_COUNT = 31;
 C_MIN_KNUCKLE_GUSSET_WIDTH = 1.0;
 C_MIN_FASTENER_MARGIN = 1.0;
 C_MIN_PIN_DIAMETER = 1.0;
@@ -151,29 +171,18 @@ C_MIN_PIN_SHAFT_COUNTERBORE_DEPTH = 0.0;
 
 /* [Assembly Options] */
 
-enable_fillet = 1;  // [ 0:No, 1:Yes ]
 // Turn this off to omit the hinge pin from the female leaf.
 enable_pin = 1;  // [ 0:No, 1:Yes ]
 // Turn this off to set a custom pin diameter. Auto pin size is equal to the leaf gauge.
 enable_auto_pin_size = 1;  // [ 0:No, 1:Yes ]
 enable_pin_shaft_counterbore = 0;  // [ 0:No, 1:Yes ]
-enable_fasteners = 1;  // [ 0:No, 1:Yes ]
-knuckle_gusset_type = 0;  // [ 0:None, 1:Linear, 2:Circular, 3:Parabolic ]
+enable_fasteners = 0;  // [ 0:No, 1:Yes ]
+knuckle_gusset_type = 2;  // [ 0:None, 1:Linear, 2:Circular]
 // From +180 degrees fully closed, to -90 degrees fully opened. Default = 0 (ie. Opened flat).
-throw_angle = 0.0;  // [ -90 : 5 : 180 ]
-// Rotates the model 180 degrees about the z-axis.
-flip_model = 0;  // [ 0:No, 1:Yes ]
-// Recommended value is 64 or greater.
 
 /* [Hinge Parameters] */
 
-hinge_width = 65.0;
-leaf_height = 60.0;
-// Leaf and knuckle thickness. Values greater than 3mm recommended.
-leaf_gauge = 5.0;
-// Recomended values between 0.3 and 4.0. Better quality below 3.0, tough to loosen.
-component_clearance = 0.4;
-knuckle_count = 7;  // [3:2:31]
+hinge_width = 20.0;  // Breite über alles linke Kante rechte Kante
 // Manual pin diameter setting. Only has effect, if "Enable Auto Pin Size" is set to "No".
 pin_diameter = 3.0;
 parametric_pin_diameter = ( enable_auto_pin_size == 1 ) ? leaf_gauge : pin_diameter;
@@ -222,14 +231,13 @@ fastener_margin = 3;
 
 // Model Options.
 
-m_leaf_fillet_enabled = ( enable_fillet == 1 ) ? true : false;
+m_leaf_fillet_enabled = true;
 m_pin_enabled = ( enable_pin == 1 ) ? true : false;
 m_pin_auto_size_enabled = ( enable_auto_pin_size == 1 ) ? true : false;
 m_pin_shaft_counterbore_enabled = ( enable_pin_shaft_counterbore == 1 ) ? true : false;
 m_fasteners_enabled = ( enable_fasteners == 1 ) ? true : false;
 m_knuckle_gusset_type = knuckle_gusset_type;
-m_flip_model = ( flip_model == 1 ) ? true : false;
-m_throw_angle = clip ( throw_angle, C_MIN_THROW_ANGLE, C_MAX_THROW_ANGLE );
+
 
 // Leaf Parameters.
 
@@ -305,28 +313,25 @@ if ( C_DEBUG_ENABLED )
 //
 // -------------------------------------+---------------------------------------+---------------------------------------+---------------------------------------
 
-hinge(true, true, true, 120, 10);
+hinge(true, true);
 
-module hinge(do_male_leaf, do_female_leaf, open, width, count)
+
+module hinge(do_male_leaf, do_female_leaf)
 {
-   // Initialize model resolution.
-
    // $fn = m_resolution;
-   // Rely on my
+   // Rely on my mechanism
 
    // Generate hinge assembly.
-
-   if (do_female_leaf)
+   rotate(270)
    {
-      rot_ang = (open) ? 0 : -180;
-      rotate([0.0, rot_ang, 0.0])
+      if (do_female_leaf)
       {
          leaf(C_FEMALE);
       }
-   }
-   if (do_male_leaf)
-   {
-      leaf(C_MALE);
+      if (do_male_leaf)
+      {
+         leaf(C_MALE);
+      }
    }
 
 }
@@ -1583,67 +1588,6 @@ function root4 ( x ) = ( x >= 0 ) ? sqrt ( sqrt ( x ) ) : 0;
 // -------------------------------------+---------------------------------------+---------------------------------------+---------------------------------------
 
 function clip ( x, x_min, x_max ) = ( x < x_min ) ? x_min : ( x > x_max ) ? x_max : x;
-
-// -------------------------------------+---------------------------------------+---------------------------------------+---------------------------------------
-// Function: Generate a parabolic vector point array.
-//
-// Description:
-//
-// - Recursive function to generate an array of 2D points on a parabolic curve.
-//
-// - The parabolic vertex form is used.
-//
-//     y = (a^2)*(x-b)^2
-//
-//   Where,
-//
-//     a is the horizontal scale of the parabola.
-//     (b,c) is the Cartesian position of the turning point.
-//
-//
-// Parameters:
-//
-// - a
-//   Horizontal scale of the parabola.
-//
-// - x
-//   Horizontal input domain.
-//
-// - n
-//   Tessellation factor. Number of points to compute for each half of the parabola object, with both halves sharing the turning point.
-//   For example:
-//   - A tessellation factor of 1, will compute 3 points in total. Two for each half, with one out of the two on each half being the
-//     Shared turning point.
-//   - A tessellation factor of 2, with compute 5 points in total, 3 for each half with a shared turning point.
-//
-// - i
-//   Point index. Initialize to zero.
-//
-// - d
-//   Input domain. The x range over which to compute the function.
-//   -d <= x <= d
-//
-// - v
-//   Vector that will be populated with geometry points. Initialize to empty vector, [].
-//
-// -------------------------------------+---------------------------------------+---------------------------------------+---------------------------------------
-
-function parabolic_vector ( a, x, n, i, d, v ) =
-   (
-      i > 2.0*d*n
-
-      // Recursive terminating condition:
-      //   Return an empty vector.
-
-      ? concat ( v, [] )
-
-      // Recursive general condition:
-      //   Compute the next point on the parabolic path.
-      //   x = i/n - 1
-      //   y = a^2*(i/n - 1)^2*
-
-      : parabolic_vector ( a, x, n, i + 1, d, concat ( v, [ [ i/n - d, a*a*(i/n - d)*(i/n - d) ] ] ) )
-      );
 
 // -------------------------------------+---------------------------------------+---------------------------------------+---------------------------------------
 // Function: funtion_name
