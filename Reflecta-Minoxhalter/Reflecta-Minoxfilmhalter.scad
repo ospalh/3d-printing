@@ -17,7 +17,7 @@
 w_streifen = 9.2;
 w_bild = 8;
 l_bild = 13.1;
-bilder_ps = 11;
+bilder_ps = 10;
 
 // // ********************
 // // Try this set for 110
@@ -42,7 +42,7 @@ bilder_ps = 11;
 // Breite oder Weite == Maß in Richtung Filmkante zu Filmkante
 
 // Die beiden wichtigen. Wenn diese falsch sind passt’s nicht oder wackelt.
-h_ue_a = 6.2;  // Höhe über alles
+h_ue_a = 6;  // Höhe über alles
 w_gesamt = 60;  // Gesamtbreite
 
 // Auch wichtig:
@@ -144,9 +144,9 @@ echo("Länge über alles", l_ue_a);
 
 
 // Zum Testen
-filmhalter(false);
+// filmhalter(false);
 // halterboden();
-// halterdeckel(true, false);
+halterdeckel(true, false);
 
 
 // *******************************************************

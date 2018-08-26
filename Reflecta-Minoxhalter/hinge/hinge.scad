@@ -4,7 +4,7 @@
 
 // ****************************
 // Change this for the length of the holder (110, Minox). Use the “Länge über alles” value from the OpenSCAD output.
-leaf_height = 163.1;
+leaf_height = 150.01;
 // ****************************
 
 // Maybe tweak these
@@ -15,7 +15,7 @@ component_clearance = 0.5;
 knuckle_count = 27;  // [3:2:31]
 
 // Chnage this for other scanner makers with thicker or flater holders.
-leaf_gauge = 3.1;
+leaf_gauge = 3.01; // added a muggeseggele, to avoid joining problems.
 
 
 // Original, only slightly modified, code below.
