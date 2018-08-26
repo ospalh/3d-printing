@@ -43,7 +43,7 @@ bilder_ps = 11;
 
 // Die beiden wichtigen. Wenn diese falsch sind passt’s nicht oder wackelt.
 h_ue_a = 6.2;  // Höhe über alles
-w_ges = 60;  // Gesamtbreite
+w_gesamt = 60;  // Gesamtbreite
 
 // Auch wichtig:
 l_zk = 4;  // Länge Zentrierkerbe
@@ -120,13 +120,14 @@ function nb() = (preview) ? pnb : rnb;
 $fs = (preview) ? ps : rs;
 $fa = (preview) ? pa : ra;
 
-
-l_ue_a = l_e + w_schraeg + l_bild * bilder_ps + w_schraeg + l_e;
-w_bodenwanne = w_ges - 1.5 * h_ue_a;
+l_fenster = l_bild * bilder_ps;
+l_ue_a = l_e + w_schraeg + l_fenster + w_schraeg + l_e;
+w_bodenwanne = w_gesamt - 1.5 * h_ue_a;
 h_bd = h_ue_a/2;  // Höhe Boden oder Deckel
 w_deckel = w_bodenwanne - w_boden - c;
-w_offset = h_ue_a;
-x_offset = l_ue_a/2;
+w_offset_scharnier = h_ue_a;
+x_offset_gesamt = l_ue_a/2;
+w_offset_zentrum = w_gesamt/2 - h_ue_a/2;
 
 echo("Länge über alles", l_ue_a);
 
@@ -143,9 +144,9 @@ echo("Länge über alles", l_ue_a);
 
 
 // Zum Testen
-// filmhalter(false);
+filmhalter(false);
 // halterboden();
-halterdeckel(true, false);
+// halterdeckel(true, false);
 
 
 // *******************************************************
@@ -162,14 +163,17 @@ module halterboden()
 {
    difference()
    {
-      halterteil_massiv(true);
+      union()
+      {
+         halterteil_massiv(true);
+         hinge(true, false);
+      }
       fenster();
       boden_ausschnitt();
       magnet_ausschnitte();
    }
    boden_stege();
    fenster_stege();
-   hinge(true, false);
 }
 
 
@@ -177,34 +181,54 @@ module halterdeckel(offen, vereint)
 {
    rot_x = (offen) ? 0 : 180;
    rot_z = (vereint) ? 180 : 0;
-   // Die Rotationen um die beiden Achsen sind logisch unabhänging. Eine
-   // ist das Öffnen nud Schließen des Halters, die Andere ist, ob der
-   // Deckel in den Boden integriert ist oder nicht
    rotate([rot_x, 0, rot_z])
    {
       difference()
       {
-         halterteil_massiv(false);
+         union()
+         {
+            halterteil_massiv(false);
+            rotate(180)
+            {
+               hinge(false, true);
+            }
+         }
          fenster();
          deckel_ausschnitt();
          magnet_ausschnitte();
       }
       deckel_griff();
       fenster_stege();
-      rotate(180)
-         {
-            hinge(false, true);
-         }
    }
-
 }
 
 
 module halterteil_massiv(boden)
 {
    y_l = (boden) ? w_bodenwanne : w_deckel;
-   translate([-x_offset, w_offset, -h_bd])
+   translate([-x_offset_gesamt, w_offset_scharnier, -h_bd])
    {
       cube([l_ue_a, y_l, h_bd]);
+   }
+}
+
+
+module fenster()
+{
+   // Zuerst zu groß, um die Ausrichtung zu checken
+   translate([0, w_offset_zentrum, 0])
+   {
+      hull()
+      {
+         translate([0,0,-0.5+ms])
+         {
+            cube([l_fenster, w_streifen, 1], center=true);
+         }
+         translate([0,0,-h_bd-0.5-ms])
+         {
+            cube([l_fenster+2*w_schraeg, w_streifen+2*w_schraeg, 1], center=true);
+         }
+      }
+
    }
 }
