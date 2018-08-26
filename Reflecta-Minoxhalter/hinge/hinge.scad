@@ -9,10 +9,10 @@ leaf_height = 150.01;
 
 // Maybe tweak these
 // Change this if yours is too loose or the hinge broke instead of freed itself
-component_clearance = 0.5;
+component_clearance = 0.6;
 
 // Change this if the knuckles, the pins or tubes, get too long or short. Must be odd.
-knuckle_count = 27;  // [3:2:31]
+knuckle_count = 23;  // [3:2:31]
 
 // Chnage this for other scanner makers with thicker or flater holders.
 leaf_gauge = 3.01; // added a muggeseggele, to avoid joining problems.

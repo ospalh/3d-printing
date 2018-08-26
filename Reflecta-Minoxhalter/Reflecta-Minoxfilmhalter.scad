@@ -56,8 +56,9 @@ w_zk = 1;  // Wand bzw Abstand der Zentrierkerbe vom Rand
 l_e = 8;  // Länge der Endstücke. Braucht mensch nicht wirklich
 
 // Halbwegs wichtig
-h_nut = 1;  // Tiefe für Stücke, auf denen der Film nicht aufliegt
-h_steg = 1;  // Höhe für Stücke, die den Film zentrieren.
+h_nut = 0.8;  // Tiefe für Stücke, auf denen der Film nicht aufliegt
+h_steg = 0.6;  // Höhe für Stücke, die den Film zentrieren.
+w_steg = 2;  // Breite für Stücke, die den Film zentrieren.
 
 w_boden = 2.4;  // Wand des Bodenteils, das der Deckel schmaler ist.
 l_filmsteg = 0.4;
@@ -140,13 +141,13 @@ echo("Länge über alles", l_ue_a);
 // Generate the parts
 
 // Was wir wollen
-// filmhalter(true);
+filmhalter(true);
 
 
 // Zum Testen
 // filmhalter(false);
 // halterboden();
-halterdeckel(true, false);
+// halterdeckel(true, false);
 
 
 // *******************************************************
@@ -169,7 +170,7 @@ module halterboden()
          hinge(true, false);
       }
       fenster();
-      boden_ausschnitt();
+      // boden_ausschnitt();
       magnet_ausschnitte();
    }
    boden_stege();
@@ -215,20 +216,64 @@ module halterteil_massiv(boden)
 
 module fenster()
 {
-   // Zuerst zu groß, um die Ausrichtung zu checken
    translate([0, w_offset_zentrum, 0])
    {
       hull()
       {
          translate([0,0,-0.5+ms])
          {
-            cube([l_fenster, w_streifen, 1], center=true);
+            cube([l_fenster, w_bild, 1], center=true);
          }
          translate([0,0,-h_bd-0.5-ms])
          {
-            cube([l_fenster+2*w_schraeg, w_streifen+2*w_schraeg, 1], center=true);
+            cube(
+               [l_fenster+2*w_schraeg, w_bild+2*w_schraeg, 1], center=true);
          }
       }
 
+   }
+}
+
+
+module magnet_ausschnitte()
+{
+
+}
+
+module magnet_ausscshnitt()
+{
+   translate([0, 0, h_bd - h_mag-c - h_ue_mag])
+   {
+      cylinder(d=d_mag+c, h=h_mag+c);
+   }
+}
+
+module boden_stege()
+{
+   translate([0, w_offset_zentrum, -ms+h_steg/2])
+   {
+      translate([0,w_steg/2+w_streifen/2+c/2,0])
+      {
+         // cube([l_fenster, w_steg, h_steg], center=true);
+      }
+      translate([0,-w_steg/2-w_streifen/2-c/2,0])
+      {
+         cube([l_fenster, w_steg, h_steg], center=true);
+      }
+   }
+}
+
+module deckel_ausschnitt()
+{
+   translate([0, w_offset_zentrum, ms-h_nut/2])
+   {
+      translate([0,w_steg/2+w_streifen/2+c,0])
+      {
+         cube([l_fenster+2*c, w_steg+c, h_nut], center=true);
+      }
+      translate([0,-w_steg/2-w_streifen/2-c,0])
+      {
+         cube([l_fenster+2*c, w_steg+c, h_nut], center=true);
+      }
    }
 }
