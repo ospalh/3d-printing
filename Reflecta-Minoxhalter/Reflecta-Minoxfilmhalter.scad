@@ -8,6 +8,15 @@
 
 // Customizer-code rausgenommen. Hier gibt’s nicht viel zu verstellen.
 
+// Teile wieder rein. Das preview, stack, print ist gut.
+// … to preview. You will get all parts when you click “Create Thing”.
+part = "halter"; // [halter: Filmhalter, einsatz: Klemmeinsatz]
+
+
+// Auf false schalten, ums STL zu erzeugen
+preview = true;
+
+
 // Ausser vielleicht den Filmstreifengrößen.
 
 // *******************
@@ -32,9 +41,6 @@ bilder_ps = 11;
 // // The strips i got were all 5. Otoh, the 135 holder you get with the
 // // scanner has 6 holes and the strips i have all have 4. So, +2.
 
-// N.B.: For the 110 holder, you have to modify the second file
-// “hinge/hinge.scad” and change the size (height) of the hinge.
-
 // Größen des Halters.
 
 // Länge == Maß in Richtung des Filmlaus.
@@ -43,7 +49,8 @@ bilder_ps = 11;
 
 // Die beiden wichtigen. Wenn diese falsch sind passt’s nicht oder wackelt.
 h_ue_a = 6;  // Höhe über alles
-w_gesamt = 60;  // Gesamtbreite
+w_gesamt = 59;  // Gesamtbreite
+r_r = 1;  // Rundungsradius
 
 // Auch wichtig:
 l_zk = 4;  // Länge Zentrierkerbe
@@ -51,12 +58,17 @@ b_zk = 4;  // Breite Zentrierkerbe
 h_zk = 1.2;  // Tiefe der Zentrierkerbe
 w_zk = 1;  // Wand bzw Abstand der Zentrierkerbe vom Rand
 
-l_r = 2 * w_steg;  // Länge der Endstücke.
+l_griff = 30;
+o_griff = 20;
+w_rand = 3;
 
 // Halbwegs wichtig
 h_nut = 0.8;  // Tiefe für Stücke, auf denen der Film nicht aufliegt
 h_steg = 0.6;  // Höhe für Stücke, die den Film zentrieren.
 w_steg = 2;  // Breite für Stücke, die den Film zentrieren.
+
+
+
 
 l_filmsteg = 0.4;
 // Steg zwischen zwei Bildern. Ein mal rüber mit der Düse sollte funktionieren.
@@ -73,10 +85,6 @@ h_ue_mag = 0.4;
 
 w_schraeg = 1.5;  // Breite der Abschrägung rund um die Filmfenster
 
-// l_scharnier = 13;  // Zielbreite für eine Scharnierstück
-
-// Auf false schalten, ums STL zu erzeugen
-preview = true;
 
 
 
@@ -98,8 +106,7 @@ xy_factor = 1/tan(angle);
 // To get from a height to a horizontal width inclined correctly
 z_factor = tan(angle);  // The other way around
 
-use <./hinge/hinge.scad>;
-some_distance = 50;
+some_distance = 1.2 * w_gesamt;
 ms = 0.01;  // Muggeseggele.
 
 // fn for differently sized objects and fs, fa; all for preview or rendering.
@@ -117,10 +124,11 @@ $fs = (preview) ? ps : rs;
 $fa = (preview) ? pa : ra;
 
 l_fenster = l_bild * bilder_ps;
-l_ue_a = l_e + w_schraeg + l_fenster + w_schraeg + l_e;
-w_bodenwanne = w_gesamt;
+l_rand = 2 * w_steg + w_schraeg;
+l_ue_a =  l_fenster + 2*l_rand;
+w_einsatz = w_bild + 2 * l_rand;
 h_bd = h_ue_a/2;  // Höhe Boden oder Deckel
-w_deckel = w_strip + 4 * w_steg - c;
+
 
 echo("Länge über alles", l_ue_a);
 
@@ -129,81 +137,182 @@ echo("Länge über alles", l_ue_a);
 
 
 
+
 // *******************************************************
 // Generate the parts
 
-// Was wir wollen
-filmhalter(true);
+
+// print_part();
+preview_parts();
+// stack_parts();
 
 
-// Zum Testen
-// filmhalter(false);
-// halterboden();
-// halterdeckel(true, false);
 
+module print_part()
+{
+   if ("halter" == part)
+   {
+      filmhalter();
+   }
+   if ("einsatz" == part)
+   {
+      einsatz();
+   }
+}
+
+module preview_parts()
+{
+   filmhalter();
+   translate([0, some_distance, 0])
+   {
+      einsatz();
+   }
+}
+
+module stack_parts()
+{
+   // intersection()
+   {
+      color("yellow")
+      {
+         filmhalter();
+      }
+      translate([0,0,h_ue_a + ms])
+      {
+         rotate([0,180,0])
+         {
+            color("red")
+            {
+               einsatz();
+            }
+         }
+      }
+   }
+}
 
 // *******************************************************
 // Code for the parts themselves
 
 
-module filmhalter(offen)
-{
-   halterboden();
-   halterdeckel(offen, true);
-}
 
-module halterboden()
+
+// *******************************************************
+// Code for the parts themselves
+
+module filmhalter()
 {
    difference()
    {
-      union()
-      {
-         halterteil_massiv(true);
-      }
+      basis_filmhalter();
       fenster();
-      // boden_ausschnitt();
-      magnet_ausschnitte();
    }
-   boden_stege();
-   fenster_stege();
+}
+
+module einsatz()
+{
+   difference()
+   {
+      basis_einsatz();
+      fenster();
+   }
 }
 
 
-module halterdeckel()
+module basis_filmhalter()
 {
-   rot_x = (offen) ? 0 : 180;
-   rot_z = (vereint) ? 180 : 0;
-   rotate([rot_x, 0, rot_z])
+   translate([0,0,h_bd])
    {
       difference()
       {
-         union()
-         {
-            halterteil_massiv(false);
-         }
-         fenster();
-         deckel_ausschnitt();
-         magnet_ausschnitte();
+         massiver_halter();
+         einsatz_ausschnitt(c);
       }
-      deckel_griff();
-      fenster_stege();
    }
 }
 
 
-module halterteil_massiv(boden)
+module basis_einsatz()
 {
-   y_l = (boden) ? w_bodenwanne : w_deckel;
-   translate([h_bd/2])
+   translate([0,0,h_bd])
    {
-      cube([l_ue_a, y_l, h_bd], center=true);
+      intersection()
+      {
+         massiver_halter();
+         rotate([0,180,0])
+         {
+            einsatz_ausschnitt(0);
+         }
+      }
+   }
+
+}
+
+module massiver_halter()
+{
+   hull()
+   {
+      vosp();
+      mirror([0,0,1])
+      {
+         vosp();
+      }
+   }
+
+   module vosp()
+   {
+      tosp();
+      mirror([0,1,0])
+      {
+         tosp();
+      }
+   }
+   module tosp()
+   {
+      osp();
+      mirror([1,0,0])
+      {
+         osp();
+      }
+
+   }
+
+   module osp()
+   {
+      translate([l_ue_a/2-r_r, w_gesamt/2-r_r, h_ue_a/2-r_r])
+      {
+         sphere(r=r_r);
+      }
    }
 }
 
+
+module einsatz_ausschnitt(ec)
+{
+   translate([0,0,h_ue_a])
+   {
+      cube([l_ue_a+2*ms, w_einsatz + ec, 2*h_ue_a], center=true);
+      grip_cut();
+      mirror()
+      {
+         grip_cut();
+      }
+   }
+   module grip_cut()
+   {
+      translate([l_ue_a/2 - o_griff - l_griff/2, 0, 0])
+      {
+         cube([l_griff + ec, w_gesamt + 2*ms, 2*h_ue_a], center=true);
+         translate([0, -w_gesamt/2, 0])
+         {
+            cube([l_griff + ec, 2*w_rand+2*ec, 4*h_ue_a], center=true);
+         }
+      }
+   }
+}
 
 module fenster()
 {
-   translate([0, w_offset_zentrum, 0])
+   translate([0, 0, h_bd])
    {
       hull()
       {
@@ -235,7 +344,7 @@ module magnet_ausscshnitt()
    }
 }
 
-module boden_stege()
+module bodenstege()
 {
    translate([0, w_offset_zentrum, -ms+h_steg/2])
    {
