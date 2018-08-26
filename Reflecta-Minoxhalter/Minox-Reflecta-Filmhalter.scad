@@ -32,6 +32,9 @@ bilder_ps = 11;
 // // The strips i got were all 5. Otoh, the 135 holder you get with the
 // // scanner has 6 holes and the strips i have all have 4. So, +2.
 
+// N.B.: For the 110 holder, you have to modify the second file
+// “hinge.scad” and change the size (height) of the hinge.
+
 // Größen des Halters.
 
 // Länge == Maß in Richtung des Filmlaus.
@@ -56,7 +59,7 @@ l_e = 8;  // Länge der Endstücke. Braucht mensch nicht wirklich
 h_nut = 1;  // Tiefe für Stücke, auf denen der Film nicht aufliegt
 h_steg = 1;  // Höhe für Stücke, die den Film zentrieren.
 
-w_boden = 2.4;  // Wand des Bodenteils, den der Deckel schmaler ist.
+w_boden = 2.4;  // Wand des Bodenteils, das der Deckel schmaler ist.
 l_filmsteg = 0.4;
 // Steg zwischen zwei Bildern. Ein mal rüber mit der Düse sollte funktionieren.
 
@@ -66,14 +69,15 @@ d_mag = 2;
 h_mag = 1;
 
 // Zahl der Haltemagnete
-n_mag = ceil(bilder_ps/2);
+n_mag_a = 7;
+n_mag_i = 5;
 
 h_ue_mag = 0.4;
 // Zwei Schichten über den Magneten sollte reichen, sie im Zaum zu halten
 
 w_schraeg = 1.5;  // Breite der Abschrägung rund um die Filmfenster
 
-l_scharnier = 13;  // Zielbreite für eine Scharnierstück
+// l_scharnier = 13;  // Zielbreite für eine Scharnierstück
 
 // Auf false schalten, ums STL zu erzeugen
 preview = true;
@@ -98,7 +102,7 @@ xy_factor = 1/tan(angle);
 // To get from a height to a horizontal width inclined correctly
 z_factor = tan(angle);  // The other way around
 
-
+use <./hinge/hinge.scad>;
 some_distance = 50;
 ms = 0.01;  // Muggeseggele.
 
@@ -130,24 +134,21 @@ echo("Länge über alles", l_ue_a);
 // Generate the parts
 
 // Was wir wollen
-filmhalter();
+// filmhalter(true);
 
 // Zum Testen
 halterboden();
-halterdeckel();
-scharnier();
+// halterdeckel();
 
 
 // *******************************************************
 // Code for the parts themselves
 
 
-module filmhalter()
+module filmhalter(offen)
 {
    halterboden();
-   halterdeckel();
-   scharnier();
-
+   halterdeckel(offen);
 }
 
 module halterboden()
@@ -161,24 +162,29 @@ module halterboden()
    }
    boden_stege();
    fenster_stege();
+   hinge(true, false);
 }
 
 
-module halterdeckel()
+module halterdeckel(offen)
 {
-   difference()
+   rot_angle = (offen) ? 0 : 180;
+   rotate([0, rot_angle, 0])
    {
-      halterdeckel_massiv();
-      fenster();
-      deckel_ausschnitt();
-      magnet_ausschnitte();
+      difference()
+      {
+         halterdeckel_massiv();
+         fenster();
+         deckel_ausschnitt();
+         magnet_ausschnitte();
+      }
+      deckel_griff();
+      fenster_stege();
+      hinge(false, true);
    }
-   deckel_griff();
-   fenster_stege();
 }
 
 
 module scharnier()
 {
-
 }
