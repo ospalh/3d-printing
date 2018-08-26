@@ -17,7 +17,7 @@
 w_streifen = 9.2;
 w_bild = 8;
 l_bild = 13.1;
-bilder_ps = 10;
+bilder_ps = 11;
 
 // // ********************
 // // Try this set for 110
@@ -51,16 +51,13 @@ b_zk = 4;  // Breite Zentrierkerbe
 h_zk = 1.2;  // Tiefe der Zentrierkerbe
 w_zk = 1;  // Wand bzw Abstand der Zentrierkerbe vom Rand
 
-// Nicht so wichtig
-// l_e = 22;  // Originallänge der Endstücke.
-l_e = 8;  // Länge der Endstücke. Braucht mensch nicht wirklich
+l_r = 2 * w_steg;  // Länge der Endstücke.
 
 // Halbwegs wichtig
 h_nut = 0.8;  // Tiefe für Stücke, auf denen der Film nicht aufliegt
 h_steg = 0.6;  // Höhe für Stücke, die den Film zentrieren.
 w_steg = 2;  // Breite für Stücke, die den Film zentrieren.
 
-w_boden = 2.4;  // Wand des Bodenteils, das der Deckel schmaler ist.
 l_filmsteg = 0.4;
 // Steg zwischen zwei Bildern. Ein mal rüber mit der Düse sollte funktionieren.
 
@@ -70,8 +67,6 @@ d_mag = 2;
 h_mag = 1;
 
 // Zahl der Haltemagnete
-n_mag_a = 7;
-n_mag_i = 5;
 
 h_ue_mag = 0.4;
 // Zwei Schichten über den Magneten sollte reichen, sie im Zaum zu halten
@@ -123,12 +118,9 @@ $fa = (preview) ? pa : ra;
 
 l_fenster = l_bild * bilder_ps;
 l_ue_a = l_e + w_schraeg + l_fenster + w_schraeg + l_e;
-w_bodenwanne = w_gesamt - 1.5 * h_ue_a;
+w_bodenwanne = w_gesamt;
 h_bd = h_ue_a/2;  // Höhe Boden oder Deckel
-w_deckel = w_bodenwanne - w_boden - c;
-w_offset_scharnier = h_ue_a;
-x_offset_gesamt = l_ue_a/2;
-w_offset_zentrum = w_gesamt/2 - h_ue_a/2;
+w_deckel = w_strip + 4 * w_steg - c;
 
 echo("Länge über alles", l_ue_a);
 
@@ -167,7 +159,6 @@ module halterboden()
       union()
       {
          halterteil_massiv(true);
-         hinge(true, false);
       }
       fenster();
       // boden_ausschnitt();
@@ -178,7 +169,7 @@ module halterboden()
 }
 
 
-module halterdeckel(offen, vereint)
+module halterdeckel()
 {
    rot_x = (offen) ? 0 : 180;
    rot_z = (vereint) ? 180 : 0;
@@ -189,10 +180,6 @@ module halterdeckel(offen, vereint)
          union()
          {
             halterteil_massiv(false);
-            rotate(180)
-            {
-               hinge(false, true);
-            }
          }
          fenster();
          deckel_ausschnitt();
@@ -207,9 +194,9 @@ module halterdeckel(offen, vereint)
 module halterteil_massiv(boden)
 {
    y_l = (boden) ? w_bodenwanne : w_deckel;
-   translate([-x_offset_gesamt, w_offset_scharnier, -h_bd])
+   translate([h_bd/2])
    {
-      cube([l_ue_a, y_l, h_bd]);
+      cube([l_ue_a, y_l, h_bd], center=true);
    }
 }
 
