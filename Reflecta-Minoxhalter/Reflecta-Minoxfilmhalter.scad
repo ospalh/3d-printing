@@ -143,7 +143,9 @@ echo("Länge über alles", l_ue_a);
 
 
 // print_part();
-preview_parts();
+// filmhalter();
+einsatz();
+// preview_parts();
 // stack_parts();
 
 
@@ -194,11 +196,6 @@ module stack_parts()
 // Code for the parts themselves
 
 
-
-
-// *******************************************************
-// Code for the parts themselves
-
 module filmhalter()
 {
    difference()
@@ -206,6 +203,8 @@ module filmhalter()
       basis_filmhalter();
       fenster();
    }
+   // fensterstege();
+   bodenstege();
 }
 
 module einsatz()
@@ -214,7 +213,9 @@ module einsatz()
    {
       basis_einsatz();
       fenster();
+      einsatzausschnitte();
    }
+   fensterstege();
 }
 
 
@@ -336,7 +337,7 @@ module magnet_ausschnitte()
 
 }
 
-module magnet_ausscshnitt()
+module magnetausschnitt()
 {
    translate([0, 0, h_bd - h_mag-c - h_ue_mag])
    {
@@ -346,30 +347,38 @@ module magnet_ausscshnitt()
 
 module bodenstege()
 {
-   translate([0, w_offset_zentrum, -ms+h_steg/2])
+   bodensteg();
+   rotate(180)
    {
-      translate([0,w_steg/2+w_streifen/2+c/2,0])
+      bodensteg();
+   }
+   module bodensteg()
+   {
+      translate([0, 0, -ms+h_steg/2+h_bd])
       {
-         // cube([l_fenster, w_steg, h_steg], center=true);
-      }
-      translate([0,-w_steg/2-w_streifen/2-c/2,0])
-      {
-         cube([l_fenster, w_steg, h_steg], center=true);
+         translate([0,w_steg/2+w_streifen/2+c/2,0])
+         {
+            cube([l_fenster, w_steg, h_steg], center=true);
+         }
       }
    }
 }
 
-module deckel_ausschnitt()
+module einsatzausschnitte()
 {
-   translate([0, w_offset_zentrum, ms-h_nut/2])
+   ausschnitt();
+   rotate(180)
    {
-      translate([0,w_steg/2+w_streifen/2+c,0])
+      ausschnitt();
+   }
+   module ausschnitt()
+   {
+      translate([0, 0, h_bd + ms-h_nut/2])
       {
-         cube([l_fenster+2*c, w_steg+c, h_nut], center=true);
-      }
-      translate([0,-w_steg/2-w_streifen/2-c,0])
-      {
-         cube([l_fenster+2*c, w_steg+c, h_nut], center=true);
+         translate([0,w_steg/2+w_streifen/2+c,0])
+         {
+            cube([l_fenster+2*c, w_steg+c, h_nut], center=true);
+         }
       }
    }
 }
