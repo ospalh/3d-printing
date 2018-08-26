@@ -129,8 +129,9 @@ l_ue_a =  l_fenster + 2*l_rand;
 w_einsatz = w_bild + 2 * l_rand;
 h_bd = h_ue_a/2;  // Höhe Boden oder Deckel
 
+to_griff = l_ue_a/2 - o_griff - l_griff/2;
 
-echo("Länge über alles", l_ue_a);
+
 
 // *******************************************************
 // End setup
@@ -143,8 +144,8 @@ echo("Länge über alles", l_ue_a);
 
 
 // print_part();
-// filmhalter();
-einsatz();
+filmhalter();
+// einsatz();
 // preview_parts();
 // stack_parts();
 
@@ -202,8 +203,10 @@ module filmhalter()
    {
       basis_filmhalter();
       fenster();
+      magnetausschnitte(0);
+      kerben();
    }
-   // fensterstege();
+   fensterstege();
    bodenstege();
 }
 
@@ -211,11 +214,20 @@ module einsatz()
 {
    difference()
    {
-      basis_einsatz();
-      fenster();
+      union()
+      {
+         difference()
+         {
+            basis_einsatz();
+            fenster();
+         }
+         fensterstege();
+      }
       einsatzausschnitte();
+      // magnetausschnitte(d_mag/2);
+      magnetausschnitte(0);
    }
-   fensterstege();
+
 }
 
 
@@ -289,7 +301,7 @@ module massiver_halter()
 
 module einsatz_ausschnitt(ec)
 {
-   translate([0,0,h_ue_a])
+   translate([0, 0, h_ue_a])
    {
       cube([l_ue_a+2*ms, w_einsatz + ec, 2*h_ue_a], center=true);
       grip_cut();
@@ -300,7 +312,7 @@ module einsatz_ausschnitt(ec)
    }
    module grip_cut()
    {
-      translate([l_ue_a/2 - o_griff - l_griff/2, 0, 0])
+      translate([to_griff, 0, 0])
       {
          cube([l_griff + ec, w_gesamt + 2*ms, 2*h_ue_a], center=true);
          translate([0, -w_gesamt/2, 0])
@@ -332,14 +344,20 @@ module fenster()
 }
 
 
-module magnet_ausschnitte()
+module magnetausschnitte(mo)
 {
-
+   magnetausschnitt(1, 1, mo);
+   magnetausschnitt(-1, 1, mo);
+   magnetausschnitt(1, -1, mo);
+   magnetausschnitt(-1, -1, mo);
 }
 
-module magnetausschnitt()
+module magnetausschnitt(xf, yf, mo)
 {
-   translate([0, 0, h_bd - h_mag-c - h_ue_mag])
+   yo_mag = w_einsatz/2 + (w_gesamt - w_einsatz)/4;
+   // Mittig in den Griffen.
+   translate(
+      [xf * (to_griff - mo), yf * (yo_mag-mo), h_bd - h_mag-c - h_ue_mag])
    {
       cylinder(d=d_mag+c, h=h_mag+c);
    }
@@ -375,10 +393,48 @@ module einsatzausschnitte()
    {
       translate([0, 0, h_bd + ms-h_nut/2])
       {
-         translate([0,w_steg/2+w_streifen/2+c,0])
+         translate([0,w_steg/2+w_streifen/2+c/2,0])
          {
             cube([l_fenster+2*c, w_steg+c, h_nut], center=true);
          }
       }
    }
+}
+
+
+module fensterstege()
+{
+   for (i=[1:bilder_ps-1])
+   {
+      translate([-l_fenster/2 + i * l_bild, 0, h_bd/2-ms])
+      {
+         cube([l_filmsteg, w_bild+2*w_schraeg + 2*ms ,h_bd], center=true);
+      }
+   }
+}
+
+module kerben()
+{
+   // Den Radius der Zentrierkerbe kann mensch per Pythagoras bestimmen.
+   // Hypothenuse = r_zk
+   // 1. Kathete = l_zk/2
+   // 2. Kathete = r_zk - h_zk
+   // h_zk > 0
+   // r_zk * r_zk = l_zk * l_zk / 4 + r_zk * r_zk - 2 * r_zk * h_zk + h_zk * h_zk
+   // 0 = l_zk * l_zk / 4 - 2 * r_zk * h_zk + h_zk * h_zk
+   // 2 * r_zk * h_zk =
+   r_zk = (l_zk * l_zk / 4 + h_zk * h_zk) / (2 * h_zk);
+   for (i=[0:bilder_ps-1])
+   {
+      translate(
+         [-l_fenster/2 + i * l_bild + l_bild/2,
+          w_gesamt/2 - b_zk - w_zk, h_zk-r_zk])
+      {
+         rotate([90,0,0])
+         {
+            cylinder(r=r_zk, h=b_zk);
+         }
+      }
+   }
+
 }
