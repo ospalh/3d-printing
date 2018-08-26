@@ -33,7 +33,7 @@ bilder_ps = 11;
 // // scanner has 6 holes and the strips i have all have 4. So, +2.
 
 // N.B.: For the 110 holder, you have to modify the second file
-// “hinge.scad” and change the size (height) of the hinge.
+// “hinge/hinge.scad” and change the size (height) of the hinge.
 
 // Größen des Halters.
 
@@ -122,6 +122,11 @@ $fa = (preview) ? pa : ra;
 
 
 l_ue_a = l_e + w_schraeg + l_bild * bilder_ps + w_schraeg + l_e;
+w_bodenwanne = w_ges - 1.5 * h_ue_a;
+h_bd = h_ue_a/2;  // Höhe Boden oder Deckel
+w_deckel = w_bodenwanne - w_boden - c;
+w_offset = h_ue_a;
+x_offset = l_ue_a/2;
 
 echo("Länge über alles", l_ue_a);
 
@@ -136,9 +141,11 @@ echo("Länge über alles", l_ue_a);
 // Was wir wollen
 // filmhalter(true);
 
+
 // Zum Testen
-halterboden();
-// halterdeckel();
+// filmhalter(false);
+// halterboden();
+halterdeckel(true, false);
 
 
 // *******************************************************
@@ -148,14 +155,14 @@ halterboden();
 module filmhalter(offen)
 {
    halterboden();
-   halterdeckel(offen);
+   halterdeckel(offen, true);
 }
 
 module halterboden()
 {
    difference()
    {
-      halterboden_massiv();
+      halterteil_massiv(true);
       fenster();
       boden_ausschnitt();
       magnet_ausschnitte();
@@ -166,25 +173,38 @@ module halterboden()
 }
 
 
-module halterdeckel(offen)
+module halterdeckel(offen, vereint)
 {
-   rot_angle = (offen) ? 0 : 180;
-   rotate([0, rot_angle, 0])
+   rot_x = (offen) ? 0 : 180;
+   rot_z = (vereint) ? 180 : 0;
+   // Die Rotationen um die beiden Achsen sind logisch unabhänging. Eine
+   // ist das Öffnen nud Schließen des Halters, die Andere ist, ob der
+   // Deckel in den Boden integriert ist oder nicht
+   rotate([rot_x, 0, rot_z])
    {
       difference()
       {
-         halterdeckel_massiv();
+         halterteil_massiv(false);
          fenster();
          deckel_ausschnitt();
          magnet_ausschnitte();
       }
       deckel_griff();
       fenster_stege();
-      hinge(false, true);
+      rotate(180)
+         {
+            hinge(false, true);
+         }
    }
+
 }
 
 
-module scharnier()
+module halterteil_massiv(boden)
 {
+   y_l = (boden) ? w_bodenwanne : w_deckel;
+   translate([-x_offset, w_offset, -h_bd])
+   {
+      cube([l_ue_a, y_l, h_bd]);
+   }
 }
