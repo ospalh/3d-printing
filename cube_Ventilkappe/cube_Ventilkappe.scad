@@ -3,7 +3,8 @@
 // kubische Ventilkappe. Für cube-Fahrräder
 //
 // © 2017 Roland Sieker <ospalh@gmail.com>
-// Licence: CC-BY-SA 4.0
+// Licence: CC-0
+// have fun
 
 r1 = 8/2;
 h1=5;
