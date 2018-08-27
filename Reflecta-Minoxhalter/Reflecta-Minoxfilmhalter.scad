@@ -427,8 +427,7 @@ module kerben()
    for (i=[0:bilder_ps-1])
    {
       translate(
-         [-l_fenster/2 + i * l_bild + l_bild/2,
-          w_gesamt/2 - b_zk - w_zk, h_zk-r_zk])
+         [-l_fenster/2 + i * l_bild + l_bild/2, w_gesamt/2 - w_zk, h_zk-r_zk])
       {
          rotate([90,0,0])
          {
