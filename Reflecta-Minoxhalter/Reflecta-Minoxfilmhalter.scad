@@ -75,13 +75,8 @@ l_filmsteg = 0.4;
 
 
 // Größen der Haltemagnete
-d_mag = 4; // großes Loch
-h_mag = 1.2;
-
-// Zahl der Haltemagnete
-
-h_ue_mag = 0.4;
-// Zwei Schichten über den Magneten sollte reichen, sie im Zaum zu halten
+d_mag = 3.8; // großes Loch
+h_mag = 1;
 
 w_schraeg = 1.5;  // Breite der Abschrägung rund um die Filmfenster
 
@@ -143,8 +138,8 @@ to_griff = l_ue_a/2 - o_griff - l_griff/2;
 // Generate the parts
 
 
-// print_part();
-filmhalter();
+print_part();
+// filmhalter();
 // einsatz();
 // preview_parts();
 // stack_parts();
@@ -357,7 +352,7 @@ module magnetausschnitt(xf, yf, mo)
    yo_mag = w_einsatz/2 + (w_gesamt - w_einsatz)/4;
    // Mittig in den Griffen.
    translate(
-      [xf * (to_griff - mo), yf * (yo_mag-mo), h_bd - h_mag-c - h_ue_mag])
+      [xf * (to_griff - mo), yf * (yo_mag-mo), h_bd - h_mag-c + ms])
    {
       cylinder(d=d_mag, h=h_mag+c);  // N.B. Spiel ist schon im d_mag
       // eingerechnet
