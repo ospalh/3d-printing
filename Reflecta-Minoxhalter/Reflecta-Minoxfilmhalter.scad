@@ -25,7 +25,7 @@ preview = true;
 // Comment them out for 110
 w_streifen = 9.2;
 w_bild = 8;
-l_bild = 13.1;
+l_bild = 12.76;
 bilder_ps = 11;
 
 // // ********************
@@ -75,8 +75,8 @@ l_filmsteg = 0.4;
 
 
 // Größen der Haltemagnete
-d_mag = 2;
-h_mag = 1;
+d_mag = 4; // großes Loch
+h_mag = 1.2;
 
 // Zahl der Haltemagnete
 
@@ -359,7 +359,8 @@ module magnetausschnitt(xf, yf, mo)
    translate(
       [xf * (to_griff - mo), yf * (yo_mag-mo), h_bd - h_mag-c - h_ue_mag])
    {
-      cylinder(d=d_mag+c, h=h_mag+c);
+      cylinder(d=d_mag, h=h_mag+c);  // N.B. Spiel ist schon im d_mag
+      // eingerechnet
    }
 }
 
