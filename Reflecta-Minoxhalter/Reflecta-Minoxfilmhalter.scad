@@ -89,7 +89,7 @@ w_schraeg = 1.5;  // Breite der Abschrägung rund um die Filmfenster
 
 w = 1.8;  // Wall width
 p = 1.2;  // Bottom, top plate height
-c = 0.4;  // Clearance
+c = 0.6;  // Clearance
 angle = 60; // Overhangs much below 60° are a problem for me
 
 // *******************************************************
@@ -138,10 +138,10 @@ to_griff = l_ue_a/2 - o_griff - l_griff/2;
 // Generate the parts
 
 
-print_part();
+// print_part();
 // filmhalter();
 // einsatz();
-// preview_parts();
+preview_parts();
 // stack_parts();
 
 
@@ -171,7 +171,7 @@ module stack_parts()
 {
    // intersection()
    {
-      color("yellow")
+       // color("yellow")
       {
          filmhalter();
       }
@@ -179,7 +179,7 @@ module stack_parts()
       {
          rotate([0,180,0])
          {
-            color("red")
+            // color("red")
             {
                einsatz();
             }
@@ -391,7 +391,7 @@ module einsatzausschnitte()
       {
          translate([0,w_steg/2+w_streifen/2+c/2,0])
          {
-            cube([l_fenster+2*c, w_steg+c, h_nut], center=true);
+            cube([l_fenster+6*c, w_steg+1.5*c, h_nut], center=true);
          }
       }
    }
