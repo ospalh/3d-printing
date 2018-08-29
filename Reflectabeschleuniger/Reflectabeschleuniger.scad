@@ -28,6 +28,7 @@ w_bild = 24;
 l_bild = 36;
 
 
+
 // // ********************
 // // Try this set for 110
 // // ********************
@@ -50,9 +51,12 @@ l_bild = 36;
 // Die beiden wichtigen. Wenn diese falsch sind passt’s nicht oder wackelt.
 h_ue_a = 6;  // Höhe über alles
 w_gesamt = 59;  // Gesamtbreite
+l_scanner = 72;  // Bestimmt die Position der Stoppnase und die Breite links
 r_r = 1;  // Rundungsradius
-l_sr = 20;  // Länge scannerrahemen. Abstand Fenster Scannergehäusewand
-l_er = 40;
+
+l_sr = (l_scanner - l_bild)/2;
+echo("Randbreite", l_sr);
+l_er = 40;  // Extrabreite rechts. Dient dem Keil und dem Ausziehen des Halters.
 
 
 // Auch wichtig:
