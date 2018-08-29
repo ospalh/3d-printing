@@ -20,7 +20,7 @@ preview = true;
 // Ausser vielleicht den Filmstreifengrößen.
 
 // *******************
-// These are for Minox
+// These are for 135
 // *******************
 // Comment them out for 110
 w_streifen = 35;
@@ -34,13 +34,9 @@ l_bild = 36;
 // // ********************
 // // Uncomment these in for 110
 // w_streifen = 16;
-// w_bild = 14; // Nominally 13. This should work out
-// l_bild = 25.4;
-// // Total pitch, picture plus number and hole. Measured. Might be exactly
-// // 25.4 mm, as the format was made by Americans.
-// bilder_ps = 7;
-// // The strips i got were all 5. Otoh, the 135 holder you get with the
-// // scanner has 6 holes and the strips i have all have 4. So, +2.
+// w_bild = 13;
+// l_bild = 17;
+
 
 // Größen des Halters.
 
@@ -51,6 +47,7 @@ l_bild = 36;
 // Die beiden wichtigen. Wenn diese falsch sind passt’s nicht oder wackelt.
 h_ue_a = 6;  // Höhe über alles
 w_gesamt = 59;  // Gesamtbreite
+
 l_scanner = 72;  // Bestimmt die Position der Stoppnase und die Breite links
 r_r = 1;  // Rundungsradius
 
