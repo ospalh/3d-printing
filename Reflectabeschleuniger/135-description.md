@@ -5,19 +5,21 @@ This is a replacement for the Reflecta Scan7 135 film holder that allows you to 
 The point of the cheap camera based film digitizers is, apart from the price, the speed. (Resolution and scratch removal are sacrificed for this.) But the standard Reflecta film holder requires a number of steps:
 
 * Pull holder out of digitizer
-* Open digitizer
+* Open holder
+* Clean the film
 * Carefully position film
 * Close holder
 * Insert holder into digitizer
+* Then you have to take the four pictures, one by one
 
 That takes too long! I want to digitize literally hundreds of old films.
 
-So, with this you grab a strip (clean it) and push it into the digitizer a bit, take a picture, shove it in a bit more, picture, shove, picture, shove, picture, yank out strip. Done. Next.
+So, with this you grab a strip, clean it, push it into the digitizer a bit, take a picture, shove it in a bit more, picture, shove, picture, shove, picture, yank out strip. Done. Next.
 
 N.B.: The advantage of the open and close holder is that it is nicer to your film strips. Don’t use this things with precious negatives. Only some old ones that take up too much space. I cant guarantee that you won’t scratch up some of them.
 
+This uses eight tiny 1 mm high × 2.4 mm ⌀ neodymium magnets to hold shut. If you have other sizes lying around you can modify the file in OpenSCAD.
 
-There is also a bit of preparation to adapt this to 110 film. Use OpenSCAD. Than again, for 110 films i would use a true scanner to get out as much details as possible out of the small negative.
 
 ##How to print
 
