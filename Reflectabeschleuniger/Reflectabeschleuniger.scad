@@ -27,6 +27,7 @@ w_streifen = 35;
 w_bild = 24;
 l_bild = 36;
 
+
 // // ********************
 // // Try this set for 110
 // // ********************
@@ -50,8 +51,9 @@ l_bild = 36;
 h_ue_a = 6;  // Höhe über alles
 w_gesamt = 59;  // Gesamtbreite
 r_r = 1;  // Rundungsradius
-w_links = 20;
-w_rechts = 40;
+l_sr = 20;  // Länge scannerrahemen. Abstand Fenster Scannergehäusewand
+l_er = 40;
+
 
 // Auch wichtig:
 l_zk = 4;  // Länge Zentrierkerbe
@@ -62,11 +64,9 @@ w_zk = 1;  // Wand bzw Abstand der Zentrierkerbe vom Rand
 l_griff = l_bild;
 w_rand = 3;
 
-// Halbwegs wichtig
-h_nut = 0.8;  // Tiefe für Stücke, auf denen der Film nicht aufliegt
-h_steg = 0.6;  // Höhe für Stücke, die den Film zentrieren.
-w_steg = 2;  // Breite für Stücke, die den Film zentrieren.
 
+w_stop = w_gesamt + 5;  // Breite für Klotz, der Durchschieben den Halters verhindert.
+l_stop = 5;  // Länge für diesen Klotz
 
 
 
@@ -119,12 +119,15 @@ $fs = (preview) ? ps : rs;
 $fa = (preview) ? pa : ra;
 
 
-l_ue_a =  w_links + w_schraeg + l_bild + w_schraeg + w_rechts;
+l_ue_a =  l_sr + l_bild + l_sr + l_er;
+echo("Länge über alles",l_ue_a);
 w_einsatz = w_gesamt - 2 * w_rand;
 h_bd = h_ue_a/2;  // Höhe Boden oder Deckel
 
-
-
+h_bk = 0.2;  // Höhe Bildkerbe. 0.4 mm (dies × 2) sollte reichen. Für 1. test
+w_br = 1;  // Extra Rand für Bildkerbe. (Mit der Perforation haben wir’s.)
+l_br = 2;  // Extra Rand für Bildkerbe. (Mit der Perforation haben wir’s.)
+h_lkl = 0.75*h_bd;
 
 // *******************************************************
 // End setup
@@ -141,6 +144,9 @@ h_bd = h_ue_a/2;  // Höhe Boden oder Deckel
 // einsatz();
 preview_parts();
 // stack_parts();
+
+
+
 
 module print_part()
 {
@@ -173,7 +179,7 @@ module stack_parts()
       }
       translate([0,0,h_ue_a + ms])
       {
-         rotate([0,180,0])
+         rotate([180, 0,0])
          {
             // color("red")
             {
@@ -196,25 +202,19 @@ module filmhalter()
       fenster();
       magnetausschnitte(0);
       zentrierkerbe();
+      langkerbe(w_bild);
    }
-   bodenstege();
 }
 
 module einsatz()
 {
    difference()
    {
-      union()
-      {
-         difference()
-         {
-            basis_einsatz();
-            fenster();
-         }
-      }
-      einsatzkerben();
-      // magnetausschnitte(d_mag/2);
+      basis_einsatz();
+      fenster();
+      langkerbe(w_streifen);
       magnetausschnitte(0);
+      leitkeil();
    }
 
 }
@@ -251,15 +251,25 @@ module basis_einsatz()
 
 module massiver_halter()
 {
-   translate([w_rechts-w_links, 0, 0])
+   translate([l_er/2, 0, 0])
    {
-      hull()
+      rquad(l_ue_a, w_gesamt, h_ue_a);
+   }
+   translate([w_bild/2+l_sr+l_stop/2, 0, 0])
+   {
+      rquad(l_stop, w_stop, h_ue_a);
+   }
+   // todo: Stopper
+}
+
+module rquad(xx, yy, zz)
+{
+   hull()
+   {
+      vosp();
+      mirror([0,0,1])
       {
          vosp();
-         mirror([0,0,1])
-         {
-            vosp();
-         }
       }
    }
 
@@ -283,7 +293,7 @@ module massiver_halter()
 
    module osp()
    {
-      translate([l_ue_a/2-r_r, w_gesamt/2-r_r, h_ue_a/2-r_r])
+      translate([xx/2-r_r, yy/2-r_r, zz/2-r_r])
       {
          sphere(r=r_r);
       }
@@ -296,7 +306,7 @@ module einsatzausschnitt(ec)
    translate([0, 0, h_ue_a])
    {
       cube(
-         [l_ue_a+2*ms + w_links + w_rechts, w_einsatz + ec, 2*h_ue_a],
+         [l_ue_a+2*ms + 2*l_er, w_einsatz + ec, 2*h_ue_a],
          center=true);  // Zu lang. Kein Problem
 
       grip_cut();
@@ -352,45 +362,6 @@ module magnetausschnitt(xf, yf, mo)
    }
 }
 
-module bodenstege()
-{
-   bodensteg();
-   rotate(180)
-   {
-      bodensteg();
-   }
-   module bodensteg()
-   {
-      translate([0, 0, -ms+h_steg/2+h_bd])
-      {
-         translate([0,w_steg/2+w_streifen/2+c/2,0])
-         {
-            cube([l_bild, w_steg, h_steg], center=true);
-         }
-      }
-   }
-}
-
-module einsatzkerben()
-{
-   ekerbe();
-   rotate(180)
-   {
-      ekerbe();
-   }
-   module ekerbe()
-   {
-      translate([0, 0, h_bd + ms-h_nut/2])
-      {
-         translate([0,w_steg/2+w_streifen/2+c/2,0])
-         {
-            cube([l_bild+6*c, w_steg+1.5*c, h_nut], center=true);
-         }
-      }
-   }
-}
-
-
 
 module zentrierkerbe()
 {
@@ -408,6 +379,39 @@ module zentrierkerbe()
       rotate([90,0,0])
       {
          cylinder(r=r_zk, h=b_zk);
+      }
+   }
+}
+
+
+module langkerbe(kw)
+{
+   translate([0, 0, h_bd-h_bk/2+ms])
+   {
+      cube(
+         [l_ue_a+2*ms + 2*l_er, kw + 2*w_br, h_bk],
+         center=true);  // Zu lang. Kein Problem
+   }
+
+}
+
+
+module leitkeil()
+{
+   xo = l_bild/2+l_br;
+   llk = l_er+l_sr-l_br;
+   translate([xo, 0, h_bd+ms])
+   {
+      hull()
+      {
+         translate([0,0,-ms/2])
+         {
+            cube([ms, w_streifen + 2*w_br, ms], center=true);
+         }
+         translate([llk+ms,0,-h_lkl/2])
+         {
+            cube([ms, w_streifen + 2*w_br, h_lkl], center=true);
+         }
       }
    }
 }
