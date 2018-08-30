@@ -57,8 +57,8 @@ fensterstegbreit = 0.0;
 
 // Die beiden wichtigen. Wenn diese falsch sind passt’s nicht oder wackelt.
 h_ue_a = 5.6;  // Höhe über alles. War 6
-w_gesamt = 59;  // Gesamtbreite
-r_r = 1;  // Rundungsradius
+w_gesamt = 58.4;  // Gesamtbreite. Original: 59
+r_r = 1.6;  // Rundungsradius
 
 // Auch wichtig:
 l_zk = 4;  // Länge Zentrierkerbe
