@@ -20,26 +20,23 @@ preview = true;
 // Ausser vielleicht den Filmstreifengrößen.
 
 // *******************
-// These are for Minox
+// These are for 135
 // *******************
 // Comment them out for 110
-w_streifen = 9.2;
-w_bild = 8;
-l_bild = 12.76;
-bilder_ps = 11;
+w_streifen = 35;
+w_bild = 24;
+l_bild = 36;
+
+
 
 // // ********************
 // // Try this set for 110
 // // ********************
 // // Uncomment these in for 110
 // w_streifen = 16;
-// w_bild = 14; // Nominally 13. This should work out
-// l_bild = 25.4;
-// // Total pitch, picture plus number and hole. Measured. Might be exactly
-// // 25.4 mm, as the format was made by Americans.
-// bilder_ps = 7;
-// // The strips i got were all 5. Otoh, the 135 holder you get with the
-// // scanner has 6 holes and the strips i have all have 4. So, +2.
+// w_bild = 13;
+// l_bild = 17;
+
 
 // Größen des Halters.
 
@@ -50,7 +47,14 @@ bilder_ps = 11;
 // Die beiden wichtigen. Wenn diese falsch sind passt’s nicht oder wackelt.
 h_ue_a = 6;  // Höhe über alles
 w_gesamt = 59;  // Gesamtbreite
+
+l_scanner = 72;  // Bestimmt die Position der Stoppnase und die Breite links
 r_r = 1;  // Rundungsradius
+
+l_sr = (l_scanner - l_bild)/2;
+echo("Randbreite", l_sr);
+l_er = 40;  // Extrabreite rechts. Dient dem Keil und dem Ausziehen des Halters.
+
 
 // Auch wichtig:
 l_zk = 4;  // Länge Zentrierkerbe
@@ -58,15 +62,12 @@ b_zk = 4;  // Breite Zentrierkerbe
 h_zk = 1.2;  // Tiefe der Zentrierkerbe
 w_zk = 1;  // Wand bzw Abstand der Zentrierkerbe vom Rand
 
-l_griff = 30;
-o_griff = 20;
+l_griff = l_bild;
 w_rand = 3;
 
-// Halbwegs wichtig
-h_nut = 0.8;  // Tiefe für Stücke, auf denen der Film nicht aufliegt
-h_steg = 0.6;  // Höhe für Stücke, die den Film zentrieren.
-w_steg = 2;  // Breite für Stücke, die den Film zentrieren.
 
+w_stop = w_gesamt + 5;  // Breite für Klotz, der Durchschieben den Halters verhindert.
+l_stop = 5;  // Länge für diesen Klotz
 
 
 
@@ -118,15 +119,16 @@ function nb() = (preview) ? pnb : rnb;
 $fs = (preview) ? ps : rs;
 $fa = (preview) ? pa : ra;
 
-l_fenster = l_bild * bilder_ps;
-l_rand = 2 * w_steg + w_schraeg;
-l_ue_a =  l_fenster + 2*l_rand;
-w_einsatz = w_bild + 2 * l_rand;
+
+l_ue_a =  l_sr + l_bild + l_sr + l_er;
+echo("Länge über alles",l_ue_a);
+w_einsatz = w_gesamt - 2 * w_rand;
 h_bd = h_ue_a/2;  // Höhe Boden oder Deckel
 
-to_griff = l_ue_a/2 - o_griff - l_griff/2;
-
-
+h_bk = 0.2;  // Höhe Bildkerbe. 0.4 mm (dies × 2) sollte reichen. Für 1. test
+w_br = 1;  // Extra Rand für Bildkerbe. (Mit der Perforation haben wir’s.)
+l_br = 2;  // Extra Rand für Bildkerbe. (Mit der Perforation haben wir’s.)
+h_lkl = 0.75*h_bd;
 
 // *******************************************************
 // End setup
@@ -143,6 +145,7 @@ to_griff = l_ue_a/2 - o_griff - l_griff/2;
 // einsatz();
 preview_parts();
 // stack_parts();
+
 
 
 
@@ -177,7 +180,7 @@ module stack_parts()
       }
       translate([0,0,h_ue_a + ms])
       {
-         rotate([0,180,0])
+         rotate([180, 0,0])
          {
             // color("red")
             {
@@ -199,28 +202,20 @@ module filmhalter()
       basis_filmhalter();
       fenster();
       magnetausschnitte(0);
-      kerben();
+      zentrierkerbe();
+      langkerbe(w_bild);
    }
-   fensterstege();
-   bodenstege();
 }
 
 module einsatz()
 {
    difference()
    {
-      union()
-      {
-         difference()
-         {
-            basis_einsatz();
-            fenster();
-         }
-         fensterstege();
-      }
-      einsatzausschnitte();
-      // magnetausschnitte(d_mag/2);
+      basis_einsatz();
+      fenster();
+      langkerbe(w_streifen);
       magnetausschnitte(0);
+      leitkeil();
    }
 
 }
@@ -233,7 +228,7 @@ module basis_filmhalter()
       difference()
       {
          massiver_halter();
-         einsatz_ausschnitt(c);
+         einsatzausschnitt(c);
       }
    }
 }
@@ -248,7 +243,7 @@ module basis_einsatz()
          massiver_halter();
          rotate([0,180,0])
          {
-            einsatz_ausschnitt(0);
+            einsatzausschnitt(0);
          }
       }
    }
@@ -256,6 +251,19 @@ module basis_einsatz()
 }
 
 module massiver_halter()
+{
+   translate([l_er/2, 0, 0])
+   {
+      rquad(l_ue_a, w_gesamt, h_ue_a);
+   }
+   translate([w_bild/2+l_sr+l_stop/2, 0, 0])
+   {
+      rquad(l_stop, w_stop, h_ue_a);
+   }
+   // todo: Stopper
+}
+
+module rquad(xx, yy, zz)
 {
    hull()
    {
@@ -286,7 +294,7 @@ module massiver_halter()
 
    module osp()
    {
-      translate([l_ue_a/2-r_r, w_gesamt/2-r_r, h_ue_a/2-r_r])
+      translate([xx/2-r_r, yy/2-r_r, zz/2-r_r])
       {
          sphere(r=r_r);
       }
@@ -294,26 +302,22 @@ module massiver_halter()
 }
 
 
-module einsatz_ausschnitt(ec)
+module einsatzausschnitt(ec)
 {
    translate([0, 0, h_ue_a])
    {
-      cube([l_ue_a+2*ms, w_einsatz + ec, 2*h_ue_a], center=true);
+      cube(
+         [l_ue_a+2*ms + 2*l_er, w_einsatz + ec, 2*h_ue_a],
+         center=true);  // Zu lang. Kein Problem
+
       grip_cut();
-      mirror()
-      {
-         grip_cut();
-      }
    }
    module grip_cut()
    {
-      translate([to_griff, 0, 0])
+      cube([l_griff + ec, w_gesamt + 2*ms, 2*h_ue_a], center=true);
+      translate([0, -w_gesamt/2, 0])
       {
-         cube([l_griff + ec, w_gesamt + 2*ms, 2*h_ue_a], center=true);
-         translate([0, -w_gesamt/2, 0])
-         {
-            cube([l_griff + ec, 2*w_rand+2*ec, 4*h_ue_a], center=true);
-         }
+         cube([l_griff + ec, 2*w_rand+2*ec, 4*h_ue_a], center=true);
       }
    }
 }
@@ -326,12 +330,12 @@ module fenster()
       {
          translate([0,0,-0.5+ms])
          {
-            cube([l_fenster, w_bild, 1], center=true);
+            cube([l_bild, w_bild, 1], center=true);
          }
          translate([0,0,-h_bd-0.5-ms])
          {
             cube(
-               [l_fenster+2*w_schraeg, w_bild+2*w_schraeg, 1], center=true);
+               [l_bild+2*w_schraeg, w_bild+2*w_schraeg, 1], center=true);
          }
       }
 
@@ -349,67 +353,18 @@ module magnetausschnitte(mo)
 
 module magnetausschnitt(xf, yf, mo)
 {
-   yo_mag = w_einsatz/2 + (w_gesamt - w_einsatz)/4;
+   yo_mag = w_gesamt/2 - w_rand - d_mag;
    // Mittig in den Griffen.
    translate(
-      [xf * (to_griff - mo), yf * (yo_mag-mo), h_bd - h_mag-c + ms])
+      [xf * (l_bild/2-d_mag) , yf * (yo_mag-mo), h_bd - h_mag-c + ms])
    {
       cylinder(d=d_mag, h=h_mag+c);  // N.B. Spiel ist schon im d_mag
       // eingerechnet
    }
 }
 
-module bodenstege()
-{
-   bodensteg();
-   rotate(180)
-   {
-      bodensteg();
-   }
-   module bodensteg()
-   {
-      translate([0, 0, -ms+h_steg/2+h_bd])
-      {
-         translate([0,w_steg/2+w_streifen/2+c/2,0])
-         {
-            cube([l_fenster, w_steg, h_steg], center=true);
-         }
-      }
-   }
-}
 
-module einsatzausschnitte()
-{
-   ausschnitt();
-   rotate(180)
-   {
-      ausschnitt();
-   }
-   module ausschnitt()
-   {
-      translate([0, 0, h_bd + ms-h_nut/2])
-      {
-         translate([0,w_steg/2+w_streifen/2+c/2,0])
-         {
-            cube([l_fenster+6*c, w_steg+1.5*c, h_nut], center=true);
-         }
-      }
-   }
-}
-
-
-module fensterstege()
-{
-   for (i=[1:bilder_ps-1])
-   {
-      translate([-l_fenster/2 + i * l_bild, 0, h_bd/2-ms])
-      {
-         cube([l_filmsteg, w_bild+2*w_schraeg + 2*ms ,h_bd], center=true);
-      }
-   }
-}
-
-module kerben()
+module zentrierkerbe()
 {
    // Den Radius der Zentrierkerbe kann mensch per Pythagoras bestimmen.
    // Hypothenuse = r_zk
@@ -420,16 +375,44 @@ module kerben()
    // 0 = l_zk * l_zk / 4 - 2 * r_zk * h_zk + h_zk * h_zk
    // 2 * r_zk * h_zk =
    r_zk = (l_zk * l_zk / 4 + h_zk * h_zk) / (2 * h_zk);
-   for (i=[0:bilder_ps-1])
+   translate([-l_bild/2 + l_bild/2, w_gesamt/2 - w_zk, h_zk-r_zk])
    {
-      translate(
-         [-l_fenster/2 + i * l_bild + l_bild/2, w_gesamt/2 - w_zk, h_zk-r_zk])
+      rotate([90,0,0])
       {
-         rotate([90,0,0])
+         cylinder(r=r_zk, h=b_zk);
+      }
+   }
+}
+
+
+module langkerbe(kw)
+{
+   translate([0, 0, h_bd-h_bk/2+ms])
+   {
+      cube(
+         [l_ue_a+2*ms + 2*l_er, kw + 2*w_br, h_bk],
+         center=true);  // Zu lang. Kein Problem
+   }
+
+}
+
+
+module leitkeil()
+{
+   xo = l_bild/2+l_br;
+   llk = l_er+l_sr-l_br;
+   translate([xo, 0, h_bd+ms])
+   {
+      hull()
+      {
+         translate([0,0,-ms/2])
          {
-            cylinder(r=r_zk, h=b_zk);
+            cube([ms, w_streifen + 2*w_br, ms], center=true);
+         }
+         translate([llk+ms,0,-h_lkl/2])
+         {
+            cube([ms, w_streifen + 2*w_br, h_lkl], center=true);
          }
       }
    }
-
 }
