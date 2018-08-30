@@ -25,8 +25,13 @@ preview = true;
 // Comment them out for 110
 w_streifen = 9.2;
 w_bild = 8;
-l_bild = 12.76;
+l_bild = 13;
 bilder_ps = 11;
+fensterstegbreit = 0.0;
+// Keine Fensterstege. Für einen auf Dauer präzisen Transportmechanismus
+// war in den Minoxkameras wohl kein Platz mehr. Jedenfalls schwankt der
+// Abstand von Bild zu Bild bei meinen Streifen enorm.
+// Die geringe Breite und die seitlichen Stege sollten reichen.
 
 // // ********************
 // // Try this set for 110
@@ -40,6 +45,9 @@ bilder_ps = 11;
 // bilder_ps = 7;
 // // The strips i got were all 5. Otoh, the 135 holder you get with the
 // // scanner has 6 holes and the strips i have all have 4. So, +2.
+// l_filmsteg = 0.8;
+// Steg zwischen zwei Bildern. Zwei mal rüber mit der Düse
+
 
 // Größen des Halters.
 
@@ -48,7 +56,7 @@ bilder_ps = 11;
 // Breite oder Weite == Maß in Richtung Filmkante zu Filmkante
 
 // Die beiden wichtigen. Wenn diese falsch sind passt’s nicht oder wackelt.
-h_ue_a = 6;  // Höhe über alles
+h_ue_a = 5.6;  // Höhe über alles. War 6
 w_gesamt = 59;  // Gesamtbreite
 r_r = 1;  // Rundungsradius
 
@@ -69,9 +77,6 @@ w_steg = 2;  // Breite für Stücke, die den Film zentrieren.
 
 
 
-
-l_filmsteg = 0.4;
-// Steg zwischen zwei Bildern. Ein mal rüber mit der Düse sollte funktionieren.
 
 
 // Größen der Haltemagnete
@@ -400,11 +405,14 @@ module einsatzausschnitte()
 
 module fensterstege()
 {
-   for (i=[1:bilder_ps-1])
+   if (fensterstegbreite > 0)
    {
-      translate([-l_fenster/2 + i * l_bild, 0, h_bd/2-ms])
+      for (i=[1:bilder_ps-1])
       {
-         cube([l_filmsteg, w_bild+2*w_schraeg + 2*ms ,h_bd], center=true);
+         translate([-l_fenster/2 + i * l_bild, 0, h_bd/2-ms])
+         {
+            cube([l_filmsteg, w_bild+2*w_schraeg + 2*ms ,h_bd], center=true);
+         }
       }
    }
 }
