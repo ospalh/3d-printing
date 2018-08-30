@@ -53,7 +53,7 @@ r_r = 1;  // Rundungsradius
 
 l_sr = (l_scanner - l_bild)/2;
 echo("Randbreite", l_sr);
-l_er = 40;  // Extrabreite rechts. Dient dem Keil und dem Ausziehen des Halters.
+l_er = 35;  // Extrabreite rechts. Dient dem Keil und dem Ausziehen des Halters.
 
 
 // Auch wichtig:
@@ -174,7 +174,7 @@ module stack_parts()
 {
    // intersection()
    {
-       // color("yellow")
+      // color("yellow")
       {
          filmhalter();
       }
@@ -203,7 +203,7 @@ module filmhalter()
       fenster();
       magnetausschnitte(0);
       zentrierkerbe();
-      langkerbe(w_bild);
+      langnut(w_bild + 2*w_br, h_bk);
    }
 }
 
@@ -213,7 +213,8 @@ module einsatz()
    {
       basis_einsatz();
       fenster();
-      langkerbe(w_streifen);
+      langnut(w_streifen+c, h_bk);
+      langnut(w_bild + 2*w_br, 2*h_bk);
       magnetausschnitte(0);
       leitkeil();
    }
@@ -241,7 +242,7 @@ module basis_einsatz()
       intersection()
       {
          massiver_halter();
-         rotate([0,180,0])
+         rotate([180, 0, 0])
          {
             einsatzausschnitt(0);
          }
@@ -385,13 +386,12 @@ module zentrierkerbe()
 }
 
 
-module langkerbe(kw)
+module langnut(kw, kh)
 {
-   translate([0, 0, h_bd-h_bk/2+ms])
+   translate([0, 0, h_bd-kh/2+ms])
    {
-      cube(
-         [l_ue_a+2*ms + 2*l_er, kw + 2*w_br, h_bk],
-         center=true);  // Zu lang. Kein Problem
+      cube([l_ue_a+2*ms + 2*l_er, kw, kh], center=true);
+      // Zu lang. Kein Problem
    }
 
 }
@@ -407,11 +407,11 @@ module leitkeil()
       {
          translate([0,0,-ms/2])
          {
-            cube([ms, w_streifen + 2*w_br, ms], center=true);
+            cube([ms, w_streifen + c, ms], center=true);
          }
          translate([llk+ms,0,-h_lkl/2])
          {
-            cube([ms, w_streifen + 2*w_br, h_lkl], center=true);
+            cube([ms, w_streifen + c, h_lkl], center=true);
          }
       }
    }
