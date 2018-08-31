@@ -27,7 +27,7 @@ w_streifen = 9.2;
 w_bild = 8;
 l_bild = 13;
 bilder_ps = 11;
-fensterstegbreit = 0.0;
+l_filmsteg = 0;
 // Keine Fensterstege. Für einen auf Dauer präzisen Transportmechanismus
 // war in den Minoxkameras wohl kein Platz mehr. Jedenfalls schwankt der
 // Abstand von Bild zu Bild bei meinen Streifen enorm.
@@ -38,7 +38,7 @@ fensterstegbreit = 0.0;
 // // ********************
 // // Uncomment these in for 110
 // w_streifen = 16;
-// w_bild = 14; // Nominally 13. This should work out
+// w_bild = 13.4; // Nominally 13. This should work out
 // l_bild = 25.4;
 // // Total pitch, picture plus number and hole. Measured. Might be exactly
 // // 25.4 mm, as the format was made by Americans.
@@ -58,7 +58,7 @@ fensterstegbreit = 0.0;
 // Die beiden wichtigen. Wenn diese falsch sind passt’s nicht oder wackelt.
 h_ue_a = 5.6;  // Höhe über alles. War 6
 w_gesamt = 58.4;  // Gesamtbreite. Original: 59
-r_r = 1.6;  // Rundungsradius
+r_r = 1.0;  // Rundungsradius
 
 // Auch wichtig:
 l_zk = 4;  // Länge Zentrierkerbe
@@ -74,6 +74,8 @@ w_rand = 3;
 h_nut = 0.8;  // Tiefe für Stücke, auf denen der Film nicht aufliegt
 h_steg = 0.6;  // Höhe für Stücke, die den Film zentrieren.
 w_steg = 2;  // Breite für Stücke, die den Film zentrieren.
+l_kurzsteg = 2;  // Länge für Stücke, die den Film zentrieren,
+// wenn wier keine Fensterstege machen
 
 
 
@@ -83,7 +85,7 @@ w_steg = 2;  // Breite für Stücke, die den Film zentrieren.
 d_mag = 3.8; // großes Loch
 h_mag = 1;
 
-w_schraeg = 1.5;  // Breite der Abschrägung rund um die Filmfenster
+w_schraeg = 1;  // Breite der Abschrägung rund um die Filmfenster
 
 
 
@@ -366,18 +368,39 @@ module magnetausschnitt(xf, yf, mo)
 
 module bodenstege()
 {
-   bodensteg();
-   rotate(180)
+   translate([0, 0, -ms+h_steg/2+h_bd])
    {
-      bodensteg();
-   }
-   module bodensteg()
-   {
-      translate([0, 0, -ms+h_steg/2+h_bd])
+      if (l_filmsteg > 0)
       {
-         translate([0,w_steg/2+w_streifen/2+c/2,0])
+         langbodensteg();
+         rotate(180)
          {
-            cube([l_fenster, w_steg, h_steg], center=true);
+            langbodensteg();
+         }
+      }
+      else
+      {
+         kurzbodenstege();
+         rotate(180)
+         {
+            kurzbodenstege();
+         }
+      }
+   }
+   module langbodensteg()
+   {
+      translate([0,w_steg/2+w_streifen/2+c/2, 0])
+      {
+         cube([l_fenster, w_steg, h_steg], center=true);
+      }
+   }
+   module kurzbodenstege()
+   {
+      for (i=[0:bilder_ps-1])
+      {
+         translate([-l_fenster/2 + (0.5 + i) * l_bild, w_steg/2+w_streifen/2+c/2, 0])
+         {
+            cube([l_kurzsteg, w_steg, h_steg], center=true);
          }
       }
    }
@@ -385,18 +408,39 @@ module bodenstege()
 
 module einsatzausschnitte()
 {
-   ausschnitt();
-   rotate(180)
+   translate([0, 0, h_bd + ms-h_nut/2])
    {
-      ausschnitt();
-   }
-   module ausschnitt()
-   {
-      translate([0, 0, h_bd + ms-h_nut/2])
+      if (l_filmsteg > 0)
       {
-         translate([0,w_steg/2+w_streifen/2+c/2,0])
+         langausschnitt();
+         rotate(180)
          {
-            cube([l_fenster+6*c, w_steg+1.5*c, h_nut], center=true);
+            langausschnitt();
+         }
+      }
+      else
+      {
+         kurzausschnitte();
+         rotate(180)
+         {
+            kurzausschnitte();
+         }
+      }
+   }
+   module langausschnitt()
+   {
+      translate([0,w_steg/2+w_streifen/2+c/2,0])
+      {
+         cube([l_fenster+6*c, w_steg+2*c, h_nut], center=true);
+      }
+   }
+   module kurzausschnitte()
+   {
+      for (i=[0:bilder_ps-1])
+      {
+         translate([-l_fenster/2 + (0.5 + i) * l_bild, w_steg/2+w_streifen/2+c/2, 0])
+         {
+            cube([l_kurzsteg+3*c, w_steg+2*c, h_nut], center=true);
          }
       }
    }
@@ -405,7 +449,7 @@ module einsatzausschnitte()
 
 module fensterstege()
 {
-   if (fensterstegbreite > 0)
+   if (l_filmsteg > 0)
    {
       for (i=[1:bilder_ps-1])
       {
