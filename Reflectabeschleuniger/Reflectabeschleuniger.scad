@@ -28,7 +28,6 @@ w_bild = 24;
 l_bild = 36;
 
 
-
 // // ********************
 // // Try this set for 110
 // // ********************
@@ -53,7 +52,6 @@ l_scanner = 104;  // Bestimmt die Position der Stoppnase und die Breite
 r_r = 1;  // Rundungsradius
 
 l_sr = (l_scanner - l_bild)/2;
-l_er = 35;  // Extrabreite rechts. Dient dem Keil und dem Ausziehen des Halters.
 
 
 // Auch wichtig:
@@ -68,6 +66,7 @@ w_rand = 3;
 
 w_stop = w_gesamt + 5;  // Breite für Klotz, der Durchschieben den Halters verhindert.
 l_stop = 5;  // Länge für diesen Klotz
+l_er = 0; // l_stop;  // Extrabreite rechts. Dient dem Keil und dem Ausziehen des Halters.
 
 
 
@@ -201,8 +200,8 @@ module filmhalter()
       basis_filmhalter();
       fenster();
       magnetausschnitte(0);
-      zentrierkerbe();
       langnut(w_bild + 2*w_br, h_bk);
+      zentrierkerbe(1);
    }
 }
 
@@ -216,6 +215,7 @@ module einsatz()
       langnut(w_bild + 2*w_br, 2*h_bk);
       magnetausschnitte(0);
       leitkeil();
+      zentrierkerbe(-1);
    }
 
 }
@@ -364,7 +364,7 @@ module magnetausschnitt(xf, yf, mo)
 }
 
 
-module zentrierkerbe()
+module zentrierkerbe(sf)
 {
    // Den Radius der Zentrierkerbe kann mensch per Pythagoras bestimmen.
    // Hypothenuse = r_zk
@@ -375,11 +375,11 @@ module zentrierkerbe()
    // 0 = l_zk * l_zk / 4 - 2 * r_zk * h_zk + h_zk * h_zk
    // 2 * r_zk * h_zk =
    r_zk = (l_zk * l_zk / 4 + h_zk * h_zk) / (2 * h_zk);
-   translate([-l_bild/2 + l_bild/2, w_gesamt/2 - w_zk, h_zk-r_zk])
+   translate([0, sf*(w_gesamt/2 + r_zk - h_zk), -ms])
    {
-      rotate([90,0,0])
+      // rotate([90,0,0])
       {
-         cylinder(r=r_zk, h=b_zk);
+         cylinder(r=r_zk, h=h_ue_a+2*ms);
       }
    }
 }
