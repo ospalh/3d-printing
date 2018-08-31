@@ -1,6 +1,6 @@
-Reflecta Scan 7 scann accelerater
+Reflecta x7-Scan  scan accelerater
 
-This is a replacement for the Reflecta x7 135 film holder that allows you to quickly push the strips through the digitizer.
+This is a replacement for the Reflecta x7-Scan 135 film holder that allows you to quickly push the strips through the digitizer.
 
 The point of the small camera based film digitizers is, apart from the price, the speed. (Resolution¹ and scratch removal are sacrificed for this.) But the standard Reflecta film holders requires a number of steps:
 
@@ -25,8 +25,8 @@ This should be somewhat easy to modify for other image sizes (126/instamatic), f
 
 ##How to print
 
-Use fine resolution (100 µm) to get the steps of the wedge as smooth as possible off the print bed.
-Use black to reduce stray light. PLA is fine, but aceton smoothing of ABS might be a good idea. Other print parameters aren’t important. No falsework required. Warping might be a problem, so use a brim or raft if you have to.
+Use fine resolution (100 µm) to get the steps of the wedge as smooth as possible off the print bed. When you know how to do it you can use 100 µm only for the wedge part and higher values for parts below or above it.
+Print with black filament to reduce stray light. PLA is fine, but aceton smoothing of ABS might be a good idea. Other print parameters aren’t important. No falsework required. Warping might be a problem, so use a brim or raft if you have to.
 
 
 ## Post-printing
