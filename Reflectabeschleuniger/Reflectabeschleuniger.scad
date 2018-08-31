@@ -45,8 +45,8 @@ l_bild = 36;
 // Breite oder Weite == Maß in Richtung Filmkante zu Filmkante
 
 // Die beiden wichtigen. Wenn diese falsch sind passt’s nicht oder wackelt.
-h_ue_a = 6;  // Höhe über alles
-w_gesamt = 59;  // Gesamtbreite
+h_ue_a = 5.6;  // Höhe über alles
+w_gesamt = 64;  // Gesamtbreite
 
 l_scanner = 104;  // Bestimmt die Position der Stoppnase und die Breite
 // links. Nach Datenblatt
