@@ -48,7 +48,8 @@ l_bild = 36;
 h_ue_a = 6;  // Höhe über alles
 w_gesamt = 59;  // Gesamtbreite
 
-l_scanner = 72;  // Bestimmt die Position der Stoppnase und die Breite links
+l_scanner = 104;  // Bestimmt die Position der Stoppnase und die Breite
+// nach links. Nach Datenblatt
 r_r = 1;  // Rundungsradius
 
 l_sr = (l_scanner - l_bild)/2;
