@@ -49,11 +49,10 @@ h_ue_a = 6;  // Höhe über alles
 w_gesamt = 59;  // Gesamtbreite
 
 l_scanner = 104;  // Bestimmt die Position der Stoppnase und die Breite
-// nach links. Nach Datenblatt
+// links. Nach Datenblatt
 r_r = 1;  // Rundungsradius
 
 l_sr = (l_scanner - l_bild)/2;
-echo("Randbreite", l_sr);
 l_er = 35;  // Extrabreite rechts. Dient dem Keil und dem Ausziehen des Halters.
 
 
@@ -122,7 +121,6 @@ $fa = (preview) ? pa : ra;
 
 
 l_ue_a =  l_sr + l_bild + l_sr + l_er;
-echo("Länge über alles",l_ue_a);
 w_einsatz = w_gesamt - 2 * w_rand;
 h_bd = h_ue_a/2;  // Höhe Boden oder Deckel
 
