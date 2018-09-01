@@ -45,7 +45,7 @@ l_bild = 36;
 // Breite oder Weite == Maß in Richtung Filmkante zu Filmkante
 
 // Die beiden wichtigen. Wenn diese falsch sind passt’s nicht oder wackelt.
-h_ue_a = 5.6;  // Höhe über alles
+h_ue_a = 4.8;  // Höhe über alles
 w_gesamt = 64;  // Gesamtbreite
 
 l_scanner = 104;  // Bestimmt die Position der Stoppnase und die Breite
@@ -67,7 +67,7 @@ w_rand = 3;
 
 w_stop = w_gesamt + 5;  // Breite für Klotz, der Durchschieben den Halters verhindert.
 l_stop = 5;  // Länge für diesen Klotz
-l_er = 0; // l_stop;  // Extrabreite rechts. Dient dem Keil und dem Ausziehen des Halters.
+l_ueber = 5; // l_stop;  // Extrabreite rechts. Dient dem Keil und dem Ausziehen des Halters.
 
 
 
@@ -76,10 +76,10 @@ l_filmsteg = 0.4;
 
 
 // Größen der Haltemagnete
-d_mag = 3.8; // großes Loch
+d_mag = 3.6; // großes Loch
 h_mag = 1;
 
-w_schraeg = 1.5;  // Breite der Abschrägung rund um die Filmfenster
+w_schraeg = h_ue_a/4;
 
 
 
@@ -91,6 +91,7 @@ w_schraeg = 1.5;  // Breite der Abschrägung rund um die Filmfenster
 w = 1.8;  // Wall width
 p = 1.2;  // Bottom, top plate height
 c = 0.6;  // Clearance
+c_h = 0.2;  // Spiel in Höhe (Magneten)
 angle = 60; // Overhangs much below 60° are a problem for me
 
 // *******************************************************
@@ -120,7 +121,7 @@ $fs = (preview) ? ps : rs;
 $fa = (preview) ? pa : ra;
 
 
-l_ue_a =  l_sr + l_bild + l_sr + l_er;
+l_ue_a =  l_sr + l_bild + l_sr + l_ueber;
 w_einsatz = w_gesamt - 2 * w_rand;
 h_bd = h_ue_a/2;  // Höhe Boden oder Deckel
 
@@ -144,7 +145,6 @@ h_lkl = 0.75*h_bd;
 // einsatz();
 preview_parts();
 // stack_parts();
-
 
 
 
@@ -253,15 +253,14 @@ module basis_einsatz()
 
 module massiver_halter()
 {
-   translate([l_er/2, 0, 0])
+   translate([l_ueber/2, 0, 0])
    {
       rquad(l_ue_a, w_gesamt, h_ue_a);
    }
-   translate([w_bild/2+l_sr+l_stop/2, 0, 0])
+   translate([l_scanner/2+l_stop/2, 0, 0])
    {
       rquad(l_stop, w_stop, h_ue_a);
    }
-   // todo: Stopper
 }
 
 module rquad(xx, yy, zz)
@@ -308,7 +307,7 @@ module einsatzausschnitt(ec)
    translate([0, 0, h_ue_a])
    {
       cube(
-         [l_ue_a+2*ms + 2*l_er, w_einsatz + ec, 2*h_ue_a],
+         [l_ue_a+2*ms + 2*l_ueber, w_einsatz + ec, 2*h_ue_a],
          center=true);  // Zu lang. Kein Problem
 
       grip_cut();
@@ -354,12 +353,13 @@ module magnetausschnitte(mo)
 
 module magnetausschnitt(xf, yf, mo)
 {
-   yo_mag = w_gesamt/2 - w_rand - d_mag;
-   // Mittig in den Griffen.
+   yo_mag = (w_gesamt- w_rand + w_streifen) /4;  // Mittig auf demh Randstück
+
+   // Auserhalb des des GRiffs zum Öffnen
    translate(
-      [xf * (l_bild/2-d_mag) , yf * (yo_mag-mo), h_bd - h_mag-c + ms])
+      [xf * (l_bild/2+d_mag) , yf * (yo_mag-mo), h_bd - h_mag-c_h + ms])
    {
-      cylinder(d=d_mag, h=h_mag+c);  // N.B. Spiel ist schon im d_mag
+      cylinder(d=d_mag, h=h_mag+c_h);  // N.B. Spiel ist schon im d_mag
       // eingerechnet
    }
 }
@@ -390,7 +390,7 @@ module langnut(kw, kh)
 {
    translate([0, 0, h_bd-kh/2+ms])
    {
-      cube([l_ue_a+2*ms + 2*l_er, kw, kh], center=true);
+      cube([l_ue_a+2*ms + 2*l_ueber, kw, kh], center=true);
       // Zu lang. Kein Problem
    }
 
@@ -400,7 +400,7 @@ module langnut(kw, kh)
 module leitkeil()
 {
    xo = l_bild/2+l_br;
-   llk = l_er+l_sr-l_br;
+   llk = l_scanner/2 - xo + max(l_ueber,l_stop);
    translate([xo, 0, h_bd+ms])
    {
       hull()
