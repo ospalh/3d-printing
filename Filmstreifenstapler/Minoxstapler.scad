@@ -141,7 +141,7 @@ module stack()
    }
    module h_cube()
    {
-      translate([ll/2-ms-hw/2 , -epl/2,p/2])
+      translate([ll/2-ms-hw/2, 0, p/2])
       {
          cube([hw, hl, p], center=true);
       }
