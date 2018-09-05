@@ -7,7 +7,7 @@
 
 
 // … to preview. You will get all parts when you click “Create Thing”.
-part = "lid"; // [stack: Stapler, lid: Deckel]
+part = "stack"; // [stack: Stapler, lid: Deckel]
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
@@ -15,17 +15,19 @@ preview = 1; // [0:render, 1:preview]
 
 ll = 11*13+3;  //
 lld = ll-3;
-wst = 10; // 9.2 mm + clearance
-wld = 9; // Make it fit between the plates without problems
-h = 66; // I have a lot of film strips i want to stack
+wst = 10.6; // 9.2 mm + clearance
+wld = 8.5; // Make it fit between the plates without problems
+h = 20; // I have a lot of film strips i want to stack
 
-w = 1.8;  // Wall width
+w = 1.2;  // Wall width
 
 epl = wld + 2*w;
 spl = 10;
-spo = -w;
-spsp = ll/4;
+spo = 5;
+spsp = ll/3;
 
+hl = 50;
+hw = 10;
 
 /* [Hidden] */
 
@@ -36,7 +38,7 @@ spsp = ll/4;
 
 
 
-p = 1.2;  // Bottom, top plate height
+p = 2;  // Bottom, top plate height
 c = 0.4;  // Clearance
 angle = 60; // Overhangs much below 60° are a problem for me
 
@@ -132,6 +134,19 @@ module stack()
       cube([ll, wst, p], center=true);
    }
    plates();
+   h_cube();
+   mirror()
+   {
+      h_cube();
+   }
+   module h_cube()
+   {
+      translate([ll/2-ms-hw/2 , -epl/2,p/2])
+      {
+         cube([hw, hl, p], center=true);
+      }
+
+   }
 }
 
 
@@ -149,24 +164,24 @@ module plates()
    end_plate();
    side_plate(0);
    side_plate(spsp);
-   side_plate(2*spsp);
+   // side_plate(2*spsp);
    rotate(180)
    {
       side_plate(0);
       side_plate(spsp);
-      side_plate(2*spsp);
+      // side_plate(2*spsp);
    }
    mirror()
    {
       end_plate();
       side_plate(0);
       side_plate(spsp);
-      side_plate(2*spsp);
+      // side_plate(2*spsp);
       rotate(180)
       {
          side_plate(0);
          side_plate(spsp);
-         side_plate(2*spsp);
+         // side_plate(2*spsp);
       }
    }
 }
