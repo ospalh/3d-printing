@@ -67,14 +67,14 @@ h_zk = 1.2;  // Tiefe der Zentrierkerbe
 w_zk = 1;  // Wand bzw Abstand der Zentrierkerbe vom Rand
 
 l_griff = 30;
-o_griff = 20;
-w_rand = 3;
+o_griff = 30;
+w_griff = 5;
 
 // Halbwegs wichtig
-h_nut = 0.8;  // Tiefe für Stücke, auf denen der Film nicht aufliegt
-h_steg = 0.6;  // Höhe für Stücke, die den Film zentrieren.
+h_nut = 1.8;  // Tiefe für Stücke, auf denen der Film nicht aufliegt
+h_steg = 1.6;  // Höhe für Stücke, die den Film zentrieren.
 w_steg = 2;  // Breite für Stücke, die den Film zentrieren.
-l_kurzsteg = 2;  // Länge für Stücke, die den Film zentrieren,
+l_kurzsteg = 0.4*l_bild;  // Länge für Stücke, die den Film zentrieren,
 // wenn wier keine Fensterstege machen
 
 
@@ -126,9 +126,10 @@ $fs = (preview) ? ps : rs;
 $fa = (preview) ? pa : ra;
 
 l_fenster = l_bild * bilder_ps;
-l_rand = 2 * w_steg + w_schraeg;
+l_rand = 2 * w_steg + w_schraeg + 2;
+w_rand = w_schraeg + 8;
 l_ue_a =  l_fenster + 2*l_rand;
-w_einsatz = w_bild + 2 * l_rand;
+w_einsatz = w_bild + 2 * w_rand;
 h_bd = h_ue_a/2;  // Höhe Boden oder Deckel
 
 to_griff = l_ue_a/2 - o_griff - l_griff/2;
@@ -319,7 +320,7 @@ module einsatz_ausschnitt(ec)
          cube([l_griff + ec, w_gesamt + 2*ms, 2*h_ue_a], center=true);
          translate([0, -w_gesamt/2, 0])
          {
-            cube([l_griff + ec, 2*w_rand+2*ec, 4*h_ue_a], center=true);
+            cube([l_griff + ec, 2*w_griff+2*ec, 4*h_ue_a], center=true);
          }
       }
    }
@@ -440,7 +441,7 @@ module einsatzausschnitte()
       {
          translate([-l_fenster/2 + (0.5 + i) * l_bild, w_steg/2+w_streifen/2+c/2, 0])
          {
-            cube([l_kurzsteg+3*c, w_steg+2*c, h_nut], center=true);
+            cube([l_kurzsteg+2*c, w_steg+3*c, h_nut], center=true);
          }
       }
    }
