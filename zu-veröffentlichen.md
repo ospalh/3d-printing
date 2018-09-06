@@ -1,4 +1,3 @@
-• Drehkalender
 • Kühlwand
 • Kühlschrankuntersetzer mit Rillen
 • Fahrradschlauchfüße
