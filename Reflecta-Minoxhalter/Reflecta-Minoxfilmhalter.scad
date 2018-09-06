@@ -147,10 +147,10 @@ to_griff = l_ue_a/2 - o_griff - l_griff/2;
 // Generate the parts
 
 
-// print_part();
+print_part();
 // filmhalter();
 // einsatz();
-preview_parts();
+// preview_parts();
 // stack_parts();
 
 
@@ -440,9 +440,9 @@ module einsatzausschnitte()
    {
       for (i=[0:bilder_ps-1])
       {
-         translate([-l_fenster/2 + (0.5 + i) * l_bild, w_steg/2+w_streifen/2+c/2, 0])
+         translate([-l_fenster/2 + (0.5 + i) * l_bild, w_steg/2+w_streifen/2+c/2-w_streifen/4 + w_bild/4, 0])
          {
-            cube([l_kurzsteg+2*c, w_steg+3*c, h_nut], center=true);
+            cube([l_kurzsteg+2*c, w_steg+2*c+w_streifen/2 - w_bild/2, h_nut], center=true);
          }
       }
    }
