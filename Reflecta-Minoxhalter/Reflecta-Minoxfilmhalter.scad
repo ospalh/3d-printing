@@ -24,7 +24,8 @@ preview = true;
 // *******************
 // Comment them out for 110
 w_streifen = 9.2;
-w_bild = 8;
+// w_bild = 8;
+w_bild = 7.8;  // Nominal 8. Mehr Auflagefläche
 l_bild = 13;
 bilder_ps = 11;
 l_filmsteg = 0;
