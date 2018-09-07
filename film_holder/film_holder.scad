@@ -6,59 +6,61 @@
 // Licence: CC-BY-SA 4.0
 
 
-// Customizer-code rausgenommen. Hier gibt’s nicht viel zu verstellen.
-
-// Teile wieder rein. Das preview, stack, print ist gut.
-// … to preview. You will get all parts when you click “Create Thing”.
-part = "halter"; // [halter: Filmhalter, einsatz: Klemmeinsatz]
+/* [Global] */
 
 
-// Auf false schalten, ums STL zu erzeugen
-preview = true;
+// … to preview. You will get both parts when you click “Create Thing”.
+part = "halter"; // [halter: film holder, einsatz: film holder clamp]
+
+/* [Main] */
+
+// The type of film you want to scan. 110: 16 mm “pocket” instamatic, 126: 35 mm instamatic, 135: standard 35 mm film, other: set sizes below
+film_type = "110"; // [110: 110, 126: 126, 135: 135, other: other]
+
+// Width of the holder. This one and the next one are the two values you do need to set up for your scanner. Preset is for a Reflecta proScan. Maybe subtract half a millimtre for a better fit.
+holder_width = 58.4;  // [20:0.1:150]
+
+// Height or thickness of the holder. See above. You know they were too high when you need a mallet to go from one image to the next…
+holder_thickness = 5.6;  // [3:0.1:10]
 
 
-// Ausser vielleicht den Filmstreifengrößen.
-
-// *******************
-// These are for Minox
-// *******************
-// Comment them out for 110
-w_streifen = 9.2;
-// w_bild = 8;
-w_bild = 7.8;  // Nominal 8. Mehr Auflagefläche
-l_bild = 13;
-bilder_ps = 11;
-l_filmsteg = 0;
-// Keine Fensterstege. Für einen auf Dauer präzisen Transportmechanismus
-// war in den Minoxkameras wohl kein Platz mehr. Jedenfalls schwankt der
-// Abstand von Bild zu Bild bei meinen Streifen enorm.
-// Die geringe Breite und die seitlichen Stege sollten reichen.
-
-// // ********************
-// // Try this set for 110
-// // ********************
-// // Uncomment these in for 110
-// w_streifen = 16;
-// w_bild = 13.4; // Nominally 13. This should work out
-// l_bild = 25.4;
-// // Total pitch, picture plus number and hole. Measured. Might be exactly
-// // 25.4 mm, as the format was made by Americans.
-// bilder_ps = 7;
-// // The strips i got were all 5. Otoh, the 135 holder you get with the
-// // scanner has 6 holes and the strips i have all have 4. So, +2.
-// l_filmsteg = 0.8;
-// Steg zwischen zwei Bildern. Zwei mal rüber mit der Düse
+// Set this to “render” and click on “Create Thing” when done with the setup.
+preview = 1; // [0:render, 1:preview]
 
 
-// Größen des Halters.
+/* [other film size] */
+// Picture parameters used for “other” above. Presets are for Minox spy camera film. All length in millimetre. Will be ignored for a standard film size.
 
-// Länge == Maß in Richtung des Filmlaus.
-// Höhe == Maß normal zum Film
-// Breite oder Weite == Maß in Richtung Filmkante zu Filmkante
+// Width of the film
+film_width = 9.2;  // [8:0.1:70]
+// Length from the left edge of an exposure to its right edge
+image_width = 13; // [8:0.1:100]
+// Length from one point (e.g. left edge) of one exposure to the same point of the next exposure. This minus the image width is used for the vertical ridges, if it’s positive.
+image_pitch = 13; // [0:0.1:110]
+// Size of an exposure from bottom to top.
+image_height = 7.8; // [7:0.1:68]
+// How many exposures on the longest strips you want to fit into this.
+images_per_strip = 11;  // [1:1:20]
 
-// Die beiden wichtigen. Wenn diese falsch sind passt’s nicht oder wackelt.
-h_ue_a = 5.6;  // Höhe über alles. War 6
-w_gesamt = 58.4;  // Gesamtbreite. Original: 59
+
+/* [magnets size] */
+// Sizes of the holes for the magnets to keep both parts together. Set one to 0 for no holes.
+
+// Diameter of the magnet hole. Add clearance by hand here.
+magnet_diameter = 3.8;  // [0:0.1:15]
+// Height or thickness of the magnet. Make sure to use magnets flat enough to fit.
+magnet_height = 1;  // [0.5:0.1:3]
+// Größen der Haltemagnete
+magnet_diameter = 3.8; // großes Loch
+
+/* [Hidden] */
+
+
+// TODO: Zwischenschritt: Werte aus Liste
+bildabstand = max(image_pitch, image_width);
+
+l_filmsteg = max(0, bildabstand-image_width);
+
 r_r = 1.0;  // Rundungsradius
 
 // Auch wichtig:
@@ -67,24 +69,27 @@ b_zk = 4;  // Breite Zentrierkerbe
 h_zk = 1.2;  // Tiefe der Zentrierkerbe
 w_zk = 1;  // Wand bzw Abstand der Zentrierkerbe vom Rand
 
+
+
+
+
 l_griff = 30;
 o_griff = 30;
 w_griff = 5;
 
-// Halbwegs wichtig
-h_nut = 1.8;  // Tiefe für Stücke, auf denen der Film nicht aufliegt
-h_steg = 1.6;  // Höhe für Stücke, die den Film zentrieren.
+kurzsteg_grenze = 1;  // Weniger als 1 mm pro Seite: Kurzstege
+
+mit_langsteg = ( ((film_width-image_height)/2) >= kurzsteg_grenze);
+
+
 w_steg = 2;  // Breite für Stücke, die den Film zentrieren.
-l_kurzsteg = 0.4*l_bild;  // Länge für Stücke, die den Film zentrieren,
+l_kurzsteg = 0.4*bildabstand;  // Länge für Stücke, die den Film zentrieren,
 // wenn wier keine Fensterstege machen
 
 
 
 
 
-// Größen der Haltemagnete
-d_mag = 3.8; // großes Loch
-h_mag = 1;
 
 w_schraeg = 1;  // Breite der Abschrägung rund um die Filmfenster
 
@@ -98,7 +103,14 @@ w_schraeg = 1;  // Breite der Abschrägung rund um die Filmfenster
 w = 1.8;  // Wall width
 p = 1.2;  // Bottom, top plate height
 c = 0.6;  // Clearance
+c_z = 0.3;  // Clearance in z direction. Mostly for the magnet hole and centering ridge
 angle = 60; // Overhangs much below 60° are a problem for me
+
+
+// Halbwegs wichtig
+h_steg = 1.6;  // Höhe für Stücke, die den Film zentrieren.
+h_nut = h_steg + c_z;  // Tiefe für Stücke, auf denen der Film nicht aufliegt
+
 
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed
@@ -109,7 +121,7 @@ xy_factor = 1/tan(angle);
 // To get from a height to a horizontal width inclined correctly
 z_factor = tan(angle);  // The other way around
 
-some_distance = 1.2 * w_gesamt;
+some_distance = 1.2 * holder_width;
 ms = 0.01;  // Muggeseggele.
 
 // fn for differently sized objects and fs, fa; all for preview or rendering.
@@ -126,12 +138,12 @@ function nb() = (preview) ? pnb : rnb;
 $fs = (preview) ? ps : rs;
 $fa = (preview) ? pa : ra;
 
-l_fenster = l_bild * bilder_ps;
+l_fenster = bildabstand * images_per_strip;
 l_rand = 2 * w_steg + w_schraeg + 2;
 w_rand = w_schraeg + 8;
 l_ue_a =  l_fenster + 2*l_rand;
-w_einsatz = w_bild + 2 * w_rand;
-h_bd = h_ue_a/2;  // Höhe Boden oder Deckel
+w_einsatz = image_height + 2 * w_rand;
+h_bd = holder_thickness/2;  // Höhe Boden oder Deckel
 
 to_griff = l_ue_a/2 - o_griff - l_griff/2;
 
@@ -184,7 +196,7 @@ module stack_parts()
       {
          filmhalter();
       }
-      translate([0,0,h_ue_a + ms])
+      translate([0,0,holder_thickness + ms])
       {
          rotate([0,180,0])
          {
@@ -228,7 +240,7 @@ module einsatz()
          fensterstege();
       }
       einsatzausschnitte();
-      // magnetausschnitte(d_mag/2);
+      // magnetausschnitte(magnet_diameter/2);
       magnetausschnitte(0);
    }
 
@@ -295,7 +307,7 @@ module massiver_halter()
 
    module osp()
    {
-      translate([l_ue_a/2-r_r, w_gesamt/2-r_r, h_ue_a/2-r_r])
+      translate([l_ue_a/2-r_r, holder_width/2-r_r, holder_thickness/2-r_r])
       {
          sphere(r=r_r);
       }
@@ -305,9 +317,9 @@ module massiver_halter()
 
 module einsatz_ausschnitt(ec)
 {
-   translate([0, 0, h_ue_a])
+   translate([0, 0, holder_thickness])
    {
-      cube([l_ue_a+2*ms, w_einsatz + ec, 2*h_ue_a], center=true);
+      cube([l_ue_a+2*ms, w_einsatz + ec, 2*holder_thickness], center=true);
       grip_cut();
       mirror()
       {
@@ -318,10 +330,10 @@ module einsatz_ausschnitt(ec)
    {
       translate([to_griff, 0, 0])
       {
-         cube([l_griff + ec, w_gesamt + 2*ms, 2*h_ue_a], center=true);
-         translate([0, -w_gesamt/2, 0])
+         cube([l_griff + ec, holder_width + 2*ms, 2*holder_thickness], center=true);
+         translate([0, -holder_width/2, 0])
          {
-            cube([l_griff + ec, 2*w_griff+2*ec, 4*h_ue_a], center=true);
+            cube([l_griff + ec, 2*w_griff+2*ec, 4*holder_thickness], center=true);
          }
       }
    }
@@ -335,12 +347,12 @@ module fenster()
       {
          translate([0,0,-0.5+ms])
          {
-            cube([l_fenster, w_bild, 1], center=true);
+            cube([l_fenster, image_height, 1], center=true);
          }
          translate([0,0,-h_bd-0.5-ms])
          {
             cube(
-               [l_fenster+2*w_schraeg, w_bild+2*w_schraeg, 1], center=true);
+               [l_fenster+2*w_schraeg, image_height+2*w_schraeg, 1], center=true);
          }
       }
 
@@ -350,20 +362,23 @@ module fenster()
 
 module magnetausschnitte(mo)
 {
-   magnetausschnitt(1, 1, mo);
-   magnetausschnitt(-1, 1, mo);
-   magnetausschnitt(1, -1, mo);
-   magnetausschnitt(-1, -1, mo);
+   if (magnet_diameter > 0 && magnet_height > 0)
+   {
+      magnetausschnitt(1, 1, mo);
+      magnetausschnitt(-1, 1, mo);
+      magnetausschnitt(1, -1, mo);
+      magnetausschnitt(-1, -1, mo);
+   }
 }
 
 module magnetausschnitt(xf, yf, mo)
 {
-   yo_mag = w_einsatz/2 + (w_gesamt - w_einsatz)/4;
+   yo_mag = w_einsatz/2 + (holder_width - w_einsatz)/4;
    // Mittig in den Griffen.
    translate(
-      [xf * (to_griff - mo), yf * (yo_mag-mo), h_bd - h_mag-c + ms])
+      [xf * (to_griff - mo), yf * (yo_mag-mo), h_bd - magnet_height-c_z + ms])
    {
-      cylinder(d=d_mag, h=h_mag+c);  // N.B. Spiel ist schon im d_mag
+      cylinder(d=magnet_diameter, h=magnet_height+c_z);  // N.B. Spiel ist schon im magnet_diameter
       // eingerechnet
    }
 }
@@ -372,7 +387,7 @@ module bodenstege()
 {
    translate([0, 0, -ms+h_steg/2+h_bd])
    {
-      if (l_filmsteg > 0)
+      if (mit_langsteg)
       {
          langbodensteg();
          rotate(180)
@@ -391,16 +406,16 @@ module bodenstege()
    }
    module langbodensteg()
    {
-      translate([0,w_steg/2+w_streifen/2+c/2, 0])
+      translate([0,w_steg/2+film_width/2+c/2, 0])
       {
          cube([l_fenster, w_steg, h_steg], center=true);
       }
    }
    module kurzbodenstege()
    {
-      for (i=[0:bilder_ps-1])
+      for (i=[0:images_per_strip-1])
       {
-         translate([-l_fenster/2 + (0.5 + i) * l_bild, w_steg/2+w_streifen/2+c/2, 0])
+         translate([-l_fenster/2 + (0.5 + i) * bildabstand, w_steg/2+film_width/2+c/2, 0])
          {
             cube([l_kurzsteg, w_steg, h_steg], center=true);
          }
@@ -412,7 +427,7 @@ module einsatzausschnitte()
 {
    translate([0, 0, h_bd + ms-h_nut/2])
    {
-      if (l_filmsteg > 0)
+      if (mit_langsteg)
       {
          langausschnitt();
          rotate(180)
@@ -431,18 +446,18 @@ module einsatzausschnitte()
    }
    module langausschnitt()
    {
-      translate([0,w_steg/2+w_streifen/2+c/2,0])
+      translate([0,w_steg/2+film_width/2+c/2,0])
       {
          cube([l_fenster+6*c, w_steg+2*c, h_nut], center=true);
       }
    }
    module kurzausschnitte()
    {
-      for (i=[0:bilder_ps-1])
+      for (i=[0:images_per_strip-1])
       {
-         translate([-l_fenster/2 + (0.5 + i) * l_bild, w_steg/2+w_streifen/2+c/2-w_streifen/4 + w_bild/4, 0])
+         translate([-l_fenster/2 + (0.5 + i) * bildabstand, w_steg/2+film_width/2+c/2-film_width/4 + image_height/4, 0])
          {
-            cube([l_kurzsteg+2*c, w_steg+2*c+w_streifen/2 - w_bild/2, h_nut], center=true);
+            cube([l_kurzsteg+2*c, w_steg+2*c+film_width/2 - image_height/2, h_nut], center=true);
          }
       }
    }
@@ -453,11 +468,11 @@ module fensterstege()
 {
    if (l_filmsteg > 0)
    {
-      for (i=[1:bilder_ps-1])
+      for (i=[1:images_per_strip-1])
       {
-         translate([-l_fenster/2 + i * l_bild, 0, h_bd/2-ms])
+         translate([-l_fenster/2 + i * bildabstand, 0, h_bd/2-ms])
          {
-            cube([l_filmsteg, w_bild+2*w_schraeg + 2*ms ,h_bd], center=true);
+            cube([l_filmsteg, image_height+2*w_schraeg + 2*ms ,h_bd], center=true);
          }
       }
    }
@@ -474,10 +489,10 @@ module kerben()
    // 0 = l_zk * l_zk / 4 - 2 * r_zk * h_zk + h_zk * h_zk
    // 2 * r_zk * h_zk =
    r_zk = (l_zk * l_zk / 4 + h_zk * h_zk) / (2 * h_zk);
-   for (i=[0:bilder_ps-1])
+   for (i=[0:images_per_strip-1])
    {
       translate(
-         [-l_fenster/2 + i * l_bild + l_bild/2, w_gesamt/2 - w_zk, h_zk-r_zk])
+         [-l_fenster/2 + i * bildabstand + bildabstand/2, holder_width/2 - w_zk, h_zk-r_zk])
       {
          rotate([90,0,0])
          {
