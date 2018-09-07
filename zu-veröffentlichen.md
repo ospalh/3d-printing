@@ -1,4 +1,3 @@
-• Kühlwand
 • Kühlschrankuntersetzer mit Rillen
 • Fahrradschlauchfüße
 • Schlüsselsiegel
