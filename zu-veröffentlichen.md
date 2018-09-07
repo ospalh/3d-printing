@@ -13,9 +13,10 @@
 • Filmhalter
   – Minox für Flachbett. Beide
   – 110 für Flachbett
-  – Minox für Reflecta
-  – 110 für Reflecta?
-• Filmstreifenstapler
+  – Minox für Reflecta proScan, mit Customizer
+• Quickscan für Reflecta
+  – 135 und customizer
+• Filmstreifenstapler, beide
 • Duschregal
 • Seifenspenderdeckel
 • Blumentopfabstandhalter
