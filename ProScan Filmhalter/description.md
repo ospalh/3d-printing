@@ -15,7 +15,7 @@ Use black to reduce stray light. PLA is fine, print settings aren’t too import
 
 ## Post-printing
 
-This needs quite a bit of deburring, filing and sanding.
+This needs quite a bit of deburring and sanding. Also, a bit of filing before you can scan your negatives and file them again.
 
 
 ### Glueing in the magnets
