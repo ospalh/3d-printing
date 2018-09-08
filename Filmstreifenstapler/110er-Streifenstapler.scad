@@ -20,10 +20,17 @@ ll = lld + ex;
 
 wld = 16; // Make it fit between the plates without problems
 wst = wld + ey; // 35 mm + clearance
-h = 30; // I have a lot of film strips i want to stack
+h = 20; // I have a lot of film strips i want to stack
 epl = 10;
-spl = 20;
-spo = 15;
+
+w = 1.2;  // Wall width
+
+spl = 10;
+spo = 5;
+spsp = ll/4;
+
+hl = 50;
+hw = 10;
 
 /* [Hidden] */
 
@@ -33,8 +40,8 @@ spo = 15;
 // Extra parameters. These can be changed reasonably safely.
 
 
-w = 1.8;  // Wall width
-p = 1.2;  // Bottom, top plate height
+
+p = 1.6;  // Bottom, top plate height
 c = 0.4;  // Clearance
 angle = 60; // Overhangs much below 60° are a problem for me
 
@@ -130,6 +137,19 @@ module stack()
       cube([ll, wst, p], center=true);
    }
    plates();
+   h_cube();
+   mirror()
+   {
+      h_cube();
+   }
+   module h_cube()
+   {
+      translate([ll/2-ms-hw/2, 0, p/2])
+      {
+         cube([hw, hl, p], center=true);
+      }
+
+   }
 }
 
 
@@ -145,18 +165,26 @@ module lid()
 module plates()
 {
    end_plate();
-   side_plate();
+   side_plate(0);
+   side_plate(spsp);
+   // side_plate(2*spsp);
    rotate(180)
    {
-      side_plate();
+      side_plate(0);
+      side_plate(spsp);
+      // side_plate(2*spsp);
    }
    mirror()
    {
       end_plate();
-      side_plate();
+      side_plate(0);
+      side_plate(spsp);
+      // side_plate(2*spsp);
       rotate(180)
       {
-         side_plate();
+         side_plate(0);
+         side_plate(spsp);
+         // side_plate(2*spsp);
       }
    }
 }
@@ -169,9 +197,9 @@ module end_plate()
    }
 }
 
-module side_plate()
+module side_plate(xo)
 {
-   translate([spo2, wst/2-ms,0])
+   translate([spo2-xo, wst/2-ms,0])
    {
       cube([spl, w, he]);
    }
