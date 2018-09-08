@@ -12,10 +12,10 @@
 // … to preview. You will get both parts when you click “Create Thing”.
 part = "halter"; // [halter: film holder, einsatz: film holder clamp]
 
-/* [Main] */
+// Set this to “render” and click on “Create Thing” when done with the setup.
+preview = 1; // [0:render, 1:preview]
 
-// The type of film you want to scan. 110: 16 mm “pocket” instamatic, 126: 35 mm instamatic, 135: standard 35 mm film, other: set sizes below
-film_type = "110"; // [110: 110, 126: 126, 135: 135, other: other]
+/* [Holder] */
 
 // Width of the holder. This one and the next one are the two values you do need to set up for your scanner. Preset is for a Reflecta proScan. Maybe subtract half a millimtre for a better fit.
 holder_width = 58.4;  // [20:0.1:150]
@@ -23,13 +23,22 @@ holder_width = 58.4;  // [20:0.1:150]
 // Height or thickness of the holder. See above. You know they were too high when you need a mallet to go from one image to the next…
 holder_thickness = 5.6;  // [3:0.1:10]
 
+// How many exposures on the longest strips you want to fit into this. Make sure the resulting holder still fits onto your print bed.
+images_per_strip = 11;  // [1:1:20]
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
-preview = 1; // [0:render, 1:preview]
+/* [Magnets] */
 
+// Diameter of the magnet hole. Add clearance by hand here. Set to 0 for no magnet holes.
+magnet_diameter = 3.8;  // [0:0.1:15]
+// Height or thickness of the magnet. Make sure to use magnets flat enough to fit.
+magnet_height = 1;  // [0.5:0.1:3]
 
-/* [other film size] */
-// Picture parameters used for “other” above. Presets are for Minox spy camera film. All length in millimetre. Will be ignored for a standard film size.
+/* [Hidden] */
+
+// Das ganze Filmgrößen-Geraffel wieder verstecken: ein thing pro
+// Film. Teil der Automatik (mit/ohne Stege, Lang-oder Kurzkerbe) sind so
+// halbwegs inaktiv.
+
 
 // Width of the film
 film_width = 9.2;  // [8:0.1:70]
@@ -38,27 +47,10 @@ image_width = 13; // [8:0.1:100]
 // Length from one point (e.g. left edge) of one exposure to the same point of the next exposure. This minus the image width is used for the vertical ridges, if it’s positive.
 image_pitch = 13; // [0:0.1:110]
 // Size of an exposure from bottom to top.
-image_height = 7.8; // [7:0.1:68]
-// How many exposures on the longest strips you want to fit into this.
-images_per_strip = 11;  // [1:1:20]
+image_height = 8; // [7:0.1:68]
 
 
-/* [magnets size] */
-// Sizes of the holes for the magnets to keep both parts together. Set one to 0 for no holes.
-
-// Diameter of the magnet hole. Add clearance by hand here.
-magnet_diameter = 3.8;  // [0:0.1:15]
-// Height or thickness of the magnet. Make sure to use magnets flat enough to fit.
-magnet_height = 1;  // [0.5:0.1:3]
-// Größen der Haltemagnete
-magnet_diameter = 3.8; // großes Loch
-
-/* [Hidden] */
-
-
-// TODO: Zwischenschritt: Werte aus Liste
 bildabstand = max(image_pitch, image_width);
-
 l_filmsteg = max(0, bildabstand-image_width);
 
 r_r = 1.0;  // Rundungsradius
@@ -71,11 +63,10 @@ w_zk = 1;  // Wand bzw Abstand der Zentrierkerbe vom Rand
 
 
 
-
-
 l_griff = 30;
 o_griff = 30;
 w_griff = 5;
+magnet_y_off = 0;  // Abstand Magnet vom Einsatz
 
 kurzsteg_grenze = 1;  // Weniger als 1 mm pro Seite: Kurzstege
 
@@ -85,9 +76,6 @@ mit_langsteg = ( ((film_width-image_height)/2) >= kurzsteg_grenze);
 w_steg = 2;  // Breite für Stücke, die den Film zentrieren.
 l_kurzsteg = 0.4*bildabstand;  // Länge für Stücke, die den Film zentrieren,
 // wenn wier keine Fensterstege machen
-
-
-
 
 
 
@@ -110,6 +98,7 @@ angle = 60; // Overhangs much below 60° are a problem for me
 // Halbwegs wichtig
 h_steg = 1.6;  // Höhe für Stücke, die den Film zentrieren.
 h_nut = h_steg + c_z;  // Tiefe für Stücke, auf denen der Film nicht aufliegt
+
 
 
 // *******************************************************
@@ -219,7 +208,7 @@ module filmhalter()
    {
       basis_filmhalter();
       fenster();
-      magnetausschnitte(0);
+      magnetausschnitte();
       kerben();
    }
    fensterstege();
@@ -241,7 +230,7 @@ module einsatz()
       }
       einsatzausschnitte();
       // magnetausschnitte(magnet_diameter/2);
-      magnetausschnitte(0);
+      magnetausschnitte();
    }
 
 }
@@ -360,23 +349,25 @@ module fenster()
 }
 
 
-module magnetausschnitte(mo)
+module magnetausschnitte()
 {
    if (magnet_diameter > 0 && magnet_height > 0)
    {
-      magnetausschnitt(1, 1, mo);
-      magnetausschnitt(-1, 1, mo);
-      magnetausschnitt(1, -1, mo);
-      magnetausschnitt(-1, -1, mo);
+      magnetausschnitt(1, 1);
+      magnetausschnitt(-1, 1);
+      magnetausschnitt(1, -1);
+      magnetausschnitt(-1, -1);
    }
 }
 
-module magnetausschnitt(xf, yf, mo)
+module magnetausschnitt(xf, yf)
 {
-   yo_mag = w_einsatz/2 + (holder_width - w_einsatz)/4;
+   yo_mag = w_einsatz/2 + magnet_diameter/2 +magnet_y_off;
+
+
    // Mittig in den Griffen.
    translate(
-      [xf * (to_griff - mo), yf * (yo_mag-mo), h_bd - magnet_height-c_z + ms])
+      [xf * (to_griff), yf * (yo_mag), h_bd - magnet_height-c_z + ms])
    {
       cylinder(d=magnet_diameter, h=magnet_height+c_z);  // N.B. Spiel ist schon im magnet_diameter
       // eingerechnet
