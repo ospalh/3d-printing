@@ -8,6 +8,8 @@ You can use the customizer to change the size to adapt to your film scanner.
 
 This is a close relative of the [ProScan Minox film holder](). Check the description there.
 
+Put in the film with the shinier carrier side up and the matte emulsion down.
+
 ##How to print
 
 Use black to reduce stray light. PLA is fine, print settings aren’t too important. No falsework required. Warping might be a problem, so use a brim or raft if you have to.

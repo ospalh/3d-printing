@@ -8,6 +8,8 @@ You can use the customizer to change the overall size, and the size of the magne
 
 There are versions for other film sizes that i plan to publish soon.
 
+Put in the film with the shinier carrier side up and the matte emulsion down.
+
 ##How to print
 
 Use black to reduce stray light. PLA is fine, print settings aren’t too important. No falsework required. Warping might be a problem, so use a brim or raft if you have to.

@@ -15,6 +15,7 @@ The point of the small camera based film digitizers is, apart from the price, th
 That takes too long! I want to digitize literally hundreds of old films.
 
 So, with this you grab a strip, clean it, push it into the digitizer a bit, take a picture, shove it in a bit more, picture, shove, picture, shove, picture, yank out the strip. Done. Next.
+Put the film in shinier carrier side up and right side up. (People’s feet in the picture towards you.) On the Reflecta you can push the thing in from the left or right side.
 
 N.B.: The advantage of the open and close holder is that it is nicer to your film strips. Don’t use this things with precious negatives. Only some old ones that take up too much space. I cant guarantee that you won’t scratch up some of them.
 
