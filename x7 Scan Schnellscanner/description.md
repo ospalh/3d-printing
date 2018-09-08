@@ -1,4 +1,4 @@
-Reflecta x7-Scan  scan accelerater
+Reflecta x7-Scan Schnellscanner
 
 This is a replacement for the Reflecta x7-Scan 135 film holder that allows you to quickly push the strips through the digitizer.
 
@@ -21,7 +21,8 @@ N.B.: The advantage of the open and close holder is that it is nicer to your fil
 This uses eight tiny 1 mm high × 2.4 mm ⌀ neodymium magnets to hold shut. If you have other sizes lying around you can modify the file in OpenSCAD.
 
 
-This should be somewhat easy to modify for other image sizes (126/instamatic), film strips (16 mm films like 110) and film digitizers. Get OpenSCAD and modify the header section of the design file for this, too.
+You can use the customizer to adapt this for your film digitizer, film size, and magnets.
+
 
 ##How to print
 
