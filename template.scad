@@ -5,6 +5,7 @@
 // © 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
+/* [Global] */
 
 // … to preview. You will get all parts when you click “Create Thing”.
 part = "NN"; // [NN: foo, bar: baz]
@@ -12,7 +13,10 @@ part = "NN"; // [NN: foo, bar: baz]
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
+/* [Sizes] */
 
+// bla bla
+size_x = 15;  // [1:0.1:40]
 
 /* [Hidden] */
 
