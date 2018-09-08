@@ -8,12 +8,15 @@
 
 // Customizer-code rausgenommen. Hier gibt’s nicht viel zu verstellen.
 
-// Teile wieder rein. Das preview, stack, print ist gut.
+/* [Global] */
+
 // … to preview. You will get all parts when you click “Create Thing”.
-part = "halter"; // [halter: Filmhalter, einsatz: Klemmeinsatz]
+part = "halter"; // [halter: lower part, einsatz: upper part]
+
+// Set this to “render” and click on “Create Thing” when done with the setup.
+preview = 1; // [0:render, 1:preview]
 
 
-// Auf false schalten, ums STL zu erzeugen
 preview = true;
 
 
