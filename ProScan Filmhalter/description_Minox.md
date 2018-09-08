@@ -2,7 +2,7 @@ Reflecta ProScan Minox film holder
 
 A film strip holder to scan Minox “spy camera” film with a [Reflecta ProScan 10T](https://reflecta.de/en/products/detail/~id.734~nm.69/reflecta-ProScan-10T.html) cheap-compared-to-drum-scanners film scanner i own. I think the predecessor, the ProScan 7200 uses the same holders.
 
-This uses eight tiny 1 mm high × 2.4 mm ⌀ neodymium magnets to hold shut. If you have other sizes lying around you can modify the file in OpenSCAD.
+This uses eight tiny 1 mm high × 2.4 mm ⌀ neodymium magnets to hold shut. They are not strictly necessary.
 
 You can use the customizer to change the overall size, and the size of the magnets. With a bit of luck it will then work with other film scanners. Make sure to subtract a bit of clearance from the measured size of your original holder. When you need a mallet to go from one picture to the next the thing is too big.
 
