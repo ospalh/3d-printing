@@ -13,14 +13,23 @@ part = "stack"; // [stack: Stapler, lid: Deckel]
 preview = 1; // [0:render, 1:preview]
 // not needed
 
-ll = 154;  // “official” length is 152 mm, or 4×8 holes × 4.75 mm pitch
-lld = 148;
-wst = 36; // 35 mm + clearance
-wld = 34; // Make it fit between the plates without problems
+
+l1 = 8*4.75;
+ex = 3;
+num = 4;
+lld = l1*num;
+ll = lld + ex;
+ey = 1;
+w1 = 35;
+wst = w1+ey; // 9.2 mm + clearance
+wld = w1-ey; // Make it fit between the plates without problems
+
+w = 1.2;  // Wall width
+
 h = 66; // I have a lot of film strips i want to stack
 epl = 10;
 spl = 20;
-spo = 10;
+spo = 20;
 
 /* [Hidden] */
 
