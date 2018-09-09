@@ -445,7 +445,7 @@ module bodenstege()
          // Irgendwie ist »oben« und »unten« verkehrt. Für Teile oben
          // braucht mensch negative y-Werte.
          translate(
-            [-l_fenster/2 + i * bildabstand+image_width/2 - dx_fl_sm +c/2 - l_filmloch,
+            [-l_fenster/2 + i * bildabstand+image_width/2 + dx_fl_sm +c/2 - l_filmloch,
              -image_height/2 - rand_oben + c/2 + dy_fl_k , -h_steg/2])
 
          {
@@ -509,7 +509,7 @@ module einsatzausschnitte()
       for (i=[-0.5:1:images_per_strip-0.5])
       {
          translate(
-            [-l_fenster/2 + i * bildabstand+image_width/2  + dx_fl_sm -c/2,
+            [-l_fenster/2 + i * bildabstand+image_width/2  - dx_fl_sm -c/2,
              -image_height/2 - rand_oben - c/2 + dy_fl_k , -h_nut/2])
 
          {
