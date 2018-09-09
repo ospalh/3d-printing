@@ -77,6 +77,7 @@ kurzsteg_grenze = w_schraeg;  // Weniger als 1 mm pro Seite: Kurzstege
 mit_langsteg_oben = ( rand_oben >= kurzsteg_grenze);
 mit_langsteg_unten = ( rand_unten >= kurzsteg_grenze);
 
+min_l_ksteg = 0.8;
 
 w_steg = 2;  // Breite für Stücke, die den Film zentrieren.
 l_kurzsteg = 0.4*bildabstand;  // Länge für Stücke, die den Film zentrieren,
@@ -525,10 +526,39 @@ module fensterstege()
    {
       for (i=[0.5:1:images_per_strip-1.5])
       {
-         translate([-l_fenster/2 + i * bildabstand + image_width/2, 0, h_bd/2-ms])
+         translate([-l_fenster/2 + i * bildabstand + image_width/2, 0, 0])
          {
-            cube([l_filmsteg, image_height+2*w_schraeg + 2*ms ,h_bd], center=true);
+            if (l_filmsteg < min_l_ksteg)
+            {
+               quader_fenstersteg();
+            }
+            else
+            {
+               keil_fenstersteg();
+            }
          }
+      }
+   }
+   module quader_fenstersteg()
+   {
+      translate([0,0,h_bd/2-ms])
+      {
+         cube([l_filmsteg, image_height+2*w_schraeg + 2*ms ,h_bd], center=true);
+      }
+   }
+   module keil_fenstersteg()
+   {
+      l_fsb = max(l_filmsteg-2*w_schraeg,min_l_ksteg);
+      ihp = image_height + 2*w_schraeg + 2*ms;
+      echo("fenstersteg am boden",l_fsb);
+      hull()
+      {
+         translate([0,0,h_bd])
+         {
+            cube([l_filmsteg, ihp, ms], center=true);
+         }
+         //  translate([0,0,-ms])
+         cube([l_fsb, ihp, ms], center=true);
       }
    }
 }
