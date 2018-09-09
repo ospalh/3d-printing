@@ -24,7 +24,7 @@ holder_width = 58.4;  // [20:0.1:150]
 holder_thickness = 5.6;  // [3:0.1:10]
 
 // How many exposures on the longest strips you want to fit into this. Make sure the resulting holder still fits onto your print bed.
-images_per_strip = 5;  // [1:1:8]
+images_per_strip = 5;  // [1:1:15]
 
 // Different manufacturers’ scanners place their little catches to position the holder at different sides.
 position_notch_side = 90;  // [90: bottom, 0: side]
@@ -69,9 +69,6 @@ w_zk = 1;  // Wand bzw Abstand der Zentrierkerbe vom Rand
 
 
 
-l_griff = 25;
-o_griff = 26;
-w_griff = 2;
 
 
 w_schraeg = 1;  // Breite der Abschrägung rund um die Filmfenster
@@ -90,11 +87,11 @@ l_kurzsteg = 0.4*bildabstand;  // Länge für Stücke, die den Film zentrieren,
 magnet_off_oben = -2;
 magnet_off_unten = 1.2;
 
-w_filmloch = 2.5; // Ein zehntel Zoll?
-l_filmloch = 3.5; // ca. 35/254 Zoll.
+w_filmloch = 1.5;
+l_filmloch = 2.3;
 // dy_fl_bl = 1.25; // Abstand Filmloch oben zum Blidbereich
-dy_fl_k = 1.86;  // Abstand Filmloch unten zur Filmkante
-dx_fl_sm = 3;  // Abstand Filmloch links zur Mitte des Stegs
+dy_fl_k = 0.7;  // Abstand Filmloch oben zur Filmkante
+dx_fl_sm = 0.63;  // Abstand Filmloch links zur Mitte des Stegs
 
 // *******************************************************
 // Extra parameters. These can be changed reasonably safely.
@@ -141,11 +138,16 @@ $fa = (preview) ? pa : ra;
 
 // l_fenster = bildabstand * images_per_strip;
 l_fenster = bildabstand * (images_per_strip - 1) + image_width;
-l_rand = 2 * w_steg + w_schraeg + 2;
+l_rand = 2 * w_steg + w_schraeg + 6;  // Etwas mehr für Extra-Zentriernasen
 w_rand = w_schraeg + 7;
 l_ue_a =  l_fenster + 2*l_rand;
 w_einsatz = image_height + 2 * w_rand;
 h_bd = holder_thickness/2;  // Höhe Boden oder Deckel
+
+l_griff = 25.4;
+o_griff = l_ue_a/2-l_fenster/2 + image_width/2 + image_pitch/2;
+w_griff = 6;
+
 
 to_griff = l_ue_a/2 - o_griff - l_griff/2;
 
@@ -436,12 +438,15 @@ module bodenstege()
    }
    module zentriernasen()
    {
-      for (i=[1:images_per_strip])
+      for (i=[-0.5:1:images_per_strip-0.5])
       {
-         // Irgendwie ist »oben« und »unten« verkehrt. Für Teile unten braucht mensch positive y-Werte.
+         // Eine mehr als Bilder:
+         // Irgendwie ist »oben« und »unten« verkehrt. Für Teile oben
+         // braucht mensch negative y-Werte.
          translate(
-            [-l_fenster/2 + i * bildabstand-l_filmloch+c/2-dx_fl_sm,
-             +image_height/2 + rand_unten - w_filmloch -dy_fl_k+ c/2 , -h_steg/2])
+            [-l_fenster/2 + i * bildabstand+image_width/2 - dx_fl_sm +c/2,
+             -image_height/2 - rand_oben + c/2 + dy_fl_k , -h_steg/2])
+
          {
             cube([l_filmloch-c, w_filmloch-c, h_steg]);
          }
@@ -500,11 +505,12 @@ module einsatzausschnitte()
    }
       module zentrierausschnitte()
    {
-      for (i=[0:images_per_strip-1])
+      for (i=[-0.5:1:images_per_strip-0.5])
       {
          translate(
-            [-l_fenster/2 + i * bildabstand-c/2+dx_fl_sm,
-             +image_height/2 + rand_unten - w_filmloch -dy_fl_k- c/2 , -h_nut/2])
+            [-l_fenster/2 + i * bildabstand+image_width/2 - l_filmloch + dx_fl_sm -c/2,
+             -image_height/2 - rand_oben - c/2 + dy_fl_k , -h_nut/2])
+
          {
             cube([l_filmloch+c, w_filmloch+c, h_nut]);
          }
