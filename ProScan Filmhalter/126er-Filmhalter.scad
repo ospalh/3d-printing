@@ -438,7 +438,7 @@ module bodenstege()
          // Irgendwie ist »oben« und »unten« verkehrt. Für Teile unten braucht mensch positive y-Werte.
          translate(
             [-l_fenster/2 + i * bildabstand-l_filmloch+c/2-dx_fl_sm,
-             +image_height/2 + rand_unten - w_filmloch -dy_fl_k+ c/2 , 0])
+             +image_height/2 + rand_unten - w_filmloch -dy_fl_k+ c/2 , -h_steg/2])
          {
             cube([l_filmloch-c, w_filmloch-c, h_steg]);
          }
@@ -472,6 +472,7 @@ module einsatzausschnitte()
             kurzausschnitte(rand_oben);
          }
       }
+      zentrierausschnitte();
    }
    module langausschnitt(eyo)
    {
@@ -491,6 +492,18 @@ module einsatzausschnitte()
             cube(
                [l_kurzsteg+2*c, w_steg+2*c+film_width/2 - image_height/2,
                 h_nut], center=true);
+         }
+      }
+   }
+      module zentrierausschnitte()
+   {
+      for (i=[0:images_per_strip-1])
+      {
+         translate(
+            [-l_fenster/2 + i * bildabstand-c/2+dx_fl_sm,
+             +image_height/2 + rand_unten - w_filmloch -dy_fl_k- c/2 , -h_nut/2])
+         {
+            cube([l_filmloch+c, w_filmloch+c, h_nut]);
          }
       }
    }
