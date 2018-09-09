@@ -66,11 +66,11 @@ b_zk = 4;  // Breite Zentrierkerbe
 h_zk = 1.2;  // Tiefe der Zentrierkerbe
 w_zk = 1;  // Wand bzw Abstand der Zentrierkerbe vom Rand
 
-
+min_l_ksteg = 0.8;
 
 l_griff = 25;
-o_griff = 26;
-w_griff = 2;
+o_griff = 25;
+w_griff = 3;
 
 
 w_schraeg = 1;  // Breite der Abschrägung rund um die Filmfenster
@@ -516,15 +516,45 @@ module fensterstege()
 {
    if (l_filmsteg > 0)
    {
-      for (i=[1:images_per_strip-1])
+      for (i=[0.5:1:images_per_strip-1.5])
       {
-         translate([-l_fenster/2 + i * bildabstand, 0, h_bd/2-ms])
+         translate([-l_fenster/2 + i * bildabstand + image_width/2, 0, 0])
          {
-            cube([l_filmsteg, image_height+2*w_schraeg + 2*ms ,h_bd], center=true);
+            if (l_filmsteg < min_l_ksteg)
+            {
+               quader_fenstersteg();
+            }
+            else
+            {
+               keil_fenstersteg();
+            }
          }
       }
    }
+   module quader_fenstersteg()
+   {
+      translate([0,0,h_bd/2-ms])
+      {
+         cube([l_filmsteg, image_height+2*w_schraeg + 2*ms ,h_bd], center=true);
+      }
+   }
+   module keil_fenstersteg()
+   {
+      l_fsb = max(l_filmsteg-2*w_schraeg,min_l_ksteg);
+      ihp = image_height + 2*w_schraeg + 2*ms;
+      echo("fenstersteg am boden",l_fsb);
+      hull()
+      {
+         translate([0,0,h_bd])
+         {
+            cube([l_filmsteg, ihp, ms], center=true);
+         }
+         //  translate([0,0,-ms])
+         cube([l_fsb, ihp, ms], center=true);
+      }
+   }
 }
+
 
 module kerben(oben)
 {
