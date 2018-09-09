@@ -159,10 +159,10 @@ to_griff = l_ue_a/2 - o_griff - l_griff/2;
 // Generate the parts
 
 
-// print_part();
+print_part();
 // filmhalter();
 // einsatz();
-preview_parts();
+// preview_parts();
 // stack_parts();
 
 
