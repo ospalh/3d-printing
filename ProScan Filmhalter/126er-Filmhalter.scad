@@ -26,6 +26,9 @@ holder_thickness = 5.6;  // [3:0.1:10]
 // How many exposures on the longest strips you want to fit into this. Make sure the resulting holder still fits onto your print bed.
 images_per_strip = 4;  // [1:1:8]
 
+// Different manufacturers’ scanner have little catches to position the holder at different sides.
+position_notch_side = "bottom";  // [bottom: bottom, side: side]
+
 /* [Magnets] */
 
 // Diameter of the magnet hole. Add clearance by hand here. Set to 0 for no magnet holes.
@@ -43,15 +46,15 @@ magnet_height = 1;  // [0.5:0.1:3]
 // Width of the film
 film_width = 35;  // [8:0.1:70]
 // Length from the left edge of an exposure to its right edge
-image_width = 28; // [8:0.1:100]
+image_width = 28.8; // [8:0.1:100]
 image_pitch = 127/4;  // Ein Viererstreifen ist genau 127 mm lang. Das ist
 // irgendwie was rundes in Zöllen. Das muss mich nicht scheren.
 
 // Size of an exposure from bottom to top.
-image_height = 28; // [7:0.1:68]
+image_height = 28.1; // Hat sich was, »quadratishc«. Nachmessen hat ergeben, dass die Bilder etwas breiter als hoch sind.
 rand_unten = 5.6;  // Könnten 7/32 Zoll sein. What TF ever. Ich könnte 118 Schweizerfranken bezahlen und es im Standard nachlesen. Oder das Geld sparen
 rand_oben = film_width - image_height - rand_unten;
-
+echo("rand_oben", rand_oben);
 
 bildabstand = max(image_pitch, image_width);
 l_filmsteg = max(0, bildabstand-image_width);
@@ -80,15 +83,17 @@ mit_langsteg_unten = ( rand_unten >= kurzsteg_grenze);
 
 w_steg = 2;  // Breite für Stücke, die den Film zentrieren.
 l_kurzsteg = 0.4*bildabstand;  // Länge für Stücke, die den Film zentrieren,
-// wenn wier keine Fensterstege machen
+// wenn wir keine Fensterstege machen
 
 
 magnet_off_oben = -0.8;
 magnet_off_unten = 1.2;
 
-
-
-
+w_filmloch = 2.5; // Ein zehntel Zoll?
+l_filmloch = 3.5; // ca. 35/254 Zoll.
+// dy_fl_bl = 1.25; // Abstand Filmloch oben zum Blidbereich
+dy_fl_k = 1.86;  // Abstand Filmloch unten zur Filmkante
+dx_fl_sm = 3;  // Abstand Filmloch links zur Mitte des Stegs
 
 // *******************************************************
 // Extra parameters. These can be changed reasonably safely.
@@ -157,8 +162,8 @@ to_griff = l_ue_a/2 - o_griff - l_griff/2;
 // print_part();
 // filmhalter();
 // einsatz();
-// preview_parts();
-stack_parts();
+preview_parts();
+// stack_parts();
 
 
 
@@ -407,6 +412,7 @@ module bodenstege()
             kurzbodenstege(rand_oben);
          }
       }
+      zentriernasen();
    }
    module langbodensteg(eo)
    {
@@ -422,6 +428,19 @@ module bodenstege()
          translate([-l_fenster/2 + (0.5 + i) * bildabstand, w_steg/2+image_height/2+eo+c/2, 0])
          {
             cube([l_kurzsteg, w_steg, h_steg], center=true);
+         }
+      }
+   }
+   module zentriernasen()
+   {
+      for (i=[1:images_per_strip])
+      {
+         // Irgendwie ist »oben« und »unten« verkehrt. Für Teile unten braucht mensch positive y-Werte.
+         translate(
+            [-l_fenster/2 + i * bildabstand-l_filmloch+c/2-dx_fl_sm,
+             +image_height/2 + rand_unten - w_filmloch -dy_fl_k+ c/2 , 0])
+         {
+            cube([l_filmloch-c, w_filmloch-c, h_steg]);
          }
       }
    }
