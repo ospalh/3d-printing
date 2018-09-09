@@ -55,7 +55,6 @@ image_pitch = 127/5;  // Ein Fünferstreifen ist genau so lang wie ein
 image_height = 12.7; // Genau 300 Pixel hoch bei einem 600 dpi Scan.
 rand_unten = 1.27;  // Könnten 1/20 Zoll sein. What TF ever. Ich könnte 118 Schweizerfranken bezahlen und es im Standard nachlesen. Oder das Geld sparen
 rand_oben = film_width - image_height - rand_unten;
-echo("rand_oben", rand_oben);
 
 bildabstand = max(image_pitch, image_width);
 l_filmsteg = max(0, bildabstand-image_width);
@@ -92,6 +91,7 @@ l_filmloch = 2.3;
 // dy_fl_bl = 1.25; // Abstand Filmloch oben zum Blidbereich
 dy_fl_k = 0.7;  // Abstand Filmloch oben zur Filmkante
 dx_fl_sm = 0.63;  // Abstand Filmloch links zur Mitte des Stegs
+
 
 // *******************************************************
 // Extra parameters. These can be changed reasonably safely.
@@ -163,10 +163,10 @@ to_griff = l_ue_a/2 - o_griff - l_griff/2;
 // Generate the parts
 
 
-// print_part();
+print_part();
 // filmhalter();
 // einsatz();
-preview_parts();
+// preview_parts();
 // stack_parts();
 
 
@@ -444,7 +444,7 @@ module bodenstege()
          // Irgendwie ist »oben« und »unten« verkehrt. Für Teile oben
          // braucht mensch negative y-Werte.
          translate(
-            [-l_fenster/2 + i * bildabstand+image_width/2 - dx_fl_sm +c/2,
+            [-l_fenster/2 + i * bildabstand+image_width/2 - dx_fl_sm +c/2 - l_filmloch,
              -image_height/2 - rand_oben + c/2 + dy_fl_k , -h_steg/2])
 
          {
@@ -508,7 +508,7 @@ module einsatzausschnitte()
       for (i=[-0.5:1:images_per_strip-0.5])
       {
          translate(
-            [-l_fenster/2 + i * bildabstand+image_width/2 - l_filmloch + dx_fl_sm -c/2,
+            [-l_fenster/2 + i * bildabstand+image_width/2  + dx_fl_sm -c/2,
              -image_height/2 - rand_oben - c/2 + dy_fl_k , -h_nut/2])
 
          {
