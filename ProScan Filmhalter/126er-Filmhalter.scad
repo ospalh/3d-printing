@@ -435,11 +435,11 @@ module bodenstege()
    }
    module zentriernasen()
    {
-      for (i=[1:images_per_strip])
+      for (i=[0:1:images_per_strip-1])
       {
          // Irgendwie ist »oben« und »unten« verkehrt. Für Teile unten braucht mensch positive y-Werte.
          translate(
-            [-l_fenster/2 + i * bildabstand-l_filmloch+c/2-dx_fl_sm,
+            [-l_fenster/2 + i * bildabstand-l_filmloch+image_width+c/2-dx_fl_sm,
              +image_height/2 + rand_unten - w_filmloch -dy_fl_k+ c/2 , -h_steg/2])
          {
             cube([l_filmloch-c, w_filmloch-c, h_steg]);
