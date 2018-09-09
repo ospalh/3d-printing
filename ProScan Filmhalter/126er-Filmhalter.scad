@@ -1,6 +1,6 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// Holder to scan Minox film strips with a Reflecta ProScan 10T
+// Holder to scan 126 film strips with a Reflecta ProScan 10T
 //
 // © 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
