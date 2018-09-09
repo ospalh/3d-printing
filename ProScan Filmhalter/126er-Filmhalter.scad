@@ -138,7 +138,8 @@ function nb() = (preview) ? pnb : rnb;
 $fs = (preview) ? ps : rs;
 $fa = (preview) ? pa : ra;
 
-l_fenster = bildabstand * images_per_strip;
+// l_fenster = bildabstand * images_per_strip;
+l_fenster = bildabstand * (images_per_strip - 1) + image_width;
 l_rand = 2 * w_steg + w_schraeg + 2;
 w_rand = w_schraeg + 7;
 l_ue_a =  l_fenster + 2*l_rand;
@@ -545,7 +546,7 @@ module kerben(oben)
    for (i=[0:images_per_strip-1])
    {
       translate(
-         [-l_fenster/2 + i * bildabstand + bildabstand/2, -holder_width/2 -hk_yo, dz_zk])
+         [-l_fenster/2 + i * bildabstand + image_width/2, -holder_width/2 -hk_yo, dz_zk])
       {
          rotate([position_notch_side,0,0])
          {
