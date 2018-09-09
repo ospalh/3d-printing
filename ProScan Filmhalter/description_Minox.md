@@ -1,6 +1,6 @@
 Reflecta ProScan Minox film holder
 
-A film strip holder to scan Minox “spy camera” film with a [Reflecta ProScan 10T](https://reflecta.de/en/products/detail/~id.734~nm.69/reflecta-ProScan-10T.html) cheap-compared-to-drum-scanners film scanner i own. I think the predecessor, the ProScan 7200 uses the same holders.
+A film strip holder to scan Minox “spy camera” film with a [Reflecta ProScan](https://reflecta.de/en/products/detail/~id.734~nm.69/reflecta-ProScan-10T.html) cheap-compared-to-drum-scanners film scanner i own.  This should fit both the 10T and 7200 models.
 
 This uses eight tiny 1 mm high × 2.4 mm ⌀ neodymium magnets to hold shut. They are not strictly necessary.
 
