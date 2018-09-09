@@ -2,7 +2,7 @@ Reflecta ProScan Minox film holder
 
 A film strip holder to scan four image 135 (standard 35 mm) film with a [Reflecta ProScan 10T](https://reflecta.de/en/products/detail/~id.734~nm.69/reflecta-ProScan-10T.html) cheap-compared-to-drum-scanners film scanner i own. I think the predecessor, the ProScan 7200 uses the same holders.
 
-I already have two original [Reflecta holders](https://reflecta.de/en/products/detail/~id.740/Filmholder-ProScan-10T--ProScan-7200.html) for this, so i didn’t print this. I just thought, while i was doing other sizes to do one for 135 as well.
+I already have two original [Reflecta holders](https://reflecta.de/en/products/detail/~id.740/Filmholder-ProScan-10T--ProScan-7200.html) for this, so i didn’t print this. This was just a logical step in adapting my Minox holder to first 126 Instamatic films, and i thought i might share it as well.
 
 This uses eight tiny 1 mm high × 2.4 mm ⌀ neodymium magnets to hold shut.
 

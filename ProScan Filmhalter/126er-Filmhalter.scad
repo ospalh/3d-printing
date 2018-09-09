@@ -26,8 +26,8 @@ holder_thickness = 5.6;  // [3:0.1:10]
 // How many exposures on the longest strips you want to fit into this. Make sure the resulting holder still fits onto your print bed.
 images_per_strip = 4;  // [1:1:8]
 
-// Different manufacturers’ scanner have little catches to position the holder at different sides.
-position_notch_side = "bottom";  // [bottom: bottom, side: side]
+// Different manufacturers’ scanner place their little catches to position the holder at different sides.
+position_notch_side = 90;  // [90: bottom, 0: side]
 
 /* [Magnets] */
 
@@ -162,8 +162,8 @@ to_griff = l_ue_a/2 - o_griff - l_griff/2;
 // print_part();
 // filmhalter();
 // einsatz();
-preview_parts();
-// stack_parts();
+// preview_parts();
+stack_parts();
 
 
 
@@ -220,7 +220,7 @@ module filmhalter()
       basis_filmhalter();
       fenster();
       magnetausschnitte();
-      kerben();
+      kerben(false);
    }
    fensterstege();
    bodenstege();
@@ -242,6 +242,7 @@ module einsatz()
       einsatzausschnitte();
       // magnetausschnitte(magnet_diameter/2);
       magnetausschnitte();
+      kerben(true);
    }
 
 }
@@ -524,7 +525,7 @@ module fensterstege()
    }
 }
 
-module kerben()
+module kerben(oben)
 {
    // Den Radius der Zentrierkerbe kann mensch per Pythagoras bestimmen.
    // Hypothenuse = r_zk
@@ -535,14 +536,20 @@ module kerben()
    // 0 = l_zk * l_zk / 4 - 2 * r_zk * h_zk + h_zk * h_zk
    // 2 * r_zk * h_zk =
    r_zk = (l_zk * l_zk / 4 + h_zk * h_zk) / (2 * h_zk);
+   // Die Variable heißt »position_notch_side«, und enthält einen Winkel. Funktioniert.
+   dz_zk = (position_notch_side > 0) ?
+      ( (oben) ? holder_thickness - h_zk + r_zk : h_zk-r_zk) :
+      -ms;
+   ahzk = (position_notch_side > 0) ? b_zk : holder_thickness + 2*ms;
+   hk_yo = (position_notch_side > 0) ? -w_zk - b_zk : r_zk -h_zk;
    for (i=[0:images_per_strip-1])
    {
       translate(
-         [-l_fenster/2 + i * bildabstand + bildabstand/2, holder_width/2 - w_zk, h_zk-r_zk])
+         [-l_fenster/2 + i * bildabstand + bildabstand/2, -holder_width/2 -hk_yo, dz_zk])
       {
-         rotate([90,0,0])
+         rotate([position_notch_side,0,0])
          {
-            cylinder(r=r_zk, h=b_zk);
+            cylinder(r=r_zk, h=ahzk);
          }
       }
    }
