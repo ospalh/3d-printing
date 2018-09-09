@@ -232,7 +232,7 @@ module basis_filmhalter()
       difference()
       {
          massiver_halter();
-         einsatzausschnitt(c);
+         einsatzausschnitt(2*c);
       }
    }
 }

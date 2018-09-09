@@ -68,8 +68,8 @@ w_zk = 1;  // Wand bzw Abstand der Zentrierkerbe vom Rand
 
 
 
-l_griff = 35;
-o_griff = 20;
+l_griff = 25;
+o_griff = 26;
 w_griff = 2;
 
 
@@ -86,7 +86,7 @@ l_kurzsteg = 0.4*bildabstand;  // Länge für Stücke, die den Film zentrieren,
 // wenn wir keine Fensterstege machen
 
 
-magnet_off_oben = -0.8;
+magnet_off_oben = -2;
 magnet_off_unten = 1.2;
 
 w_filmloch = 2.5; // Ein zehntel Zoll?
@@ -101,7 +101,7 @@ dx_fl_sm = 3;  // Abstand Filmloch links zur Mitte des Stegs
 
 w = 1.8;  // Wall width
 p = 1.2;  // Bottom, top plate height
-c = 0.6;  // Clearance
+c = 0.5;  // Clearance
 c_z = 0.3;  // Clearance in z direction. Mostly for the magnet hole and centering ridge
 angle = 60; // Overhangs much below 60° are a problem for me
 
@@ -162,8 +162,8 @@ to_griff = l_ue_a/2 - o_griff - l_griff/2;
 // print_part();
 // filmhalter();
 // einsatz();
-// preview_parts();
-stack_parts();
+preview_parts();
+// stack_parts();
 
 
 
@@ -255,7 +255,7 @@ module basis_filmhalter()
       difference()
       {
          massiver_halter();
-         einsatz_ausschnitt(c);
+         einsatz_ausschnitt(2*c);
       }
    }
 }
@@ -335,7 +335,7 @@ module einsatz_ausschnitt(ec)
          cube([l_griff + ec, holder_width + 2*ms, 2*holder_thickness], center=true);
          translate([0, -holder_width/2, 0])
          {
-            cube([l_griff + ec, 2*w_griff+2*ec, 4*holder_thickness], center=true);
+            cube([l_griff + ec, 2*w_griff+4*ec, 4*holder_thickness], center=true);
          }
       }
    }
