@@ -59,7 +59,6 @@ echo("rand_oben", rand_oben);
 bildabstand = max(image_pitch, image_width);
 l_filmsteg = max(0, bildabstand-image_width);
 r_r = 1.0;  // Rundungsradius
-
 // Auch wichtig:
 l_zk = 4;  // Länge Zentrierkerbe
 b_zk = 4;  // Breite Zentrierkerbe
@@ -93,7 +92,7 @@ w_filmloch = 2.5; // Ein zehntel Zoll?
 l_filmloch = 3.5; // ca. 35/254 Zoll.
 // dy_fl_bl = 1.25; // Abstand Filmloch oben zum Blidbereich
 dy_fl_k = 1.86;  // Abstand Filmloch unten zur Filmkante
-dx_fl_sm = 3;  // Abstand Filmloch links zur Mitte des Stegs
+dx_fl_rl = 1.75;  // Abstand Filmloch links zum Rahmen links
 
 // *******************************************************
 // Extra parameters. These can be changed reasonably safely.
@@ -439,7 +438,7 @@ module bodenstege()
       {
          // Irgendwie ist »oben« und »unten« verkehrt. Für Teile unten braucht mensch positive y-Werte.
          translate(
-            [-l_fenster/2 + i * bildabstand-l_filmloch+image_width+c/2-dx_fl_sm,
+            [-l_fenster/2 + i * bildabstand-l_filmloch+image_width+c/2-dx_fl_rl,
              +image_height/2 + rand_unten - w_filmloch -dy_fl_k+ c/2 , -h_steg/2])
          {
             cube([l_filmloch-c, w_filmloch-c, h_steg]);
@@ -502,7 +501,7 @@ module einsatzausschnitte()
       for (i=[0:images_per_strip-1])
       {
          translate(
-            [-l_fenster/2 + i * bildabstand-c/2+dx_fl_sm,
+            [-l_fenster/2 + i * bildabstand-c/2+dx_fl_rl,
              +image_height/2 + rand_unten - w_filmloch -dy_fl_k- c/2 , -h_nut/2])
          {
             cube([l_filmloch+c, w_filmloch+c, h_nut]);
