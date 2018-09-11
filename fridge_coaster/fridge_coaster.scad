@@ -10,13 +10,19 @@
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
-spacing = 18.4;
-bar_width = 2.8;
-height = 17;
-diameter = 56;
-flange = 3;
+// Distance from one bar of the fridge shelf grid to the next. All sizes are in millimetres.
+bar_spacing = 18.4;  // [5:0.1:30]
+// Diameter of one shelf grid bar
+bar_width = 2.8;  // [0.5:0.1:7]
+// Height of the coaster pot.
+pot_height = 17;  // [3:0.5:50]
+// Diameter of the bottle to hold
+bottle_diameter = 56;  // [10:0.1:80]
+// Width of the flange. How much the bottom is wider than the pot on top.
+flange = 3;  // [0:0.5:15]
 
-count = 1;
+// How many same sized bottles to store in a row
+number_of_pots = 1;  // [1:1:10]
 
 /* [Hidden] */
 
@@ -27,7 +33,7 @@ count = 1;
 
 
 w = 1.8;  // Wall width
-p = 1.2;  // Bottom, top plate height
+p = 1.2;  // Bottom, top plate pot_height
 c = 0.4;  // Clearance
 angle = 60; // Overhangs much below 60° are a problem for me
 
@@ -37,11 +43,11 @@ angle = 60; // Overhangs much below 60° are a problem for me
 tau = 2 * PI;  // π is still wrong. τ = ⌀ ÷ r
 
 xy_factor = 1/tan(angle);
-// To get from a height to a horizontal width inclined correctly
+// To get from a pot_height to a horizontal width inclined correctly
 z_factor = tan(angle);  // The other way around
 
 
-rie = diameter/2 + c;
+rie = bottle_diameter/2 + c;
 
 some_distance = 50;
 ms = 0.01;  // Muggeseggele.
@@ -60,7 +66,7 @@ function nb() = (preview) ? pnb : rnb;
 $fs = (preview) ? ps : rs;
 $fa = (preview) ? pa : ra;
 
-function fe() = (count > 1) ? flange : 0;
+function fe() = (number_of_pots > 1) ? flange : 0;
 
 // *******************************************************
 // End setup
@@ -78,18 +84,18 @@ fridge_coaster();
 
 module fridge_coaster()
 {
-   hrc = ceil((rie+w+bar_width+flange)/spacing) + 1;
+   hrc = ceil((rie+w+bar_width+flange)/bar_spacing) + 1;
    de = 2*rie+w;
    difference()
    {
       union()
       {
-         for (o=[0:count-1])
+         for (o=[0:number_of_pots-1])
          {
             translate([0,o*de,0])
             {
                echo("o",o);
-               cylinder(r=rie+w, h=2*p+height);
+               cylinder(r=rie+w, h=2*p+pot_height);
             }
          }
          hull ()
@@ -98,24 +104,24 @@ module fridge_coaster()
             {
                cylinder(r=rie+w+flange, h=2*p-ms);
             }
-            translate([0, (count-1)*de -fe(),0])
+            translate([0, (number_of_pots-1)*de -fe(),0])
             {
             cylinder(r=rie+w+flange, h=2*p-ms);
             }
          }
       }
-      for (o=[0:count-1])
+      for (o=[0:number_of_pots-1])
       {  translate([0,o*de,2*p])
          {
-            cylinder(r=rie, h=height+ms);
+            cylinder(r=rie, h=pot_height+ms);
          }
       }
       for (o=[-hrc:hrc])
       {
          echo(o);
-         translate([(o+0.5)*spacing, (count-1)*de*0.5, 0])
+         translate([(o+0.5)*bar_spacing, (number_of_pots-1)*de*0.5, 0])
          {
-            cube([bar_width, 2*(rie+w+c+bar_width+flange+ms)+(count-1)*de, 2*p], center=true);
+            cube([bar_width, 2*(rie+w+c+bar_width+flange+ms)+(number_of_pots-1)*de, 2*p], center=true);
          }
       }
    }
