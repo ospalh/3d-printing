@@ -26,6 +26,6 @@ See the [ProScan Minox film holder]() for exhaustive magnet glueing tips.
 
 This is derived from my [ProScan Minox film holder]().
 
-The exact sizes are based on measurments of a film strip, but it worked well enough.
+The exact sizes are based on measurments of a film strip, but it worked well enough. I did scan one strip on a flatbed scanner. Even without a transparency unit you see enough to measure the several lengths. You just have to convert from pixel to usable units. At 600 dpi one pixel is 25.4/600 mm = 0.0423̄ mm long. Multiply the pixel count you get in Gimp by that value, an you have the length you need.
 
 There is some design history available at my [github repo](https://github.com/ospalh/3d-printing/tree/develop/ProScan Filmhalter).
