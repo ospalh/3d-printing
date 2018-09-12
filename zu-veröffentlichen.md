@@ -1,4 +1,3 @@
-* Kühlschrankuntersetzer mit Rillen
 * Fahrradschlauchfüße
 * Schlüsselsiegel
 * Topfkeil
