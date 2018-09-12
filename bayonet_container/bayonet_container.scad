@@ -11,7 +11,7 @@
 
 
 // type to produce
-part = "base"; // [base,lid,separator]
+part = "container"; // [container,lid,separator]
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
@@ -24,7 +24,7 @@ _insideDiameter = 16;  // [5:0.1:35]
 _interiorHeight = 16;  // [5:0.1:120]
 
 // exterior style of the part
-_style = "round thin"; // [round, round thin, tapered, polygon, crown, flipped crown]
+_style = "polygon"; // [round, round thin, tapered, polygon, crown, flipped crown]
 
 // for the polygon and crown styles (no effect on other styles)
 _numberOfSides = 6;  // [3:1:12]
@@ -32,17 +32,17 @@ _numberOfSides = 6;  // [3:1:12]
 // the thinnest walls of the container will use this value
 _minimumWallThickness = 1.2;
 
-// horizontal thickness used for the top of the lid or bottom of the base
+// horizontal thickness used for the top of the lid or bottom of the container
 _topBottomThickness = 1.2;
 
-// height of the lip between lid and base
+// height of the lip between lid and container
 _lipHeight = 3.0;
 
 // how much the locking bayonets protrude (larger values may be needed for larger diameters)
-_bayonetDepth = 0.4;
+_bayonetDepth = 0.6;
 
 // gap to place between moving parts to adjust how tightly the pieces fit together
-_partGap = 0.08;
+_partGap = 0.2;
 
 
 /* [Hidden] */
@@ -62,7 +62,7 @@ angle = 60; // Overhangs much below 60° are a problem for me
 // the thinnest walls of the container will use this value
 _minimumWallThickness = 1.2;
 
-// horizontal thickness used for the top of the lid or bottom of the base
+// horizontal thickness used for the top of the lid or bottom of the container
 _topBottomThickness = 1.2;
 
 // *******************************************************
@@ -80,7 +80,8 @@ outsideDiameter = _insideDiameter +
    2 * (_minimumWallThickness*2 + _partGap + _bayonetDepth);
 baseHeight = _interiorHeight + _topBottomThickness - _lipHeight;
 separatorHeight = _interiorHeight + _topBottomThickness;
-lidHeight = _interiorHeight + _topBottomThickness + _lipHeight;
+lidHeight = _topBottomThickness + _lipHeight;
+// No storage space in the lid. That’s what “lid” means.
 twistAngle = 60; // amount of twist to close the lid
 bayonetAngle = 30; // angular size of the bayonets
 
@@ -112,8 +113,8 @@ $fa = (preview) ? pa : ra;
 // *******************************************************
 // Generate the parts
 
-// print_part();
-preview_parts();
+print_part();
+// preview_parts();
 // stack_parts();
 
 
@@ -121,7 +122,7 @@ preview_parts();
 
 module print_part()
 {
-   if (part == "base")
+   if (part == "container")
    {
       short_container();
    }
@@ -153,14 +154,18 @@ module stack_parts()
 {
    // intersection() // N.B.: Use only two at a time
    {
-      short_separator();
-      translate([0,0,separatorHeight+ms])
+      // Pick one
+      // short_separator();
+      short_container();
+
+      // Dto.
+      // translate([0,0,separatorHeight + _lipHeight+ 2*_bayonetDepth+ ms])
+      translate([0,0,baseHeight + _lipHeight+ 2*_bayonetDepth+ ms])
       {
-         short_container();
-      }
-      translate([0,0,separatorHeight + baseHeight + 2*ms])
-      {
-         short_lid();
+         rotate([0,180,0])
+         {
+            short_lid();
+         }
       }
    }
 }
