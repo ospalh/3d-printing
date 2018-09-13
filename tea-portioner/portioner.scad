@@ -3,23 +3,23 @@
 // Another tea portioner.
 //
 // The same pot, funnel and striker, and chute principle as the first, but
-// using a number of design lessons i’ve since learned, and some new ideas.
+// using a number of design lessons i've since learned, and some new ideas.
 //
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// Copyright 2017 - 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
-// … to preview. You will get all three parts when you click “Create Thing”.
+// ... to preview. You will get all three parts when you click "Create Thing".
 part = "portioner"; // [portioner: portioner cup, funnel: funnel/striker, stand: stand]
 
-// cm³
+// Cubic centimetres
 volume = 42;  // [8:1:150]
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 // Size of the stand. Set this to 0 to just get a tray to keep the portioner clean for the striking. In mm.
 stand_diameter = 80;  // [0:1:100]
 
-// Size of the funnel at the top. Adjust this to how good your tea tossing aim is. 😀. In mm.
+// Size of the funnel at the top. Adjust this to how good your tea tossing aim is. :)  In mm.
 funnel_diameter = 90;  // [30:1:120]
 
 /* [Hidden] */
