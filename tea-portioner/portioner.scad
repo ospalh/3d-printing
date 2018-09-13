@@ -38,35 +38,35 @@ flange_height = 10;
 stand_peg_height = 2;
 
 chute_limit_diameter = 20;  // Make a hole at least this big
-chute_limit_factor = 0.3;  // … or at least this part of the top hole
+chute_limit_factor = 0.3;  // ... or at least this part of the top hole
 
 ms = 0.1;  // Muggeseggele.
 
 clearance = 0.5;  // mm for the parts that should fit into each other
 
-funnel_angle = 60;  // °
+funnel_angle = 60;  //
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
-tau = 2 * PI;  // π is still wrong. τ = circumference ÷ r
+tau = 2 * PI;  // pi is still wrong. tau = circumference/r
 
 // Somewhat comprehensible math to get r from V
-// V = ½ (V sphere) + V cylinder
-// V = ½ × (2τ r² × ⅓ r) + ½ τ r² × h
+// V = 1/2 (V sphere) + V cylinder
+// V = 1/2 * (2tau r^2 * 1/3 r) + 1/2 tau r^2 * h
 //
-// (The V = 2τ/3 × r³ can be split in 2τr² × ⅓r: think of infinitesimal
-// pyramids with the base area of the surface area of a sphere, 2τr², and
-// the Volume of base area × ⅓ h, with h = r.)
+// (The V = 2tau/3 * r^2 can be split in 2tau r^2 * 1/3 r: think of infinitesimal
+// pyramids with the base area of the surface area of a sphere, 2tau r^2, and
+// the Volume of base area * 1/3 h, with h = r.)
 // (Similarly, the area of a circle can be seen as a rectangle of
 // infinitesimal circle sectors, with the outer bit alternatively at the
-// top and bottom. That gives the area as r × ½ circumference, or r ×
-// ½τr. No argument against τ or for π.)
+// top and bottom. That gives the area as r * 1/2 circumference, or r *
+// 1/2tau r. No argument against tau or for pi.)
 //
 
 r_cm = pow(volume/(tau/3+tau/2*h_in_r),1/3);
-r = r_cm * 10;  // Volume is done in cm³, the rest of OpenSCAD uses mm.
-// (And you don’t uses mm³ a.k.a. µl in everyday settings.)
+r = r_cm * 10;  // Volume is done in ml, the rest of OpenSCAD uses mm.
+// (And you don't uses mm^3 a.k.a. microlitre in everyday settings.)
 
 r_1 = r + w_f;  // outer diameter, striker
 r_2 = r_1 + clearance; // inner size of the measuring cup flange
