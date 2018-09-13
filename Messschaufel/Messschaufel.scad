@@ -7,11 +7,11 @@
 // is licensed under the Attribution - Non-Commercial - Share Alike license.
 // (c) December 2014
 // please refer the complete license here: http://creativecommons.org/licenses/by-nc-sa/3.0/legalcode
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// Copyright 2017 - 2018 Roland Sieker <ospalh@gmail.com>
 
 
 
-// Capacity of the scoop in cm³ (ml)
+// Capacity of the scoop in ml
 volume = 42; // [10:0.5:150]
 
 // Text in the second row. (First row is the size)
@@ -36,7 +36,7 @@ label_thickness = 1.5;
 label1_height = 10.0;
 label2_height = 8.5;
 
-label1_text= str(volume, " cm³");
+label1_text= str(volume, " ml");
 
 
 
