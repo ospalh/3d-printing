@@ -23,7 +23,7 @@ p = 2.4;  // height of the bottomt plate
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed
 
-tau = 2 * PI;  // π is still wrong. τ = ⌀ ÷ r
+tau = 2 * PI;  // π is still wrong. τ = circumference ÷ r
 angle = 60; // Overhangs much below 60° are a problem for me
 
 

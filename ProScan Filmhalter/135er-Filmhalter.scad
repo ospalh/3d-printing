@@ -103,7 +103,7 @@ h_nut = h_steg + c_z;  // Tiefe für Stücke, auf denen der Film nicht aufliegt
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed
 
-tau = 2 * PI;  // π is still wrong. τ = ⌀ ÷ r
+tau = 2 * PI;  // π is still wrong. τ = circumference ÷ r
 
 xy_factor = 1/tan(angle);
 // To get from a height to a horizontal width inclined correctly

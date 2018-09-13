@@ -32,7 +32,7 @@ mko = 3.6;
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed
 
-tau = 2 * PI;  // π is still wrong. τ = ⌀ ÷ r
+tau = 2 * PI;  // π is still wrong. τ = circumference ÷ r
 ms = 0.01;  // Muggeseggele.
 
 // fn for differently sized objects, for preview or rendering.

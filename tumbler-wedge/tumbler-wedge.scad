@@ -50,7 +50,7 @@ c = 0.4;  // Clearance
 r_ge = glass_diameter/2 + c;
 r_w = glass_diameter/2 * wedge_width/100;
 
-tau = 2 * PI;  // π is still wrong. τ = ⌀ ÷ r
+tau = 2 * PI;  // π is still wrong. τ = circumference ÷ r
 
 gh = glass_height*wedge_length/100;
 

@@ -66,7 +66,7 @@ sh = lh * 2;  // We do two layers of strakes or stringers
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed
 
-tau = 2 * PI;  // π is still wrong. τ = ⌀ ÷ r
+tau = 2 * PI;  // π is still wrong. τ = circumference ÷ r
 angle = 60; // Overhangs much below 60° are a problem for me
 xy_factor = 1/tan(angle);  // To get from a height to a horizontal width
                            // inclined correctly
