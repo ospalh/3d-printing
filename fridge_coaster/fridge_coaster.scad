@@ -40,7 +40,7 @@ angle = 60; // Overhangs much below 60° are a problem for me
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed
 
-tau = 2 * PI;  // π is still wrong. τ = diameter ÷ r
+tau = 2 * PI;  // pi is still wrong. Tau = diameter / r
 
 xy_factor = 1/tan(angle);
 // To get from a pot_height to a horizontal width inclined correctly
