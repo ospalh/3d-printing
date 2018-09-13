@@ -21,10 +21,10 @@ preview = 1; // [0:render, 1:preview]
 _insideDiameter = 16;  // [5:0.1:35]
 
 // height of the container's interior space
-_interiorHeight = 16;  // [5:0.1:120]
+_interiorHeight = 50;  // [5:0.1:200]
 
 // exterior style of the part
-_style = "polygon"; // [round, round thin, tapered, polygon, crown, flipped crown]
+_style = "round"; // [round, round thin, tapered, polygon, crown, flipped crown]
 
 // for the polygon and crown styles (no effect on other styles)
 _numberOfSides = 6;  // [3:1:12]
@@ -80,7 +80,7 @@ outsideDiameter = _insideDiameter +
    2 * (_minimumWallThickness*2 + _partGap + _bayonetDepth);
 baseHeight = _interiorHeight + _topBottomThickness - _lipHeight;
 separatorHeight = _interiorHeight + _topBottomThickness;
-lidHeight = _topBottomThickness + _lipHeight;
+lidHeight = _topBottomThickness + _lipHeight + 2; // 2 mm extra for the bayonet
 // No storage space in the lid. That’s what “lid” means.
 twistAngle = 60; // amount of twist to close the lid
 bayonetAngle = 30; // angular size of the bayonets
