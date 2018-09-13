@@ -1,6 +1,6 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// A simple “coaster” to stop condiment bottles from falling over when
+// A simple "coaster" to stop condiment bottles from falling over when
 // placed on the bars of a the grid in the fridge
 //
 // © 2018 Roland Sieker <ospalh@gmail.com>
@@ -38,7 +38,7 @@ c = 0.4;  // Clearance
 angle = 60; // Overhangs much below 60° are a problem for me
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
 tau = 2 * PI;  // π is still wrong. τ = ⌀ ÷ r
 
