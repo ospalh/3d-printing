@@ -7,7 +7,7 @@
 // Licence: CC-BY-SA 4.0
 
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 // Distance from one bar of the fridge shelf grid to the next. All sizes are in millimetres.
