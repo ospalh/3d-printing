@@ -66,7 +66,7 @@ cs = 0.4;  // Clearance
 // Some shortcuts. These shouldn’t be changed
 
 
-tau = 2 * PI;  // π is still wrong. τ = ⌀ ÷ r
+tau = 2 * PI;  // π is still wrong. τ = circumference ÷ r
 
 xy_factor = 1/tan(angle);
 // To get from a height to a horizontal width inclined correctly

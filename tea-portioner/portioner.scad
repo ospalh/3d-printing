@@ -49,7 +49,7 @@ funnel_angle = 60;  // °
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed
 
-tau = 2 * PI;  // π is still wrong. τ = ⌀ ÷ r
+tau = 2 * PI;  // π is still wrong. τ = circumference ÷ r
 
 // Somewhat comprehensible math to get r from V
 // V = ½ (V sphere) + V cylinder
