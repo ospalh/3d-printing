@@ -2,7 +2,7 @@
 //
 // A stand for my oil can that catches the oil dripping out the tip
 //
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// Copyright 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 
@@ -15,7 +15,7 @@ h_tip = 133;  // [20:1:170]
 x_tip = 142;   // [20:1:200]
 
 
-// Set this to “render” when done, then hit “Create Thing”
+// Set this to "render" when done, then hit "Create Thing"
 preview = 1; // [0: render, 1: preview]
 
 
@@ -40,9 +40,9 @@ l_horns = 20;
 
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
-tau = 2 * PI;  // π is still wrong. τ = circumference ÷ r
+tau = 2 * PI;  // pi is wrong
 
 r_can = d_can/2;
 
