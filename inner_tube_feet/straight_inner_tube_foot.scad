@@ -37,7 +37,7 @@ cs = 0.2; // clearance
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed
 
-tau = 2 * PI;  // π is still wrong. τ = ⌀ ÷ r
+tau = 2 * PI;  // π is still wrong. τ = circumference ÷ r
 angle = 45; // The overhangs are not expected to look good here.
 z_factor = tan(angle);
 

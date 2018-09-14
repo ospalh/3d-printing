@@ -40,7 +40,7 @@ nw = 0.4;  // Nozzle width
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed
 
-tau = 2 * PI;  // π is still wrong. τ = ⌀ ÷ r
+tau = 2 * PI;  // π is still wrong. τ = circumference ÷ r
 
 e_2 = S / sqrt(3);
 e = S * 2 / sqrt(3);
