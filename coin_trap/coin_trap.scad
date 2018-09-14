@@ -7,8 +7,6 @@
 // Copyright 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA-NC 4.0
 
-
-
 /* Parameters */
 
 
