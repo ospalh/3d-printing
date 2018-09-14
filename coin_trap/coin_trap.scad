@@ -3,8 +3,8 @@
 // Coin trap
 //
 // customizable coin traps
-// © 2013 mathgrrl
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// Copyright 2013 mathgrrl
+// Copyright 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA-NC 4.0
 
 
@@ -13,10 +13,10 @@
 
 
 
-// The size of coin to trap, in millimetres. Start value is for € 1
+// The size of coin to trap, in millimetres. Start value is for a 1 Euro coin
 coin_diameter = 23.3;  // [15:0.1:35]
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 
@@ -25,7 +25,7 @@ preview = 1; // [0:render, 1:preview]
 // Done with the customizer
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
 
 // fn for differently sized objects, for preview or rendering.
