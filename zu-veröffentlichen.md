@@ -1,6 +1,6 @@
 * Fahrradschlauchfüße
 * Schlüsselsiegel
-* Topfkeil
+* Untersetzerkeil (trivet wedge)
 * Glaseiskeil
 * nut puller
 * Zweihandflaschenöffner, Warnlabel
@@ -10,10 +10,13 @@
 * Magnethaken
 * Radienlehre (ggf. in thingiverese-Verzeichnis suchen)
 * Filmhalter für Flachbett,
-  - Minox einzeln, Minox doppel
-  - 110 als eins
-  - Minox . Beide und 110
-* Filmhalter für ProScan, jeweils mit Customizer für x, y, z, ggf. Nutposition
+  - Minox, als ein thing
+    # einzeln kurz
+    # doppelt kurz
+    # einzeln lang
+    # doppelt lang
+  - 110
+* Filmhalter für ProScan, jeweils mit Customizer für x, y, z, Positionierkerbenposition
   - Minox
   - 110
   - 126
@@ -23,3 +26,4 @@
 * Duschregal
 * Seifenspenderdeckel
 * Blumentopfabstandhalter
+* verbesserte Bajonett-Behälter
