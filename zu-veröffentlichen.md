@@ -11,10 +11,10 @@
 * Radienlehre (ggf. in thingiverese-Verzeichnis suchen)
 * Filmhalter für Flachbett,
   - Minox, als ein thing
-    # einzeln kurz
-    # doppelt kurz
-    # einzeln lang
-    # doppelt lang
+    * einzeln kurz
+    * doppelt kurz
+    * einzeln lang
+    * doppelt lang
   - 110
 * Filmhalter für ProScan, jeweils mit Customizer für x, y, z, Positionierkerbenposition
   - Minox
