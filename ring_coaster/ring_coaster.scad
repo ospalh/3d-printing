@@ -2,16 +2,16 @@
 //
 // A ring coaster
 //
-// © 2017–2018 Roland Sieker <ospalh@gmail.com>
+// copyright 2017 -- 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 
-// Size of the coaster’s hole (mm)
+// Size of the coaster's hole (mm)
 inner_diameter = 20;  // [10:1:90]
 // Size of the coaster as a whole (mm)
 outer_diameter = 49;  // [20:1:100]
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 
@@ -56,7 +56,7 @@ $fa = (preview) ? pa : ra;
 tau = 2*PI;
 
 
-// Done with setup. No create the thing
+// Done with setup. Now create the thing
 
 ring_coaster();
 
