@@ -2,17 +2,17 @@
 //
 // Tea portioner
 //
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// Copyright 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 // Using material (or inspirations) by
 // Soren_Furbo (https://www.thingiverse.com/thing:43899/)
 //
 
-// How many cm³ (ml) for one portion
+// How many cubic centimetres (ml) for one portion
 volume = 55;  // [3:0.1:250]
 
-// Don’t
-use_american_customary_units = 0;  // [1:Yes please. What’s a meter?, 0:Of course not! Use SI units.]
+// Don't
+use_american_customary_units = 0;  // [1:Yes please. What's a meter?, 0:Of course not! Use SI units.]
 
 module end_customizer()
 {
@@ -20,7 +20,7 @@ module end_customizer()
 }
 
 // TODO: labels
-// TODO²: Braile labels
+// TODO 2: Braile labels
 // label_style = 1; [0:No label, 1:Raised Text, 2:Colored Text, 3:Braile];
 
 
@@ -42,7 +42,7 @@ wall_thickness = 1.6; // [1.2, 1.5, 1.6, 1.8]
 
 
 
-// π is still wrong. Even if we use the area of a circle below. Use τ.
+// pi is still wrong. Even if we use the area of a circle below. Use tau.
 tau = 2 * PI;
 
 // Curvature of sides (Sphere radius)
@@ -55,22 +55,22 @@ funnel_angle = 60;
 v_cmm = volume * 1000;
 
 // Crazy math to get the volume with the rounding right Basically we
-// have V = l³ - lost_volume, with lost volume = the fillets in the
-// edges and corners, ½ (cube - sphere), and a bit, depending on l,
-// (square rod - cylinder), with no l² term.  Transformed to 0 = l³ +
+// have V = l^3 - lost_volume, with lost volume = the fillets in the
+// edges and corners, 1/2 (cube - sphere), and a bit, depending on l,
+// (square rod - cylinder), with no l^2 term.  Transformed to 0 = l^3 +
 // al + b, plugged into Wolfram Alpha, put in here.
 a = -8*(4-tau/2)*inner_radius*inner_radius;
 b = -v_cmm +
       ((4-tau/3) -12 * (4 - tau/2)) * inner_radius*inner_radius*inner_radius;
 // echo(a);
 // echo(b);
-// The solution of x³+ax+b=0, accordinrg to Wolfram alpha
+// The solution of x^3+ax+b=0, accordinrg to Wolfram alpha
 cube_root_bit = pow(sqrt(3) * sqrt(4*a*a*a + 27*b*b) - 9*b, 1/3);
 inner_box_dimension = cube_root_bit / (pow(2, 1/3) * pow(3, 2/3)) -
    pow(2/3, 1/3) * a / cube_root_bit;
 // echo(inner_box_dimension);
 // echo(pow(v_cmm,1/3));
-// Quck tests showed reasonable values, so i’ll keep this version
+// Quick tests showed reasonable values, so i'll keep this version
 // until somebody spots an error.
 
 // End crazy math.
@@ -365,7 +365,7 @@ module funnel()
           }
        }
     }
-   // funnel_angle is typically 60°, tan(60°) == sqrt(3)
+   // funnel_angle is typically 60 degrees, tan(60degrees) == sqrt(3)
    funnel_offset = wall_thickness / sin(funnel_angle);
    funnel_z_offset = roundness * sin(funnel_angle);
 //   xf = xm + roundness * cos(funnel_angle);

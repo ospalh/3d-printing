@@ -2,11 +2,11 @@
 //
 // Parametric funnel with stand
 //
-// © 2017–18 Roland Sieker <ospalh@gmail.com>
+// Copyright 2017 -- 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 //
 
-// … to preview. You will get both parts, if you select a stand
+// ... to preview. You will get both parts, if you select a stand
 part = "funnel"; // [funnel: funnel, stand: stand or nothing]
 
 // in cm. The neck is the thin bottom part
@@ -18,10 +18,10 @@ inner_rim_diameter = 7;  // [3:0.1:15]
 // in cm. The sharped tip is added to this length
 neck_length = 2; // [0.3:0.1:8]
 
-// Slope of the main conical part, in °. Beware of printing problems below 45°.
+// Slope of the main conical part, in degrees. Beware of printing problems with low angles
 funnel_angle = 60;  // [30:75]
 
-// Cut off angle to give the funnel a sharpened tip. 0° means flat bottom.
+// Cut off angle to give the funnel a sharpened tip. 0 means flat bottom.
 neck_tip_angle = 22.5;  // [0:0.5:60]
 
 // Create just the funnel, or a stand to go with it, with one or three supports
@@ -30,13 +30,13 @@ stand_style = 0;  // [0:Just funnel, 1:Funnel and simple stand, 3:Funnel and tri
 // Height added  to the stand, in cm. The height of the top of the funnel will be the length of your pencil plus this.
 extra_height = 1; // [1:15]
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 /* [Hidden] */
 
 // Some of the values below can be carefully tweaked, changing others is a
-// bad idea. Try, and undo if it didn’t work.
+// bad idea. Try, and undo if it didn't work.
 
 
 // w = 1.6;
@@ -91,16 +91,18 @@ handle_handle_ch_ratio = 0.5;
 // Used to calculate how heigh the lug that holds the handle is
 
 // Tip angle
-tip_a = 21;  // °. Apparently standard in Germany
-// tip_a = 19;  // °. There is a German »Long Point« pencil sharpnener with 19 °.
-// There are also rumors that American pencil are pointier than German ones.
-// tip_a = 24 // °. Special color pencil sharpener.
+tip_a = 21;  // degrees. Apparently standard in Germany
+
+// tip_a = 19;  // degrees. There is a German "Long Point"" pencil sharpnener
+// like this.  There are also rumors that American pencils are pointier than
+// German ones.
+// tip_a = 24  // Special color pencil sharpener.
 
 // The tip angle is apparently from one side to the other side, not from
 // one side to the center line.
 
 
-// Size of the “big pencil” connector. Twice the area, half of it hollow.
+// Size of the "big pencil" connector. Twice the area, half of it hollow.
 r_bp_s = sqrt(2) * r_p_s;
 r_bp_l = r_bp_s * 2 / 3 * sqrt(3);
 
@@ -110,7 +112,7 @@ usp_h = 10 * r_p_s;  // Height of the unsharpend pencil connector bit
 
 bp_s_h = r_bp_s / tan(tip_a/2);
 
-// Height of the sleeve at the bottom (as printed) of the “big pencil”
+// Height of the sleeve at the bottom (as printed) of the "big pencil"
 // connector. The length of a pencil tip. (The angle of the outer wall
 // should come out slightly below tip_a, as the walls get thinner. We
 // (try to) maintain cross section area, not wall strength.)
@@ -387,8 +389,8 @@ module funnel()
             {
                translate([0,0,w])
                {
-                  // It’s possibly a rounding error, but with
-                  // r=strake_r here it doesn’t perfectly
+                  // It's possibly a rounding error, but with
+                  // r=strake_r here it doesn't perfectly
                   // align with the funnel. Use a bit more.
                   cylinder(r=strake_r(), h=(r_r - r_n) / cos(funnel_angle), $fn=fc());
                }
@@ -448,7 +450,7 @@ module stand()
    {
       union()
       {
-         // Construct the stand ring symmetric to xy plane …
+         // Construct the stand ring symmetric to xy plane ...
          rotate(30)
          {
             rotate_extrude($fn=6)
@@ -460,7 +462,7 @@ module stand()
             }
          }
       }
-      // … and subtract everything below the xy plane.
+      // and subtract everything below the xy plane.
       translate([0,0,-l_n])
       {
          cylinder(r=1.5*r_r, h=l_n);

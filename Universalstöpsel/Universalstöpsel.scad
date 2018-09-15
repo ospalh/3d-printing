@@ -1,8 +1,8 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// Universalstöpsel. Aus flexiblem Filament zu drucken
+// Universalstoepsel. Aus flexiblem Filament zu drucken
 //
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// Copyright 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 // Basically the inner diameter of the bottle (glass, whatever)

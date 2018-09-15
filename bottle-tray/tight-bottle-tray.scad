@@ -2,7 +2,7 @@
 //
 // Parametric hex-grid bottle tray
 //
-// © 2017–2018 Roland Sieker <ospalh@gmail.com>
+// copyright 2017--2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 // Loosely based on thingiverse thing  1345795,
 // https://www.thingiverse.com/thing:1345795
@@ -29,8 +29,8 @@ height = 18; // [8:0.1:90]
 // Size of the hole in the bottom of each holder. 0 for no hole, larger than the diameter for just cylinders
 hole_diameter = 30; // [0:0.1:91]
 
-// Add ridges at the bottom to fit this onto the shelfs of a fridge
-with_fridge_ridges = false;  //
+// Make grooves at the bottom to fit this onto the shelfs of a fridge
+with_fridge_grooves = 0;  //  [0: no grooves, 1: add grooves]
 
 // Distance from one rod of the fridge shelf to the next.
 grating_spacing = 18.4; // [5:0.1:40]
@@ -78,7 +78,7 @@ $fs = (preview) ? ps : rs;
 $fa = (preview) ? pa : ra;
 
 
-be = (with_fridge_ridges) ? 2*bottom_height : bottom_height;
+be = (with_fridge_grooves) ? 2*bottom_height : bottom_height;
 
 // ***************************************************
 // Change below only if you know what you are doing.
@@ -97,9 +97,9 @@ difference()
 {
    full_shape();
    holes();
-   if (with_fridge_ridges)
+   if (with_fridge_grooves)
    {
-      ridges();
+      grooves();
    }
 }
 
@@ -200,7 +200,7 @@ module one_cylinder(x_pos, y_pos)
 }
 
 
-module ridges()
+module grooves()
 {
    de = 2*r_i+wall_width;
    hrl = ceil((r_i+wall_width+grating_bar_width)/grating_spacing) + 1;

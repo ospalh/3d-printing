@@ -3,7 +3,7 @@
 // Coin spinner
 // A slightly modified Money Spinner
 //
-// © 2017 ospalh (Roland Sieker) <ospalh@gmail.com>
+// Copyright 2017 -- 2018 ospalh (Roland Sieker) <ospalh@gmail.com>
 // Licensed CC-BY-SA https://creativecommons.org/licenses/by-sa/4.0/
 
 
