@@ -1,0 +1,2 @@
+# .json files here are typically openscad configs. Don’nt check those in
+*.json
