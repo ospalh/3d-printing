@@ -2,17 +2,17 @@
 //
 // Holder to scan 126 film strips with a Reflecta ProScan 10T
 //
-// © 2018 Roland Sieker <ospalh@gmail.com>
+// Copyright 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 
 /* [Global] */
 
 
-// … to preview. You will get both parts when you click “Create Thing”.
+// ... to preview. You will get both parts when you click "Create Thing".
 part = "halter"; // [halter: film holder, einsatz: film holder clamp]
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 /* [Holder] */
@@ -20,13 +20,13 @@ preview = 1; // [0:render, 1:preview]
 // Width of the holder. This one and the next one are the two values you do need to set up for your scanner. Preset is for a Reflecta proScan. Maybe subtract half a millimtre for a better fit.
 holder_width = 58.4;  // [20:0.1:150]
 
-// Height or thickness of the holder. See above. You know they were too high when you need a mallet to go from one image to the next…
+// Height or thickness of the holder. See above. You know they were too high when you need a mallet to go from one image to the next...
 holder_thickness = 5.6;  // [3:0.1:10]
 
 // How many exposures on the longest strips you want to fit into this. Make sure the resulting holder still fits onto your print bed.
 images_per_strip = 4;  // [1:1:8]
 
-// Different manufacturers’ scanner place their little catches to position the holder at different sides.
+// Different manufacturers' scanner place their little catches to position the holder at different sides.
 position_notch_side = 90;  // [90: bottom, 0: side]
 
 /* [Magnets] */
@@ -38,7 +38,7 @@ magnet_height = 1;  // [0.5:0.1:3]
 
 /* [Hidden] */
 
-// Das ganze Filmgrößen-Geraffel wieder verstecken: ein thing pro
+// Das ganze Filmgroessen-Geraffel wieder verstecken: ein thing pro
 // Film. Teil der Automatik (mit/ohne Stege, Lang-oder Kurzkerbe) sind so
 // halbwegs inaktiv.
 
@@ -47,12 +47,12 @@ magnet_height = 1;  // [0.5:0.1:3]
 film_width = 35;  // [8:0.1:70]
 // Length from the left edge of an exposure to its right edge
 image_width = 28.8; // [8:0.1:100]
-image_pitch = 127/4;  // Ein Viererstreifen ist genau 127 mm lang. Das ist
-// irgendwie was rundes in Zöllen. Das muss mich nicht scheren.
+image_pitch = 127/4;  // Ein Viererstreifen ist genau 127 mm lang. Das ist
+// irgendwie was rundes in Zoellen. Das muss mich nicht scheren.
 
 // Size of an exposure from bottom to top.
-image_height = 28.1; // Hat sich was, »quadratishc«. Nachmessen hat ergeben, dass die Bilder etwas breiter als hoch sind.
-rand_unten = 5.6;  // Könnten 7/32 Zoll sein. What TF ever. Ich könnte 118 Schweizerfranken bezahlen und es im Standard nachlesen. Oder das Geld sparen
+image_height = 28.1; // Hat sich was, "quadratishc". Nachmessen hat ergeben, dass die Bilder etwas breiter als hoch sind.
+rand_unten = 5.6;  // Koennten 7/32 Zoll sein. What TF ever. Ich koennte 118 Schweizerfranken bezahlen und es im Standard nachlesen. Oder das Geld sparen
 rand_oben = film_width - image_height - rand_unten;
 echo("rand_oben", rand_oben);
 
@@ -60,7 +60,7 @@ bildabstand = max(image_pitch, image_width);
 l_filmsteg = max(0, bildabstand-image_width);
 r_r = 1.0;  // Rundungsradius
 // Auch wichtig:
-l_zk = 4;  // Länge Zentrierkerbe
+l_zk = 4;  // Laenge Zentrierkerbe
 b_zk = 4;  // Breite Zentrierkerbe
 h_zk = 1.2;  // Tiefe der Zentrierkerbe
 w_zk = 1;  // Wand bzw Abstand der Zentrierkerbe vom Rand
@@ -72,16 +72,16 @@ o_griff = 25;
 w_griff = 3;
 
 
-w_schraeg = 1;  // Breite der Abschrägung rund um die Filmfenster
+w_schraeg = 1;  // Breite der Abschraegung rund um die Filmfenster
 
-kurzsteg_grenze = w_schraeg;  // Weniger als 1 mm pro Seite: Kurzstege
+kurzsteg_grenze = w_schraeg;  // Weniger als 1 mm pro Seite: Kurzstege
 
 mit_langsteg_oben = ( rand_oben >= kurzsteg_grenze);
 mit_langsteg_unten = ( rand_unten >= kurzsteg_grenze);
 
 
-w_steg = 2;  // Breite für Stücke, die den Film zentrieren.
-l_kurzsteg = 0.4*bildabstand;  // Länge für Stücke, die den Film zentrieren,
+w_steg = 2;  // Breite fuer Stuecke, die den Film zentrieren.
+l_kurzsteg = 0.4*bildabstand;  // Laenge fuer Stuecke, die den Film zentrieren,
 // wenn wir keine Fensterstege machen
 
 
@@ -102,19 +102,19 @@ w = 1.8;  // Wall width
 p = 1.2;  // Bottom, top plate height
 c = 0.5;  // Clearance
 c_z = 0.3;  // Clearance in z direction. Mostly for the magnet hole and centering ridge
-angle = 60; // Overhangs much below 60° are a problem for me
+angle = 60; // Overhangs much below 60 degrees are a problem for me
 
 
 // Halbwegs wichtig
-h_steg = 1.6;  // Höhe für Stücke, die den Film zentrieren.
-h_nut = h_steg + c_z;  // Tiefe für Stücke, auf denen der Film nicht aufliegt
+h_steg = 1.6;  // Hoehe fuer Stuecke, die den Film zentrieren.
+h_nut = h_steg + c_z;  // Tiefe fuer Stuecke, auf denen der Film nicht aufliegt
 
 
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
-tau = 2 * PI;  // π is still wrong. τ = circumference ÷ r
+tau = 2 * PI;  // pi is still wrong. tau = circumference / r
 
 xy_factor = 1/tan(angle);
 // To get from a height to a horizontal width inclined correctly
@@ -143,7 +143,7 @@ l_rand = 2 * w_steg + w_schraeg + 2;
 w_rand = w_schraeg + 7;
 l_ue_a =  l_fenster + 2*l_rand;
 w_einsatz = image_height + 2 * w_rand;
-h_bd = holder_thickness/2;  // Höhe Boden oder Deckel
+h_bd = holder_thickness/2;  // Hoehe Boden oder Deckel
 
 to_griff = l_ue_a/2 - o_griff - l_griff/2;
 
@@ -436,7 +436,7 @@ module bodenstege()
    {
       for (i=[0:1:images_per_strip-1])
       {
-         // Irgendwie ist »oben« und »unten« verkehrt. Für Teile unten braucht mensch positive y-Werte.
+         // Irgendwie ist "oben" und "unten" verkehrt. Fuer Teile unten braucht mensch positive y-Werte.
          translate(
             [-l_fenster/2 + i * bildabstand-l_filmloch+image_width+c/2-dx_fl_rl,
              +image_height/2 + rand_unten - w_filmloch -dy_fl_k+ c/2 , -h_steg/2])
@@ -566,7 +566,7 @@ module kerben(oben)
    // 0 = l_zk * l_zk / 4 - 2 * r_zk * h_zk + h_zk * h_zk
    // 2 * r_zk * h_zk =
    r_zk = (l_zk * l_zk / 4 + h_zk * h_zk) / (2 * h_zk);
-   // Die Variable heißt »position_notch_side«, und enthält einen Winkel. Funktioniert.
+   // Die Variable heisst "position_notch_side", und enthaelt einen Winkel. Funktioniert.
    dz_zk = (position_notch_side > 0) ?
       ( (oben) ? holder_thickness - h_zk + r_zk : h_zk-r_zk) :
       -ms;
