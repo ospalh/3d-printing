@@ -2,25 +2,25 @@
 //
 // Holder to scan Minox film strips with a Reflecta ProScan 10T
 //
-// © 2018 Roland Sieker <ospalh@gmail.com>
+// Copyright 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 
-// Customizer-code rausgenommen. Hier gibt’s nicht viel zu verstellen.
+// Customizer-code rausgenommen. Hier gibt's nicht viel zu verstellen.
 
 /* [Global] */
 
-// … to preview. You will get all parts when you click “Create Thing”.
+// ... to preview. You will get all parts when you click "Create Thing".
 part = "halter"; // [halter: lower part, einsatz: upper part]
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 
 preview = true;
 
 
-// Ausser vielleicht den Filmstreifengrößen.
+// Ausser vielleicht den Filmstreifengroessen.
 
 // *******************
 // These are for 135
@@ -41,14 +41,14 @@ l_bild = 36;
 // l_bild = 17;
 
 
-// Größen des Halters.
+// Groessen des Halters.
 
-// Länge == Maß in Richtung des Filmlaus.
-// Höhe == Maß normal zum Film
-// Breite oder Weite == Maß in Richtung Filmkante zu Filmkante
+// Laenge == Mass in Richtung des Filmlaus.
+// Hoehe == Mass normal zum Film
+// Breite oder Weite == Mass in Richtung Filmkante zu Filmkante
 
-// Die beiden wichtigen. Wenn diese falsch sind passt’s nicht oder wackelt.
-h_ue_a = 4.8;  // Höhe über alles
+// Die beiden wichtigen. Wenn diese falsch sind passt's nicht oder wackelt.
+h_ue_a = 4.8;  // Hoehe ueber alles
 w_gesamt = 64;  // Gesamtbreite
 
 l_scanner = 104;  // Bestimmt die Position der Stoppnase und die Breite
@@ -59,7 +59,7 @@ l_sr = (l_scanner - l_bild)/2;
 
 
 // Auch wichtig:
-l_zk = 4;  // Länge Zentrierkerbe
+l_zk = 4;  // Laenge Zentrierkerbe
 b_zk = 4;  // Breite Zentrierkerbe
 h_zk = 1.2;  // Tiefe der Zentrierkerbe
 w_zk = 1;  // Wand bzw Abstand der Zentrierkerbe vom Rand
@@ -68,18 +68,18 @@ l_griff = l_bild;
 w_rand = 3;
 
 
-w_stop = w_gesamt + 5;  // Breite für Klotz, der Durchschieben den Halters verhindert.
-l_stop = 5;  // Länge für diesen Klotz
+w_stop = w_gesamt + 5;  // Breite fuer Klotz, der Durchschieben den Halters verhindert.
+l_stop = 5;  // Laenge fuer diesen Klotz
 l_ueber = 5; // l_stop;  // Extrabreite rechts. Dient dem Keil und dem Ausziehen des Halters.
 
 
 
 l_filmsteg = 0.4;
-// Steg zwischen zwei Bildern. Ein mal rüber mit der Düse sollte funktionieren.
+// Steg zwischen zwei Bildern. Ein mal rueber mit der Duese sollte funktionieren.
 
 
-// Größen der Haltemagnete
-d_mag = 3.6; // großes Loch
+// Groessen der Haltemagnete
+d_mag = 3.6; // grosses Loch
 h_mag = 1;
 
 w_schraeg = h_ue_a/4;
@@ -94,13 +94,13 @@ w_schraeg = h_ue_a/4;
 w = 1.8;  // Wall width
 p = 1.2;  // Bottom, top plate height
 c = 0.6;  // Clearance
-c_h = 0.2;  // Spiel in Höhe (Magneten)
-angle = 60; // Overhangs much below 60° are a problem for me
+c_h = 0.2;  // Spiel in Hoehe (Magneten)
+angle = 60; // Overhangs much below 60 degrees are a problem for me
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
-tau = 2 * PI;  // π is still wrong. τ = circumference ÷ r
+tau = 2 * PI;  // pi is still wrong. tau = circumference / r
 
 xy_factor = 1/tan(angle);
 // To get from a height to a horizontal width inclined correctly
@@ -126,11 +126,11 @@ $fa = (preview) ? pa : ra;
 
 l_ue_a =  l_sr + l_bild + l_sr + l_ueber;
 w_einsatz = w_gesamt - 2 * w_rand;
-h_bd = h_ue_a/2;  // Höhe Boden oder Deckel
+h_bd = h_ue_a/2;  // Hoehe Boden oder Deckel
 
-h_bk = 0.2;  // Höhe Bildkerbe. 0.4 mm (dies × 2) sollte reichen. Für 1. test
-w_br = 1;  // Extra Rand für Bildkerbe. (Mit der Perforation haben wir’s.)
-l_br = 2;  // Extra Rand für Bildkerbe. (Mit der Perforation haben wir’s.)
+h_bk = 0.2;  // Hoehe Bildkerbe. 0.4 mm (dies * 2) sollte reichen. Fuer 1. test
+w_br = 1;  // Extra Rand fuer Bildkerbe. (Mit der Perforation haben wir's.)
+l_br = 2;  // Extra Rand fuer Bildkerbe. (Mit der Perforation haben wir's.)
 h_lkl = 0.75*h_bd;
 
 // *******************************************************
@@ -356,9 +356,9 @@ module magnetausschnitte(mo)
 
 module magnetausschnitt(xf, yf, mo)
 {
-   yo_mag = (w_gesamt- w_rand + w_streifen) /4;  // Mittig auf demh Randstück
+   yo_mag = (w_gesamt- w_rand + w_streifen) /4;  // Mittig auf demh Randstueck
 
-   // Auserhalb des des GRiffs zum Öffnen
+   // Auserhalb des des GRiffs zum Oeffnen
    translate(
       [xf * (l_bild/2+d_mag) , yf * (yo_mag-mo), h_bd - h_mag-c_h + ms])
    {
