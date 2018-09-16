@@ -10,24 +10,20 @@
 // Licence: CC-BY-SA
 
 
-// type to produce
-part = "container"; // [container,lid,separator]
+// ... to preview. You will get all three when done. Print just one of the
+part = "container"; // [container,lid]
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
+// Style of the container bottom, plain or with bayonette to stack them
+stackable = 0;  // [0: no, 1: yes]
 
 // minimum interior diameter of container
-_insideDiameter = 16;  // [5:0.1:35]
+_insideDiameter = 17;  // [5:0.1:35]
 
 // height of the container's interior space
-_interiorHeight = 50;  // [5:0.1:200]
-
-// exterior style of the part
-_style = "round"; // [round, round thin, tapered, polygon, crown, flipped crown]
-
-// for the polygon and crown styles (no effect on other styles)
-_numberOfSides = 6;  // [3:1:12]
+_interiorHeight = 110;  // [5:0.1:200]
 
 // the thinnest walls of the container will use this value
 _minimumWallThickness = 1.2;
@@ -52,6 +48,8 @@ _partGap = 0.2;
 // *******************************************************
 // Extra parameters. These can be changed reasonably safely.
 
+
+_numberOfSides = 6;  // [3:1:12]
 
 w = 1.8;  // Wall width
 p = 1.2;  // Bottom, top plate height
@@ -79,7 +77,7 @@ z_factor = tan(angle);  // The other way around
 outsideDiameter = _insideDiameter +
    2 * (_minimumWallThickness*2 + _partGap + _bayonetDepth);
 baseHeight = _interiorHeight + _topBottomThickness - _lipHeight;
-separatorHeight = _interiorHeight + _topBottomThickness;
+stackable_containerHeight = _interiorHeight + _topBottomThickness;
 lidHeight = _topBottomThickness + _lipHeight + 2; // 2 mm extra for the bayonet
 // No storage space in the lid. That’s what “lid” means.
 twistAngle = 60; // amount of twist to close the lid
@@ -113,8 +111,8 @@ $fa = (preview) ? pa : ra;
 // *******************************************************
 // Generate the parts
 
-print_part();
-// preview_parts();
+// print_part();
+preview_parts();
 // stack_parts();
 
 
@@ -124,11 +122,18 @@ module print_part()
 {
    if (part == "container")
    {
-      short_container();
+      if (stackable)
+      {
+         short_stackable_container();
+      }
+      else
+      {
+         short_container();
+      }
    }
-   else if (part == "separator")
+   else if (part == "stackable container")
    {
-      short_separator();
+
    }
    else if (part == "lid")
    {
@@ -142,7 +147,7 @@ module preview_parts()
    short_container();
    translate([some_distance, 0, 0])
    {
-      short_separator();
+      short_stackable_container();
    }
    translate([0, some_distance, 0])
    {
@@ -155,11 +160,11 @@ module stack_parts()
    // intersection() // N.B.: Use only two at a time
    {
       // Pick one
-      // short_separator();
+      // short_stackable_container();
       short_container();
 
       // Dto.
-      // translate([0,0,separatorHeight + _lipHeight+ 2*_bayonetDepth+ ms])
+      // translate([0,0,stackable_containerHeight + _lipHeight+ 2*_bayonetDepth+ ms])
       translate([0,0,baseHeight + _lipHeight+ 2*_bayonetDepth+ ms])
       {
          rotate([0,180,0])
@@ -182,10 +187,10 @@ module short_container()
 }
 
 
-module short_separator()
+module short_stackable_container()
 {
-   separator(
-      _style, outsideDiameter, separatorHeight, _minimumWallThickness,
+   stackable_container(
+      _style, outsideDiameter, stackable_containerHeight, _minimumWallThickness,
       _topBottomThickness, _lipHeight, _bayonetDepth, bayonetAngle, _partGap,
       _numberOfSides, twistAngle);
 }
@@ -364,7 +369,7 @@ module lid(
    }
 }
 
-module separator(
+module stackable_container(
    style, diameter, height, wall, base, lipHeight, bayonetDepth, bayonetAngle,
    partGap, sides, twistAngle)
 {

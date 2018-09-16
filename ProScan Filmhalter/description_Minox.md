@@ -20,9 +20,9 @@ Use black to reduce stray light. PLA is fine, print settings aren’t too import
 This needs quite a bit of deburring and sanding. Also, a bit of filing before you can scan your negatives and file them again.
 
 
-### Glueing in the magnets
+### Gluing in the magnets
 
-Glueing in the magnets was surprisingly tricky. They tend to fly through the air towards any piece of iron and to flip over all the time. I came up with this procedure.
+Gluing in the magnets was surprisingly tricky. They tend to fly through the air towards any piece of iron and to flip over all the time. I came up with this procedure.
 
 #### Tools
 
