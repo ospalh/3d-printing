@@ -20,7 +20,7 @@ Use black to reduce stray light. PLA is fine, print settings aren’t too import
 
 This needs quite a bit of deburring and sanding. Also, a bit of filing before you can scan your negatives and file them again.
 
-See the [ProScan Minox film holder]() for exhaustive magnet glueing tips.
+See the [ProScan Minox film holder]() for exhaustive magnet gluing tips.
 
 ## How designed
 

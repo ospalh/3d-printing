@@ -35,7 +35,7 @@ Print with black filament to reduce stray light. PLA is fine, but aceton smoothi
 This needs a bit of deburring and a lot of sanding. The wedge should be a smooth inclined plane. The film comes into contact with large areas of this and the bottom part should be as smooth as possible, too. Use acetone smoothing. In vapour for ABS or submerge the parts for about 25 s for PLA.
 
 
-See the [ProScan Minox film holder]() for exhaustive magnet glueing tips.
+See the [ProScan Minox film holder]() for exhaustive magnet gluing tips.
 
 ## How designed
 
