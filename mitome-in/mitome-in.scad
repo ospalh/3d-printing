@@ -5,34 +5,49 @@
 // © 2017–2018 Roland Sieker <ospalh@gmail.com>
 // All rights reserved
 
-// … to preview. You will get all parts when you click “Create Thing”.
-part = "NN"; // [NN: foo, bar: baz]
-// rubber_seal, grip, seal_with_grip, cap, ink_pad, foam_punch, ink_pad_cap
+/* [Global] */
 
+// … to preview. You will get all parts when you click “Create Thing”. You don’t have to print all the parts. See description for details.
+part = "rubber_seal"; // [rubber_seal, grip, seal_with_grip, cap, ink_pad, foam_punch, ink_pad_cap]
 
-
-line_1 = "馬";
-line_2 = "";
-line_3 = "鹿";
-
-font = "IPAexGothic:style=Regular";
-
-size = 12; // Standard non-registerend seals, usually aren’t much bigger than about 12 mm high
-
-text_size = 4.32;
-
-
-text_x_scale = 1.2;
-seal_x_scale = 0.7;
-seal_y_scale = 1;
-
-vertical_text_offset = 2.1;
-horizontal_text_offset = 0;
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
+/* [Text] */
+// First line of text. Leave empty for one line
+line_1 = "馬";
+// Single line of text. Leave empty for two line
+line_2 = "";
+// Second line of text. Leave empty for one line
+line_3 = "鹿";
 
+// Make sure to pick a font that a) has the characters you need and b) is available for the platform you use (Customizer or your desktop PC)
+font = "IPAexGothic:style=Regular";
+
+/* [Size] */
+// Standard non-registerend seals, usually aren’t much bigger than about 12 mm high
+size = 12; // [9:1:20]
+
+/* [Tweaks] */
+
+// Text size in mm
+text_size = 4.32;  // [1:0.01:10]
+
+
+// Scale characters in x direction
+text_x_scale = 1.2;  // [0.3:0.01:3]
+// Make the seal an ellipse, one direction
+seal_x_scale = 0.7;  // [0.3:0.01:1]
+// or the other. One of these should be 1.
+seal_y_scale = 1;  // [0.3:0.01:1]
+
+// Move the text around until it fits.
+vertical_text_offset = 2.1;  // [-5:0.01:5]
+horizontal_text_offset = 0;  // [-5:0.01:5]
+
+
+/* [Hidden] */
 
 // *******************************************************
 // Extra parameters. These can be changed reasonably safely.
