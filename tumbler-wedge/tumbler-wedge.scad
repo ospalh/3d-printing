@@ -2,17 +2,17 @@
 //
 // A wedge to keep a glass angled.
 //
-// This is a re-imagining of Thing 2784800, matt sauter’s “Whiskey Wedge -
-// Angled Ice”. (https://www.thingiverse.com/thing:2784800) This is not
+// This is a re-imagining of Thing 2784800, matt sauter's "Whiskey Wedge -
+// Angled Ice". (https://www.thingiverse.com/thing:2784800) This is not
 // based on that thing, but a new thing to achieve the same effect.
 //
-// © 2018 Roland Sieker <ospalh@gmail.com>
+// Copyright 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 // How wide the glass to put on this is
 glass_diameter = 70; // [30:1:100]
 
-// … and how tall.
+// ... and how tall.
 glass_height = 90; // [20:1:200]
 
 // Angle at which the glass rests
@@ -27,7 +27,7 @@ wedge_length = 70; // [50:1:99]
 // Distance between the outside and the hole in the inside. The width of the wedge.
 wedge_cutout_width = 10; // [3:0.5:30]
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 
@@ -45,12 +45,12 @@ p = 1.2;  // Bottom, top plate height. In this case, distance of the glass from 
 c = 0.4;  // Clearance
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
 r_ge = glass_diameter/2 + c;
 r_w = glass_diameter/2 * wedge_width/100;
 
-tau = 2 * PI;  // π is still wrong. τ = circumference ÷ r
+tau = 2 * PI;  // pi is still wrong
 
 gh = glass_height*wedge_length/100;
 
