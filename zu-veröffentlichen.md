@@ -1,11 +1,12 @@
-* Fahrradschlauchfüße
-* Schlüsselsiegel
-* Untersetzerkeil (trivet wedge)
-* Glaseiskeil
-* nut puller
+* Fahrradschlauchfüße: Fotos
+* Schlüsselsiegel: Fotos
+* Untersetzerkeil (trivet wedge): Fotos
+* Mitome-in: Fotos
+* Glaseiskeil: Fotos
+* nut puller: Fotos
 * Zweihandflaschenöffner, Warnlabel
-* Dosendurchschlag (mit Quelle)
-* Displayhalter
+* Dosendurchschlag (mit Quelle): Fotos
+* Displayhalter: Fotos
 * Pilzanker
 * Magnethaken
 * Radienlehre (ggf. in thingiverese-Verzeichnis suchen)
@@ -26,4 +27,4 @@
 * Duschregal
 * Seifenspenderdeckel
 * Blumentopfabstandhalter
-* verbesserte Bajonett-Behälter
+* verbesserte Bajonett-Behälter meh
