@@ -1,6 +1,6 @@
 Reflecta ProScan Minox film holder
 
-A film strip holder to scan Minox “spy camera” film with a [Reflecta ProScan](https://reflecta.de/en/products/detail/~id.734~nm.69/reflecta-ProScan-10T.html) cheap-compared-to-drum-scanners film scanner i own.  This should fit both the 10T and 7200 models.
+A film strip holder to scan [Minox](https://en.wikipedia.org/wiki/Minox) spy camera¹ 9.2 mm film with a [Reflecta ProScan](https://reflecta.de/en/products/detail/~id.734~nm.69/reflecta-ProScan-10T.html) cheap-compared-to-drum-scanners film scanner i own.  This should fit both the 10T and 7200 models.
 
 This uses eight tiny 1 mm high × 2.4 mm ⌀ neodymium magnets to hold shut. They are not strictly necessary.
 
@@ -32,6 +32,7 @@ Gluing in the magnets was surprisingly tricky. They tend to fly through the air 
 * Eight M3 or smaller bolts or similar iron rods
 * Eight small (c. 1 cm × 5 cm) pieces of paper
 * Pens, to mark metal surfaces and paper
+* Toothpick or similar non-magnetic implement
 * Super glue
 * Latex or similar gloves
 * Other protective materials. Newspaper for the table, face shield &c.
@@ -55,17 +56,21 @@ Gluing in the magnets was surprisingly tricky. They tend to fly through the air 
 * Take the bolt with the magnet and put the magnet into the hole
 * Hold down the paper and remove the bolt
 * Remove the paper
+* Push the magnet into place with the toothpick, if necessary
 * Repeat for the clamp and the magnets facing the other way
 
 
 ## How designed
 
-First i looked at shred’s [110 film holder](https://www.thingiverse.com/thing:1328672) for plustek scanners. Firt change the outer size to “Reflecta”, scan my stack of 110 films, than change the film size and scan the Minox, but started over from scratch, anyway.
+First i looked at shred’s [110 film holder](https://www.thingiverse.com/thing:1328672) for plustek scanners. Change the outer size to “Reflecta”, scan my stack of 110 films, than change the film size and scan the Minox, but started over from scratch, anyway.
 
 I briefly experimented with a hinge (based on rohinosling’s  [parametric hinge](https://www.thingiverse.com/thing:2187167)) but i had too much problems breaking them free. (The original Reflecta film holders do have a hinge.)
 
 For a while i had planned to bury the magnets. Pause the print, put them in, let them be covered by PLA. The putting in worked OK, but i later found them on the steel extruder carrier. They had leaped up when a big iron mass passed by, foiling this plan.
 
-There was also a version with thin bars to separate the images, but as the spacing of them on the Minox films i have is so irregualr i dropped that. See the 110 and 126 versions.
+There was also a version with thin bars to separate the images, but as the spacing of them on the Minox films i have is so irregular i dropped that. The 110 and 126 versions do have such bars.
 
 There is some design history available at my [github repo](https://github.com/ospalh/3d-printing/tree/develop/ProScan Filmhalter).
+
+-----
+¹ The Americans bought some for the CIA before there was even a CIA. That is, for the OSS.

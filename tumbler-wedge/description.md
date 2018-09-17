@@ -7,10 +7,10 @@ The size of the glass, the angle and the sturdiness of the thing can be changed 
 
 * Supports: no
 * Raft: no
-* 5 %
+* ≤ 5 %
 * 300 µm
 
-I used many (5) perimeters and many (6) top layers. Like that, a low infill of 5 % works well.
+I used many (5) perimeters and many (6) top layers. Like that, no or low infill – 0 % or 5 % – works well.
 
 I also used a brim, to avoid warping.
 

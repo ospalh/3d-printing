@@ -1,31 +1,28 @@
-Scan 16 mm 110 type “pocket” film with a standard transparency film scanner.
-
+Scan 16 mm 110 type “pocket” Instamatic film with a standard transparency film scanner.
 
 With this you can scan 16 mm  110 type film strips by putting them into the holder and that into the hole for standard 35 mm negative film strips.
 
-Put the film strip into the holder with the shiny carrier side down, towards the sensor and the emulsion side up. When looking at the numbers they should appear mirrorered. Then lock the strip in place with the clamp, and scan them.
+Put the film strip into the holder with the shiny carrier side down, towards the sensor and the emulsion side up. When looking at the numbers they should appear mirrored. Then lock the strip in place with the clamp, and scan them.
 
-I scanned the example image without IR scratch removal or advanced color correction. You may get better results with better scanner software. Also with newer films – this one was over 30 years old. Then again, 110 film people have lying around is bound to be old by now.
+I ended up scanning most of the old 110 films i inherited with my film scanner, using my Reflecta ProScan Minox film holder, which i will publish soon.
 
 
 How to print:
 
-Easy print. Make sure you have good bed adhesion. Don’t use a brim. Maybe a raft.
-
 raft: yes
-not at 45°
-layer: check the number of perimeters
+
+Easy print. Make sure you have good bed adhesion. Don’t use a brim. Maybe a raft. Check the number of perimeters on he clamp. It should be 2 for a standard 0.4 mm nozzle. It is probably a bad idea to print this rotated 45°.
 
 Post-processing:
 
-This may need a bit of filing or sanding. The long parts of the clamps must be straight, not bend inwards.
+This may need a bit of filing or sanding. The long parts of the clamps must be straight, not bend inwards when inserted into the holder.
 
 
 How designed:
 
-github
+There is some design history available at my [github repo](https://github.com/ospalh/3d-printing/tree/develop/Flachbettfilmhalter).
 
-This is similar to things [2328022](https://www.thingiverse.com/thing:2328022) but done independently. This one skips the inter frame bars and the pins to hold the film in place, but holds the film down with the clamp part.
+This is similar to thing [2328022](https://www.thingiverse.com/thing:2328022) but done independently. This one skips the inter frame bars and the pins to hold the film in place, but holds the film down with the clamp.
 
 It’s closer to thing [2792051](https://www.thingiverse.com/thing:2792051), again without the bars, and with space for 6 frames it may fit better onto a smaller print beds.
 
