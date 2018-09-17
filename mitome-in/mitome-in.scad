@@ -7,7 +7,7 @@
 
 /* [Global] */
 
-// … to preview. You will get all parts when you click “Create Thing”. You don’t have to print all the parts. See description for details.
+// Set up the text for either rubber_seal or seal_with_grip. Then switch to render below, select the shapes you need one by one and render and export them.
 part = "rubber_seal"; // [rubber_seal, grip, seal_with_grip, cap, ink_pad, foam_punch, ink_pad_cap]
 
 
@@ -22,11 +22,11 @@ line_2 = "";
 // Second line of text. Leave empty for one line
 line_3 = "鹿";
 
-// Make sure to pick a font that a) has the characters you need and b) is available for the platform you use (Customizer or your desktop PC)
+// Pick a font you have and that has the characters you want to use
 font = "IPAexGothic:style=Regular";
 
 /* [Size] */
-// Standard non-registerend seals, usually aren’t much bigger than about 12 mm high
+// Standard non-registerend seals usually aren’t much bigger than about 12 mm high
 size = 12; // [9:1:20]
 
 /* [Tweaks] */
@@ -148,41 +148,41 @@ $fa = (preview) ? pa : ra;
 // *******************************************************
 // Generate the parts
 
-// print_part();
-preview_parts();
-// stack_parts();
+print_part();
+// preview_parts();
 
 
 module print_part()
 {
-   if ("NN" == part)
+   if ("rubber_seal" == part)
    {
-      nn();
+      rubber_mitome_in();
    }
-   if ("foo" == part)
+   if ("grip" == part)
    {
-      foo();
+      notched_grip();
+   }
+   if ("cap" == part)
+   {
+      notched_cap();
+   }
+   if ("ink_pad" == part)
+   {
+      notched_ink_pad();
+   }
+   if ("foam_punch" == part)
+   {
+      ink_pad_punch();
+   }
+   if ("seal_with_grip" == part)
+   {
+      notched_high_mitome_in();
+   }
+   if ("ink_pad_cap" == part)
+   {
+      notched_ink_pad_cap();
    }
 }
-
-module stack_parts()
-{
-   // intersection()
-   {
-      color("yellow")
-      {
-         foo();
-      }
-      translate([0,0,30])
-      {
-         color("red")
-         {
-            NN();
-         }
-      }
-   }
-}
-
 
 
 module preview_parts()
