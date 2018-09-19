@@ -14,7 +14,7 @@ M = 6;  // [3: M3, 4: M4, 5: M5, 6: M6, 7: M7, 8: M8, 10: M10, 12: M12, 14: M14,
 
 // Done with the customizer
 
-// Keep my standard code but always use "render" for the thing. It’s just one cylinder.
+// Keep my standard code but always use "render" for the thing. It's just one cylinder.
 preview = 0;
 
 
