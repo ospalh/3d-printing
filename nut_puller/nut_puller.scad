@@ -6,8 +6,6 @@
 // Licence: CC-BY-SA 4.0
 
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
-preview = 0; // [0:render, 1:preview]
 
 // Size of the bolt. The thing is sized for ISO 4032 nuts
 M = 6;  // [3: M3, 4: M4, 5: M5, 6: M6, 7: M7, 8: M8, 10: M10, 12: M12, 14: M14, 16: M16, 18: M18, 20: M20, 22: M22, 24: M24]
@@ -15,6 +13,10 @@ M = 6;  // [3: M3, 4: M4, 5: M5, 6: M6, 7: M7, 8: M8, 10: M10, 12: M12, 14: M14,
 /* [Hidden] */
 
 // Done with the customizer
+
+// Keep my standard code but always use “render” for the thing. It’s just one cylinder.
+preview = 0;
+
 
 w = 2.4;  // external wall width
 p = 2.4;  // height of the bottomt plate
@@ -93,8 +95,6 @@ wfi = 1.1;  // wiggle factor
 e = s[M] * 2/sqrt(3);  // Outer circle
 ew = e * wf;
 Mw = M * wfi;
-echo("M", M);
-echo("e", e);
 
 some_distance = 50;
 ms = 0.01;  // Muggeseggele.
