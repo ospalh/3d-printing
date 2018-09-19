@@ -2,11 +2,11 @@
 //
 // Simple tool to pull out hex nuts with a bolt
 //
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// Copyright 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 0; // [0:render, 1:preview]
 
 M = 10;  // M6
@@ -21,10 +21,10 @@ w = 2.4;  // external wall width
 p = 2.4;  // height of the bottomt plate
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
-tau = 2 * PI;  // π is still wrong. τ = circumference ÷ r
-angle = 60; // Overhangs much below 60° are a problem for me
+tau = 2 * PI;  // pi is still wrong
+angle = 60; // Overhangs much below 60 degrees are a problem for me
 
 
 wf = 1.2;
