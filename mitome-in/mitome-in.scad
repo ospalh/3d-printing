@@ -5,34 +5,49 @@
 // © 2017–2018 Roland Sieker <ospalh@gmail.com>
 // All rights reserved
 
-// … to preview. You will get all parts when you click “Create Thing”.
-part = "NN"; // [NN: foo, bar: baz]
-// rubber_seal, grip, seal_with_grip, cap, ink_pad, foam_punch, ink_pad_cap
+/* [Global] */
 
+// Set up the text for either rubber_seal or seal_with_grip. Then switch to render below, select the shapes you need one by one and render and export them.
+part = "rubber_seal"; // [rubber_seal, grip, seal_with_grip, cap, ink_pad, foam_punch, ink_pad_cap]
 
-
-line_1 = "馬";
-line_2 = "";
-line_3 = "鹿";
-
-font = "IPAexGothic:style=Regular";
-
-size = 12; // Standard non-registerend seals, usually aren’t much bigger than about 12 mm high
-
-text_size = 4.32;
-
-
-text_x_scale = 1.2;
-seal_x_scale = 0.7;
-seal_y_scale = 1;
-
-vertical_text_offset = 2.1;
-horizontal_text_offset = 0;
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
+/* [Text] */
+// First line of text. Leave empty for one line
+line_1 = "馬";
+// Single line of text. Leave empty for two line
+line_2 = "";
+// Second line of text. Leave empty for one line
+line_3 = "鹿";
 
+// Pick a font you have and that has the characters you want to use
+font = "IPAexGothic:style=Regular";
+
+/* [Size] */
+// Standard non-registerend seals usually aren’t much bigger than about 12 mm high
+size = 12; // [9:1:20]
+
+/* [Tweaks] */
+
+// Text size in mm
+text_size = 4.32;  // [1:0.01:10]
+
+
+// Scale characters in x direction
+text_x_scale = 1.2;  // [0.3:0.01:3]
+// Make the seal an ellipse, one direction
+seal_x_scale = 0.7;  // [0.3:0.01:1]
+// or the other. One of these should be 1.
+seal_y_scale = 1;  // [0.3:0.01:1]
+
+// Move the text around until it fits.
+vertical_text_offset = 2.1;  // [-5:0.01:5]
+horizontal_text_offset = 0;  // [-5:0.01:5]
+
+
+/* [Hidden] */
 
 // *******************************************************
 // Extra parameters. These can be changed reasonably safely.
@@ -133,41 +148,41 @@ $fa = (preview) ? pa : ra;
 // *******************************************************
 // Generate the parts
 
-// print_part();
-preview_parts();
-// stack_parts();
+print_part();
+// preview_parts();
 
 
 module print_part()
 {
-   if ("NN" == part)
+   if ("rubber_seal" == part)
    {
-      nn();
+      rubber_mitome_in();
    }
-   if ("foo" == part)
+   if ("grip" == part)
    {
-      foo();
+      notched_grip();
+   }
+   if ("cap" == part)
+   {
+      notched_cap();
+   }
+   if ("ink_pad" == part)
+   {
+      notched_ink_pad();
+   }
+   if ("foam_punch" == part)
+   {
+      ink_pad_punch();
+   }
+   if ("seal_with_grip" == part)
+   {
+      notched_high_mitome_in();
+   }
+   if ("ink_pad_cap" == part)
+   {
+      notched_ink_pad_cap();
    }
 }
-
-module stack_parts()
-{
-   // intersection()
-   {
-      color("yellow")
-      {
-         foo();
-      }
-      translate([0,0,30])
-      {
-         color("red")
-         {
-            NN();
-         }
-      }
-   }
-}
-
 
 
 module preview_parts()
