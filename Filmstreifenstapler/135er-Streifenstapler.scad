@@ -26,7 +26,7 @@ wld = w1-ey; // Make it fit between the plates without problems
 
 w = 1.2;  // Wall width
 
-h = 66; // I have a lot of film strips i want to stack
+h = 80; // I have a lot of film strips i want to stack. I mean, a *lot*.
 epl = 10;
 spl = 20;
 spo = 20;
