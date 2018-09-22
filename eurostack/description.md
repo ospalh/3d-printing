@@ -14,12 +14,16 @@ They are stacked by diameter, not value:
 
 With the lid, you can put a bit Tesa or other stick tape around it without problem.
 
+The differet `STL` files are done with different amounts of clearance, in millimtres.
+
 # print
 
 easy
 
+200µm
+
 # how
 
-This is a straightforward OpenSCAD design. Just a few cylinders. This uses somewhat thin walls, because it is not intended to carry significant loads, just to keep the coins in place.
+This is a straightforward OpenSCAD design. Just a few cylinders. This uses somewhat thin walls, because it is not intended to carry significant loads, just to keep the coins in place. It should be reasonably straightforward to adapt this to other currencies.
 
 There is some design history available at my [github repo](https://github.com/ospalh/3d-printing/tree/develop/eurostack).
