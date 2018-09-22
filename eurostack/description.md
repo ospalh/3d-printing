@@ -14,7 +14,7 @@ They are stacked by diameter, not value:
 
 With the lid, you can put a bit Tesa or other stick tape around it without problem.
 
-The differet `STL` files are done with different amounts of clearance, in millimtres.
+The differet `STL` files are done with different amounts of clearance.
 
 # print
 
