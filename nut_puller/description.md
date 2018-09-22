@@ -7,4 +7,6 @@ doesn’t matter
 
 ## How
 
+The resulting thing is quite simple, but i still put a CC-© on this because the size selection code in the `scad` file isn’t as trivial.
+
 There is some design history available at my [github repo](https://github.com/ospalh/3d-printing/tree/develop/nut_puller).
