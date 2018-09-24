@@ -5,6 +5,8 @@ Apart from the improved stability when using the input knob, this also removes t
 
 This requires two M10 nuts, and you should use some washers. If it’s too far to the hardware store, or too late in the evening, you can try a nut from this [screw library](https://www.thingiverse.com/thing:8796). I’m not sure, but you may need slightly longer M3 screws¹ than those used for the top mounting, so you may have to go to the hardware store after all. Or rummage through the screws left from building the thing up in the first place.
 
+In the pictures the printer is resting on my [inner tube feet]().
+
 # Post-printing
 
 To install, mark² and remove the cables, unscrew the display, replace the connector and the 5 mm spacers with the 10 mm spacers from this thing, and screw it to the holder. The short arms must be up and the large holes on the outside. Don’t tighten the screws at this time. Then reroute and reconnect the cables, put the assembly onto the M10 main rods and tighten everything up with the M10 and M3 nuts.
