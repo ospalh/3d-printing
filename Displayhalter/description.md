@@ -12,7 +12,7 @@ To install, mark² and remove the cables, unscrew the display, replace the conne
 
 # how
 
-There is some design history available at my [github repo](https://github.com/ospalh/3d-printing/tree/develop/Displayhalter).
+There is some design history available at my [github repo](https://github.com/ospalh/3d-printing/tree/develop/Displayhalter). I actually printed mine without the cut for the SD card holder and ground off the space rather than reprint the thing.
 
 
 ----
