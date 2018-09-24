@@ -1,15 +1,15 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// simple, functional model mushroom anchor
+// simple, functional small mushroom anchor
 //
 // © 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
-// Radius of the cap
-r = 15;
+// Radius of the cap in millimetres
+r = 20;  // [5:1:50]
 
 // size of the “chain” hole
-hl = 4;
+hl = 4;  // [1:0.5:10]
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
@@ -23,10 +23,11 @@ preview = 1; // [0:render, 1:preview]
 // *******************************************************
 // Extra parameters. These can be changed reasonably safely.
 
-l_to_r = 3;  // Length of the stem in rs
-r_to_r = 1.5;  // radius of the shield sphere
+l_to_r = 2.5;  // Length of the stem in rs
+r_to_h = 0.35;
 
-w = 1.8;  // Wall width
+w = 2.4;  // Wall width
+p = 1.8; // cap width
 c = 0.4;  // Clearance
 angle = 60; // Overhangs much below 60° are a problem for me
 
@@ -40,8 +41,10 @@ xy_factor = 1/tan(angle);
 z_factor = tan(angle);  // The other way around
 
 
-r_c = r * r_to_r;
+h = r * r_to_h;
+r_i = r - h * xy_factor;
 l = r * l_to_r;
+
 
 some_distance = 50;
 ms = 0.01;  // Muggeseggele.
@@ -83,20 +86,15 @@ module mushroom_anchor()
 
 module anchor_cap()
 {
-   intersection()
+   difference()
    {
-      // spherical shell
-      translate([0, 0, r_c])
-      difference()
+      cylinder(r1=r_i, r2=r, h=h);
+      translate([0, 0, -ms])
       {
-         sphere(r=r_c);
-         sphere(r=r_c-w);
-      }
-      translate([0,0,-ms])
-      {
-         cylinder(r=r, h=r_c+2*ms);
+         cylinder(r1=r_i-p, r2=r-p, h=h+2*ms);
       }
    }
+   cylinder(r=r_i, h=p);
 }
 
 module anchor_stem()
