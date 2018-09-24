@@ -1,15 +1,15 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// simple, functional model mushroom anchor
+// simple, functional small mushroom anchor
 //
 // © 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
-// Radius of the cap
-r = 20;
+// Radius of the cap in millimetres
+r = 20;  // [5:1:50]
 
 // size of the “chain” hole
-hl = 4;
+hl = 4;  // [1:0.5:10]
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
