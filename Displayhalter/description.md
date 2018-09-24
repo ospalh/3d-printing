@@ -7,6 +7,8 @@ This requires two M10 nuts, and you should use some washers. If it’s too far t
 
 In the pictures the printer is resting on my [inner tube feet]().
 
+It should be easy to adapt this to other printer and display sizes by changing the values at the top of the main `scad` file.
+
 # Post-printing
 
 To install, mark² and remove the cables, unscrew the display, replace the connector and the 5 mm spacers with the 10 mm spacers from this thing, and screw it to the holder. The short arms must be up and the large holes on the outside. Don’t tighten the screws at this time. Then reroute and reconnect the cables, put the assembly onto the M10 main rods and tighten everything up with the M10 and M3 nuts.
