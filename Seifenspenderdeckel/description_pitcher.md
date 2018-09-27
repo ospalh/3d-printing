@@ -10,7 +10,7 @@ easy print
 
 ## Post-printing
 
-The lid itself doesn’t need much work. Maybe a bit of sanding to get a nice round top edge.
+This doesn’t need much work. Maybe a bit of sanding to get a nice round top edge.
 
 ## how des
 
