@@ -22,4 +22,4 @@ What i found harder than expected was making a hole in the empty original contai
 ## How desigend
 There are at least three other things [948701](https://www.thingiverse.com/thing:948701) [2612891](https://www.thingiverse.com/thing:2612891) [854592](https://www.thingiverse.com/thing:854592) already here, so why another one? Mostly because i didn’t really look before i designed this. But why upload it then? Because i like the rounding and the clip-on effect of mine. Things the other ones don’t have.
 
-This was done in OpenSCAD, and i have added the source file. Ther is also some design history at my [github repo](https://github.com/ospalh/blabla)
+This was done in OpenSCAD, and i have added the source file. Ther is also some design history at my [github repo](https://github.com/ospalh/Seifenspenderdeckel)
