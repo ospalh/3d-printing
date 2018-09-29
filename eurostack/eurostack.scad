@@ -71,7 +71,7 @@ d_2 = 25.75;
 
 w = 0.8;  // Wall width
 p = 0.6;  // Bottom, top plate height
-c = 0.4;  // Clearance
+c = 1;  // Clearance
 ch = 0.2; //
 
 
