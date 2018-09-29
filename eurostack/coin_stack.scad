@@ -5,7 +5,7 @@
 // © 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
-/* [Global] */
+
 // … to preview. You will get all parts when you click “Create Thing”.
 part = "stack"; // [stacker: coin stacker, lid: lid]
 
@@ -14,21 +14,27 @@ part = "stack"; // [stacker: coin stacker, lid: lid]
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
+/* [Hidden] */
+
 p = 0.6;  // Bottom, top plate height
 
 coin_sizes = [
-   // For each coin size , diameter, stack height. Write the stack height as number * height of one coin.
-   [15, 3 * 1.7],
-   [18, 3 * 1.7],
-   [20, 3 * 1.7],
-   [23, 3 * 1.7],
-   [28, 3 * 1.7 + p]
+   // For each coin size , diameter, stack height. Write the stack height
+   // as number * height of one coin. Add p to the last value to give space
+   // for the lid.
+   [17, 5 * 1],  // FF 5 ¢ (centimes)
+   [19.55, 6 * 2.05],  // ½ FF, kleiner als 10 ¢
+   [20, 6 * 1.5],  // FF 10 ¢
+   [22.9, 1 * 2.15],  // FF 10, klein für den Wert
+   [23.6, 7 * 1.4],  // FF 20 ¢
+   [24, 6 * 1.8],  // FF 1
+   [26.3, 1 * 1.75],  // FF 2
+   [28.9, 1 * 2.15 + p]  // FF 5
    ];
 
 echo(len(coin_sizes));
 max_index = len(coin_sizes) - 1;
 
-/* [Clearances] */
 
 // Horizontal clearance. I use a lot here. Coins may rattle a bit in the final shape, but i am OK with that.
 c = 1;  // [0.05:0.05:1.5]
