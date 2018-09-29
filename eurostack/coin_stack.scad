@@ -18,10 +18,14 @@ preview = 1; // [0:render, 1:preview]
 
 p = 0.6;  // Bottom, top plate height
 
+// *****************************************************************************
+// Change the list below
+// *****************************************************************************
+
 coin_sizes = [
-   // For each coin size , diameter, stack height. Write the stack height
-   // as number * height of one coin. Add p to the last value to give space
-   // for the lid.
+   // For each coin size, add a pair with diameter and stack height. Write
+   // the stack height as number * height of one coin. Add p to the last
+   // height to give space for the lid.
    [17, 5 * 1],  // FF 5 ¢ (centimes)
    [19.55, 6 * 2.05],  // ½ FF, kleiner als 10 ¢
    [20, 6 * 1.5],  // FF 10 ¢
@@ -32,7 +36,12 @@ coin_sizes = [
    [28.9, 1 * 2.15 + p]  // FF 5
    ];
 
-echo(len(coin_sizes));
+// *****************************************************************************
+// Part to change over
+// *****************************************************************************
+
+// Change below to taste.
+
 max_index = len(coin_sizes) - 1;
 
 
