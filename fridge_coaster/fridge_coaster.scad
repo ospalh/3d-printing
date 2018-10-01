@@ -18,6 +18,7 @@ bar_width = 2.8;  // [0.5:0.1:7]
 pot_height = 20;  // [3:0.5:50]
 // Diameter of the bottle to hold
 bottle_diameter = 49;  // [10:0.1:80]
+// Diameter of a conical bottle at the top of the holder
 top_bottle_diameter = 49;  // [10:0.1:80]
 // Width of the flange. How much the bottom is wider than the pot on top.
 flange = 3;  // [0:0.5:15]
