@@ -41,3 +41,4 @@
 * cube-Ventilkappe
 * Drehkalender
 * Kühlschrankuntersetzer mit Rillen
+* Fahrradschlauchfüße
