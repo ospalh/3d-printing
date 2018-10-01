@@ -7,19 +7,30 @@
 // Licence: CC-BY-SA 4.0
 
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
-preview = 1; // [0:render, 1:preview]
+// Distance from one bar of the fridge shelf grid to the next. All sizes are in millimetres.
+bar_spacing = 18.4;  // [5:0.1:30]
+// Diameter of one shelf grid bar
+bar_width = 2.8;  // [0.5:0.1:7]
+// Height of the coaster pot.
+pot_height = 20;  // [3:0.5:50]
 
-spacing = 18.4;
-bar_width = 2.8;
-height = 15;
-x_width = 39;
-y_width = 39;
-flange = 4;
+// Breadth (x direction size) of the bottle to hold
+x_width = 39;  // [10:0.1:80]
+
+// Depth (y direction size) of the bottle to hold
+y_width = 39;  // [10:0.1:80]
+
+// Width of the flange. How much the bottom is wider than the pot on top.
+flange = 3;  // [0:0.5:15]
+
 
 /* [Hidden] */
 
 // Done with the customizer
+
+preview = 0; // [0:render, 1:preview]
+// Kept, but not used
+
 
 // *******************************************************
 // Extra parameters. These can be changed reasonably safely.
@@ -79,14 +90,14 @@ fridge_coaster();
 module fridge_coaster()
 {
 
-   hrc = ceil((xw+w+bar_width+flange)/spacing) + 1;
+   hrc = ceil((xw+w+bar_width+flange)/bar_spacing) + 1;
    difference()
    {
       union()
       {
-         translate([0,0,p+height/2+ms])
+         translate([0,0,p+pot_height/2+ms])
          {
-            cube([xww, yww, 2*p+height+2*ms], center=true);
+            cube([xww, yww, 2*p+pot_height+2*ms], center=true);
          }
          translate([0,0,p])
          {
@@ -95,15 +106,15 @@ module fridge_coaster()
       }
       translate([0,0,2*p])
       {
-         translate([0,0,p+height/2+ms])
+         translate([0,0,p+pot_height/2+ms])
          {
-            cube([xw, yw, 2*p+height+2*ms], center=true);
+            cube([xw, yw, 2*p+pot_height+2*ms], center=true);
          }
       }
       for (o=[-hrc:hrc])
       {
          echo(o);
-         translate([(o+0.5)*spacing,0, 0])
+         translate([(o+0.5)*bar_spacing,0, 0])
          {
             cube([bar_width, yww + 2*(c+bar_width+flange+ms), 2*p], center=true);
          }
