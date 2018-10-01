@@ -15,9 +15,10 @@ bar_spacing = 18.4;  // [5:0.1:30]
 // Diameter of one shelf grid bar
 bar_width = 2.8;  // [0.5:0.1:7]
 // Height of the coaster pot.
-pot_height = 17;  // [3:0.5:50]
+pot_height = 20;  // [3:0.5:50]
 // Diameter of the bottle to hold
-bottle_diameter = 56;  // [10:0.1:80]
+bottle_diameter = 49;  // [10:0.1:80]
+top_bottle_diameter = 49;  // [10:0.1:80]
 // Width of the flange. How much the bottom is wider than the pot on top.
 flange = 3;  // [0:0.5:15]
 
@@ -48,6 +49,7 @@ z_factor = tan(angle);  // The other way around
 
 
 rie = bottle_diameter/2 + c;
+rit = top_bottle_diameter/2 + c;
 
 some_distance = 50;
 ms = 0.01;  // Muggeseggele.
@@ -92,10 +94,9 @@ module fridge_coaster()
       {
          for (o=[0:number_of_pots-1])
          {
-            translate([0,o*de,0])
+            translate([0,o*de,2*p-ms])
             {
-               echo("o",o);
-               cylinder(r=rie+w, h=2*p+pot_height);
+               cylinder(r1=rie+w, r2=rit+w, h=pot_height+ms);
             }
          }
          hull ()
@@ -106,14 +107,14 @@ module fridge_coaster()
             }
             translate([0, (number_of_pots-1)*de -fe(),0])
             {
-            cylinder(r=rie+w+flange, h=2*p-ms);
+               cylinder(r=rie+w+flange, h=2*p-ms);
             }
          }
       }
       for (o=[0:number_of_pots-1])
       {  translate([0,o*de,2*p])
          {
-            cylinder(r=rie, h=pot_height+ms);
+            cylinder(r1=rie, r2=rit, h=pot_height+2*ms);
          }
       }
       for (o=[-hrc:hrc])

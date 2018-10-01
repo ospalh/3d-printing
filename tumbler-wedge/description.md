@@ -2,6 +2,7 @@ A wedge to hold a glass at a 45° angle, so you can get a wedge of ice in there.
 
 The size of the glass, the angle and the sturdiness of the thing can be changed in the customizer.
 
+Cheers, Prost, Santé, Skål, Sláinte, 乾杯 &c.!
 
 ### Print Settings
 
