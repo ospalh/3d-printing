@@ -1,13 +1,13 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// A simple “coaster” to stop condiment bottles from falling over when
+// A simple "coaster" to stop condiment bottles from falling over when
 // placed on the bars of a the grid in the fridge
 //
-// © 2018 Roland Sieker <ospalh@gmail.com>
+// Copyright 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 spacing = 18.4;
@@ -28,12 +28,12 @@ flange = 4;
 w = 1.8;  // Wall width
 p = 1.2;  // Bottom, top plate height
 c = 0.4;  // Clearance
-angle = 60; // Overhangs much below 60° are a problem for me
+angle = 60; // Overhangs much below 60 degrees are a problem for me
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
-tau = 2 * PI;  // π is still wrong. τ = ⌀ ÷ r
+tau = 2 * PI;  // pi is still wrong
 
 xy_factor = 1/tan(angle);
 // To get from a height to a horizontal width inclined correctly
