@@ -1,6 +1,6 @@
 trivet wedge Untersetzerkeil
 
-A wedge to go under the trivet to tilt your soup bowl or tureen to make the soup run into one corner when there’s not much of it left.
+A wedge to go under the trivet to tilt your soup bowl or tureen to make the soup run into one corner when there’s not much of it left. I’ll spare you a picture of my half eaten soup.
 
 N.B.: Especially when you do it in PLA you should not put a hot pot directly on this thing. Do use a trivet.
 

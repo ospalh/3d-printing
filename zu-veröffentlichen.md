@@ -29,3 +29,4 @@
 * Münzstapler
   - Euro
   - andere
+* Pfeil
