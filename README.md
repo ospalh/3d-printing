@@ -2,18 +2,13 @@
 
 This is a collection of FreeCAD and OpenSCAD files, scripts, and other files for 3d printing designs i came up with or found and remixed.
 
-Several have been published on [thingiverse](https://github.com/ospalh/3d-printing/tree/develop/y-belt-holder), a few on [YouMagine](https://www.youmagine.com/ospalh/designs).
+Several have been published on [thingiverse](https://www.thingiverse.com/ospalh/designs), a few on [YouMagine](https://www.youmagine.com/ospalh/designs).
 
 Some of the more intresting ones:
 
-### yacs
-
-*Y*et *A*nother *C*oin *S*pinner.
-Yeah, it’s a collection of fidget spinners. These use coins and you can set up *which* coin by changing values in a spreadsheet in the FreeCAD files.
-
 ### Tea portioner
 
-A gadget to portion my roibos tea leaves and pour it into
+A gadget to portion my rooibos tea leaves and pour it into
 the filter holder.
 
 ### Funnel with stand

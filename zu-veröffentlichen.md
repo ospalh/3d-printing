@@ -1,4 +1,3 @@
-* Fahrradschlauchfüße: Fotos
 * Schlüsselsiegel: Fotos
 * Untersetzerkeil (trivet wedge): Fotos
 * Mitome-in: Fotos
