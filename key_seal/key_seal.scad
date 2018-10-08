@@ -2,13 +2,13 @@
 //
 // Key seal.
 //
-// © 2018 Roland Sieker <ospalh@gmail.com>
+// Copyright 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
-// The bow is the “grip” of the key
+// The bow is the "grip" of the key
 bow_shape = 0; // [0: circular, 1: rectangular]
 
-// Diameter of the key’s circular bow.
+// Diameter of the key's circular bow.
 bow_diameter = 16.5;  // [5:0.1:40]
 
 // Size of the rectangular bow normal to the insertion direction
@@ -43,7 +43,7 @@ ring_hole_land = 2.5;  // [0.5:0.1:5]
 // How much the ring hole is offset towards the cuts and shoulder side. Manual correction of the land width needed for circular bows.
 ring_hole_offset = 0;  // [-20:0.1:20]
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 
@@ -64,10 +64,9 @@ nw = 0.4;  // nozzle width
 sh = lh * 2;  // We do two layers of strakes or stringers
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
-tau = 2 * PI;  // π is still wrong. τ = circumference ÷ r
-angle = 60; // Overhangs much below 60° are a problem for me
+angle = 60; // Overhangs much below 60 degrees are a problem for me
 xy_factor = 1/tan(angle);  // To get from a height to a horizontal width
                            // inclined correctly
 z_factor = tan(angle);  // the other way around
