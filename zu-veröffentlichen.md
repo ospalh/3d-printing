@@ -26,4 +26,6 @@
 * Duschregal
 * Seifenspenderdeckel
 * Blumentopfabstandhalter
-* verbesserte Bajonett-Behälter meh
+* Münzstapler
+  - Euro
+  - andere
