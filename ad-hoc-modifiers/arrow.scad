@@ -2,8 +2,9 @@
 //
 // NN
 //
-// © 2018 Roland Sieker <ospalh@gmail.com>
-// Licence: CC-BY-SA 4.0
+// Written by Roland Sieker <ospalh@gmail.com>
+// Licence: CC-0
+// Have fun
 
 /* [Global] */
 
