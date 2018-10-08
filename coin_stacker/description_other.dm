@@ -3,8 +3,7 @@ Stacking and storage aid for coin collections.
 This allows you to stack and store coins of different sizes. I use it to reduce the storage volue of a coin collection i inherited. I don’t want to sell it, but don’t want it to waste too much space in my cupboard, either.
 
 You must use OpenSCAD to adopt this to the coins you want to store.
-The thing to adapt is the `coin_sizes` vector at the beginnig. Put in a pair of values for each coin size you want to store, diameter and height of the coin stack. The example is for the numbers of French Francs i used this for. Follow the example, but use your coin sizes and numbers. You can use as few or as many value pairs as you need.
-
+The thing to adapt is the `coin_sizes` vector at the beginnig. Put in a pair of values for each coin size you want to store, diameter and height of the coin stack. The example is for the numbers of French Francs i used this for. Follow the example, but use your coin sizes and numbers. You can use as few or as many value pairs as you need. The way i use it is to stack the coin smallest first and largest on top. Like that you can get the coins out again. You could also do small coins on top, put them in during printing, and so seal them in this thing, if you like.
 
 With the lid, you can put a bit Tesa or other stick tape around it without problem.
 

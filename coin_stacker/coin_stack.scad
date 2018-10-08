@@ -195,5 +195,5 @@ module stack()
 
 module lid()
 {
-   cylinder(r=r_i(max_index), h=p);
+   cylinder(d=coin_sizes[max_index][0], h=p);
 }
