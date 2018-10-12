@@ -1,5 +1,4 @@
-* Schlüsselsiegel: Fotos
-* Untersetzerkeil (trivet wedge): Fotos
+* Untersetzerkeil (trivet wedge)
 * Mitome-in: Fotos
 * Glaseiskeil: Fotos
 * nut puller: Fotos

@@ -42,3 +42,4 @@
 * Drehkalender
 * Kühlschrankuntersetzer mit Rillen
 * Fahrradschlauchfüße
+* Schlüsselsiegel: Fotos
