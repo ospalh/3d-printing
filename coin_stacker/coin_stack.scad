@@ -7,7 +7,7 @@
 
 
 // … to preview. You will get all parts when you click “Create Thing”.
-part = "stack"; // [stacker: coin stacker, lid: lid]
+part = "stack"; // [stack: coin stacker, lid: lid]
 
 
 
