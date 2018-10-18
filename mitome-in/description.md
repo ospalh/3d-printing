@@ -25,7 +25,7 @@ As these are meant to be individualized i will not upload any meshes (`STL` file
 
 ## How to print
 
-These are mostly easy print. Use PLA or other standard material and standard print settings for most parts.
+These are mostly easy print. Use PLA or other standard material and standard print settings for most parts. This is pretty much at the border of resolution for standard 0.4 mm nozzles. Too complex characters can be a challenge. Make sure noto overextrude.
 
 Use a flexible material such as NinjaFlex or Filaflex for the ink pad cap. Use flexible PLA for the rubber seal, if you use that instead of the one part seal.
 
