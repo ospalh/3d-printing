@@ -42,4 +42,5 @@
 * Drehkalender
 * Kühlschrankuntersetzer mit Rillen
 * Fahrradschlauchfüße
-* Schlüsselsiegel: Fotos
+* Schlüsselsiegel
+* Untersetzerkeil (trivet wedge)
