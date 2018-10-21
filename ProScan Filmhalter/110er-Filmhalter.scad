@@ -550,7 +550,6 @@ module fensterstege()
    {
       l_fsb = max(l_filmsteg-2*w_schraeg,min_l_ksteg);
       ihp = image_height + 2*w_schraeg + 2*ms;
-      echo("fenstersteg am boden",l_fsb);
       hull()
       {
          translate([0,0,h_bd])
