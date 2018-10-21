@@ -24,7 +24,7 @@ holder_width = 58.4;  // [20:0.1:150]
 holder_thickness = 5.6;  // [3:0.1:10]
 
 // How many exposures on the longest strips you want to fit into this. Make sure the resulting holder still fits onto your print bed.
-images_per_strip = 5;  // [1:1:15]
+images_per_strip = 6;  // [1:1:15]
 
 // Different manufacturers’ scanners place their little catches to position the holder at different sides.
 position_notch_side = 90;  // [90: bottom, 0: side]

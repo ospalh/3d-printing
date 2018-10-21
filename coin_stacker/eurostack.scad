@@ -77,7 +77,11 @@ ch = 0.2; //
 
 // Some of these are from a template and not used in this design. Working out which exactly i could delete is too much work
 
+<<<<<<< Updated upstream
 angle = 55; // Overhangs much below 60° are a problem for me
+=======
+angle = 90; // Overhangs much below 60° are a problem for me
+>>>>>>> Stashed changes
 
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed
