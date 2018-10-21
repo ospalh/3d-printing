@@ -439,7 +439,7 @@ module bodenstege()
    }
    module zentriernasen()
    {
-      for (i=[-0.5:1:images_per_strip-0.5])
+      for (i=[-0.5:1:images_per_strip-1.5])
       {
          // Eine mehr als Bilder:
          // Irgendwie ist »oben« und »unten« verkehrt. Für Teile oben
@@ -506,7 +506,7 @@ module einsatzausschnitte()
    }
       module zentrierausschnitte()
    {
-      for (i=[-0.5:1:images_per_strip-0.5])
+      for (i=[0.5:1:images_per_strip-0.5])
       {
          translate(
             [-l_fenster/2 + i * bildabstand+image_width/2  - dx_fl_sm -c/2,
