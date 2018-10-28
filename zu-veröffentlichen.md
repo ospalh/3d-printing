@@ -1,7 +1,4 @@
-* Schlüsselsiegel: Fotos
-* Untersetzerkeil (trivet wedge): Fotos
-* Mitome-in: Fotos
-* Glaseiskeil: Fotos
+* Glaseiskeil
 * nut puller: Fotos
 * Zweihandflaschenöffner, Warnlabel
 * Dosendurchschlag (mit Quelle): Fotos

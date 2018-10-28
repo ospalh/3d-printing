@@ -9,7 +9,7 @@ You need:
 * A development snapshot version of [OpenSCAD](https://www.openscad.org/downloads.html) with the build in customizer
 * A nice font
 * Maybe somebody to help you with writing your name in Chinese or Japanese¹²
-* to forget about the “Chinese” fonts some crappy tattoo artists use.²
+* to forget about the [“Chinese” font](https://hanzismatter.blogspot.com/2006/08/gibberish-asian-font-mystery-solved.html) some crappy tattoo artists use.²
 
 You can do the text in one, two or three lines. When you have a two or three character name you can use the lines to simulate vertical writing. For Latin characters i would recommend using one line of horizontal text.
 With the “Tweak” sliders you can change the size and shape of the text to make it fit into the confines of the seal.
@@ -25,7 +25,7 @@ As these are meant to be individualized i will not upload any meshes (`STL` file
 
 ## How to print
 
-These are mostly easy print. Use PLA or other standard material and standard print settings for most parts.
+These are mostly easy print. Use PLA or other standard material and standard print settings for most parts. This is pretty much at the border of resolution for standard 0.4 mm nozzles. Too complex characters can be a challenge. Make sure noto overextrude.
 
 Use a flexible material such as NinjaFlex or Filaflex for the ink pad cap. Use flexible PLA for the rubber seal, if you use that instead of the one part seal.
 
@@ -35,5 +35,5 @@ There is some design history available at my [github repo](https://github.com/os
 
 
 -----
-¹Not me. Don’t ask.
+¹Not me. Don’t ask. Think about *who* you ask before you do it.
 ²This obviously doesn’t apply to Chinese or Japanese people or others that know the languages.

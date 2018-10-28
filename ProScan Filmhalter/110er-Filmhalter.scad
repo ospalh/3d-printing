@@ -24,7 +24,7 @@ holder_width = 58.4;  // [20:0.1:150]
 holder_thickness = 5.6;  // [3:0.1:10]
 
 // How many exposures on the longest strips you want to fit into this. Make sure the resulting holder still fits onto your print bed.
-images_per_strip = 5;  // [1:1:15]
+images_per_strip = 6;  // [1:1:15]
 
 // Different manufacturers' scanners place their little catches to position the holder at different sides.
 position_notch_side = 90;  // [90: bottom, 0: side]
@@ -439,7 +439,7 @@ module bodenstege()
    }
    module zentriernasen()
    {
-      for (i=[-0.5:1:images_per_strip-0.5])
+      for (i=[-0.5:1:images_per_strip-1.5])
       {
          // Eine mehr als Bilder:
          // Irgendwie ist "oben" und "unten" verkehrt. Fuer Teile oben
@@ -506,7 +506,7 @@ module einsatzausschnitte()
    }
       module zentrierausschnitte()
    {
-      for (i=[-0.5:1:images_per_strip-0.5])
+      for (i=[0.5:1:images_per_strip-0.5])
       {
          translate(
             [-l_fenster/2 + i * bildabstand+image_width/2  - dx_fl_sm -c/2,
@@ -550,7 +550,6 @@ module fensterstege()
    {
       l_fsb = max(l_filmsteg-2*w_schraeg,min_l_ksteg);
       ihp = image_height + 2*w_schraeg + 2*ms;
-      echo("fenstersteg am boden",l_fsb);
       hull()
       {
          translate([0,0,h_bd])

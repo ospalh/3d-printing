@@ -42,3 +42,6 @@
 * Drehkalender
 * Kühlschrankuntersetzer mit Rillen
 * Fahrradschlauchfüße
+* Schlüsselsiegel
+* Untersetzerkeil (trivet wedge)
+* Mitome-in: Fotos

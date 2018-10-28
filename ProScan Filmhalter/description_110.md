@@ -1,6 +1,6 @@
 Reflecta ProScan 110 film holder
 
-A film strip holder to scan five image 110 “Pocket” Instamatic film strips with a [Reflecta ProScan](https://reflecta.de/en/products/detail/~id.734~nm.69/reflecta-ProScan-10T.html) cheap-compared-to-drum-scanners film scanner i own.  This should fit both the 10T and 7200 models.
+A film strip holder to scan six image 110 “Pocket” Instamatic film strips with a [Reflecta ProScan](https://reflecta.de/en/products/detail/~id.734~nm.69/reflecta-ProScan-10T.html) cheap-compared-to-drum-scanners film scanner i own.  This should fit both the 10T and 7200 models. *Most* of the strips i have are five images long, but some have six.
 
 This uses eight tiny 1 mm high × 2.4 mm ⌀ neodymium magnets to hold shut.
 

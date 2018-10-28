@@ -12,7 +12,7 @@ part = "stack"; // [stack: coin stacker, lid: lid]
 
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
-preview = 1; // [0:render, 1:preview]
+preview = 0; // [0:render, 1:preview]
 
 /* [Hidden] */
 
@@ -26,16 +26,17 @@ coin_sizes = [
    // For each coin size, add a pair with diameter and stack height. Write
    // the stack height as number * height of one coin. Add p to the last
    // height to give space for the lid.
-   [17, 5 * 1],  // FF 5 ¢ (centimes)
-   [19.55, 6 * 2.05],  // ½ FF, kleiner als 10 ¢
-   [20, 6 * 1.5],  // FF 10 ¢
-   [22.9, 1 * 2.15],  // FF 10, klein für den Wert
-   [23.6, 7 * 1.4],  // FF 20 ¢
-   [24, 6 * 1.8],  // FF 1
-   [26.3, 1 * 1.75],  // FF 2
-   [28.9, 1 * 2.15 + p]  // FF 5
+   [16.25, 5 * 1.67],  // 1 €
+   [18.75, 5 * 1.67],  // 2 ¢
+   [19.75, 7 * 1.93],  // 10 ¢
+   [21.2, 8 * 1.67],  // 5 ¢
+   [22.25, 5 * 2.14],  // 20 ¢
+   [23.25, 8 * 2.33],  // € 1
+   [24.25, 3 * 2.38],  // 50 ¢
+   [25.75, 2 * 2.2 + p]  // € 2
    ];
-
+w = 1.8;  // Wall width
+c = 1;  // [0.05:0.05:1.5]
 // *****************************************************************************
 // Part to change over
 // *****************************************************************************
@@ -46,7 +47,7 @@ max_index = len(coin_sizes) - 1;
 
 
 // Horizontal clearance. I use a lot here. Coins may rattle a bit in the final shape, but i am OK with that.
-c = 1;  // [0.05:0.05:1.5]
+
 
 // Height clearance.
 ch = 0.2;  // [0.05:0.05:0.6]
@@ -58,7 +59,7 @@ ch = 0.2;  // [0.05:0.05:0.6]
 
 
 
-w = 0.8;  // Wall width
+
 
 
 // Some of these are from a template and not used in this design. Working out which exactly i could delete is too much work
