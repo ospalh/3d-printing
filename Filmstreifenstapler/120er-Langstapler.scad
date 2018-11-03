@@ -22,11 +22,11 @@ ey = 1;
 w1 = 60;
 wst = w1+ey; // 9.2 mm + clearance
 wld = w1-ey; // Make it fit between the plates without problems
-h = 30; // I have a lot of film strips i want to stack
+h = 80; // I have a lot of film strips i want to stack
 
 w = 1.2;  // Wall width
 
-epl = wld + 2*w;
+epl = 15;
 spl = 10;
 spo = 20;
 spsp = ll/4;
@@ -34,7 +34,8 @@ spsp = ll/4;
 hl = 30;
 hw = 10;
 
-jl = 5;
+jl = 3;
+rand = 5;
 
 /* [Hidden] */
 
@@ -45,8 +46,8 @@ jl = 5;
 
 
 
-p = 3;  // Bottom, top plate height
-c = 0.4;  // Clearance
+p = 1;  // Bottom, top plate height
+c = 0.6;  // Clearance
 angle = 60; // Overhangs much below 60° are a problem for me
 
 // *******************************************************
@@ -190,19 +191,30 @@ module stack()
 
 module left_stack()
 {
-   intersection()
+   difference()
    {
-      stack();
-      left_joint(c/2);
+      intersection(convexity=10)
+      {
+         stack();
+         left_joint(c/2);
+      }
+      translate([-ll/4 ,0, 0])
+      {
+         cube([ll/2-2*rand - jl, wst-2*rand, h], center=true);
+      }
    }
 }
 
 module right_stack()
 {
-   difference()
+   difference(convexity=10)
    {
       stack();
       left_joint(-c/2);
+      translate([ll/4 ,0, 0])
+      {
+         cube([ll/2-2*rand - jl, wst-2*rand, h], center=true);
+      }
    }
 }
 
