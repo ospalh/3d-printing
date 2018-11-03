@@ -1,6 +1,3 @@
-* nut puller: Fotos
-* Zweihandflaschenöffner, Warnlabel
-* Dosendurchschlag (mit Quelle): Fotos
 * Displayhalter: Fotos
 * Pilzanker
 * Magnethaken
