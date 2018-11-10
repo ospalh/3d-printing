@@ -1,4 +1,3 @@
-* Displayhalter: Fotos
 * Pilzanker
 * Magnethaken
 * Radienlehre (ggf. in thingiverese-Verzeichnis suchen)
