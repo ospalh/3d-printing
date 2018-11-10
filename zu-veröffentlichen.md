@@ -23,3 +23,4 @@
   - Euro
   - andere
 * Pfeil
+* Stuhllehnentelefonhalter
