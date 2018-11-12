@@ -12,7 +12,7 @@ They are stacked by diameter, not value:
 * 50 ¢
 * 2 €
 
-With the lid, you can put a bit Tesa or other stick tape around it without problem.
+With the lid, you can put a bit Tesa or other sticky tape around it without problem.
 
 This uses a lot of clearance. You can reduce it in the OpenSCAD file, but i prefer the coins rattling a bit to spending too much time sanding and filing this into shape.
 
