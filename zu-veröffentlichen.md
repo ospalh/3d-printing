@@ -22,3 +22,6 @@
   - andere
 * Pfeil
 * Stuhllehnentelefonhalter
+* Türhaken
+  - innen
+  - außen
