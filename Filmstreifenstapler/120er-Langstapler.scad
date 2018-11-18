@@ -7,7 +7,7 @@
 
 
 // … to preview. You will get all parts when you click “Create Thing”.
-part = "leftlid"; // [stack: Stapler, lid: Deckel, leftstack, rightstack, leftlid, rightlid]
+part = "rightstack"; // [stack: Stapler, lid: Deckel, leftstack, rightstack, leftlid, rightlid]
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
@@ -19,7 +19,7 @@ num = 1;
 lld = l1*num;
 ll = lld + ex;
 ey = 1;
-w1 = 60;
+w1 = 61.4;
 wst = w1+ey; // 9.2 mm + clearance
 wld = w1-ey; // Make it fit between the plates without problems
 h = 80; // I have a lot of film strips i want to stack
@@ -46,7 +46,7 @@ rand = 5;
 
 
 
-p = 1;  // Bottom, top plate height
+p = 1.8;  // Bottom, top plate height
 c = 0.6;  // Clearance
 angle = 60; // Overhangs much below 60° are a problem for me
 

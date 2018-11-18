@@ -1,4 +1,3 @@
-* Pilzanker
 * Magnethaken
 * Radienlehre (ggf. in thingiverese-Verzeichnis suchen)
 * Filmhalter für Flachbett,
@@ -23,3 +22,6 @@
   - andere
 * Pfeil
 * Stuhllehnentelefonhalter
+* Türhaken
+  - innen
+  - außen
