@@ -48,3 +48,4 @@
 * Glaseiskeil
 * Displayhalter
 * Pilzanker
+* Magnethaken
