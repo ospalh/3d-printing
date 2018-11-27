@@ -12,7 +12,7 @@
 
 // Flimsy:
 w = 1.2;  // wire size
-c = 14;  // count
+count = 14;  // count
 fw = 2.4;  // feet width
 
 // Light～normal
@@ -21,20 +21,35 @@ fw = 2.4;  // feet width
 // fw = 2.4;
 
 //  Changing this works reasonably well to scale the whole tower.
-r_t = 40;  // Top (after print) radius
+r_t = 42;  // Top (after print) radius
 
 // When you change these, you’ll have to tweak l, the rings &c. below
 a_1 = 30;  // Angle from vertical
 a_2 = 40;  // Angle inwards
 
+angle = 37; // Overhangs much below 60° are a problem for me
+
+// *******************************************************
+// Some shortcuts. These shouldn’t be changed
+
+tau = 2 * PI;  // π is still wrong. τ = circumference / r
+
+xy_factor = 1/tan(angle);
+// To get from a height to a horizontal width inclined correctly
+z_factor = tan(angle);  // The other way around
+
+
+
+some_distance = 50;
+ms = 0.01;  // Muggeseggele.
 
 l = 3.125 * r_t; // Length of a wire. The height will be slightly less + the feet.
 
 // Tweak this so the rings are in the right height
 hs = 0.859 * l;
 
-s = 360 / c;
-$fn = c;
+s = 360 / count;
+$fn = count;
 
 fl = 0.66*r_t;
 fa_o = 29;
@@ -115,43 +130,40 @@ module ring(h, r)
 
 module ramp(hl, rf, ao)
 {
-   for (o = [0:20:160])
+   for (o = [0:s:180-ms])
    {
       rotate(o + ao)
       {
-         translate([rf, 0, hl+0.5*w])
+         translate([-rf, 0, hl+0.5*w])
          {
-            rotate([0, -40, 0])
+            rotate([0, 90-angle, 0])
             {
-               translate([0,0, 0.5*rf])
+               // translate([0,0, 0.5*rf])
+               translate([-w/2,-w/2, 0])
                {
-                  cube([w, w, 1.0*rf], center=true);
+                  cube([w, w, rf/cos(angle)]);
                }
             }
 
          }
-         rotate(10)
+         rotate(s/2)
          {
-            translate([0.33*rf, -2*w, hl + 0.76*rf])
+            translate([-0.5*rf, 0, hl + 0.5*(rf)*z_factor+w*z_factor])
             {
-               cube([w, 0.13*rf, w]);
-            }
-            translate([0.66*rf, -0.13*rf+w/2, hl + 0.38*rf])
-            {
-               cube([w, 0.225*rf, w]);
+               cube([w, 0.5*rf*tau/count, w], center=true);
             }
          }
       }
    }
    rotate(180 + ao)
    {
-      translate([rf, 0, hl+0.5*w])
+      translate([-rf, 0, hl+0.5*w])
       {
-         rotate([0, -40, 0])
+         rotate([0, 90-angle, 0])
          {
-            translate([0,0, 0.5*rf])
+            translate([-w/2, -w/2, 0*rf])
             {
-                  cube([w, w, 1.0*rf], center=true);
+                  cube([w, w, rf/cos(angle)]);
             }
          }
 
