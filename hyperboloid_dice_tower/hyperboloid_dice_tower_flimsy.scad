@@ -13,7 +13,7 @@
 // Flimsy:
 w = 1.2;  // wire size
 count = 14;  // count
-fw = 2.4;  // feet width
+fw = 1.8;  // feet width
 
 // Light～normal
 // w = 1.8;
@@ -71,15 +71,18 @@ ring(0, r_t);
 ring(0.25*hs, r_t*0.81);
 ring(0.5*hs, r_t*0.78);
 ring(0.75*hs, r_t*0.934);
-ring(hs, r_t*1.225);
+rotate(s/2)
+{
+   ring(hs, r_t*1.195);
+}
 rotate(fa_o/2)
 {
-   feet(1.21*r_t);
+   feet(1.175*r_t);
    rotate(-fa_o)
    {
       mirror()
       {
-         feet(1.21*r_t);
+         feet(1.175*r_t);
       }
    }
 }
