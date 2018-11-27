@@ -18,7 +18,7 @@
 
 
 //
-w = 1.0;  // wire width
+w = 1.2;  // wire width
 count = 14;  // number of wires in one direction
 fw = 1.8;  // feet width
 
@@ -49,7 +49,7 @@ tau = 2 * PI;  // π is still wrong. τ = circumference / r
 
 xy_factor = 1/tan(angle);
 // To get from a height to a horizontal width inclined correctly
-z_factor = tan(angle);  // The other way around
+
 
 
 // *******************************************************
@@ -97,6 +97,7 @@ module dice_tower()
    rings();
    twelve_feet();
    ramps();
+   lid();
 }
 
 module shells()
@@ -119,26 +120,23 @@ module rings()
 {
    // Tweak these radiuses to make it look goot
    ring(0, r_t);
-   ring(0.2*hs, r_t*0.81);
-   ring(0.4*hs, r_t*0.78);
-   ring(0.6*hs, r_t*0.78);
-   ring(0.8*hs, r_t*0.934);
-   rotate(s/2)
-   {
-      ring(hs, r_t*1.195);
-   }
+   ring(0.2*hs, r_t*0.847, s/2);
+   ring(0.4*hs, r_t*0.769, s/2);
+   ring(0.6*hs, r_t*0.842, 0);
+   ring(0.8*hs, r_t*0.981, 0);
+   ring(hs, r_t*1.194, s/2);
 }
 
 module twelve_feet()
 {
    rotate(fa_o/2)
    {
-      feet(1.175*r_t);
+      feet(1.172*r_t, 3);
       rotate(-fa_o)
       {
          mirror()
          {
-            feet(1.175*r_t);
+            feet(1.165*r_t, 3);
          }
       }
    }
@@ -148,9 +146,14 @@ module twelve_feet()
 module ramps()
 {
    // Copy the raiuses from the rings here
-   ramp(0, r_t, 180);
-   ramp(0.4*hs, 0.81*r_t, 0);
-   ramp(0.8*hs, 0.78*r_t, 180);
+   ramp(0, r_t, 180, angle);
+   ramp(0.4*hs, 0.769*r_t, 0, angle);
+   ramp(0.8*hs, 0.981*r_t, 180, angle);
+}
+
+module lid()
+{
+  ramp(0, r_t, 0, 0);
 }
 
 
@@ -176,23 +179,25 @@ module shell(f)
 }
 
 
-module ring(h, r)
+module ring(h, r, er)
 {
-   translate([0,0,h])
+   rotate(er)
    {
-      rotate_extrude()
+      translate([0,0,h])
       {
-         translate([r,w/2,0])
+         rotate_extrude()
          {
+            translate([r,w/2,0])
+            {
                square([w, w], center=true);
+            }
          }
       }
    }
-
 }
 
 
-module ramp(hl, rf, ao)
+module ramp(hl, rf, ao, ang)
 {
    for (o = [0:s:180-ms])
    {
@@ -200,21 +205,26 @@ module ramp(hl, rf, ao)
       {
          translate([-rf, 0, hl+0.5*w])
          {
-            rotate([0, 90-angle, 0])
+            rotate([0, 90-ang, 0])
             {
                // translate([0,0, 0.5*rf])
                translate([-w/2,-w/2, 0])
                {
-                  cube([w, w, rf/cos(angle)]);
+                  cube([w, w, rf/cos(ang)]);
                }
             }
-
          }
-         rotate(s/2)
+         rotate([0, 0,s/2])
          {
-            translate([-0.5*rf, 0, hl + 0.5*(rf)*z_factor+w*z_factor])
+            translate([-0.5*rf, 0, hl + (0.5*rf)*tan(ang)])
             {
-               cube([w, 0.5*rf*tau/count, w], center=true);
+               rotate([0, 90-ang,0])
+               {
+                  translate([-w/2,0,0])
+                  {
+                     cube([w, 0.5*rf*tau/count+w, w], center=true);
+                  }
+               }
             }
          }
       }
@@ -223,11 +233,11 @@ module ramp(hl, rf, ao)
    {
       translate([-rf, 0, hl+0.5*w])
       {
-         rotate([0, 90-angle, 0])
+         rotate([0, 90-ang, 0])
          {
             translate([-w/2, -w/2, 0*rf])
             {
-                  cube([w, w, rf/cos(angle)]);
+                  cube([w, w, rf/cos(ang)]);
             }
          }
 
@@ -236,27 +246,28 @@ module ramp(hl, rf, ao)
 
 }
 
-module feet(rf)
+
+module feet(rf,sx)
 {
    for (o = [0:60:300])
    {
       rotate(o)
       {
-         translate([rf, 0, hs])
+         translate([rf, sx, hs])
          {
             difference(){
                rotate([30, 0, 0])
                {
-                  translate([0,0, fl/2])
+                  translate([0,0, fl/2/cos(30)])
                   {
-                     cube([fw, fw, fl], center=true);
+                     cube([fw, fw, fl/cos(30)+w], center=true);
                   }
                }
                translate([0,0, -3*fw])
                {
                   cylinder(r=1.5*rf, h=3*fw);
                }
-               translate([0,0, 0.83*fl])  // more ad-hockery
+               translate([0,0, 1*fl])  // more ad-hockery
                {
                   cylinder(r=1.5*rf, h=3*fw);
                }
