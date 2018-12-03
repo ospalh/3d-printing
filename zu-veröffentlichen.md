@@ -1,5 +1,3 @@
-* Magnethaken
-* Radienlehre (ggf. in thingiverese-Verzeichnis suchen)
 * Filmhalter für Flachbett,
   - Minox, als ein thing
     * einzeln kurz
@@ -11,7 +9,6 @@
   - Minox
   - 110
   - 126
-  - 135?
 * Quickscan für Reflecta, nur 135
 * Filmstreifenstapler, alle auf einmal
 * Duschregal
@@ -25,3 +22,5 @@
 * Türhaken
   - innen
   - außen
+* verbesserter Würfelturm
+* Damestein
