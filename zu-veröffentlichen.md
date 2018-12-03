@@ -1,4 +1,3 @@
-* Magnethaken
 * Radienlehre (ggf. in thingiverese-Verzeichnis suchen)
 * Filmhalter für Flachbett,
   - Minox, als ein thing
