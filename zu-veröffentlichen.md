@@ -9,6 +9,7 @@
   - Minox
   - 110
   - 126
+  - 135?
 * Quickscan für Reflecta, nur 135
 * Filmstreifenstapler, alle auf einmal
 * Duschregal
