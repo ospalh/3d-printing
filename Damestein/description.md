@@ -1,6 +1,6 @@
 Yet another draughts piece. This one should work nicely with 42 mm squares on the board.
 
-This one has an annular design, that is, a hole in the middle. It also has a recess for a one eurocent coin to mark promoted pieces.
+It has an annular design, that is, a hole in the middle. It also has a recess for a one eurocent coin to mark promoted pieces.
 
 
 ## Print settings
