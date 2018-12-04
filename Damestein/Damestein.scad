@@ -9,7 +9,7 @@
 /* [Global] */
 
 // … to preview. You will get all six parts when you click “Create Thing”.
-part = "white"; // [white: white piece, black: black piece, unmarked: unmarked piece, white token: token for white king, black token: token for black king, 50 ¢: unmarked token, morris: piece for x men morris]
+part = "black token"; // [white: white piece, black: black piece, unmarked: unmarked piece, white token: token for white king, black token: token for black king, 50 ¢: unmarked token, morris: piece for x men morris]
 
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
@@ -19,12 +19,13 @@ preview = 1; // [0:render, 1:preview]
 
 d_g = 30;  // Gesamtdurchmesser
 h_g = 10;  // Gesamthöhe
-d_m = 24.25;  // Münzdurchmesser. 50 ¢ (€)
-h_m = 2.4;  // Münzdicke oder -höhe. Nominell 2.38 mm
+d_m = 19.75;  // Münzdurchmesser. 10 ¢ (€)
+h_m = 2.0;  // Münzdicke oder -höhe. Nominell 1.93 mm
 d_r = 1.2;  // Dicke Riffelung
 n_r = 23;  // Anzahl Riffelungen
 r_vr = 2.4;  // Radius der Verrundung.
 r_wnk = 45;  // Winkel der Riffelung
+
 
 /* [Hidden] */
 
@@ -34,10 +35,12 @@ r_wnk = 45;  // Winkel der Riffelung
 // Extra parameters. These can be changed reasonably safely.
 
 
-c = 0.4;  // Clearance
+c = 0.3;  // Clearance
 angle = 60; // Overhangs much below 60° are a problem for me
 font="Symbola:style=Regular";
-ts = 0.75 * d_m;
+ts = 0.92 * d_m;
+syt = -0.5;
+sxt = -0.3;
 t_h = 0.4;  // Textextrusionshöhe
 
 // *******************************************************
@@ -175,19 +178,19 @@ module schwarzer_stein()
 
 module weisser_marker()
 {
-   rohtoken(true);
+   %rohtoken(true);
    translate([0, 0, h_m-t_h])
    {
-      symbol("⛁");
+      #symbol("⛁");
    }
 }
 
 module schwarzer_marker()
 {
-   rohtoken(true);
+   %rohtoken(true);
    translate([0, 0, h_m-t_h])
    {
-      symbol("⛃");
+      #symbol("⛃");
    }
 }
 
@@ -291,7 +294,7 @@ module rohtoken(space_for_text)
 
 module symbol(tx)
 {
-   translate(0,0,-ms)
+   translate([sxt,syt,-ms])
    {
       linear_extrude(t_h+ms)
       {
