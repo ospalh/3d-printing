@@ -9,7 +9,7 @@
 /* [Global] */
 
 // … to preview. You will get all six parts when you click “Create Thing”.
-part = "white"; // [white: white piece, black: black piece, unmarked: unmarked piece, white token: token for white king, black token: token for black king, 50 ¢: unmarked token]
+part = "white"; // [white: white piece, black: black piece, unmarked: unmarked piece, white token: token for white king, black token: token for black king, 50 ¢: unmarked token, morris: piece for x men morris]
 
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
@@ -19,7 +19,6 @@ preview = 1; // [0:render, 1:preview]
 
 d_g = 30;  // Gesamtdurchmesser
 h_g = 10;  // Gesamthöhe
-// w_h = 5;  // Hauptwandstärke
 d_m = 24.25;  // Münzdurchmesser. 50 ¢ (€)
 h_m = 2.4;  // Münzdicke oder -höhe. Nominell 2.38 mm
 d_r = 1.2;  // Dicke Riffelung
@@ -114,6 +113,10 @@ module print_part()
    {
       rohtoken(false);
    }
+   if (part == "morris")
+   {
+      muehlestein();
+   }
 }
 
 module preview_parts()
@@ -139,6 +142,10 @@ module preview_parts()
       {
          rohtoken(false);
       }
+   }
+   translate([3*some_x_distance, 0, 0])
+   {
+      muehlestein();
    }
 }
 
@@ -200,6 +207,15 @@ module markerloch(space_for_text)
    translate([0,0,h_g-hof])
    {
       cylinder(r=r_m+c, h=h_m+ms+t_h);
+   }
+}
+
+module muehlestein()
+{
+   difference()
+   {
+      rohstein();
+      riffelung();
    }
 }
 
