@@ -5,7 +5,7 @@ There are four variants, with marknigs for white or black pieces and without as 
 
 ## Print settings
 
-Print settings are uncritical. The text extrusion height is intended for 200 µm layer height.
+Print settings are uncritical. The symbols’ extrusion height is intended for 200 µm layer height.
 
 Print wlog the white piece in white up to 7.2 mm, change to black, print the two layers of the⛀ symbol and change back to white at 7.6 mm.
 
