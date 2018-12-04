@@ -5,9 +5,6 @@ This includes a token to mark a king (dame, promoted piece). Either use two tone
 There are four variants, with marknigs for white or black pieces and without as well as an x men’s morris piece. The recess at the top is to mark a piece as king.
 
 
-
-
-
 ## Print settings
 
 Print settings are mostly uncritical. I think 15 % infill and just three top layers works better for a flat and wide thing like this than 0 or 5 % infill and many (6) top layers.

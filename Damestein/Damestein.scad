@@ -9,7 +9,7 @@
 /* [Global] */
 
 // … to preview. You will get all six parts when you click “Create Thing”.
-part = "black token"; // [white: white piece, black: black piece, unmarked: unmarked piece, white token: token for white king, black token: token for black king, 50 ¢: unmarked token, morris: piece for x men morris]
+part = "black token"; // [piece: draughts piece, white token: token for white king, black token: token for black king, morris: piece for x men morris]
 
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
@@ -99,7 +99,7 @@ module print_part()
    {
       schwarzer_stein();
    }
-   if (part == "unmarked")
+   if (part == "piece")
    {
       stein(false);
    }
