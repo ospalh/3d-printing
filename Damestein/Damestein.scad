@@ -9,7 +9,7 @@
 /* [Global] */
 
 // … to preview. You will get all six parts when you click “Create Thing”.
-part = "black token"; // [piece: draughts piece, white token: token for white king, black token: token for black king, morris: piece for x men morris]
+part = "piece"; // [piece: draughts piece, white token: token for white king, black token: token for black king, morris: piece for x men morris]
 
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
@@ -178,19 +178,19 @@ module schwarzer_stein()
 
 module weisser_marker()
 {
-   %rohtoken(true);
+   rohtoken(true);
    translate([0, 0, h_m-t_h])
    {
-      #symbol("⛁");
+      symbol("⛁");
    }
 }
 
 module schwarzer_marker()
 {
-   %rohtoken(true);
+   rohtoken(true);
    translate([0, 0, h_m-t_h])
    {
-      #symbol("⛃");
+      symbol("⛃");
    }
 }
 
