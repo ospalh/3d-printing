@@ -1,12 +1,15 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// ringförmiger Damestein
-// annular draughts piece
+// Damesteine
+// draughts piecse
 //
 // © 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 /* [Global] */
+
+// … to preview. You will get all six parts when you click “Create Thing”.
+part = "white"; // [white: white piece, black: black piece, unmarked: unmarked piece, white token: token for white king, black token: token for black king, 50 ¢: unmarked token]
 
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
@@ -16,15 +19,13 @@ preview = 1; // [0:render, 1:preview]
 
 d_g = 30;  // Gesamtdurchmesser
 h_g = 10;  // Gesamthöhe
-w_h = 5;  // Hauptwandstärke
-d_m = 16.25;  // Münzdurchmesser. 1 ¢ (€) (Sollte ≤ d_g-2×w_h sein)
-h_m = 1.67;  // Münzdicke oder -höhe (Sollte ≤ h_g/2 sein. Kein Problem)
-d_r = 0.4;  // Dicke Riffelung
-n_r = 42;  // Anzahl Riffelungen
-r_vr = 2.4;  // Radius der Verrundung. Sollte < w_h/2 sein, der Einfachheit halber.
-b_al = 1.5;  // Breite der Auflage für die Münze
+// w_h = 5;  // Hauptwandstärke
+d_m = 24.25;  // Münzdurchmesser. 50 ¢ (€)
+h_m = 2.38;  // Münzdicke oder -höhe
+d_r = 1.2;  // Dicke Riffelung
+n_r = 23;  // Anzahl Riffelungen
+r_vr = 2.4;  // Radius der Verrundung.
 r_wnk = 45;  // Winkel der Riffelung
-
 
 /* [Hidden] */
 
@@ -36,6 +37,9 @@ r_wnk = 45;  // Winkel der Riffelung
 
 c = 0.4;  // Clearance
 angle = 60; // Overhangs much below 60° are a problem for me
+font="Symbola:style=Regular";
+ts = 0.75 * d_m;
+t_h = 0.4;  // Textextrusionshöhe
 
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed
@@ -54,6 +58,8 @@ r_g = d_g/2;
 r_m = d_m/2;
 r_ml = r_m + c; // Münzlochradius
 
+some_x_distance = 1.5*d_g;
+some_y_distance = 0.75*(d_g+d_m);
 
 // fn for differently sized objects and fs, fa; all for preview or rendering.
 pna = 40;
@@ -77,39 +83,123 @@ $fa = (preview) ? pa : ra;
 // *******************************************************
 // Generate the parts
 
-stein();
-// steinschnitt();
-// stack_parts();  // Mit Testmünze
+print_part();
+// preview_parts();
 
-
-module stack_parts()
+module print_part()
 {
-   // intersection()
+   if ("white" == part)
    {
-      color("yellow")
+      weisser_stein();
+   }
+
+   if (part == "black")
+   {
+      schwarzer_stein();
+   }
+   if (part == "unmarked")
+   {
+      stein(false);
+   }
+   if ("white token" == part)
+   {
+      weisser_marker();
+   }
+
+   if (part == "black token")
+   {
+      schwarzer_marker();
+   }
+   if (part == "50 ¢")
+   {
+      rohtoken(false);
+   }
+}
+
+module preview_parts()
+{
+   weisser_stein();
+   translate([0, some_y_distance, 0])
+   {
+      weisser_marker();
+   }
+
+   translate([some_x_distance, 0, 0])
+   {
+      schwarzer_stein();
+      translate([0, some_y_distance, 0])
       {
-         stein();
+      schwarzer_marker();
       }
-      translate([0,0,h_g/2-h_m+ms])
+   }
+   translate([2*some_x_distance, 0, 0])
+   {
+      stein(false);
+      translate([0, some_y_distance, 0])
       {
-         color("red")
-         {
-            testmuenze();
-         }
+         rohtoken(false);
       }
    }
 }
+
+
 
 // *******************************************************
 // Code for the parts themselves
 
 
-module stein()
+module weisser_stein()
+{
+   stein(true);
+   translate([0, 0, h_g - t_h - h_m])
+   {
+      symbol("⛀");
+   }
+}
+
+module schwarzer_stein()
+{
+   stein(true);
+   translate([0, 0, h_g - t_h - h_m])
+   {
+      symbol("⛂");
+   }
+}
+
+module weisser_marker()
+{
+   rohtoken(true);
+   translate([0, 0, h_m-t_h])
+   {
+      symbol("⛁");
+   }
+}
+
+module schwarzer_marker()
+{
+   rohtoken(true);
+   translate([0, 0, h_m-t_h])
+   {
+      symbol("⛃");
+   }
+}
+
+module stein(space_for_text)
 {
    difference()
    {
       rohstein();
       riffelung();
+      markerloch(space_for_text);
+   }
+}
+
+module markerloch(space_for_text)
+{
+   hof = (space_for_text) ? h_m+t_h : h_m;
+   translate([0,0,h_g-hof])
+   {
+      cylinder(r=r_m+c, h=h_m+ms+t_h);
    }
 }
 
@@ -157,18 +247,14 @@ module riff(wnk)
 module steinschnitt()
 {
    rot_points = [
-      [r_m-b_al, 0],
+      [0, 0],
       [r_g-r_vr+ms, 0],
       [r_g-r_vr+ms, r_vr-ms],
       [r_g, r_vr-ms],
       [r_g, h_g-r_vr+ms],
       [r_g-r_vr+ms, h_g-r_vr+ms],
       [r_g-r_vr+ms, h_g],
-      [r_g-w_h, h_g],
-      [r_g-w_h, h_g/2],
-      [r_ml, h_g/2],
-      [r_ml, h_g/2-h_m],
-      [r_m-b_al, h_g/2-h_m],
+      [0, h_g],
       ];
   polygon(rot_points);
   translate([r_g-r_vr, r_vr])
@@ -181,7 +267,19 @@ module steinschnitt()
   }
 }
 
-module testmuenze()
+module rohtoken(space_for_text)
 {
-   cylinder(r=r_m, h=h_m);
+   ht = (space_for_text) ? h_m-t_h : h_m;
+   cylinder(r=r_m, h=ht);
+}
+
+module symbol(tx)
+{
+   translate(0,0,-ms)
+   {
+      linear_extrude(t_h+ms)
+      {
+         text(text=tx, font=font, valign="center", halign="center", size=ts);
+      }
+   }
 }
