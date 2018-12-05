@@ -35,7 +35,7 @@ r_wnk = 45;  // Winkel der Riffelung
 // Extra parameters. These can be changed reasonably safely.
 
 
-c = 0.3;  // Clearance
+c = 0.5;  // Clearance
 angle = 60; // Overhangs much below 60° are a problem for me
 font="Symbola:style=Regular";
 ts = 0.92 * d_m;
@@ -289,7 +289,7 @@ module steinschnitt()
 module rohtoken(space_for_text)
 {
    ht = (space_for_text) ? h_m-t_h : h_m;
-   cylinder(r=r_m, h=ht);
+   cylinder(r=r_m-c, h=ht);
 }
 
 module symbol(tx)
