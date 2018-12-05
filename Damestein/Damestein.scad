@@ -31,6 +31,7 @@ r_wnk = 45;  // Winkel der Riffelung
 
 // Done with the customizer
 
+
 // *******************************************************
 // Extra parameters. These can be changed reasonably safely.
 
@@ -38,7 +39,7 @@ r_wnk = 45;  // Winkel der Riffelung
 c = 0.5;  // Clearance
 angle = 60; // Overhangs much below 60° are a problem for me
 font="Symbola:style=Regular";
-ts = 0.92 * d_m;
+ts = 0.92 * (d_m-2*c);
 syt = -0.5;
 sxt = -0.3;
 t_h = 0.4;  // Textextrusionshöhe
