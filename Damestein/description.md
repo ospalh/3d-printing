@@ -18,3 +18,5 @@ Print wlog 1.8 mm of the white king’s token in white and change to black for 
 There is some design history available at my [github repo](https://github.com/ospalh/3d-printing/tree/develop/Damestein). I started with an annular design, but didn’t really like that. There are also versions with a bigger hole and markings on the piece.
 
 The diameter is 30 mm, for other sizes use OpenSCAD and create your own verison. If you want the version with the markings, you should get the Symbola font. GIYF.
+---
+¹I won’t stop you from using that piece for draughts and stacking two of them for a king, if you think that is a better idea then my tokens.
