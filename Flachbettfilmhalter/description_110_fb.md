@@ -11,7 +11,7 @@ How to print:
 
 raft: yes
 
-Easy print. Make sure you have good bed adhesion. Don’t use a brim. Maybe a raft. Check the number of perimeters on he clamp. It should be 2 for a standard 0.4 mm nozzle. It is probably a bad idea to print this rotated 45°.
+Easy print. Make sure you have good bed adhesion. Don’t use a brim. Maybe a raft. Check the number of perimeters on he clamp. It should be 2 for a standard 0.4 mm nozzle.
 
 Post-processing:
 
@@ -20,9 +20,9 @@ This may need a bit of filing or sanding. The long parts of the clamps must be s
 
 How designed:
 
-There is some design history available at my [github repo](https://github.com/ospalh/3d-printing/tree/develop/Flachbettfilmhalter).
+ This is a 16 mm version of my single strip [9.2 mm film holder](https://www.thingiverse.com/thing:3294183). There is some design history available at my [github repo](https://github.com/ospalh/3d-printing/tree/develop/Flachbettfilmhalter).
 
-This is similar to thing [2328022](https://www.thingiverse.com/thing:2328022) but done independently. This one skips the inter frame bars and the pins to hold the film in place, but holds the film down with the clamp.
+This is similar to thing [2328022](https://www.thingiverse.com/thing:2328022) but done independently. This one skips the inter frame bars and the pins to hold the film in place, but holds the film down with a clamp.
 
 It’s closer to thing [2792051](https://www.thingiverse.com/thing:2792051), again without the bars, and with space for 6 frames it may fit better onto a smaller print beds.
 

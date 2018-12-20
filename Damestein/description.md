@@ -1,21 +1,20 @@
 Yet another draughts piece. This one should work nicely with 42 mm squares on the board.
 
-There are four variants, with marknigs for white or black pieces and without as well as an x men’s morris piece.¹ The recess at the top is to mark a piece as king. You can use either the tokens, i would use a color with some contrast to the piece, or a 50 eurocent coin.
+This includes a token to mark a king (dame, promoted piece). Either use two tone printing to get some contrast for the tokens, or use 10 eurocent coins. The recess is sized for those.
 
+There is also a variant without the recess, for X Men’s Morris.¹
 
 ## Print settings
 
-Print settings are uncritical. The symbols’ extrusion height is intended for 200 µm layer height.
+Print settings are mostly uncritical. I think 15 % infill and just three top layers works better for a flat and wide thing like this than 0 or 5 % infill and many (6) top layers.
 
-Print wlog the white piece in white up to 7.2 mm, change to black, print the two layers of the⛀ symbol and change back to white at 7.6 mm.
+The symbols’ extrusion height is intended for 200 µm layer height.
 
-Similarly, print wlog 2 mm of the token to mark white kings in *black* for contrast, and change to white for the ⛁ symbol.
-
-Or you just print unmarked pieces without filamet change and go rummage for 50 ¢ coins.
+Print wlog 1.6 mm of the white king’s token in white and change to black for the ⛁ symbol.
 
 ## How
 
-There is some design history available at my [github repo](https://github.com/ospalh/3d-printing/tree/develop/Damestein). I started with an annular design, but didn’t really like that. You can uncover that, if you want.
+There is some design history available at my [github repo](https://github.com/ospalh/3d-printing/tree/develop/Damestein). I started with an annular design, but didn’t really like that. There are also versions with a bigger hole and markings on the piece.
 
 The diameter is 30 mm, for other sizes use OpenSCAD and create your own verison. If you want the version with the markings, you should get the Symbola font. GIYF.
 

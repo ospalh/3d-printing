@@ -1,10 +1,8 @@
 Stack (freshly scanned) film strips.
 
-This is a bunch of things i quickly whipped up while digitizing thousands of old negative strips. This keeps them needly stacked untill i store them away again.
+This is a bunch of things i quickly whipped up while digitizing thousands of old negative strips. This kept them neatly stacked untill i stored them away again.
 
 This thing doesn’t use  fillets, so yes, you can break off the side plates, if you want to. Just don’t do it. Feel free to design something more stable and sophisticated if you need it. And yes, the lids are just a cuboids. They work fine.
-
-You should probably do something to keep this from scratching the first and last strip. Maybe stick already spoiled strips or just pieces of paper onto those thing. Or use aceton smoothing, if you like.
 
 There is a bunch of versions, for different film sizes and strip length.
 
@@ -17,10 +15,23 @@ There is a bunch of versions, for different film sizes and strip length.
 * 110 or Pocket Instamatic film, five picture strips. This one has feet or plates to keep it from falling over
 * Minox 9.2 mm spy camera strips for roughly eleven pictures, with feet, too.
 
-Of course you can use one holder for the different 35 mm film strips, but using the right sizes gives you neater stacks.
+You can also change the size in the customizer, although i think i covered most common formats.
 
-Oh, and »Sechser-«, »Fünfer-« and »Vierer-« mean “for six”, “for five” and “for four”, if you don’t read German.
+»Sechser-«, »Fünfer-« and »Vierer-« in the `STL` file names  is German for  “for six”, “for five” and “for four”.
 
+
+## how to print
+
+300 µm
+
+Easy print. Use big layer heights to speed up the print.
+
+
+## post printing
+
+It’s best to put some old newspaper or similar at the bottom of the stacker and on the lid (if you use that), to avoid scratching you film strips.
+
+## how
 
 There is some design history available at my [github repo](https://github.com/ospalh/3d-printing/tree/develop/Filmstreifenstapler).
 
