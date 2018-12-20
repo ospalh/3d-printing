@@ -4,8 +4,6 @@ This is a bunch of things i quickly whipped up while digitizing thousands of old
 
 This thing doesn’t use  fillets, so yes, you can break off the side plates, if you want to. Just don’t do it. Feel free to design something more stable and sophisticated if you need it. And yes, the lids are just a cuboids. They work fine.
 
-You should put a piece of paper or other soft material at the bottom of this and on the lid, if you use it, to avoid scratching your films.
-
 There is a bunch of versions, for different film sizes and strip length.
 
 * 120 (60 mm medium format) for 20 cm strips. This one was too big for my printer and you have to glue the left and right parts together. Not pictured
@@ -21,6 +19,19 @@ You can also change the size in the customizer, although i think i covered most 
 
 »Sechser-«, »Fünfer-« and »Vierer-« in the `STL` file names  is German for  “for six”, “for five” and “for four”.
 
+
+## how to print
+
+300 µm
+
+Easy print. Use big layer heights to speed up the print.
+
+
+## post printing
+
+It’s best to put some old newspaper or similar at the bottom of the stacker and on the lid (if you use that), to avoid scratching you film strips.
+
+## how
 
 There is some design history available at my [github repo](https://github.com/ospalh/3d-printing/tree/develop/Filmstreifenstapler).
 

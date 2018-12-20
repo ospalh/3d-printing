@@ -14,6 +14,16 @@ You can also adapt this to the size of your photos or slips of paper with the cu
 
 Unfortunately i forgot to take pictures of these before i finished scanning my photos and then binned these things.
 
+
+## how to print
+
+300 µm
+
+Easy print. Use big layer heights to speed up the print.
+
+
+## how
+
 There is some design history available at my [github repo](https://github.com/ospalh/3d-printing/tree/develop/Filmstreifenstapler).
 
 
