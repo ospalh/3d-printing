@@ -10,7 +10,7 @@ There are meshes for different sizes ready:
 * 9 cm × 13 cm
 * 10 cm × 15 cm
 
-You can also adapt this to the size of your photos or slips of paper with the customizer.
+If you need other sizes, you should use OpenSCAD on your own computer. This was a quick hack, and i CBA to make this work with the customizer.
 
 Unfortunately i forgot to take pictures of these before i finished scanning my photos and then binned these things.
 

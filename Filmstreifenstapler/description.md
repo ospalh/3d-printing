@@ -15,7 +15,7 @@ There is a bunch of versions, for different film sizes and strip length.
 * 110 or Pocket Instamatic film, five picture strips. This one has feet or plates to keep it from falling over
 * Minox 9.2 mm spy camera strips for roughly eleven pictures, with feet, too.
 
-You can also change the size in the customizer, although i think i covered most common formats.
+If you need other sizes, you should use OpenSCAD on your own computer. This was a quick hack, and i CBA to make this work with the customizer.
 
 »Sechser-«, »Fünfer-« and »Vierer-« in the `STL` file names  is German for  “for six”, “for five” and “for four”.
 
