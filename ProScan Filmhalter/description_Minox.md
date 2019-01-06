@@ -12,7 +12,7 @@ Put in the film with the shinier carrier side up and the matte emulsion down.
 
 ##How to print
 
-Use black to reduce stray light. PLA is fine, print settings aren’t too important. No falsework required. Warping might be a problem, so use a brim or raft if you have to.
+I used black to reduce stray light, but other dark colours should be fine. PLA is fine, print settings aren’t too important. No falsework required. Warping might be a problem, so use a brim or raft if you have to.
 
 
 ## Post-printing
