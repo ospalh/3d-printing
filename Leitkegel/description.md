@@ -1,7 +1,7 @@
 Yet another traffic cone.
 
 The point of this is that most of the weight is in the base, and the actual cone part is rather thin. You can tip this something like 70° and it will right itself. It’s basically impossible to blow this one over, at leas on a flat surface.
-The mesh is for a 50 mm high version. 1:10 scale for a standard European small (50 cm night-and-day) cone.
+The mesh is for a 50 mm high version. 1:10 scale for a standard European 50 cm (night-and-day non-autobahn) cone.
 
 Designed for 0.4 mm nozzles.
 
@@ -10,8 +10,6 @@ Designed for 0.4 mm nozzles.
 
 * 200 µm
 * 70 %
-
-
 
 Don’t just rescale this for other sizes. Use the customizer or OpenSCAD.
 
