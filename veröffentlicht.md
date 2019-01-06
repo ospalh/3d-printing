@@ -50,3 +50,9 @@
 * Pilzanker
 * Magnethaken
 * Radienlehre (ggf. in thingiverese-Verzeichnis suchen)
+* Filmhalter für Flachbett,
+  - Minox
+  - 110
+* Filmstreifenstapler, alle auf einmal
+  - für Filmstreifen als ein thing
+  - für Abzüge als eins
