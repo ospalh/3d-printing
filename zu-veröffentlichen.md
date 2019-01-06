@@ -1,4 +1,3 @@
-* Radienlehre (ggf. in thingiverese-Verzeichnis suchen)
 * Filmhalter für Flachbett,
   - Minox, als ein thing
     * einzeln kurz
@@ -24,3 +23,5 @@
 * Türhaken
   - innen
   - außen
+* verbesserter Würfelturm
+* Damestein
