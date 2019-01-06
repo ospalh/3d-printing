@@ -10,9 +10,12 @@ There are versions for other film sizes that i plan to publish soon.
 
 Put in the film with the shinier carrier side up and the matte emulsion down.
 
+
+The black-and-white pictures was scanned with this thing, and is the only one in the collection that DIA or GRU might have been interested in.
+
 ##How to print
 
-Use black to reduce stray light. PLA is fine, print settings aren’t too important. No falsework required. Warping might be a problem, so use a brim or raft if you have to.
+I used black to reduce stray light, but other dark colours should be fine. PLA is fine, print settings aren’t too important. No falsework required. Warping might be a problem, so use a brim or raft if you have to.
 
 
 ## Post-printing

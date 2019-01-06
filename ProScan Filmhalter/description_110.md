@@ -13,12 +13,18 @@ Make sure the tiny posts go through the film perforations and that the shiny car
 
 ##How to print
 
-Use black to reduce stray light. PLA is fine, print settings aren’t too important. No falsework required. Warping might be a problem, so use a brim or raft if you have to.
+* 200 µm
+* 20% infill
+
+I used black to reduce stray light at first. PLA is fine, print settings aren’t too important. No falsework required. Warping might be a problem, so use a brim or raft if you have to.
 
 
 ## Post-printing
 
+
 This needs quite a bit of deburring and sanding. Also, a bit of filing before you can scan your negatives and file them again.
+
+On the one i printed in blue instead of black i painted the slanted window frame black to reduce coloured stray light.
 
 See the [ProScan Minox film holder]() for exhaustive magnet gluing tips.
 
@@ -27,5 +33,7 @@ See the [ProScan Minox film holder]() for exhaustive magnet gluing tips.
 This is derived from my [ProScan Minox film holder]().
 
 The exact sizes are based on measurments of a film strip. I could have paid 118 Swiss francs and looked up the values in the standard, but this should be good enough.
+
+After i scanned my films and took the pictures, i changed this from five to six, and removed the last positioning post for the last image, because there is no perforation on the last strip.
 
 There is some design history available at my [github repo](https://github.com/ospalh/3d-printing/tree/develop/ProScan Filmhalter).
