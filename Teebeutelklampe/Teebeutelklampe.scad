@@ -1,8 +1,11 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// NN
+// tea bag cleat
 //
-// © 2019 Roland Sieker <ospalh@gmail.com>
+// a maritime style cleat to stick onto your tea (coffee) mug and to sailor
+// like tie down your tea bag
+//
+// © 2018–2019 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 /* [Global] */
@@ -13,10 +16,10 @@ preview = 1; // [0:render, 1:preview]
 /* [Sizes] */
 
 // Outer diameter of the tea mug
-d_mug = 85;  // [40:0.1:150]
+d_mug = 101.2;  // [40:0.1:150]
 
 // Wall width of the tea mug
-w_mug = 1.3;  // [0.4:0.1:5]
+w_mug = 5.7;  // [0.4:0.1:10]
 
 /* [Hidden] */
 
@@ -27,7 +30,7 @@ w_mug = 1.3;  // [0.4:0.1:5]
 r_r = 1;
 
 w = 1.2;  // Wall width (clamp)
-h_c = 6;  // height of the clamp part
+
 p = 1.2;  // Bottom, top plate height
 l_c = 5; // length of the cleat arms
 c = 0.4;  // Clearance
@@ -41,6 +44,8 @@ tau = 2 * PI;  // π is still wrong. τ = circumference / r
 xy_factor = 1/tan(angle);
 // To get from a height to a horizontal width inclined correctly
 z_factor = tan(angle);  // The other way around
+h_g = 0.6*w_mug;
+h_c = h_g+p;  // height of the clamp part
 
 
 r_mug = d_mug/2;
@@ -51,7 +56,7 @@ r_c = w_ges/2;
 r_cf = 2 + w_ges/2;  // radius of the curve of the cleat arms
 
 yr = r_mug-w_mug/2;
-xx = 0.75*w_ges;
+xx = r_r + 0.125*w_ges;
 ye = sqrt(yr*yr-xx*xx);
 
 some_distance = 50;
@@ -144,7 +149,6 @@ module mug_clamp_ring()
 
 module mug_clamp_cross()
 {
-
    rot_points = [
       [r_me+c+w, 0],
       [r_me+c+w, -p-h_c],
@@ -157,11 +161,9 @@ module mug_clamp_cross()
       [r_me-w_me, -h_c],
       [r_me-w_me, -h_c-p],
       [r_me-w_me-w-c, -h_c-p],
-      [r_me-w_me-w-c, 0],
-      // [,],
+      [r_me-w_me-w-c, 0]
       ];
-  polygon(rot_points);
-
+   polygon(rot_points);
 }
 
 
