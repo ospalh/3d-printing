@@ -24,13 +24,12 @@ w_mug = 1.3;  // [0.4:0.1:5]
 
 // *******************************************************
 // Extra parameters. These can be changed reasonably safely.
-
+r_r = 1;
 
 w = 1.2;  // Wall width (clamp)
 h_c = 6;  // height of the clamp part
 p = 1.2;  // Bottom, top plate height
 l_c = 5; // length of the cleat arms
-r_cf = 2;  // radius of the curve of the cleat arms
 c = 0.4;  // Clearance
 angle = 60; // Overhangs much below 60° are a problem for me
 
@@ -49,6 +48,11 @@ r_me = r_mug + c/2;
 w_me = w_mug + c;
 w_ges = w_me + 2*c + 2*w;
 r_c = w_ges/2;
+r_cf = 2 + w_ges/2;  // radius of the curve of the cleat arms
+
+yr = r_mug-w_mug/2;
+xx = 0.75*w_ges;
+ye = sqrt(yr*yr-xx*xx);
 
 some_distance = 50;
 ms = 0.01;  // Muggeseggele.
@@ -75,8 +79,12 @@ $fa = (preview) ? pa : ra;
 // *******************************************************
 // Generate the parts
 
-// tea_cleat();
-mug_clamp();
+tea_cleat();
+// mug_clamp();
+// cleat_cross();
+// cleat_qring();
+// cleat_larm();
+// cleat_arm();
 
 // *******************************************************
 // Code for the parts themselves
@@ -84,9 +92,19 @@ mug_clamp();
 
 module tea_cleat()
 {
+   translate([0,-ye,r_cf+r_r])
+   mirror([0,0,1])
+   {
+      p_tea_cleat();
+   }
+}
+
+module p_tea_cleat()
+{
+
    mug_clamp();
    cleat_arm();
-   mirror([0,0,1])
+   mirror([1,0,0])
    {
       cleat_arm();
    }
@@ -99,9 +117,9 @@ module mug_clamp()
       mug_clamp_ring();
       hull()
       {
-         mug_ring_cylinder(7, 0);
-         mug_ring_cylinder(-7, 0);
-         mug_ring_cylinder(0, 20);
+         mug_ring_cylinder(xx, 0);
+         mug_ring_cylinder(-xx, 0);
+         mug_ring_cylinder(0, 2*(yr-ye)); // this is a tiny bit of fudging
       }
    }
 }
@@ -109,8 +127,6 @@ module mug_clamp()
 
 module mug_ring_cylinder(xo, ey)
 {
-   yr = r_mug-w_mug/2;
-   ye = sqrt(yr*yr-xo*xo);
    translate([xo, ye + ey,-h_c-p-ms])
    {
       cylinder(r=w_ges/2+ms, h=h_c+p+2*ms);
@@ -146,4 +162,84 @@ module mug_clamp_cross()
       ];
   polygon(rot_points);
 
+}
+
+
+module cleat_cross()
+{
+   intersection()
+   {
+      circle(r=w_ges/2);
+      translate([-w_ges/2,0])
+      {
+         square(w_ges,center=true);
+      }
+   }
+   hull()
+   {
+      translate([0,w_ges/2-r_r])
+      {
+         circle(r=r_r);
+      }
+      translate([0, -w_ges/2+r_r,0])
+      {
+         circle(r=r_r);
+      }
+   }
+}
+
+
+module cleat_qring()
+{
+   intersection()
+   {
+      rotate_extrude()
+      {
+         translate([r_cf, 0])
+         {
+            cleat_cross();
+         }
+      }
+      translate([0,0,-w_ges])
+      {
+         cube(2*w_ges);
+      }
+   }
+}
+
+module cleat_larm()
+{
+   linear_extrude(l_c)
+   {
+      cleat_cross();
+   }
+   translate([0,0,l_c-ms])
+   {
+      intersection()
+      {
+         sphere(w_ges/2);
+         linear_extrude(l_c)
+         {
+            cleat_cross();
+         }
+      }
+   }
+}
+
+module cleat_arm()
+{
+   translate([-r_cf - xx, ye, 0])
+   {
+      rotate([90,0,0])
+      {
+         cleat_qring();
+      }
+      translate([0,0,r_cf])
+      {
+         rotate([0,270,0])
+         {
+            cleat_larm();
+         }
+      }
+   }
 }
