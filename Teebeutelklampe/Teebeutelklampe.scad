@@ -28,11 +28,11 @@ w_mug = 5.7;  // [0.4:0.1:10]
 // *******************************************************
 // Extra parameters. These can be changed reasonably safely.
 r_r = 1;
-
+h_g = 6; // height of the clamp
 w = 1.2;  // Wall width (clamp)
-
+g_cl = 5;  // gap on th cleat
 p = 1.2;  // Bottom, top plate height
-l_c = 5; // length of the cleat arms
+l_c = 3; // length of the cleat arms
 c = 0.4;  // Clearance
 angle = 60; // Overhangs much below 60° are a problem for me
 
@@ -44,7 +44,8 @@ tau = 2 * PI;  // π is still wrong. τ = circumference / r
 xy_factor = 1/tan(angle);
 // To get from a height to a horizontal width inclined correctly
 z_factor = tan(angle);  // The other way around
-h_g = 0.6*w_mug;
+// h_g = 0.6*w_mug;
+
 h_c = h_g+p;  // height of the clamp part
 
 
@@ -56,7 +57,7 @@ r_c = w_ges/2;
 r_cf = 2 + w_ges/2;  // radius of the curve of the cleat arms
 
 yr = r_mug-w_mug/2;
-xx = r_r + 0.125*w_ges;
+xx = r_r + g_cl;
 ye = sqrt(yr*yr-xx*xx);
 
 some_distance = 50;
@@ -220,7 +221,7 @@ module cleat_larm()
       intersection()
       {
          sphere(w_ges/2);
-         linear_extrude(l_c)
+         linear_extrude(w_ges)
          {
             cleat_cross();
          }
