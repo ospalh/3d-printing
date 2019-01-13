@@ -17,7 +17,6 @@ part = "halter"; // [halter: lower part, einsatz: upper part]
 preview = 1; // [0:render, 1:preview]
 
 
-preview = true;
 
 
 // Ausser vielleicht den Filmstreifengrößen.
@@ -143,10 +142,10 @@ h_lkl = 0.75*h_bd;
 // Generate the parts
 
 
-// print_part();
+print_part();
 // filmhalter();
 // einsatz();
-preview_parts();
+// preview_parts();
 // stack_parts();
 
 
