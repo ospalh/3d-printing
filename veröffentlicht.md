@@ -61,3 +61,4 @@
   - 110
   - 126
   - 135
+* Quickscan für Reflecta, nur 135
