@@ -28,7 +28,7 @@ w_mug = 5.7;  // [0.4:0.1:10]
 // *******************************************************
 // Extra parameters. These can be changed reasonably safely.
 r_r = 1;
-h_g = 6; // height of the clamp
+h_g = 10; // height of the clamp
 w = 1.2;  // Wall width (clamp)
 g_cl = 5;  // gap on th cleat
 p = 1.2;  // Bottom, top plate height
@@ -51,7 +51,7 @@ h_c = h_g+p;  // height of the clamp part
 
 r_mug = d_mug/2;
 r_me = r_mug + c/2;
-w_me = w_mug + c;
+w_me = w_mug - c;
 w_ges = w_me + 2*c + 2*w;
 r_c = w_ges/2;
 r_cf = 2 + w_ges/2;  // radius of the curve of the cleat arms
