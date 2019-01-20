@@ -1,4 +1,3 @@
-* Duschregal
 * Seifenspenderdeckel
 * Blumentopfabstandhalter
 * Münzstapler
