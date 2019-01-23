@@ -1,8 +1,8 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// NN
+// A stamp
 //
-// © 2018 Roland Sieker <ospalh@gmail.com>
+// © 2018–2019 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 /* [Global] */
@@ -68,13 +68,32 @@ $fa = (preview) ? pa : ra;
 // *******************************************************
 // Generate the parts
 
-// circulate_stamp();
-text_stamp();
+circulate_stamp();
 
 
 
 // *******************************************************
 // Code for the parts themselves
+
+module circulate_stamp()
+{
+   text_stamp();
+   stamp_back();
+}
+
+module stamp_back()
+{
+   translate([0,0,h_t])
+   {
+      linear_extrude(p)
+      {
+         hull()
+         {
+            2d_text();
+         }
+      }
+   }
+}
 
 module text_stamp()
 {
