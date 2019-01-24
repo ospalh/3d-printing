@@ -126,7 +126,6 @@ module stamp_grid()
          translate([0, fof, 0])
          {
             grid();
-            stem();
          }
       }
    }
@@ -165,20 +164,22 @@ module grid()
 
 module stem()
 {
-   difference()
+   translate([0, fof, 0])
    {
-      union()
+      difference()
       {
-         cylinder(r=r1, h=h_st_1+ms);
-         translate([0,0,h_st_1])
+         union()
          {
-            cylinder(r1=r1, r2=2*r1,h=h_st_2+ms);
+            cylinder(r=r1, h=h_st_1+ms);
+            translate([0,0,h_st_1])
+            {
+               cylinder(r1=r1, r2=2*r1,h=h_st_2+ms);
+            }
+            translate([0,0,h_st_1+h_st_2])
+            {
+               cylinder(r=2*r1,h=h_st_3);
+            }
          }
-         translate([0,0,h_st_1+h_st_2])
-         {
-            cylinder(r=2*r1,h=h_st_3);
-         }
-      }
          translate([0,0,h_st_1+h_st_2+h_st_3-1])
          {
             linear_extrude(1+ms)
@@ -187,6 +188,7 @@ module stem()
                text("tb", size=2*r1, halign="center", valign="top", font=text_font);
             }
          }
+      }
    }
 }
 
