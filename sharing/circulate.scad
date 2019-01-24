@@ -18,6 +18,7 @@ text_font_size_2 = 12;  // [1:0.1:40]
 arrow_font_size = 20;  // [1:0.1:40]
 text_font = "Praxis LT:Heavy";
 arrow_font = "Symbola";
+arrow_o = 38;
 
 /* [Hidden] */
 
@@ -28,10 +29,18 @@ arrow_font = "Symbola";
 
 
 w = 1.8;  // Wall width
-p = 1.2;  // Bottom, top plate height
+p = 0.6;  // Bottom, top plate height
 c = 0.4;  // Clearance
 h_t = 2;
+h_st_1 = 20;
+h_st_2 = 8;
+h_st_3 = 8;
 angle = 60; // Overhangs much below 60° are a problem for me
+
+r1 = 4;
+r2 = 2;
+r3 = 1;
+sp_2 = 12;
 
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed
@@ -45,6 +54,8 @@ z_factor = tan(angle);  // The other way around
 
 some_distance = 50;
 ms = 0.01;  // Muggeseggele.
+
+fof = 0.25*(text_font_size_1 - text_font_size_2);
 
 // fn for differently sized objects and fs, fa; all for preview or rendering.
 pna = 40;
@@ -69,7 +80,7 @@ $fa = (preview) ? pa : ra;
 // Generate the parts
 
 circulate_stamp();
-
+// stamp_grid();
 
 
 // *******************************************************
@@ -79,6 +90,8 @@ module circulate_stamp()
 {
    text_stamp();
    stamp_back();
+   stamp_grid();
+   stem();
 }
 
 module stamp_back()
@@ -95,6 +108,88 @@ module stamp_back()
    }
 }
 
+
+
+module stamp_grid()
+{
+   translate([0,0,h_t+p])
+   {
+      intersection()
+      {
+         linear_extrude(r1+ms)
+         {
+            hull()
+            {
+               2d_text();
+            }
+         }
+         translate([0, fof, 0])
+         {
+            grid();
+            stem();
+         }
+      }
+   }
+}
+
+module grid()
+{
+   rotate([0,90,0])
+   {
+      cylinder(r=r1, h=3.5*arrow_o, center=true);
+   }
+   rotate([90,0,0])
+   {
+      for (xo=[-1.75*arrow_o:sp_2:1.75*arrow_o])
+      {
+         translate([xo,0,0])
+         {
+            cylinder(r=r2, h=3*text_font_size_1, center=true);
+         }
+      }
+   }
+   rotate([0,90,0])
+   {
+      translate([0,0.66*text_font_size_2,0])
+      {
+         cylinder(r=r3, h=3.5*arrow_o, center=true);
+      }
+      translate([0,-0.66*text_font_size_2,0])
+      {
+         cylinder(r=r3, h=3.5*arrow_o, center=true);
+      }
+
+   }
+
+}
+
+module stem()
+{
+   difference()
+   {
+      union()
+      {
+         cylinder(r=r1, h=h_st_1+ms);
+         translate([0,0,h_st_1])
+         {
+            cylinder(r1=r1, r2=2*r1,h=h_st_2+ms);
+         }
+         translate([0,0,h_st_1+h_st_2])
+         {
+            cylinder(r=2*r1,h=h_st_3);
+         }
+      }
+         translate([0,0,h_st_1+h_st_2+h_st_3-1])
+         {
+            linear_extrude(1+ms)
+            {
+               text("Kc", size=2*r1, halign="center", valign="bottom", font=text_font);
+               text("tb", size=2*r1, halign="center", valign="top", font=text_font);
+            }
+         }
+   }
+}
+
 module text_stamp()
 {
    linear_extrude(h_t+ms)
@@ -106,7 +201,7 @@ module text_stamp()
 
 module 2d_text()
 {
-   translate([-38,-2])
+   translate([-arrow_o,-2])
    {
       text(
          text="⮎", font=arrow_font, size=arrow_font_size,
@@ -124,7 +219,7 @@ module 2d_text()
          text="the books!", font=text_font, size=text_font_size_2,
          valign="top", halign="center");
    }
-   translate([39,-1])
+   translate([arrow_o+1,-1])
    {
       text(
          text="⮌", font=arrow_font, size=arrow_font_size,
