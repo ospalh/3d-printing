@@ -64,8 +64,8 @@ pa = 5;
 ps = 1;
 rna = 180;
 rnb = 30;
-ra = 1;
-rs = 0.1;
+ra = 1.6;
+rs = 0.25;
 function na() = (preview) ? pna : rna;
 function nb() = (preview) ? pnb : rnb;
 $fs = (preview) ? ps : rs;
@@ -164,7 +164,7 @@ module grid()
 
 module stem()
 {
-   translate([0, fof, 0])
+   translate([0, fof, h_t+p])
    {
       difference()
       {
