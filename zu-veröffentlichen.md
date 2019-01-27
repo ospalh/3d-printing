@@ -1,4 +1,4 @@
-* Seifenspenderdeckel
+* Kannendeckel
 * Blumentopfabstandhalter
 * Münzstapler
   - Euro

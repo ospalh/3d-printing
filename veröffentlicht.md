@@ -63,3 +63,4 @@
   - 135
 * Quickscan für Reflecta, nur 135
 * Duschregal
+* Seifenspenderdeckel
