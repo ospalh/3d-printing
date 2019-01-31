@@ -54,7 +54,7 @@ z_factor = tan(angle);  // The other way around
 r_r = min(w,p);
 w_e = box_width + 2*c;
 d_e = box_depth + 2*c;
-h_e = (boxes_per_pack - ( (variant == "s") ? 0.5 : 1) ) * box_height + c;
+h_e = (boxes_per_pack - 1) * box_height + c;
 
 
 xe = w_e/2 + w - r_r;
