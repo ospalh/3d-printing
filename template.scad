@@ -2,7 +2,7 @@
 //
 // NN
 //
-// © 2018 Roland Sieker <ospalh@gmail.com>
+// © 2018–2019 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 /* [Global] */
@@ -51,8 +51,8 @@ pa = 5;
 ps = 1;
 rna = 180;
 rnb = 30;
-ra = 1;
-rs = 0.1;
+ra = 2;
+rs = 0.25;
 function na() = (preview) ? pna : rna;
 function nb() = (preview) ? pnb : rnb;
 $fs = (preview) ? ps : rs;
