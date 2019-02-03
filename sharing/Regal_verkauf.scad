@@ -10,6 +10,8 @@
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
+part = "s";  // [s:Stempel, h:Hilfsform, t:Text]
+
 /* [Sizes] */
 
 //
@@ -40,7 +42,7 @@ sp_2 = 12;
 spf = 1.08;
 esf = 0.3;
 fw = 0.8;
-stw = 12*text_font_size;
+stw = 11.75*text_font_size;
 sth = (6*spf+4*esf-0.26)*text_font_size;
 
 // *******************************************************
@@ -80,9 +82,23 @@ $fa = (preview) ? pa : ra;
 // *******************************************************
 // Generate the parts
 
-kein_verkauf_stempel();
-// stamp_grid();
-// 2d_text();
+print_part();
+
+module print_part()
+{
+   if ("s" == part)
+   {
+      kein_verkauf_stempel();
+   }
+   if ("h" == part)
+   {
+      hilfsform();
+   }
+   if ("t" == part)
+   {
+      2d_text();
+   }
+}
 
 // *******************************************************
 // Code for the parts themselves
@@ -93,6 +109,24 @@ module kein_verkauf_stempel()
    stamp_back();
    stamp_grid();
    stem();
+}
+
+module hilfsform()
+{
+   translate([0,0, h_t])
+   {
+      linear_extrude(p + h_st_1 + h_st_2 + h_st_3 + 5)
+      {
+         hull()
+         {
+            scale(1.05)
+            {
+               2d_text();
+            }
+         }
+      }
+   }
+
 }
 
 module stamp_back()
@@ -213,15 +247,15 @@ module 2d_text()
    {
       square([stw+ms,fw], center=true);
    }
-   translate([stw/2,(spf)*text_font_size])
+   translate([stw/2+ms,(spf)*text_font_size-fw/2])
    {
 
       square([fw,sth], center=true);
    }
-   translate([-stw/2,spf*text_font_size])
+   translate([-stw/2-ms,spf*text_font_size-fw/2])
    {
 
-      square([fw,sth+ms], center=true);
+      square([fw,sth], center=true);
    }
    translate([0,(spf-0.08)*text_font_size+sth/2])
    {
