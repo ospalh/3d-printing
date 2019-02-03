@@ -7,6 +7,8 @@
 
 /* [Global] */
 
+part = "s";  // [s:Stempel, h:Hilfsform, t:Text]
+
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
@@ -76,9 +78,52 @@ $fa = (preview) ? pa : ra;
 // *******************************************************
 // Generate the parts
 
-mehr_stamp();
-// stamp_grid();
-// 2d_text();
+print_part();
+
+module print_part()
+{
+   if ("s" == part)
+   {
+      mehr_stamp();
+   }
+   if ("h" == part)
+   {
+      hilfsform();
+   }
+   if ("t" == part)
+   {
+      2d_text();
+   }
+}
+
+// *******************************************************
+// Code for the parts themselves
+
+module kein_verkauf_stempel()
+{
+   text_stamp();
+   stamp_back();
+   stamp_grid();
+   stem();
+}
+
+module hilfsform()
+{
+   translate([0,0, h_t])
+   {
+      linear_extrude(p + h_st_1 + h_st_2 + h_st_3 + 5)
+      {
+         hull()
+         {
+            scale(1.05)
+            {
+               2d_text();
+            }
+         }
+      }
+   }
+
+}
 
 // *******************************************************
 // Code for the parts themselves
