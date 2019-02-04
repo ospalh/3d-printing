@@ -10,9 +10,12 @@ There are versions for other film sizes that i plan to publish soon.
 
 Put in the film with the shinier carrier side up and the matte emulsion down.
 
+
+The black-and-white pictures was scanned with this thing, and is the only one in the collection that DIA or GRU might have been interested in.
+
 ##How to print
 
-Use black to reduce stray light. PLA is fine, print settings aren’t too important. No falsework required. Warping might be a problem, so use a brim or raft if you have to.
+I used black to reduce stray light, but other dark colours should be fine. PLA is fine, print settings aren’t too important. No falsework required. Warping might be a problem, so use a brim or raft if you have to.
 
 
 ## Post-printing
@@ -62,7 +65,7 @@ Gluing in the magnets was surprisingly tricky. They tend to fly through the air 
 
 ## How designed
 
-First i looked at shred’s [110 film holder](https://www.thingiverse.com/thing:1328672) for plustek scanners. Change the outer size to “Reflecta”, scan my stack of 110 films, than change the film size and scan the Minox, but started over from scratch, anyway.
+First i looked at shred’s [110 film holder](https://www.thingiverse.com/thing:1328672) for plustek scanners: Change the outer size to “Reflecta”, scan my stack of 110 films, than change the film size and scan the Minox. But i decided to start over from scratch, anyway.
 
 I briefly experimented with a hinge (based on rohinosling’s  [parametric hinge](https://www.thingiverse.com/thing:2187167)) but i had too much problems breaking them free. (The original Reflecta film holders do have a hinge.)
 

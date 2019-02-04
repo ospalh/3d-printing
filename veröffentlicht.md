@@ -53,3 +53,6 @@
 * Filmhalter für Flachbett,
   - Minox
   - 110
+* Filmstreifenstapler, alle auf einmal
+  - für Filmstreifen als ein thing
+  - für Abzüge als eins

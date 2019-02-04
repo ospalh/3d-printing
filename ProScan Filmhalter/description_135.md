@@ -1,4 +1,4 @@
-Reflecta ProScan Minox film holder
+Reflecta ProScan 135 film holder
 
 A film strip holder to scan four image 135 (standard 35 mm) film with a [Reflecta ProScan](https://reflecta.de/en/products/detail/~id.734~nm.69/reflecta-ProScan-10T.html) cheap-compared-to-drum-scanners film scanner i own. This should fit both the 10T and 7200 models.
 

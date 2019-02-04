@@ -11,11 +11,13 @@ There is a bunch of versions, for different film sizes and strip length.
 * 135 film six picture strips stacker in one piece. (Or two, if you count the lid.) You can use it when you have a big priter.
 * 135 film *five* picture strips (1970s)
 * 135 film four picture strips as they are common nowadays. Well, when people still used silver based films. I have lots and lots of films of this size, and so this holder is higher than the other.
+* 135 film single pictures (slides)
 * 126 or large Instamatic film, four picture strips.
 * 110 or Pocket Instamatic film, five picture strips. This one has feet or plates to keep it from falling over
 * Minox 9.2 mm spy camera strips for roughly eleven pictures, with feet, too.
 
-You can also change the size in the customizer, although i think i covered most common formats.
+
+This shuold cover most film formats commonly used smaller than sheet film. If you need other sizes, you should use OpenSCAD on your own computer. This was a quick hack, and i CBA to make this work with the customizer.
 
 »Sechser-«, »Fünfer-« and »Vierer-« in the `STL` file names  is German for  “for six”, “for five” and “for four”.
 
