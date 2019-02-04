@@ -2,15 +2,15 @@
 //
 // NN
 //
-// Copyright 2018 Roland Sieker <ospalh@gmail.com>
+// © 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 /* [Global] */
 
-// ... to preview. You will get all parts when you click "Create Thing".
+// … to preview. You will get all parts when you click “Create Thing”.
 part = "NN"; // [NN: foo, bar: baz]
 
-// Set this to "render" and click on "Create Thing" when done with the setup.
+// Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 /* [Sizes] */
@@ -29,7 +29,7 @@ size_x = 15;  // [1:0.1:40]
 w = 1.8;  // Wall width
 p = 1.2;  // Bottom, top plate height
 c = 0.4;  // Clearance
-angle = 60; // Overhangs much below 60 degrees are a problem for me
+angle = 60; // Overhangs much below 60° are a problem for me
 
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed
@@ -51,8 +51,8 @@ pa = 5;
 ps = 1;
 rna = 180;
 rnb = 30;
-ra = 1;
-rs = 0.1;
+ra = 2;
+rs = 0.25;
 function na() = (preview) ? pna : rna;
 function nb() = (preview) ? pnb : rnb;
 $fs = (preview) ? ps : rs;
