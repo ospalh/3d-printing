@@ -1,4 +1,3 @@
-* Kannendeckel
 * Blumentopfabstandhalter
 * Münzstapler
   - Euro
