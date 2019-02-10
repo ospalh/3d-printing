@@ -43,6 +43,9 @@ ring_hole_land = 2.5;  // [0.5:0.1:5]
 // How much the ring hole is offset towards the cuts and shoulder side. Manual correction of the land width needed for circular bows.
 ring_hole_offset = 0;  // [-20:0.1:20]
 
+// How much the blade itself offset towards the cuts and shoulder side. Manual correction of the land width needed for circular bows.
+blade_offset = -2.5;  // [-20:0.1:20]
+
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
@@ -140,11 +143,14 @@ module solid_key_seal()
    {
       cylinder(r=rb+w+c, h=h+2*p+c+sh);
    }
-   translate([-blade_width/2-c-w, 0, 0])
+   translate([blade_offset, 0, 0])
+   {
+      translate([-blade_width/2-c-w, 0, 0])
       {
          cube([blade_width+2*c+2*w, blade_length+w+rb+w+c, h+2*p+c+sh]);
       }
-   cube([blade_width/2+shoulder_width+c+w, rb+shoulder_length+c+w, h+2*p+c+sh]);
+      cube([blade_width/2+shoulder_width+c+w, rb+shoulder_length+c+w, h+2*p+c+sh]);
+   }
 }
 
 module key_hollow()
@@ -162,11 +168,14 @@ module key_hollow()
       {
          cylinder(r=rb+c, h=h+c+sh);
       }
-      translate([-blade_width/2-c, 0, 0])
-      {
-         cube([blade_width+2*c, some_distance, h+c+sh]);
+     translate([blade_offset, 0, 0])
+     {
+        translate([-blade_width/2-c, 0, 0])
+        {
+           cube([blade_width+2*c, some_distance, h+c+sh]);
+        }
+        cube([blade_width/2+shoulder_width+c, rb+shoulder_length+c, h+c+sh]);
       }
-      cube([blade_width/2+shoulder_width+c, rb+shoulder_length+c, h+c+sh]);
    }
    translate([ring_hole_offset, -rb + ring_hole_land + ring_hole_diameter/2,-ms])
    {
