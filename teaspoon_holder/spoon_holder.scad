@@ -13,12 +13,12 @@ preview = 1; // [0:render, 1:preview]
 /* [Sizes] */
 
 // Diameter of the dish
-dish_d = 50;  // [30:0.1:240]
+dish_d = 50;  // [30:0.5:240]
 // Height of the dish
-dish_h = 5; // [5:0.1:24]
-grip_width = 8;
-grip_thickness = 3.6;
-holder_length = 30;
+dish_h = 5; // [5:0.25:24]
+grip_width = 8; // [3:0.1:20]
+grip_thickness = 3.6; // [1:0.1:5]
+holder_length = 30; // [5:1:50]
 
 /* [Hidden] */
 
