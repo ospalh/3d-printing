@@ -1,0 +1,93 @@
+// -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
+//
+// NN
+//
+// © 2018–2019 Roland Sieker <ospalh@gmail.com>
+// Licence: CC-BY-SA 4.0
+
+/* [Global] */
+
+// Set this to “render” and click on “Create Thing” when done with the setup.
+preview = 1; // [0:render, 1:preview]
+
+/* [Sizes] */
+
+// Diameter of the dish
+dish_d = 40;  // [30:0.1:240]
+// Height of the dish
+dish_h = 6; // [5:0.1:24]
+
+/* [Hidden] */
+
+// Done with the customizer
+
+// *******************************************************
+// Extra parameters. These can be changed reasonably safely.
+
+
+w = 1.8;  // Wall width
+// p = 1.2;  // Bottom, top plate height
+c = 0.4;  // Clearance
+dish_angle = 60; // Overhangs much below 60° are a problem for me
+r_r = 2;  // rounding radius
+
+// *******************************************************
+// Some shortcuts. These shouldn’t be changed
+
+tau = 2 * PI;  // π is still wrong. τ = circumference / r
+
+xy_factor = 1/tan(dish_angle);
+// To get from a height to a horizontal width inclined correctly
+z_factor = tan(dish_angle);  // The other way around
+
+r_d = dish_d/2;
+h_d_e = dish_h -w;
+x_r = h_d_e * xy_factor;
+r_z = r_d - x_r;
+l_r = sqrt(x_r*x_r + h_d_e*h_d_e);
+
+
+some_distance = 50;
+ms = 0.01;  // Muggeseggele.
+
+// fn for differently sized objects and fs, fa; all for preview or rendering.
+pna = 40;
+pnb = 15;
+pa = 5;
+ps = 1;
+rna = 180;
+rnb = 30;
+ra = 2;
+rs = 0.25;
+function na() = (preview) ? pna : rna;
+function nb() = (preview) ? pnb : rnb;
+$fs = (preview) ? ps : rs;
+$fa = (preview) ? pa : ra;
+
+// *******************************************************
+// End setup
+
+
+
+// *******************************************************
+// Generate the parts
+
+// dish();
+2d_dish();
+
+// *******************************************************
+// Code for the parts themselves
+
+module dish()
+{
+   rotate_extrude()
+   {
+      2d_dish();
+   }
+}
+
+
+module 2d_dish()
+{
+   square([r_z,w]);
+}
