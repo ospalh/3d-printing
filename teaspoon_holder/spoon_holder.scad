@@ -1,6 +1,6 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// NN
+// tea spoon holder
 //
 // © 2018–2019 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
@@ -13,11 +13,11 @@ preview = 1; // [0:render, 1:preview]
 /* [Sizes] */
 
 // Diameter of the dish
-dish_d = 40;  // [30:0.1:240]
+dish_d = 50;  // [30:0.1:240]
 // Height of the dish
-dish_h = 6; // [5:0.1:24]
-grip_width = 9.3;
-grip_thickness = 2;
+dish_h = 5; // [5:0.1:24]
+grip_width = 8;
+grip_thickness = 3.6;
 holder_length = 30;
 
 /* [Hidden] */
@@ -35,7 +35,8 @@ dish_angle = 60; // Overhangs much below 60° are a problem for me
 r_r = 2;  // rounding radius, dish
 // For the spoon rest thing we use w as rounding radius.
 spoon_angle = 15;
-
+g_thick = grip_thickness + c;
+g_w = grip_width + c;
 
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed
@@ -96,20 +97,33 @@ full_holder();
 
 module full_holder()
 {
-   holder();
-   dish();
+   difference()
+   {
+      union()
+      {
+         shift_and_cut()
+         {
+            massive_holder();
+         }
+         dish();
+      }
+      shift_and_cut()
+      {
+         holder_hollow();
+      }
+   }
 }
 
-module holder()
+module shift_and_cut()
 {
-   translate([0,-w-grip_thickness/2-r_d-dish_h*sin(spoon_angle),0])
+   translate([0,-w-g_thick/2-r_d,0])
    {
       intersection()
       {
 
          rotate([-spoon_angle,0, 0])
          {
-            upright_holder();
+            children();
          }
          translate([0,0,2*holder_length])
          {
@@ -120,14 +134,6 @@ module holder()
    }
 }
 
-module upright_holder()
-{
-   difference()
-   {
-      massive_holder();
-      holder_hollow();
-   }
-}
 
 module massive_holder()
 {
@@ -135,38 +141,38 @@ module massive_holder()
    {
       translate([0,0,holder_length+w])
       {
-         translate([grip_width/2, grip_thickness/2, 0])
+         translate([g_w/2, g_thick/2, 0])
          {
             sphere(r=w);
          }
-         translate([-grip_width/2, grip_thickness/2, 0])
+         translate([-g_w/2, g_thick/2, 0])
          {
             sphere(r=w);
          }
-         translate([grip_width/2, -grip_thickness/2, 0])
+         translate([g_w/2, -g_thick/2, 0])
          {
             sphere(r=w);
          }
-         translate([-grip_width/2, -grip_thickness/2, 0])
+         translate([-g_w/2, -g_thick/2, 0])
          {
             sphere(r=w);
          }
       }
       translate([0,0,-w])
       {
-         translate([grip_width/2, grip_thickness/2, 0])
+         translate([g_w/2, g_thick/2, 0])
          {
             cylinder(r=w, h=ms);
          }
-         translate([-grip_width/2, grip_thickness/2, 0])
+         translate([-g_w/2, g_thick/2, 0])
          {
             cylinder(r=w, h=ms);
          }
-         translate([grip_width/2, -grip_thickness/2, 0])
+         translate([g_w/2, -g_thick/2, 0])
          {
             cylinder(r=w, h=ms);
          }
-         translate([-grip_width/2, -grip_thickness/2, 0])
+         translate([-g_w/2, -g_thick/2, 0])
          {
             cylinder(r=w, h=ms);
          }
@@ -179,7 +185,7 @@ module holder_hollow()
 {
    translate([0,0,holder_length/2+2*w])
    {
-      cube([grip_width, grip_thickness, holder_length+2*w], center=true);
+      cube([g_w, g_thick, holder_length+2*w], center=true);
    }
 }
 
