@@ -7,8 +7,8 @@
 
 /* [Global] */
 
-// … to preview. You will get all parts when you click “Create Thing”.
-part = "NN"; // [NN: foo, bar: baz]
+// … to preview. You will get all parts as separate STLs when you click “Create Thing”.
+part = "s"; // [s: Set, a: Part A, b: Part B]
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
@@ -66,30 +66,38 @@ $fa = (preview) ? pa : ra;
 // *******************************************************
 // Generate the parts
 
-// print_part();
-preview_parts();
-// stack_parts();
+print_part();
 
 
+if ("s" == part)
+{
+   preview_parts();
+}
+
+if ("st" == part)
+{
+   // Use "st" during development
+   stack_parts();
+}
 
 module print_part()
 {
-   if ("NN" == part)
+   if ("a" == part)
    {
-      nn();
+      part_a();
    }
-   if ("foo" == part)
+   if ("b" == part)
    {
-      foo();
+      part_b();
    }
 }
 
 module preview_parts()
 {
-   nn();
+   part_a();
    translate([some_distance, 0, 0])
    {
-      foo();
+      part_b();
    }
 }
 
@@ -99,13 +107,13 @@ module stack_parts()
    {
       color("yellow")
       {
-         foo();
+         part_a();
       }
       translate([0,0,30])
       {
          color("red")
          {
-            NN();
+            part_b();
          }
       }
    }
