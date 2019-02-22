@@ -41,11 +41,15 @@ xy_factor = 1/tan(dish_angle);
 z_factor = tan(dish_angle);  // The other way around
 
 r_d = dish_d/2;
-h_d_e = dish_h -w;
-x_r = h_d_e * xy_factor;
-r_z = r_d - x_r;
-l_r = sqrt(x_r*x_r + h_d_e*h_d_e);
+r_a = r_r + w;
+r_m = r_r + w/2;
 
+x_k = r_m * sin(dish_angle);
+h_k = r_m * (1 - cos(dis_angle));
+h_r = dish_h - h_k w;
+x_r = h_r * xy_factor;
+l_r = sqrt(h_r*h_r+x_r*x_r);
+r_z = r_d - x_r - x_k;
 
 some_distance = 50;
 ms = 0.01;  // Muggeseggele.
