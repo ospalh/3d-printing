@@ -45,8 +45,8 @@ r_a = r_r + w;
 r_m = r_r + w/2;
 
 x_k = r_m * sin(dish_angle);
-h_k = r_m * (1 - cos(dis_angle));
-h_r = dish_h - h_k w;
+h_k = r_m * (1 - cos(dish_angle));
+h_r = dish_h - h_k - w;
 x_r = h_r * xy_factor;
 l_r = sqrt(h_r*h_r+x_r*x_r);
 r_z = r_d - x_r - x_k;
@@ -76,8 +76,8 @@ $fa = (preview) ? pa : ra;
 // *******************************************************
 // Generate the parts
 
-// dish();
-2d_dish();
+dish();
+// 2d_dish();
 
 // *******************************************************
 // Code for the parts themselves
@@ -94,4 +94,38 @@ module dish()
 module 2d_dish()
 {
    square([r_z,w]);
+   translate([r_z-ms,r_a])
+   {
+      difference()
+      {
+         circle(r=r_a);
+         circle(r=r_r);
+         translate([-1.5*r_a,0])
+         {
+            square(3*r_a, center=true);
+         }
+         rotate(dish_angle)
+         {
+            translate([0,-r_r])
+            {
+            square([r_a+ms,r_r+r_a+ms]);
+            }
+         }
+      }
+   }
+
+   translate([r_z+x_k, w/2+h_k])
+   {
+      rotate(dish_angle)
+      {
+         translate([0, -w/2])
+         {
+            square([l_r,w]);
+         }
+      }
+   }
+   translate([r_d,dish_h-w/2])
+   {
+      circle(r=w/2);
+   }
 }
