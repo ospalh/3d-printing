@@ -30,9 +30,9 @@ holder_length = 30; // [5:1:50]
 
 w = 1.8;  // Wall width
 // p = 1.2;  // Bottom, top plate height
-c = 0.4;  // Clearance
+c = 1;  // Clearance
 dish_angle = 60; // Overhangs much below 60° are a problem for me
-r_r = 2;  // rounding radius, dish
+r_r = 4;  // rounding radius, dish
 // For the spoon rest thing we use w as rounding radius.
 spoon_angle = 15;
 g_thick = grip_thickness + c;
@@ -215,9 +215,9 @@ module 2d_dish()
          }
          rotate(dish_angle)
          {
-            translate([0,-r_r])
+            translate([0,-r_r-w-ms])
             {
-            square([r_a+ms,r_r+r_a+ms]);
+               square([r_a+ms,r_r+r_a+w+ms]);
             }
          }
       }
@@ -227,9 +227,9 @@ module 2d_dish()
    {
       rotate(dish_angle)
       {
-         translate([0, -w/2])
+         translate([-ms, -w/2])
          {
-            square([l_r,w]);
+            square([l_r+2*ms,w]);
          }
       }
    }
