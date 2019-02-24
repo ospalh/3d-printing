@@ -15,7 +15,7 @@ preview = 1; // [0:render, 1:preview]
 // Diameter of the dish
 dish_d = 40;  // [30:0.1:240]
 // Height of the dish
-dish_h = 6; // [5:0.1:24]
+dish_h = 5; // [5:0.1:24]
 
 /* [Hidden] */
 
@@ -106,9 +106,9 @@ module 2d_dish()
          }
          rotate(dish_angle)
          {
-            translate([0,-r_r])
+            translate([0,-r_r-w-ms])
             {
-            square([r_a+ms,r_r+r_a+ms]);
+               square([r_a+ms,r_r+r_a+w+ms]);
             }
          }
       }
@@ -118,9 +118,9 @@ module 2d_dish()
    {
       rotate(dish_angle)
       {
-         translate([0, -w/2])
+         translate([-ms, -w/2])
          {
-            square([l_r,w]);
+            square([l_r+2*ms,w]);
          }
       }
    }
