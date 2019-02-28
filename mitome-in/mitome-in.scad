@@ -26,7 +26,7 @@ line_3 = "鹿";
 font = "IPAexGothic:style=Regular";
 
 /* [Size] */
-// Standard non-registerend seals usually aren't much bigger than about 12 mm high
+// Standard non-registerend seals usually aren't much bigger than about 12 mm high
 size = 12; // [9:1:20]
 
 /* [Tweaks] */

@@ -20,7 +20,7 @@ lld = l1*num;
 ll = lld + ex;
 ey = 1;
 w1 = 61.4;
-wst = w1+ey; // 9.2 mm + clearance
+wst = w1+ey; // 9.2 mm + clearance
 wld = w1-ey; // Make it fit between the plates without problems
 h = 80; // I have a lot of film strips i want to stack
 

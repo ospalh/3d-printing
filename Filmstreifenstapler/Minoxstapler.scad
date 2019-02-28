@@ -15,7 +15,7 @@ preview = 1; // [0:render, 1:preview]
 
 ll = 11*13+3;  //
 lld = ll-3;
-wst = 10.6; // 9.2 mm + clearance
+wst = 10.6; // 9.2 mm + clearance
 wld = 8.5; // Make it fit between the plates without problems
 h = 20; // I have a lot of film strips i want to stack
 

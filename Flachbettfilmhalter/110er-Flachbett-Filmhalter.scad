@@ -3,7 +3,7 @@
 // Holder for Minox film strips
 //
 // A holder for Minox 11 picture film strips for use with generic flatbed
-// scanners with a transparency unit and holder for 135 (35 mm) film.
+// scanners with a transparency unit and holder for 135 (35 mm) film.
 //
 // (c) 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
@@ -22,7 +22,7 @@ w_streifen = 16.4;  // slightly more so the movable part becomes more stable
 w_bild = 14; // Nominally 13. This should work out
 l_bild = 25.4;
 // Total pitch, picture plus number and hole. Measured. Not too
-// important. Might be exactly 25.4 mm, as the format was made by
+// important. Might be exactly 25.4 mm, as the format was made by
 // Americans.
 bilder_ps = 5;
 

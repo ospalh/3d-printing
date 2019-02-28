@@ -3,7 +3,7 @@
 // Holder for Minox film strips
 //
 // A holder for Minox 11 picture film strips for use with generic flatbed
-// scanners with a transparency unit and holder for 135 (35 mm) film.
+// scanners with a transparency unit and holder for 135 (35 mm) film.
 //
 // (c) 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0

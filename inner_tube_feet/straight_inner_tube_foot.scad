@@ -1,6 +1,6 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// Inner tube foot for acrylic i3-style printers with 8 mm plates.
+// Inner tube foot for acrylic i3-style printers with 8 mm plates.
 // For example GeeTech i3s.
 //
 // (c) 2018 Roland Sieker <ospalh@gmail.com>

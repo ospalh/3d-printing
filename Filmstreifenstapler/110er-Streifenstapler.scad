@@ -15,11 +15,11 @@ preview = 1; // [0:render, 1:preview]
 
 ex = 3;
 ey = 2;
-lld = 127;  // Pitch scheint 1 Zoll zu sein, → Fuenf Bilder ergibt fuenf Zoll.
+lld = 127;  // Pitch scheint 1 Zoll zu sein, -> Fuenf Bilder ergibt fuenf Zoll.
 ll = lld + ex;
 
 wld = 16; // Make it fit between the plates without problems
-wst = wld + ey; // 35 mm + clearance
+wst = wld + ey; // 35 mm + clearance
 h = 20; // I have a lot of film strips i want to stack
 epl = 10;
 

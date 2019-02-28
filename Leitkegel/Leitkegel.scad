@@ -1,6 +1,6 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// 50 cm Leitkegel im Massstab 1:10
+// 50 cm Leitkegel im Massstab 1:10
 //
 // (c) 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
@@ -142,8 +142,8 @@ module stack_hole()
 module echo_heights()
 {
    sw = hc/5;
-   echo("red→white at ", h_b + sw);
-   echo("white→red at ", h_b + 2 * sw);
-   echo("red→white at ", h_b + 3 * sw);
-   echo("white→red at ", h_b + 4 * sw);
+   echo("red->white at ", h_b + sw);
+   echo("white->red at ", h_b + 2 * sw);
+   echo("red->white at ", h_b + 3 * sw);
+   echo("white->red at ", h_b + 4 * sw);
 }

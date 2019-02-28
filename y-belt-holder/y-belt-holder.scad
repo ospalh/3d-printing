@@ -1,6 +1,6 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// Y Belt holder for the Průša-style GeeTech i3 pro C
+// Y Belt holder for the Prusa-style GeeTech i3 pro C
 //
 // (c) 2017-18 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
