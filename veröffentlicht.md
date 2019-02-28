@@ -65,3 +65,6 @@
 * Duschregal
 * Seifenspenderdeckel
 * Kannendeckel
+* Münzstapler
+  - Euro
+  - andere

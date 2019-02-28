@@ -1,6 +1,3 @@
-* Münzstapler
-  - Euro
-  - andere
 * Pfeil
 * Stuhllehnentelefonhalter
 * Türhaken
