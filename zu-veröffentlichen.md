@@ -1,5 +1,3 @@
-* Kannendeckel
-* Blumentopfabstandhalter
 * Münzstapler
   - Euro
   - andere
@@ -11,3 +9,7 @@
 * verbesserter Würfelturm
 * Damestein
 * Leitkegel
+* Dish
+* Löffelhalter
+
+* zur passenden Zeit: Zweihandflaschenöffner

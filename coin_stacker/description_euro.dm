@@ -1,6 +1,6 @@
 Stacking and storage aid for euro coins.
 
-This allows you to stack and store euro coins. Standard is space for each value, e.g. eight coins from one country, year and mint. I use it to reduce the storage volue of a coin collection i inherited. I don’t want to sell it, but don’t want it to waste too much space in my cupboard, either. In the customizer you can set the number of coins for each value, when you sets with some missing and more than one of others.
+This allows you to stack and store euro coins. Standard is space for one of each value, e.g. eight coins from the same country, year or mint. I use it to reduce the storage volue of a coin collection i inherited. I don’t want to sell it, but don’t want it to waste too much space in my cupboard, either. In the customizer you can set the number of coins for each value, when you have sets with some missing and more than one of others.
 
 They are stacked by diameter, not value:
 * 1 ¢

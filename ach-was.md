@@ -4,3 +4,4 @@
 * nut puller: Fotos
 * Zweihandflaschenöffner, Warnlabel
 * Dosendurchschlag (mit Quelle): Fotos
+* Blumentopfabstandhalter
