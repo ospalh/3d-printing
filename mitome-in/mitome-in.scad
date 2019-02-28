@@ -2,7 +2,7 @@
 //
 // Mitome in
 //
-// © 2017–2018 Roland Sieker <ospalh@gmail.com>
+// (c) 2017-2018 Roland Sieker <ospalh@gmail.com>
 // All rights reserved
 
 /* [Global] */
@@ -11,7 +11,7 @@
 part = "rubber_seal"; // [rubber_seal, grip, seal_with_grip, cap, ink_pad, foam_punch, ink_pad_cap]
 
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 /* [Text] */
@@ -26,7 +26,7 @@ line_3 = "鹿";
 font = "IPAexGothic:style=Regular";
 
 /* [Size] */
-// Standard non-registerend seals usually aren’t much bigger than about 12 mm high
+// Standard non-registerend seals usually aren't much bigger than about 12 mm high
 size = 12; // [9:1:20]
 
 /* [Tweaks] */
@@ -84,7 +84,7 @@ r_r = 0.8;  // rounding radius
 
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
 
 // Main size

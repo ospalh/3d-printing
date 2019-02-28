@@ -2,20 +2,20 @@
 //
 // Front-Displayhalterung
 //
-// © 2018 Roland Sieker <ospalh@gmail.com>
+// (c) 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 
-// … to preview. You will get all parts when you click “Create Thing”.
+// ... to preview. You will get all parts when you click "Create Thing".
 part = "links"; // [links, rechts]
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
-// Größe der Gewindestangen des Hauptrahmens
+// Groesse der Gewindestangen des Hauptrahmens
 M_Rahmen = 10;
 
-// Größe der Schrauben, mit denen das Display befentigt wird
+// Groesse der Schrauben, mit denen das Display befentigt wird
 M_Display = 3;
 
 Display_nut_d = 5.4;
@@ -23,25 +23,25 @@ Display_nut_d = 5.4;
 // Abstand der Hauptrahmengewindestangen
 Dx_Rahmen = 170;
 
-// X-Abstand der Displayschraubenlöcher
+// X-Abstand der Displayschraubenloecher
 Dx_Display = 144.3;
 
-// Y-Abstand der Displayschraubenlöcher
+// Y-Abstand der Displayschraubenloecher
 Dy_Display = 49.7;
 
 // Abstand der Hauptrahmenschrauben zur Oberkante des Rahmnens
 Dy_Rahmen = 30;
 
-// Extra-Höhe des kurzen Arms. Damit das Display nicht an den Rahmen kommt.
+// Extra-Hoehe des kurzen Arms. Damit das Display nicht an den Rahmen kommt.
 h_Oberarm = 17;
 
-// Je nach Displaywinkel steht es nach unten über oder nicht
+// Je nach Displaywinkel steht es nach unten ueber oder nicht
 angle = 45;
 
-// Höhe der Hauptrahmenbuchse
+// Hoehe der Hauptrahmenbuchse
 h_Buchse = 8;
 
-// Höhe SD-leser
+// Hoehe SD-leser
 h_sd = 3.5;
 
 // Abstand SD-Leser
@@ -63,10 +63,10 @@ cs = 0.4;  // Clearance
 
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
 
-tau = 2 * PI;  // π is still wrong. τ = circumference ÷ r
+tau = 2 * PI;  // pi is still wrong. tau = circumference / r
 
 xy_factor = 1/tan(angle);
 // To get from a height to a horizontal width inclined correctly
@@ -255,7 +255,7 @@ module display()
          }
          translate([-Dx_Display, -Dy_Display/2+dy_sd, -h_sd])
          {
-            // Ausschnitt für den Displayhalter
+            // Ausschnitt fuer den Displayhalter
             cube([Dx_Display, Dy_Display/2-dy_sd, h_sd+ms]);
          }
          translate([-Dx_Display/2, -Dy_Display/2, 0])

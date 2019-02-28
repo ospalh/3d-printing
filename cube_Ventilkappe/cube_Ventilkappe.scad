@@ -1,8 +1,8 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// kubische Ventilkappe. Für cube-Fahrräder
+// kubische Ventilkappe. Fuer cube-Fahrraeder
 //
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// (c) 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-0
 // have fun
 

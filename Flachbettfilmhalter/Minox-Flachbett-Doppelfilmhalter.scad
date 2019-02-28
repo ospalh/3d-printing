@@ -5,16 +5,16 @@
 // A holder for Minox 11 picture film strips for use with generic flatbed
 // scanners with a transparency unit and holder for 135 (35 mm) film.
 //
-// © 2018 Roland Sieker <ospalh@gmail.com>
+// (c) 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 
-// … to preview. You will get all parts when you click “Create Thing”.
+// ... to preview. You will get all parts when you click "Create Thing".
 part = "Halter"; // [Halter: Halter, Klemme: Klemme]
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
-// I put this in every design, but it shouldn’t make a difference on this one.
+// I put this in every design, but it shouldn't make a difference on this one.
 
 w_loch = 24.6;
 // w_streifen = 9.2;  // real width
@@ -39,12 +39,12 @@ p_k = 3;
 // p = 1.2;  // Bottom, top plate height
 c = 0.4;  // Clearance
 c_x = 0.4;
-angle = 60; // Overhangs much below 60° are a problem for me
+angle = 60; // Overhangs much below 60 degrees are a problem for me
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
-tau = 2 * PI;  // π is still wrong. τ = circumference ÷ r
+tau = 2 * PI;  // pi is still wrong. tau = circumference / r
 
 xy_factor = 1/tan(angle);
 // To get from a height to a horizontal width inclined correctly

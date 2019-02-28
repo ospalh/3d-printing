@@ -3,7 +3,7 @@
 // A dice tower as Vladimir Shukhov might have designed it. Or one that
 // looks like a cooling tower.
 //
-// © 2017–2018 Roland Sieker <ospalh@gmail.com>
+// (c) 2017-2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 
@@ -11,7 +11,7 @@
 //
 // NN
 //
-// © 2018 Roland Sieker <ospalh@gmail.com>
+// (c) 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 /* [Sizes] */
@@ -34,18 +34,18 @@ r_t = 42;  // Top (after print) radius
 // Extra parameters. These can be changed reasonably safely.
 
 
-// When you change these, you’ll have to tweak l, the rings &c. below
+// When you change these, you'll have to tweak l, the rings &c. below
 a_1 = 30;  // Angle from vertical
 a_2 = 40;  // Angle inwards
 
-angle = 37; // Overhangs much below 60° are a problem for me
+angle = 37; // Overhangs much below 60 degrees are a problem for me
 
 
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
-tau = 2 * PI;  // π is still wrong. τ = circumference / r
+tau = 2 * PI;  // pi is still wrong. tau = circumference / r
 
 xy_factor = 1/tan(angle);
 // To get from a height to a horizontal width inclined correctly
@@ -71,7 +71,7 @@ dice_tower();
 
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
 
 

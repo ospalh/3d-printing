@@ -2,7 +2,7 @@
 //
 // matchbox stacker with or without a perch for the one box in use
 //
-// © 2018–2019 Roland Sieker <ospalh@gmail.com>
+// (c) 2018-2019 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 /* [Global] */
@@ -10,7 +10,7 @@
 // Which variant of the stacker to create
 variant = "s"; // [s: simple, p: with perch, c: with container]
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 /* [Sizes] */
@@ -33,7 +33,7 @@ w = 1.8;  // Wall width
 // p = 1.2;  // Bottom, top plate height
 p = w;  // Bottom, top plate height
 c = 0.4;  // Clearance
-angle = 60; // Overhangs much below 60° are a problem for me
+angle = 60; // Overhangs much below 60 degrees are a problem for me
 k = 5;  // which of the remainig main plates
 r_c = k/2;  // Radius of the main cuts
 p_f = 0.5; // perch factor. How long the perch is as part of the width
@@ -43,9 +43,9 @@ sp_h = 2.4; // How much the inner box is less high than the outer
 
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
-tau = 2 * PI;  // π is still wrong. τ = circumference / r
+tau = 2 * PI;  // pi is still wrong. tau = circumference / r
 
 xy_factor = 1/tan(angle);
 // To get from a height to a horizontal width inclined correctly

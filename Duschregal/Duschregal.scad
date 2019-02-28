@@ -2,15 +2,15 @@
 //
 // shower gel shelf
 //
-// © 2018 Roland Sieker <ospalh@gmail.com>
+// (c) 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 
-// … to preview. You will get all parts when you click “Create Thing”.
+// ... to preview. You will get all parts when you click "Create Thing".
 part = "tray"; // [tray: shower tray, fastener: mushroom head fastener, big fastener: big mushroom head fastener]
 
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 r_main = 155;  // main radius of the tray
@@ -42,10 +42,10 @@ r_ff = 1.8;  // fastener (bottom) fillet radius
 f_cs = 3;  // clearance for the third fastener
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
-tau = 2 * PI;  // π is still wrong. τ = circumference ÷ r
-angle = 35; // Overhangs much below 60° are a problem for me
+tau = 2 * PI;  // pi is still wrong. tau = circumference / r
+angle = 35; // Overhangs much below 60 degrees are a problem for me
 xy_factor = 1/tan(angle);  // To get from a height to a horizontal width
                            // inclined correctly
 z_factor = tan(angle);  // the other way around
@@ -281,7 +281,7 @@ module a_plate_hole(dx, dy)
          translate([0, 0, p_1])
          {
             cylinder(r1=r_hole-ms, r2=y_step/sqrt(2)-0.8*w, h=p_2+2*ms, $fn=6);
-            // The sqrt(2) is … experimental math.
+            // The sqrt(2) is ... experimental math.
          }
       }
    }

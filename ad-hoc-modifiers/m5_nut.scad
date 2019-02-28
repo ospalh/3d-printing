@@ -1,8 +1,8 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// Buchse für M3, grob, 10 mm
+// Buchse fuer M3, grob, 10 mm
 //
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// (c) 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-0 4.0
 
 d_i = 8;

@@ -2,7 +2,7 @@
 //
 // Keil, um gekippte Fenster offen zu halten.
 //
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// (c) 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 $fn = 15;

@@ -2,7 +2,7 @@
 //
 // Quick square for calibration
 //
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// (c) 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 

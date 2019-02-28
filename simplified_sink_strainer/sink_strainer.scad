@@ -4,13 +4,13 @@
 //
 // Based on Customizable disposable kitchen sink strainer
 // https://www.thingiverse.com/thing:351541
-// © 2014 junnno
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// (c) 2014 junnno
+// (c) 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 /* [Standard] */
 
-// The main diameter of the sink’s hole, at the top
+// The main diameter of the sink's hole, at the top
 sink_hole_diameter = 43;  // [10:0.1:100]
 
 // The depth of the sink hole, height of the body without the flange

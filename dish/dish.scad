@@ -2,12 +2,12 @@
 //
 // NN
 //
-// © 2018–2019 Roland Sieker <ospalh@gmail.com>
+// (c) 2018-2019 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 /* [Global] */
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 /* [Sizes] */
@@ -28,13 +28,13 @@ dish_h = 5; // [5:0.1:24]
 w = 1.8;  // Wall width
 // p = 1.2;  // Bottom, top plate height
 c = 0.4;  // Clearance
-dish_angle = 60; // Overhangs much below 60° are a problem for me
+dish_angle = 60; // Overhangs much below 60 degrees are a problem for me
 r_r = 2;  // rounding radius
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
-tau = 2 * PI;  // π is still wrong. τ = circumference / r
+tau = 2 * PI;  // pi is still wrong. tau = circumference / r
 
 xy_factor = 1/tan(dish_angle);
 // To get from a height to a horizontal width inclined correctly

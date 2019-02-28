@@ -2,9 +2,9 @@
 //
 // Radius gauge
 //
-// © 2015 Grant Stevens
+// (c) 2015 Grant Stevens
 // https://www.thingiverse.com/thing:910616
-// © 2018 Roland Sieker <ospalh@gmail.com>
+// (c) 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 // Modification history:
 // By Grant Stevens:
@@ -12,7 +12,7 @@
 // 08/01/2015 Strengthen hinge.
 // 05/27/2016 Add "inches" version.
 // By ospalh:
-// 6 July 2017: Drop inch version, use “Praxis font”, put unit on there
+// 6 July 2017: Drop inch version, use "Praxis font", put unit on there
 // 3 June 2018: Use heavy font, my render/preview trick.
 
 view = 1; // 0 = assembly view; 1 = arranged for printing
@@ -21,7 +21,7 @@ part = 1; // 1 = stationary part; 2 = moving part; 3 = both;
 
 preview = true; // Set this to false before you create the STL.
 font_ = "Praxis LT:style=Heavy";  // Set this to a font you actually have.
-// Look up which ones are available under OpenSCAD’s Help/Font List menu.
+// Look up which ones are available under OpenSCAD's Help/Font List menu.
 
 // fn for differently sized objects and fs, fa; all for preview or rendering.
 pna = 40;

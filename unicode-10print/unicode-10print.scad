@@ -2,8 +2,8 @@
 //
 // 10PRINT for OpenScad (for customizer, no title option)
 //
-// © 2016 Fernando Jerez
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// (c) 2016 Fernando Jerez
+// (c) 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA-NC 4.0
 
 

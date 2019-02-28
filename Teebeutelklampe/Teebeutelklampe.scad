@@ -5,12 +5,12 @@
 // a maritime style cleat to stick onto your tea (coffee) mug and to sailor
 // like tie down your tea bag
 //
-// © 2018–2019 Roland Sieker <ospalh@gmail.com>
+// (c) 2018-2019 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 /* [Global] */
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 /* [Sizes] */
@@ -34,12 +34,12 @@ g_cl = 5;  // gap on th cleat
 p = 1.2;  // Bottom, top plate height
 l_c = 3; // length of the cleat arms
 c = 0.4;  // Clearance
-angle = 60; // Overhangs much below 60° are a problem for me
+angle = 60; // Overhangs much below 60 degrees are a problem for me
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
-tau = 2 * PI;  // π is still wrong. τ = circumference / r
+tau = 2 * PI;  // pi is still wrong. tau = circumference / r
 
 xy_factor = 1/tan(angle);
 // To get from a height to a horizontal width inclined correctly

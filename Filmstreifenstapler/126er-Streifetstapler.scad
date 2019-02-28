@@ -2,20 +2,20 @@
 //
 // correctly sized simple shape to stack four picture 135 type film strips
 //
-// © 2018 Roland Sieker <ospalh@gmail.com>
+// (c) 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 
-// … to preview. You will get all parts when you click “Create Thing”.
+// ... to preview. You will get all parts when you click "Create Thing".
 part = "stack"; // [stack: Stapler, lid: Deckel]
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 // not needed
 
 ex = 3;
 ey = 2;
-lld = 127;  // Pitch scheint 1¼ Zoll zu sein, → Vier Bilder ergibt fünf Zoll.
+lld = 127;  // Pitch scheint 11/4 Zoll zu sein, → Vier Bilder ergibt fuenf Zoll.
 ll = lld + ex;
 
 wld = 35; // Make it fit between the plates without problems
@@ -36,12 +36,12 @@ spo = 10;
 w = 1.8;  // Wall width
 p = 1.2;  // Bottom, top plate height
 c = 0.4;  // Clearance
-angle = 60; // Overhangs much below 60° are a problem for me
+angle = 60; // Overhangs much below 60 degrees are a problem for me
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
-tau = 2 * PI;  // π is still wrong. τ = circumference ÷ r
+tau = 2 * PI;  // pi is still wrong. tau = circumference / r
 
 xy_factor = 1/tan(angle);
 // To get from a height to a horizontal width inclined correctly

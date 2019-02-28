@@ -2,19 +2,19 @@
 //
 // Y Belt holder for the Průša-style GeeTech i3 pro C
 //
-// © 2017–18 Roland Sieker <ospalh@gmail.com>
+// (c) 2017-18 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
-// … to preview. You will get all parts when you click “Create Thing”.
+// ... to preview. You will get all parts when you click "Create Thing".
 part = "holder"; // [holder: the y belt holder, square: square nut holder, hex: hex nut holder, test: test shape for sizing the belt]
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 
 // The main dimensions of the printer
 belt_bed_d = 24.5; // Distance the belt should be below the bed.
-// When this is off too much, the belt tension varies, which can’t be good.
+// When this is off too much, the belt tension varies, which can't be good.
 // Measure from the bed to the bottom of the belt.
 
 hole_hole_y = 9.5;

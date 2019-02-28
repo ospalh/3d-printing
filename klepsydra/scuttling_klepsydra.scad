@@ -3,11 +3,11 @@
 // A klepsydra of the sinking type
 // Uses 18 5 Eurocent coins as weight.
 //
-// © 2018 Roland Sieker <ospalh@gmail.com>
+// (c) 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = true; // [false:render, true:preview]
 
 // Size of the balast nuts, per DIN. Standard: M12
@@ -33,14 +33,14 @@ w = 1.2;  // Wall width
 p = 1.2;  // Bottom, top plate height
 cs = 0.4;  // Clearance (horizontal)
 cs_v = 0.2; // Vertical clearance
-angle = 60; // Overhangs much below 60° are a problem for me
+angle = 60; // Overhangs much below 60 degrees are a problem for me
 lh = 0.2;  // Layer height
 nw = 0.4;  // Nozzle width
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
-tau = 2 * PI;  // π is still wrong. τ = circumference ÷ r
+tau = 2 * PI;  // pi is still wrong. tau = circumference / r
 
 e_2 = S / sqrt(3);
 e = S * 2 / sqrt(3);

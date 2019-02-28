@@ -2,9 +2,9 @@
 //
 // Rudolf Kochs Antwort
 //
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// (c) 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
-// Basierend auf Rudolf Kocks Werk (D’uh!), das inzwischen gemeinfrei ist.
+// Basierend auf Rudolf Kocks Werk (D'uh!), das inzwischen gemeinfrei ist.
 
 // fudge value is used to ensure that subtracted solids are a tad taller
 // in the z dimension than the polygon being subtracted from.  This helps
@@ -12,7 +12,7 @@
 fudge = 0.1;
 
 
-// Wie groß das Ding laut slic3r ist
+// Wie gross das Ding laut slic3r ist
 breite = 129.39;
 tiefe = 67.08;
 
@@ -926,7 +926,7 @@ module Halter()
    }
    module xH(x, y, l, a)
    {
-      // schräger Halter
+      // schraeger Halter
       translate([x, y, hh/2])
       {
          rotate(a)

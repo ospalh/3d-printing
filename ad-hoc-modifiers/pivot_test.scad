@@ -1,8 +1,8 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// Testkörper für Drehkalenderzapfen
+// Testkoerper fuer Drehkalenderzapfen
 //
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// (c) 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-0 4.0
 
 ri = 4.7;

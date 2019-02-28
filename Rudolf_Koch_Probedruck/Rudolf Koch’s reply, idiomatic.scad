@@ -1,14 +1,14 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// Rudolf Koch’s reply to requests for free samples of his work, translated
+// Rudolf Koch's reply to requests for free samples of his work, translated
 // to English
 //
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// (c) 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 
 ms = 0.01;
-// Muggeseggele (gnat’s bollocks, in Swabian about as harmless as the
+// Muggeseggele (gnat's bollocks, in Swabian about as harmless as the
 // phrase shown)
 
 schwabacher = "Alte Schwabacher:style=Regular";
@@ -126,7 +126,7 @@ module connectors()
    }
    module xH(x, y, l, a)
    {
-      // schräger Halter
+      // schraeger Halter
       translate([x, y, hh/2])
       {
          rotate(a)

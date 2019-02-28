@@ -2,11 +2,11 @@
 //
 // Axoloti case.
 //
-// © 2017 Roland Sieker <ospalh@gmail.com>
-// © 2013 M_G
+// (c) 2017 Roland Sieker <ospalh@gmail.com>
+// (c) 2013 M_G
 // Licence: CC-BY-SA 4.0
 
-// Based on M_G’s OpenSCAD Parametric Packaging Script v2, version
+// Based on M_G's OpenSCAD Parametric Packaging Script v2, version
 // 2.6c. Thingiveres thing https://www.thingiverse.com/thing:66030
 // See the source file there for usage notes.
 
@@ -42,7 +42,7 @@ top_bottom_ratio=0.2;  // Originally 0.5.
 // Does the part have (anti-warping) mouse ears?
 has_mouseears = false;
 mouse_ear_thickness=0.2*2;  // Twice print layer thickness is a good idea
-mouse_ear_radius = 10;  // 5–15  (mm) generally work well
+mouse_ear_radius = 10;  // 5-15  (mm) generally work well
 
 
 // How far apart the 2 halves are in the "beside" layout
@@ -64,7 +64,7 @@ box_type = "rounded6sides";
 holes = [
    // Three examples
    ["N", "Rectangle", [-7, 0.5,0,-device_xyz[2]/2,0,"inside"],
-    [wall_t, 14, 2] ], // Cutout for µSD card (Reuse this?)
+    [wall_t, 14, 2] ], // Cutout for microSD card (Reuse this?)
 
 //   ["E", "Rectangle", [0.5, +0.75,0,0,0,"inside"], [wall_t, 9, 5]],
    // cutout for switch
@@ -149,7 +149,7 @@ texts = [
    ["T", "XQg", [0,0,0,0,90,"inside"], [11,5, 0, "Praxis LT"]],
    ["E", "Off On", [0,-5,0,0,0,"outside"], [1,3, 0, "Praxis LT"]],
    ["E", "uUSB", [15,-5,0,0,0,"outside"], [1,3, 0, "Praxis LT"]],
-   ["W", "µSD", [14,4,0,0,0,"outside"], [1,3, 0, "Praxis LT"]],
+   ["W", "microSD", [14,4,0,0,0,"outside"], [1,3, 0, "Praxis LT"]],
    ];
 
 

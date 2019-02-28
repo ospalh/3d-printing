@@ -1,8 +1,8 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// Ring, um die Kette des Stöpsels am Spülbecken zu befestigen
+// Ring, um die Kette des Stoepsels am Spuelbecken zu befestigen
 //
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// (c) 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-0 4.0
 
 d_i_u = 5;

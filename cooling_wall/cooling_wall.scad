@@ -2,10 +2,10 @@
 //
 //
 //
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// (c) 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
-// … to preview
+// ... to preview
 part = "wall"; // [wall: The cooling wall, modifier: The modifier cuboid. See description]
 top_height=150; // [0,0.1:200]
 modifier_bottom_height = 10;  // [0,0.1:200]

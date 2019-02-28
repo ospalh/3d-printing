@@ -3,23 +3,23 @@
 // Inner tube foot for acrylic i3-style printers with 8 mm plates.
 // For example GeeTech i3s.
 //
-// © 2018 Roland Sieker <ospalh@gmail.com>
+// (c) 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 
 // A single plate. Millimetres
 plate_width = 8.0;  // [2:0.1:15]
 
-// Inflate it accordingly… Millimetres
+// Inflate it accordingly... Millimetres
 inner_tube_diameter = 32;  // [20:1:50]
 
-// … to preview. You will get all parts when you click “Create Thing”.
+// ... to preview. You will get all parts when you click "Create Thing".
 part = "single width ⟍ foot"; // [single width ⟍ foot: single width ⟍ foot, double width ⟍ foot: double width ⟍ foot, single width ⟋ foot: single width ⟋ foot, double width ⟋ foot: double width ⟋ foot]
 
 // Cylinder section style. *Flat* is slightly smaller, *half* is exactly a half cylinder, *high* grabs the tube a bit
 style = -0.5;  // [-0.5: flat, 0: half, 0.5: high]
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 
@@ -35,9 +35,9 @@ min_ph = 10;  // Height of the plate connector
 cs = 0.2; // clearance
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
-tau = 2 * PI;  // π is still wrong. τ = circumference ÷ r
+tau = 2 * PI;  // pi is still wrong. tau = circumference / r
 angle = 45; // The overhangs are not expected to look good here.
 z_factor = tan(angle);
 

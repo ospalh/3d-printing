@@ -3,11 +3,11 @@
 // Inner tube foot
 //
 // A foot to mount a Replicator/Duplicator/Bizer/&cator on a
-// half-inflated bicycle inner tube.  You’ll need four.
+// half-inflated bicycle inner tube.  You'll need four.
 //
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// (c) 2017 Roland Sieker <ospalh@gmail.com>
 // Based on Replicator Isolator Feet by Gary Crowell Sr. https://www.thingiverse.com/thing:42124
-// © 2013 Gary Crowell Sr. <ospalh@gmail.com>
+// (c) 2013 Gary Crowell Sr. <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 

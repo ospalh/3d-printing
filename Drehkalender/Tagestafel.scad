@@ -1,16 +1,16 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// Calender tablets for otvinta3d’s flip calender with nicer font and
+// Calender tablets for otvinta3d's flip calender with nicer font and
 // German text.
 //
-// © 2017–2018 Roland Sieker <ospalh@gmail.com>
+// (c) 2017-2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 //
 
 
 // This part is a recreation. The rest of the calender is either modified or original.
 // Sourec of the original
-// © 2016 otvinta3d CC-BY
+// (c) 2016 otvinta3d CC-BY
 // https://www.thingiverse.com/thing:1785261
 // http://www.otvinta.com/download04.html
 

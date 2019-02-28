@@ -1,8 +1,8 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// Monatkarten für den Drehkalender
+// Monatkarten fuer den Drehkalender
 //
-// © 2018 Roland Sieker <ospalh@gmail.com>
+// (c) 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 // Several versions of the moth cards, in different languages or scripts
@@ -13,7 +13,7 @@ month_de =
    ["Nullvember",  // month[0]
       "Jan",  // month[1] = Januar(y) &c.
       "Feb",
-      "Mär",
+      "Maer",
       "Apr",
       "Mai",
       "Jun",
@@ -107,7 +107,7 @@ tyo = -2; // Text y offset. Shif the text down slightly.
 
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
 ms = 0.01;  // Muggeseggele.
 

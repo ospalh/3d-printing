@@ -2,7 +2,7 @@
 //
 // Minimalist Frame to hang a Raspberry Pi on to one M3 screw.
 //
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// (c) 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 
@@ -142,12 +142,12 @@ module arms()
    xr = xo - xd/2 ;
 
    // The math
-   // The lengths …
+   // The lengths ...
    l1l = sqrt(y1*y1+xl*xl);
    r1l = sqrt(y1*y1+xr*xr);
    l2l = sqrt(y2*y2+xl*xl);
    r2l = sqrt(y2*y2+xr*xr);
-   // …and the angles
+   // ...and the angles
    l1a = atan(xl/y1);
    r1a = atan(xr/y1);
    l2a = atan(xl/y2);

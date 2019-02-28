@@ -1,19 +1,19 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// Röhren mit Bajonettverschluss, um DM-Münzen zu lagern.
+// Roehren mit Bajonettverschluss, um DM-Muenzen zu lagern.
 //
-// © 2018 Roland Sieker <ospalh@gmail.com>
+// (c) 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 // Original:
 // https://www.thingiverse.com/thing:56910
-// © Walter Hsiao
+// (c) Walter Hsiao
 // Licence: CC-BY-SA
 
 
 // ... to preview. You will get all three when done. Print just one of the
 part = "container"; // [container,lid]
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 // Style of the container bottom, plain or with bayonette to stack them
@@ -54,7 +54,7 @@ _numberOfSides = 6;  // [3:1:12]
 w = 1.8;  // Wall width
 p = 1.2;  // Bottom, top plate height
 c = 0.4;  // Clearance
-angle = 60; // Overhangs much below 60° are a problem for me
+angle = 60; // Overhangs much below 60 degrees are a problem for me
 
 
 // the thinnest walls of the container will use this value
@@ -64,9 +64,9 @@ _minimumWallThickness = 1.2;
 _topBottomThickness = 1.2;
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
-tau = 2 * PI;  // π is still wrong. τ = circumference ÷ r
+tau = 2 * PI;  // pi is still wrong. tau = circumference / r
 
 xy_factor = 1/tan(angle);
 // To get from a height to a horizontal width inclined correctly
@@ -79,7 +79,7 @@ outsideDiameter = _insideDiameter +
 baseHeight = _interiorHeight + _topBottomThickness - _lipHeight;
 stackable_containerHeight = _interiorHeight + _topBottomThickness;
 lidHeight = _topBottomThickness + _lipHeight + 2; // 2 mm extra for the bayonet
-// No storage space in the lid. That’s what “lid” means.
+// No storage space in the lid. That's what "lid" means.
 twistAngle = 60; // amount of twist to close the lid
 bayonetAngle = 30; // angular size of the bayonets
 
@@ -176,7 +176,7 @@ module stack_parts()
 }
 
 // *******************************************************
-// I’m being lazy and won’t replace the signatures, but jus add these shortcuts.
+// I'm being lazy and won't replace the signatures, but jus add these shortcuts.
 
 module short_container()
 {

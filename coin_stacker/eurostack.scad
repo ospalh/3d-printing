@@ -2,15 +2,15 @@
 //
 // A set of cylindrical holes to store one set of euro coins.
 //
-// © 2018 Roland Sieker <ospalh@gmail.com>
+// (c) 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
-// … to preview. You will get all parts when you click “Create Thing”.
+// ... to preview. You will get all parts when you click "Create Thing".
 part = "stack"; // [stack: coin stacker, lid: lid]
 
 
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 // How many one cent coins
@@ -56,10 +56,10 @@ h_2 = 2.2;
 d_001 = 16.25;
 d_002 = 18.75;
 d_005 = 21.2;  // !
-d_01 = 19.75;  // Smaller than the 5 ¢. Things are swapped below
+d_01 = 19.75;  // Smaller than the 5 cent. Things are swapped below
 d_02 = 22.25;
 d_05 = 24.25;  // !
-d_1 = 23.25;  // Smaller than the 50 ¢. Swapped, too.
+d_1 = 23.25;  // Smaller than the 50 cent. Swapped, too.
 d_2 = 25.75;
 
 
@@ -77,12 +77,12 @@ ch = 0.2; //
 
 // Some of these are from a template and not used in this design. Working out which exactly i could delete is too much work
 
-angle = 55; // Overhangs much below 60° are a problem for me
+angle = 55; // Overhangs much below 60 degrees are a problem for me
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
-tau = 2 * PI;  // π is still wrong. τ = circumference / r
+tau = 2 * PI;  // pi is still wrong. tau = circumference / r
 
 xy_factor = 1/tan(angle);
 // To get from a height to a horizontal width inclined correctly
@@ -120,12 +120,12 @@ h_t = p + one_cents * h_001 + c_h_n(one_cents) + two_cents * h_002 + c_h_n(two_c
 
 ;
 
-// N.B.: 10 ¢ pieces have a smaller diameter than 5 ¢ pieces, as does the 1
-// € coin and 50 ¢ coin. Below they are swapped. You should later
+// N.B.: 10 cent pieces have a smaller diameter than 5 cent pieces, as does the 1
+// euro coin and 50 cent coin. Below they are swapped. You should later
 // stack them that way, too.
 
 // To make the whole no coin of this size situation easier, we just do the
-// c_h for coins that are not there. I’ll call this a kludge. Whatever.
+// c_h for coins that are not there. I'll call this a kludge. Whatever.
 
 o_001 = p;
 o_002 = o_001 + one_cents * h_001 + c_h_n(one_cents);
@@ -215,12 +215,12 @@ module stack()
          {
             cylinder(d1=d_o_002, d2=d_o_01, h=two_cents*h_002+c_h_n(two_cents)+ms);
          }
-         // First 10 ¢
+         // First 10 cent
          translate([0,0,o_01])
          {
             cylinder(d1=d_o_01, d2=d_o_005, h=ten_cents*h_01+c_h_n(ten_cents)+ms);
          }
-         // Only then the bigger 5 ¢
+         // Only then the bigger 5 cent
          translate([0,0,o_005])
          {
             cylinder(d1=d_o_005, d2=d_o_02, h=five_cents*h_005+c_h_n(five_cents)+ms);
@@ -252,12 +252,12 @@ module stack()
          {
             cylinder(d=d_002+2*c, h=h_t);
          }
-         // First 10 ¢
+         // First 10 cent
          translate([0,0,o_01])
          {
             cylinder(d=d_01+2*c, h=h_t);
          }
-         // Only then the bigger 5 ¢
+         // Only then the bigger 5 cent
          translate([0,0,o_005])
          {
             cylinder(d=d_005+2*c, h=h_t);

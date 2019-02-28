@@ -2,12 +2,12 @@
 //
 // Grab toy
 //
-// © 2018 E. Coiras as CC-BY
-// © 2018 Roland Sieker <ospalh@gmail.com>
+// (c) 2018 E. Coiras as CC-BY
+// (c) 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 
-// … to preview. You will get all parts when you click “Create Thing”.
+// ... to preview. You will get all parts when you click "Create Thing".
 part = "short grabber"; // [short grabber, long grabber, hinge test]
 
 
@@ -20,7 +20,7 @@ slack = 0.5; // [0.15:0.01:0.7]
 REINFORCE_CORE = true; //add extra material to hinge cores
 REINFORCE_SHOULDER = false; //add extra material to shoulders
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = true; // [false:render, true:preview]
 
 

@@ -3,24 +3,24 @@
 // Damesteine
 // draughts piecse
 //
-// © 2018 Roland Sieker <ospalh@gmail.com>
+// (c) 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 /* [Global] */
 
-// … to preview. You will get all six parts when you click “Create Thing”.
+// ... to preview. You will get all six parts when you click "Create Thing".
 part = "piece"; // [piece: draughts piece, white token: token for white king, black token: token for black king, morris: piece for x men morris]
 
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 /* [Sizes] */
 
 d_g = 30;  // Gesamtdurchmesser
-h_g = 10;  // Gesamthöhe
-d_m = 19.75;  // Münzdurchmesser. 10 ¢ (€)
-h_m = 2.0;  // Münzdicke oder -höhe. Nominell 1.93 mm
+h_g = 10;  // Gesamthoehe
+d_m = 19.75;  // Muenzdurchmesser. 10 cent (euro)
+h_m = 2.0;  // Muenzdicke oder -hoehe. Nominell 1.93 mm
 d_r = 1.2;  // Dicke Riffelung
 n_r = 23;  // Anzahl Riffelungen
 r_vr = 2.4;  // Radius der Verrundung.
@@ -37,17 +37,17 @@ r_wnk = 45;  // Winkel der Riffelung
 
 
 c = 0.5;  // Clearance
-angle = 60; // Overhangs much below 60° are a problem for me
+angle = 60; // Overhangs much below 60 degrees are a problem for me
 font="Symbola:style=Regular";
 ts = 0.92 * (d_m-2*c);
 syt = -0.5;
 sxt = -0.3;
-t_h = 0.4;  // Textextrusionshöhe
+t_h = 0.4;  // Textextrusionshoehe
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
-tau = 2 * PI;  // π is still wrong. τ = circumference / r
+tau = 2 * PI;  // pi is still wrong. tau = circumference / r
 
 xy_factor = 1/tan(angle);
 // To get from a height to a horizontal width inclined correctly
@@ -59,7 +59,7 @@ ms = 0.01;  // Muggeseggele.
 
 r_g = d_g/2;
 r_m = d_m/2;
-r_ml = r_m + c; // Münzlochradius
+r_ml = r_m + c; // Muenzlochradius
 
 some_x_distance = 1.5*d_g;
 some_y_distance = 0.75*(d_g+d_m);
@@ -113,7 +113,7 @@ module print_part()
    {
       schwarzer_marker();
    }
-   if (part == "50 ¢")
+   if (part == "50 cent")
    {
       rohtoken(false);
    }

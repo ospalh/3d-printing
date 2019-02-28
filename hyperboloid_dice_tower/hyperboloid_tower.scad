@@ -3,7 +3,7 @@
 // A dice tower as Vladimir Shukhov might have designed it. Or one that
 // looks like a cooling tower.
 //
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// (c) 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 
@@ -18,7 +18,7 @@ c = 14;  // count
 //c = 20;
 
 
-// When you change these, you’ll have to tweak the rings &c. below
+// When you change these, you'll have to tweak the rings &c. below
 r_t = 34;  // Top (after print) radius
 a_1 = 30;  // Angle from vertical
 a_2 = 50;  // Angle inwards
@@ -51,7 +51,7 @@ ring(0.75*hs, r_t*0.91);
 ring(hs, r_t*1.27);
 rotate(0)
 {
-  feet(1.27*r_t);  // Use the last rings’s r factor here
+  feet(1.27*r_t);  // Use the last rings's r factor here
   mirror()
   {
      feet(1.27*r_t, 107.5);

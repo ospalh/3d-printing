@@ -2,7 +2,7 @@
 //
 // Yet another Pi Camera holder
 //
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// (c) 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 
@@ -10,7 +10,7 @@
 // Change these to taste. Lengths are in mm.
 t_b_1 = 8;  // Bed thickness. I want to attach it to an 8 mm Acrylic bed carrier
 t_b_2 = 6;  // Clamp thickness.
-cam_angle = 45;  // °
+cam_angle = 45;  //  degrees
 l_c = 30;  // Clamp length. How big the clamping bit will be
 w_c = 25;  // Clamp width
 t_c = 4.2;  // Thickness of the clamp

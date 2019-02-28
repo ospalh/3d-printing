@@ -2,9 +2,9 @@
 //
 // Comfy spinner (bearing) caps with falsework
 //
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// (c) 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
-// Remix of bda’s “Customizable comfy spinner caps. Cap for any bearing.”, https://www.thingiverse.com/thing:2319653
+// Remix of bda's "Customizable comfy spinner caps. Cap for any bearing.", https://www.thingiverse.com/thing:2319653
 
 
 // Inner (shaft) diameter of the bearing. (Sizes are in mm)

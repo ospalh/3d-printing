@@ -2,12 +2,12 @@
 //
 // A stamp
 //
-// © 2018–2019 Roland Sieker <ospalh@gmail.com>
+// (c) 2018-2019 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 /* [Global] */
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 /* [Sizes] */
@@ -35,7 +35,7 @@ h_t = 2;
 h_st_1 = 20;
 h_st_2 = 8;
 h_st_3 = 8;
-angle = 60; // Overhangs much below 60° are a problem for me
+angle = 60; // Overhangs much below 60 degrees are a problem for me
 
 r1 = 4;
 r2 = 2;
@@ -43,9 +43,9 @@ r3 = 1;
 sp_2 = 12;
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
-tau = 2 * PI;  // π is still wrong. τ = circumference / r
+tau = 2 * PI;  // pi is still wrong. tau = circumference / r
 
 xy_factor = 1/tan(angle);
 // To get from a height to a horizontal width inclined correctly

@@ -4,7 +4,7 @@
 // Extruder one part
 // Just a few simple blocks
 //
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// (c) 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 
@@ -18,7 +18,7 @@ nozzle_offset_y = 0.0;
 font_name = "Demos LT";
 // font_name = "Palatino";
 // font_name = "serif";
-// font_name = "bugger, haven’t got this one";
+// font_name = "bugger, haven't got this one";
 font_name_2 = "Demos X";
 font_name_3 = "serif";
 some_distance = 40;
