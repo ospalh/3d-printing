@@ -2,12 +2,12 @@
 //
 // tea spoon holder
 //
-// © 2018–2019 Roland Sieker <ospalh@gmail.com>
+// (c) 2018-2019 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 /* [Global] */
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 /* [Sizes] */
@@ -31,7 +31,7 @@ holder_length = 30; // [5:1:50]
 w = 1.8;  // Wall width
 // p = 1.2;  // Bottom, top plate height
 c = 1;  // Clearance
-dish_angle = 60; // Overhangs much below 60° are a problem for me
+dish_angle = 60; // Overhangs much below 60 degrees are a problem for me
 r_r = 4;  // rounding radius, dish
 // For the spoon rest thing we use w as rounding radius.
 spoon_angle = 15;
@@ -39,9 +39,9 @@ g_thick = grip_thickness + c;
 g_w = grip_width + c;
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
-tau = 2 * PI;  // π is still wrong. τ = circumference / r
+tau = 2 * PI;  // pi is still wrong. tau = circumference / r
 
 xy_factor = 1/tan(dish_angle);
 // To get from a height to a horizontal width inclined correctly

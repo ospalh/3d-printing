@@ -2,7 +2,7 @@
 //
 // NN
 //
-// © 2018 Roland Sieker <ospalh@gmail.com>
+// (c) 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 a = 25;
@@ -11,7 +11,7 @@ c = 20;
 d = 4;
 h= 10;
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 
@@ -27,12 +27,12 @@ preview = 1; // [0:render, 1:preview]
 w = 1.8;  // Wall width
 p = 1.2;  // Bottom, top plate height
 cs = 0.4;  // Clearance
-angle = 60; // Overhangs much below 60° are a problem for me
+angle = 60; // Overhangs much below 60 degrees are a problem for me
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
-tau = 2 * PI;  // π is still wrong. τ = circumference ÷ r
+tau = 2 * PI;  // pi is still wrong. tau = circumference / r
 
 xy_factor = 1/tan(angle);
 // To get from a height to a horizontal width inclined correctly
