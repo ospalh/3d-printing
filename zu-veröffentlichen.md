@@ -1,4 +1,3 @@
-* Pfeil
 * Stuhllehnentelefonhalter
 * Türhaken
   - innen
