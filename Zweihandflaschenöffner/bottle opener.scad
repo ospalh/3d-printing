@@ -1,8 +1,1 @@
-// -*- coding: utf-8 -*-
-//
-// German craftsperson style bottle opener
-//
-// © 2017 Roland Sieker <ospalh@gmail.com>
-// Licence: CC-BY-SA 4.0
-
-cube([5, 20, 100], true);
+cube([5, 100, 20]);
