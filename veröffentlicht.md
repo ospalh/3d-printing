@@ -69,3 +69,4 @@
   - Euro
   - andere
 * Pfeil
+* Zweihandflaschenöffner

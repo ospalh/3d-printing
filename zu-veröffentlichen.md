@@ -7,5 +7,3 @@
 * Leitkegel
 * Dish
 * Löffelhalter
-
-* zur passenden Zeit: Zweihandflaschenöffner
