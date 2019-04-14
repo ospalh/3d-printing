@@ -17,10 +17,10 @@ preview = 1; // [0:render, 1:preview]
 
 //
 mic_angle = 30;  // [10:2.5:60]
-l_h = 30;
+l_h = 40;
 h_h = 50;
 w_h = 5.6;
-l_hc = 2;
+l_hc = 4;
 d_mic = 6.6;
 g_h = 0.8;
 /* [Hidden] */
@@ -31,7 +31,7 @@ g_h = 0.8;
 // Extra parameters. These can be changed reasonably safely.
 
 
-w = 1.2;  // Wall width
+w = 1.8;  // Wall width
 p = 1.2;  // Bottom, top plate height
 c = 0.4;  // Clearance
 angle = 60; // Overhangs much below 60° are a problem for me
@@ -145,13 +145,23 @@ module zweiteil()
 
 module arm()
 {
-   cube([l_h, w_h, w_h]);
-   translate([0,0,w_h-ms])
+   difference()
    {
-      clip();
-      translate([l_h-l_hc, 0, 0])
+      union()
       {
-         clip();
+         cube([l_h, w_h, w_h]);
+         translate([0,0,w_h-ms])
+         {
+            clip();
+            translate([l_h-l_hc, 0, 0])
+            {
+               clip();
+            }
+         }
+      }
+      translate([l_hc+ms,w_h/2-0.5,-ms])
+      {
+         cube([l_h,1,w_h+2*r_mic+2*w+2*ms]);
       }
    }
 }
