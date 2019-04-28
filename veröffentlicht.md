@@ -70,3 +70,4 @@
   - andere
 * Pfeil
 * Zweihandflaschenöffner
+* Stuhllehnentelefonhalter

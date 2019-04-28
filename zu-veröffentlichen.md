@@ -1,4 +1,3 @@
-* Stuhllehnentelefonhalter
 * Türhaken
   - innen
   - außen
