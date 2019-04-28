@@ -17,4 +17,4 @@ how designed
 
 To measure the chair’s radius i used my [radius gauge](https://www.thingiverse.com/thing:3248890), based on [Grant Stevens’](https://www.thingiverse.com/thing:910616).
 
-There is some design history available at my [github repo](https://github.com/ospalh/3d-printing/tree/develop/phone_holder).
+There is some design history available at my [github repo](https://github.com/ospalh/3d-printing/tree/develop/fone_holder).
