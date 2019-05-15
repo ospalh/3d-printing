@@ -9,7 +9,7 @@
 
 
 // … to preview. You will get all parts when you click “Create Thing”.
-part = "halter"; // [halter: lower part, einsatz: upper part, st: Stössel, s: stack, p: preview]
+part = "halter"; // [halter: lower part, einsatz: upper part, st: Stössel, r: Rettungsschieber, s: stack, p: preview]
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
@@ -146,6 +146,10 @@ module print_part()
    if ("st" == part)
    {
       stoessel();
+   }
+   if ("r" == part)
+   {
+      rettungsschieber();
    }
 }
 
@@ -414,4 +418,10 @@ module stoessel()
             valign="center", halign="left", size=32);
       }
    }
+}
+
+
+module rettungsschieber()
+{
+   qquad(l_ue_a+0, l_rahmen-2*c, h_rahmen-c_h);
 }
