@@ -61,11 +61,6 @@ l_stop = 5;  // Länge für diesen Klotz
 
 w_schraeg = h_ue_a/4;
 
-
-// Größen der Haltemagnete
-d_mag = 3.6; // großes Loch
-h_mag = 1;
-
 l_ueber = (3*l_rahmen - l_scanner)/2 ; // // Extrabreite rechts. Dient als Maß beim Einschieben
 echo("l_ueber", l_ueber);
 
@@ -76,7 +71,7 @@ echo("l_ueber", l_ueber);
 w = 1.8;  // Wall width
 p = 1.2;  // Bottom, top plate height
 c = 0.4;  // Clearance
-c_h = 0.2;  // Spiel in Höhe (Magneten)
+c_h = 0.2;  // Spiel in Höhe
 angle = 60; // Overhangs much below 60° are a problem for me
 
 // *******************************************************
@@ -202,7 +197,6 @@ module filmhalter()
    {
       basis_filmhalter();
       fenster();
-      magnetausschnitte(0.5);
       langnut(w_rahmen+2*c, h_rahmen/2+c_h);
       zentrierkerbe(-1);
    }
@@ -215,7 +209,6 @@ module einsatz()
       basis_einsatz();
       fenster();
       langnut(w_rahmen+2*c, h_rahmen/2+c_h);
-      magnetausschnitte(0.5);
       zentrierkerbe(1);
    }
 
@@ -365,27 +358,6 @@ module fenster()
    }
 }
 
-
-module magnetausschnitte(mo)
-{
-   magnetausschnitt(1, 1, mo);
-   magnetausschnitt(-1, 1, mo);
-   magnetausschnitt(1, -1, mo);
-   magnetausschnitt(-1, -1, mo);
-}
-
-module magnetausschnitt(xf, yf, mo)
-{
-   yo_mag = (w_gesamt- w_rand + w_rahmen) /4;  // Mittig auf demh Randstück
-
-   // Auserhalb des des GRiffs zum Öffnen
-   translate(
-      [xf * (l_bild/2+d_mag) , yf * (yo_mag-mo), h_bd - h_mag-c_h + ms])
-   {
-      cylinder(d=d_mag, h=h_mag+c_h);  // N.B. Spiel ist schon im d_mag
-      // eingerechnet
-   }
-}
 
 
 module zentrierkerbe(sf)
