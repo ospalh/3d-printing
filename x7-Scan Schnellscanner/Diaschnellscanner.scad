@@ -75,7 +75,7 @@ echo("l_ueber", l_ueber);
 
 w = 1.8;  // Wall width
 p = 1.2;  // Bottom, top plate height
-c = 0.6;  // Clearance
+c = 0.4;  // Clearance
 c_h = 0.2;  // Spiel in Höhe (Magneten)
 angle = 60; // Overhangs much below 60° are a problem for me
 
@@ -230,7 +230,7 @@ module basis_filmhalter()
       difference()
       {
          massiver_halter();
-         einsatzausschnitt(2*c);
+         einsatzausschnitt(c);
       }
    }
 }
