@@ -216,7 +216,6 @@ module einsatz()
       fenster();
       langnut(w_rahmen+2*c, h_rahmen/2+c_h);
       magnetausschnitte(0.5);
-      leitkeil();
       zentrierkerbe(1);
    }
 
@@ -418,27 +417,6 @@ module langnut(kw, kh)
       // Zu lang. Kein Problem
    }
 
-}
-
-
-module leitkeil()
-{
-   xo = l_bild/2+l_br;
-   llk = l_scanner/2 - xo + max(l_ueber,l_stop);
-   translate([xo, 0, h_bd+ms])
-   {
-      hull()
-      {
-         translate([0,0,-ms/2])
-         {
-            cube([ms, w_rahmen + c, ms], center=true);
-         }
-         translate([llk+ms,0,-h_lkl/2])
-         {
-            cube([ms, w_rahmen + c, h_lkl], center=true);
-         }
-      }
-   }
 }
 
 
