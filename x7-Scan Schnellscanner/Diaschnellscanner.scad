@@ -44,6 +44,9 @@ r_r = 1.5;  // Rundungsradius
 
 l_sr = (l_scanner - l_bild)/2;
 
+x_t_s = -1.5; // tweak für Stößellänge
+x_t_f = +0.5; // tweak für Rahmen
+y_t_n = -1; // tweak nut
 
 // Auch wichtig:
 l_zk = 4;  // Länge Zentrierkerbe
@@ -61,7 +64,7 @@ l_stop = 5;  // Länge für diesen Klotz
 
 w_schraeg = h_ue_a/4;
 
-l_ueber = (3*l_rahmen - l_scanner)/2 ; // // Extrabreite rechts. Dient als Maß beim Einschieben
+l_ueber = (3*l_rahmen - l_scanner)/2 + x_t_f ; // // Extrabreite rechts. Dient als Maß beim Einschieben
 echo("l_ueber", l_ueber);
 
 // *******************************************************
@@ -133,6 +136,11 @@ if ("p" == part)
    preview_parts();
 }
 
+if ("s" == part)
+{
+   stack_parts();
+}
+
 module print_part()
 {
    if ("halter" == part)
@@ -184,7 +192,7 @@ module stack_parts()
             }
          }
       }
-      translate([0,0,h_ue_a/2 - h_rahemen/2])
+      translate([0,0,h_ue_a/2 - h_rahmen/2])
       {
          stoessel();
       }
@@ -201,7 +209,10 @@ module filmhalter()
    {
       basis_filmhalter();
       fenster();
-      langnut(w_rahmen+2*c, h_rahmen/2+c_h);
+      translate([0,y_t_n,0])
+      {
+         langnut(w_rahmen+2*c, h_rahmen/2+c_h);
+      }
       zentrierkerbe(-1);
    }
 }
@@ -212,7 +223,10 @@ module einsatz()
    {
       basis_einsatz();
       fenster();
-      langnut(w_rahmen+2*c, h_rahmen/2+c_h);
+      translate([0,-y_t_n,0])
+      {
+         langnut(w_rahmen+2*c, h_rahmen/2+c_h);
+      }
       zentrierkerbe(1);
    }
 
@@ -404,12 +418,12 @@ module stoessel()
       {
          qquad(l_rahmen+40, l_rahmen-2*c, h_rahmen-c_h);
       }
-      translate([l_rahmen/2+2.5, 0, h_ue_a])
+      translate([l_rahmen/2+2.5 + x_t_s, 0, h_ue_a])
       {
          rquad(5, l_rahmen - 2*c, 2*h_ue_a);
       }
    }
-   translate([l_rahmen+5,0, h_rahmen-c_h-ms])
+   translate([l_rahmen+5, -5, h_rahmen-c_h-ms])
    {
       linear_extrude(1, convexity=8)
       {
