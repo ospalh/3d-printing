@@ -437,5 +437,5 @@ module stoessel()
 
 module rettungsschieber()
 {
-   qquad(l_ue_a+0, l_rahmen-2*c, h_rahmen-c_h);
+   qquad(l_ue_a+30, l_rahmen-2*c, h_rahmen-c_h);
 }
