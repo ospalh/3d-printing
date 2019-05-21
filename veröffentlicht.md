@@ -71,3 +71,7 @@
 * Pfeil
 * Zweihandflaschenöffner
 * Stuhllehnentelefonhalter
+* Türhaken
+  - innen
+  - außen
+* verbesserter Würfelturm
