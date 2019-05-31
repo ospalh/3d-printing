@@ -7,7 +7,7 @@
 //
 
 // … to preview. You will get both parts, if you select a stand
-part = "funnel"; // [funnel: funnel, stand: stand or nothing]
+part = "funnel"; // [funnel: funnel, stand: stand or nothing, p: Preview, s: stack, t: test]
 
 // in cm. The neck is the thin bottom part
 outer_neck_diameter = 2.8;  // [0.3:0.1:8]
@@ -138,9 +138,22 @@ function fc() = (preview) ? pfc : rfc;
 // *******************************************************
 // Generate the parts
 
+if (part == "p")
+{
+   preview_parts();
+}
+
+if (part == "s")
+{
+   stack_parts();
+}
+
+if (part == "t")
+{
+   // Test stapes
+}
+
 print_part();
-// preview_parts();
-// stack_parts();
 
 // I used this cylinder as a modifier to set the infill to higher
 // values under the central bit of the portioner sphere, to get less
@@ -197,206 +210,23 @@ module stack_parts()
 // Code for the parts themselves
 
 
+
+ch = (r_r - r_n) / tan(fua_b);
+// Max height. I sort-of designed the funnel the right way up, but
+// want it come out upside down.
+// mh = l_n + o_nl + ch;
+
+mh = l_n + ch;
+// just the rotationl symmetirc part
+
+r_h_w = handle_w - 2*handle_cr;
+e_h_l = handle_l - 2*handle_cr + r_r+w;
+e_h_l_2 = handle_l + r_r+w;
+
+
 // And the definitions
 module funnel()
 {
-
-   ch = (r_r - r_n) / tan(fua_b);
-   // Max height. I sort-of designed the funnel the right way up, but
-   // want it come out upside down.
-   // mh = l_n + o_nl + ch;
-
-   mh = l_n + ch;
-   // just the rotationl symmetirc part
-   module rot_funnel()
-   {
-      f_poly = [
-         [r_n, mh + nth],
-         [r_n+w, mh + nth],
-         [r_n+w, mh - l_n],
-         [r_r + w, mh-mh],
-         [r_r, mh-mh],
-         [r_n,  mh - l_n]
-         // Mathamatically less pure, but easier to print
-         ];
-      rotate_extrude(convexity=4, $fn=fa())
-      {
-         polygon(f_poly);
-      }
-
-   }
-
-   // The holow core of the funnel, plus a bit of tollerance. Used as
-   // difference later.
-   module funnel_core()
-   {
-      c_poly = [
-         [0 ,mh + nth],
-         [r_n + w/2 ,mh + nth],
-         [r_n + w/2, mh - (l_n)],
-         [r_r + w/2, -ms],
-         [0, -ms]
-         ];
-      rotate_extrude(, $fn=fa())
-      {
-         polygon(c_poly);
-      }
-
-   }
-
-   module funnel_neck_cutoff()
-   {
-      // The bit that creates the slant an the neck
-      translate([-ond/2-ms, -ond/2-ms, mh])
-      {
-         rotate(a=neck_tip_angle, v=[1, 0, 0])
-         {
-            cube([ond+2*ms, ncl, ncl]);
-         }
-      }
-   }
-
-   module funnel_support()
-   {
-
-      // The holder lug. The Poly is bigger than needed, and we
-      // subtract a bit later.
-      lp_poly = [
-         [r_bp_s,r_r + w - 3*w],
-         [r_bp_s,r_r + w + 1.5 * r_bp_l],
-         [0,r_r + w + 2*r_bp_l],
-         [-r_bp_s,r_r + w + 1.5 * r_bp_l],
-         [-r_bp_s,r_r + w - 3*w],
-         ];
-      linear_extrude(w)
-      {
-         // Holder plate
-         polygon(lp_poly);
-      }
-      // Extra support
-      translate([-es_w/2,r_n+w+0.5*(r_bp_l-r_p_l),0])
-      {
-         cube([es_w,r_r-r_n, es_h]);
-      }
-      bp_s_f = (r_bp_l) / r_p_l;
-      translate([0,r_r+w+r_bp_l, w])
-      {
-         rotate(30)
-         {
-            difference()
-            {
-               cylinder(h=usp_h+heh, r=r_bp_l, $fn=6);
-               // Hollow it out
-               translate([0,0, heh])
-               {
-                  cylinder(h=usp_h+1,r=r_p_l, $fn=6);
-               }
-            }
-         }
-      }
-
-   }
-   r_h_w = handle_w - 2*handle_cr;
-   e_h_l = handle_l - 2*handle_cr + r_r+w;
-   e_h_l_2 = handle_l + r_r+w;
-
-   module funnel_grip()
-   {
-      translate([-r_h_w/2, handle_cr, 0])
-      {
-         minkowski()
-         {
-            cube([r_h_w, e_h_l, w]);
-            cylinder(r=handle_cr, h=ms, $fn=fb());
-         }
-      }
-
-      rotate([0, -90, 0])
-      {
-         translate([0,0,-handle_br/2])
-         {
-            linear_extrude(handle_br)
-            {
-               polygon([[w,0],[ch*handle_handle_ch_ratio+w,0],[w, e_h_l_2]]);
-            }
-         }
-      }
-      translate([0,0,w])
-      {
-         translate([0,e_h_l_2-handle_br])
-         {
-            rotate([0,90,0])
-            {
-               cylinder(h=r_h_w, r=handle_br, center=true, $fn=fc());
-            }
-         }
-         side_cylinder();
-         mirror()
-         {
-            side_cylinder();
-         }
-
-      }
-
-   }
-
-   module side_cylinder()
-   {
-      translate([handle_w/2-handle_br,0,0])
-      {
-         rotate([-90,0,0])
-         {
-            cylinder(h=e_h_l+handle_cr, r=handle_br, $fn=fc());
-         }
-         translate([handle_br-handle_cr, e_h_l_2-handle_cr, 0])
-         {
-            difference()
-            {
-               rotate_extrude($fn=fb())
-               {
-                  translate([handle_cr-handle_br,0])
-                  {
-                     circle(r=handle_br, $fn=fc());
-                  }
-               }
-               translate([-handle_cr,-2*handle_cr,0])
-               {
-                  cube([2*handle_cr,2*handle_cr, handle_br]);
-               }
-               translate([-2*handle_cr,-handle_cr,0])
-               {
-                  cube([2*handle_cr,2*handle_cr, handle_br]);
-               }
-            }
-         }
-      }
-
-   }
-   module funnel_strake()
-   {
-
-      translate([0, r_n+w, mh-l_n])
-      {
-         cylinder(r=strake_r(), h=l_n+nth, $fn=fc());
-      }
-      rotate(30)
-      {
-         translate([-(r_r+w), 0, 0])
-         {
-            rotate([0,90-funnel_angle,0])
-            {
-               translate([0,0,w])
-               {
-                  // It’s possibly a rounding error, but with
-                  // r=strake_r here it doesn’t perfectly
-                  // align with the funnel. Use a bit more.
-                  cylinder(r=strake_r(), h=(r_r - r_n) / cos(funnel_angle), $fn=fc());
-               }
-            }
-         }
-      }
-
-   }
 
    // The funnel proper
    difference()
@@ -436,6 +266,195 @@ module funnel()
       funnel_core();
       funnel_neck_cutoff();
    }
+}
+
+
+
+module funnel_grip()
+{
+   translate([-r_h_w/2, handle_cr, 0])
+   {
+      minkowski()
+      {
+         cube([r_h_w, e_h_l, w]);
+         cylinder(r=handle_cr, h=ms, $fn=fb());
+      }
+   }
+
+   rotate([0, -90, 0])
+   {
+      translate([0,0,-handle_br/2])
+      {
+         linear_extrude(handle_br)
+         {
+            polygon([[w,0],[ch*handle_handle_ch_ratio+w,0],[w, e_h_l_2]]);
+         }
+      }
+   }
+   translate([0,0,w])
+   {
+      translate([0,e_h_l_2-handle_br])
+      {
+         rotate([0,90,0])
+         {
+            cylinder(h=r_h_w, r=handle_br, center=true, $fn=fc());
+         }
+      }
+      side_cylinder();
+      mirror()
+      {
+         side_cylinder();
+      }
+
+   }
+}
+
+module side_cylinder()
+{
+   translate([handle_w/2-handle_br,0,0])
+   {
+      rotate([-90,0,0])
+      {
+         cylinder(h=e_h_l+handle_cr, r=handle_br, $fn=fc());
+      }
+      translate([handle_br-handle_cr, e_h_l_2-handle_cr, 0])
+      {
+         difference()
+         {
+            rotate_extrude($fn=fb())
+            {
+               translate([handle_cr-handle_br,0])
+               {
+                  circle(r=handle_br, $fn=fc());
+               }
+            }
+            translate([-handle_cr,-2*handle_cr,0])
+            {
+               cube([2*handle_cr,2*handle_cr, handle_br]);
+            }
+            translate([-2*handle_cr,-handle_cr,0])
+            {
+               cube([2*handle_cr,2*handle_cr, handle_br]);
+            }
+         }
+      }
+   }
+
+}
+module funnel_strake()
+{
+
+   translate([0, r_n+w, mh-l_n])
+   {
+      cylinder(r=strake_r(), h=l_n+nth, $fn=fc());
+   }
+   rotate(30)
+   {
+      translate([-(r_r+w), 0, 0])
+      {
+         rotate([0,90-funnel_angle,0])
+         {
+            translate([0,0,w])
+            {
+               // It’s possibly a rounding error, but with
+               // r=strake_r here it doesn’t perfectly
+               // align with the funnel. Use a bit more.
+               cylinder(r=strake_r(), h=(r_r - r_n) / cos(funnel_angle), $fn=fc());
+            }
+         }
+      }
+   }
+
+}
+
+
+module rot_funnel()
+{
+   f_poly = [
+      [r_n, mh + nth],
+      [r_n+w, mh + nth],
+      [r_n+w, mh - l_n],
+      [r_r + w, mh-mh],
+      [r_r, mh-mh],
+      [r_n,  mh - l_n]
+      // Mathamatically less pure, but easier to print
+      ];
+   rotate_extrude(convexity=4, $fn=fa())
+   {
+      polygon(f_poly);
+   }
+
+}
+
+// The holow core of the funnel, plus a bit of tollerance. Used as
+// difference later.
+module funnel_core()
+{
+   c_poly = [
+      [0 ,mh + nth],
+      [r_n + w/2 ,mh + nth],
+      [r_n + w/2, mh - (l_n)],
+      [r_r + w/2, -ms],
+      [0, -ms]
+      ];
+   rotate_extrude(, $fn=fa())
+   {
+      polygon(c_poly);
+   }
+
+}
+
+module funnel_neck_cutoff()
+{
+   // The bit that creates the slant an the neck
+   translate([-ond/2-ms, -ond/2-ms, mh])
+   {
+      rotate(a=neck_tip_angle, v=[1, 0, 0])
+      {
+         cube([ond+2*ms, ncl, ncl]);
+      }
+   }
+}
+
+module funnel_support()
+{
+
+   // The holder lug. The Poly is bigger than needed, and we
+   // subtract a bit later.
+   lp_poly = [
+      [r_bp_s,r_r + w - 3*w],
+      [r_bp_s,r_r + w + 1.5 * r_bp_l],
+      [0,r_r + w + 2*r_bp_l],
+      [-r_bp_s,r_r + w + 1.5 * r_bp_l],
+      [-r_bp_s,r_r + w - 3*w],
+      ];
+   linear_extrude(w)
+   {
+      // Holder plate
+      polygon(lp_poly);
+   }
+   // Extra support
+   translate([-es_w/2,r_n+w+0.5*(r_bp_l-r_p_l),0])
+   {
+      cube([es_w,r_r-r_n, es_h]);
+   }
+   bp_s_f = (r_bp_l) / r_p_l;
+   translate([0,r_r+w+r_bp_l, w])
+   {
+      rotate(30)
+      {
+         difference()
+         {
+            cylinder(h=usp_h+heh, r=r_bp_l, $fn=6);
+            // Hollow it out
+            translate([0,0, heh])
+            {
+               cylinder(h=usp_h+1,r=r_p_l, $fn=6);
+            }
+         }
+      }
+   }
+
 }
 
 
