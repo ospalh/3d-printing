@@ -38,9 +38,13 @@ preview = 1; // [0:render, 1:preview]
 // Some of the values below can be carefully tweaked, changing others is a
 // bad idea. Try, and undo if it didn’t work.
 
+xy_factor = 1/tan(funnel_angle);
+// To get from a height to a horizontal width inclined correctly
+z_factor = tan(funnel_angle);  // The other way around
+
 
 // w = 1.6;
-w = 1.8;  // To get four perimeters in slic3r, we have to add a bit here. WTF?
+w = 1.2;  // To get four perimeters in slic3r, we have to add a bit here. WTF?
 // Wall thickness.  When you measure the conical part along the surfaces it
 // will appear thinner.
 
@@ -53,7 +57,7 @@ function strake_r() = (stand_style) ? 0 : 0.8;
 handle_br = 0.8;  // Hanle border radius
 
 
-r_n = (outer_neck_diameter * 5) - w -strake_r();  // inner neck radius in mm
+r_n = (outer_neck_diameter * 5) - w - strake_r();  // inner neck radius in mm
 r_r = inner_rim_diameter * 5;  // inner rim radius in mm
 l_n = neck_length * 10;  // neck_length in mm
 heh = extra_height * 5; // Half the extra height, in mm
@@ -67,8 +71,16 @@ fua = funnel_angle;
 fua_b = 90 - fua;
 
 
+joint_r_factor = 0.9;
 
+r_j = r_n * joint_r_factor;
 
+// How much space for the joint
+joint_x = r_j * (1 - cos(fua_b));
+joint_h = r_j * sin(fua_b);
+
+cone_x = r_r - r_n - joint_x;
+cone_h = cone_x * z_factor;
 
 wiggle_room_factor = 1.1;
 
@@ -116,19 +128,29 @@ bp_s_h = r_bp_s / tan(tip_a/2);
 // (try to) maintain cross section area, not wall strength.)
 // Here we need the angle from one side to the center line.
 
+mh = cone_h + joint_h + l_n;
+
+
+r_h_w = handle_w - 2*handle_cr;
+e_h_l = handle_l - 2*handle_cr + r_r+w;
+e_h_l_2 = handle_l + r_r+w;
+
 
 some_distance = 2 * (r_r + w) + 13 * w;
 
-// fn for differently sized objects, for preview or rendering.
-pfa = 40;
-pfb = 15;
-pfc = 15;
-rfa = 180;
-rfb = 60;
-rfc = 20;
-function fa() = (preview) ? pfa : rfa;
-function fb() = (preview) ? pfb : rfb;
-function fc() = (preview) ? pfc : rfc;
+// fn for differently sized objects and fs, fa; all for preview or rendering.
+pna = 40;
+pnb = 15;
+pa = 5;
+ps = 1;
+rna = 180;
+rnb = 30;
+ra = 2;
+rs = 0.25;
+function na() = (preview) ? pna : rna;
+function nb() = (preview) ? pnb : rnb;
+$fs = (preview) ? ps : rs;
+$fa = (preview) ? pa : ra;
 
 // *******************************************************
 // End setup
@@ -150,7 +172,14 @@ if (part == "s")
 
 if (part == "t")
 {
-   // Test stapes
+   // Test shapes
+   // The funnel proper
+   difference()
+   {
+      solid_funnel(w,0);
+      solid_funnel(0,ms);
+      #funnel_neck_cutoff();
+   }
 }
 
 print_part();
@@ -158,7 +187,7 @@ print_part();
 // I used this cylinder as a modifier to set the infill to higher
 // values under the central bit of the portioner sphere, to get less
 // sag.
-// cylinder(r=0.7*r, h=r,$fn=fa());
+// cylinder(r=0.7*r, h=r,$fn=na());
 
 
 module print_part()
@@ -211,18 +240,6 @@ module stack_parts()
 
 
 
-ch = (r_r - r_n) / tan(fua_b);
-// Max height. I sort-of designed the funnel the right way up, but
-// want it come out upside down.
-// mh = l_n + o_nl + ch;
-
-mh = l_n + ch;
-// just the rotationl symmetirc part
-
-r_h_w = handle_w - 2*handle_cr;
-e_h_l = handle_l - 2*handle_cr + r_r+w;
-e_h_l_2 = handle_l + r_r+w;
-
 
 // And the definitions
 module funnel()
@@ -231,7 +248,8 @@ module funnel()
    // The funnel proper
    difference()
    {
-      rot_funnel();
+      solid_funnel(w,0);
+      solid_funnel(0,ms);
       funnel_neck_cutoff();
    }
 
@@ -263,7 +281,7 @@ module funnel()
 
          }
       }
-      funnel_core();
+      solid_funnel(w/2, 2*ms);
       funnel_neck_cutoff();
    }
 }
@@ -341,6 +359,7 @@ module side_cylinder()
    }
 
 }
+
 module funnel_strake()
 {
 
@@ -367,41 +386,33 @@ module funnel_strake()
 
 }
 
-
-module rot_funnel()
+module solid_funnel(x_o, z_o)
 {
-   f_poly = [
-      [r_n, mh + nth],
-      [r_n+w, mh + nth],
-      [r_n+w, mh - l_n],
-      [r_r + w, mh-mh],
-      [r_r, mh-mh],
-      [r_n,  mh - l_n]
-      // Mathamatically less pure, but easier to print
-      ];
-   rotate_extrude(convexity=4, $fn=fa())
+   // New style. Stack a cone, a negative ring segment and a cylinder.
+   //             cone_x = r_r - r_n - joint_x;
+   r_j_c = r_n+joint_x + x_o;
+   translate([0,-z_o])
    {
-      polygon(f_poly);
+      cylinder(r1=r_r+x_o, r2=r_j_c, h=cone_h+z_o, $fn=na());
    }
-
-}
-
-// The holow core of the funnel, plus a bit of tollerance. Used as
-// difference later.
-module funnel_core()
-{
-   c_poly = [
-      [0 ,mh + nth],
-      [r_n + w/2 ,mh + nth],
-      [r_n + w/2, mh - (l_n)],
-      [r_r + w/2, -ms],
-      [0, -ms]
-      ];
-   rotate_extrude(, $fn=fa())
+   rotate_extrude(convexity=6, $fn=na())
    {
-      polygon(c_poly);
+      translate([0, cone_h-ms])
+      {
+         difference()
+         {
+            square([r_j_c+r_j-ms, joint_h+ms]);
+            translate([r_n+x_o+r_j, joint_h])
+            {
+               circle(r_j, $fn=na());
+            }
+         }
+      }
    }
-
+   translate([0, 0, cone_h+joint_h-ms])
+   {
+      cylinder(r=r_n+x_o, h=l_n+nth+z_o, $fn=na());
+   }
 }
 
 module funnel_neck_cutoff()
