@@ -71,7 +71,7 @@ fua = funnel_angle;
 fua_b = 90 - fua;
 
 
-joint_r_factor = 0.9;
+joint_r_factor = 1.8;
 
 r_j = r_n * joint_r_factor;
 
@@ -391,7 +391,7 @@ module solid_funnel(x_o, z_o)
    // New style. Stack a cone, a negative ring segment and a cylinder.
    //             cone_x = r_r - r_n - joint_x;
    r_j_c = r_n+joint_x + x_o;
-   translate([0,-z_o])
+   translate([0,0, -z_o])
    {
       cylinder(r1=r_r+x_o, r2=r_j_c, h=cone_h+z_o, $fn=na());
    }
