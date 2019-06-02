@@ -3,3 +3,4 @@
 * Dish
 * Löffelhalter
 * Bügelstöpsel
+* Handyhalter
