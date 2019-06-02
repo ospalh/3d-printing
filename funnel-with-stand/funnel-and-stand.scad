@@ -71,7 +71,7 @@ fua = funnel_angle;
 fua_b = 90 - fua;
 
 
-joint_r_factor = 1.8;
+joint_r_factor = 3;
 
 r_j = r_n * joint_r_factor;
 
@@ -82,11 +82,11 @@ joint_h = r_j * sin(fua_b);
 cone_x = r_r - r_n - joint_x;
 cone_h = cone_x * z_factor;
 
-wiggle_room_factor = 1.1;
+wiggle_room_factor = 1.05;
 
 // The small radius of the support pencil, from center to center of face
-r_p_s = 3.4 * wiggle_room_factor;
-// The flat-to-flat diameter of a standard pencil is 6.8 mm. Do quite a
+r_p_s = 3.2 * wiggle_room_factor;
+// The flat-to-flat diameter of a standard pencil is 6.4 mm. Do quite a
 // bit more.
 // The max. radius (center to edge).  Also the
 // width of one pencil face.
