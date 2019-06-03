@@ -18,54 +18,24 @@ width= 20;  // [15:0.5:50]
 // Width of the cable ties
 cableTiesWidth= 3;  // [1:0.25:10]
 
+// Plate thickness. 6 mm is enough for stability, but add here to raise your phone
+p_th = 6; // [6:1:20]
+
 // Set to "Render" and click "Create Thing" when done with the setup
 preview = 1;  // [1: Preview, 0: Render]
 
 
+
 /* [Hidden] */
 
-// plate thickness 1
-th= 2;
-// plate thickness 2
-bt= 4;
-
-
+h_n = 2.8; // size of a M3 nut + clearance
+d_ring = 6;
+zip_gap_1 = 1;
+zip_gap_2 = 5;
 
 r_t = tubeDiameter/2;
 some_distance = 50;
 ms=0.01;
-
-zip_tie_mount();
-
-module zip_tie_mount()
-{
-   mirror([0,0,1])
-   {
-      intersection()
-      {
-         translate([-10,0,-r_t-bt-th])
-         {
-            BikeMountUpper();
-         }
-         union()
-         {
-            translate([0,0,-(th+bt)/2+ms])
-            {
-               cubeR([26+ms,26+ms,th+bt+2*ms],2, true);
-            }
-            translate([0,0,-5])
-               cubeR([26+ms,26+ms,10],5, true);
-         }
-
-         {
-
-
-         }
-      }
-   }
-}
-
-
 
 
 
@@ -85,25 +55,62 @@ $fa = (preview) ? pa : ra;
 
 
 
+zip_tie_mount();
+
+
+module zip_tie_mount()
+{
+   mirror([0,0,1])
+   {
+      intersection()
+      {
+         translate([-10,0,-r_t-d_ring])
+         {
+            BikeMountUpper();
+         }
+         union()
+         {
+            translate([0,0,-(p_th)/2+ms])
+            {
+               cubeR([26+ms,26+ms,p_th+2*ms],2, true);
+            }
+            translate([0,0,-p_th/2-2.5])
+            {
+               cubeR([26+ms,26+ms,p_th+5],5, true);
+            }
+         }
+      }
+   }
+}
+
+
+
+
+
+
 module BikeMountUpper()
 {
+
    difference()
    {
       union()
       {
          difference()
          {
-            MountBase();
+            translate([0,0,d_ring - p_th + ms])
+            {
+               MountBase();
+            }
             // space for screw bolts
             translate([width/2,0,tubeDiameter/2+6]) mirror([0,0,1]) Plate_rem();
          }
          translate([width/2,0,tubeDiameter/2+6]) mirror([0,0,1]) Plate();
       }
-      translate([width/3-cableTiesWidth/2,0,0])
+      translate([width/3-cableTiesWidth/2,0, -p_th + d_ring])
       {
          ring();
       }
-      translate([width*2/3-cableTiesWidth/2,0,0])
+      translate([width*2/3-cableTiesWidth/2,0, -p_th + d_ring])
       {
          ring();
       }
@@ -113,25 +120,9 @@ module BikeMountUpper()
 // a half ring and side wings for the screws
 module MountBase()
 {
-   difference()
+   rotate([0,90,0])
    {
-      rotate([0,90,0]) emptyWheel(tubeDiameter/2+3+3,width,3);
-      translate([0,-tubeDiameter/2-3-3-0.01,-tubeDiameter/2-3-3-0.01])
-      {
-         cube([width,tubeDiameter+4*3+0.02,tubeDiameter/2+3+3+0.01]);
-      }
-   }
-   difference()
-   {
-      hull()
-      {
-         translate([width/2,-tubeDiameter/2-6,0]) buttonRound(width/2,6,2);
-         translate([width/2,tubeDiameter/2+6,0]) buttonRound(width/2,6,2);
-      }
-      translate([-0.01,0,0]) rotate([0,90,0])
-      {
-         cylinder(r=tubeDiameter/2+3,h=width+0.02);
-      }
+      emptyWheel(tubeDiameter/2+d_ring, width,d_ring/2);
    }
 }
 
@@ -147,14 +138,17 @@ module Plate()
 // the plate
 module Plate_add()
 {
-   translate([0,0,(th+bt)/2]) cubeR([26,26,th+bt],2, true);
+   translate([0,0,(p_th)/2]) cubeR([26,26,p_th],2, true);
 }
 
 // space for the screws and bolts
 module Plate_rem()
 {
-   translate([0,0,-0.01]) fourScrews(16,16,3.3,th+bt+0.02);
-   translate([0,0,(th+bt)/2]) fourScrews(16,16,6.5,th+bt+10,6);
+   translate([0,0,-0.01]) fourScrews(16,16,3.3,p_th+0.02);
+   translate([0,0,p_th-h_n])
+   {
+      fourScrews(16,16,6.5,p_th+10, 6);
+   }
 }
 
 // ////////////////////////////////////////////////////////////////
@@ -182,7 +176,7 @@ module cubeR(dims, rnd=1, centerR= false)
 // x, y: distances of mid points
 // d: screw diameter
 // h: nut height
-module fourScrews(x, y, d, h, fn=20)
+module fourScrews(x, y, d, h, fn=nb())
 {
    translate([x/2,y/2,0]) cylinder(r=d/2,h=h,$fn=fn);
    translate([-x/2,y/2,0]) cylinder(r=d/2,h=h,$fn=fn);
@@ -250,11 +244,12 @@ module Screw(m, h, th, fn= 50)
 // translate([-20,0,0]) ring();
 module ring()
 {
+   r_ring = tubeDiameter/2+d_ring-zip_gap_1;
    rotate([0,90,0])
       difference()
    {
-      cylinder(r= tubeDiameter/2+10+3.01,h=cableTiesWidth);
+      cylinder(r= r_ring + zip_gap_2,h=cableTiesWidth);
       translate([0,0,-0.01])
-         cylinder(r= tubeDiameter/2+1+3.01,h=cableTiesWidth+0.02);
+         cylinder(r= r_ring,h=cableTiesWidth+0.02);
    }
 }
