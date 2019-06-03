@@ -9,6 +9,8 @@
 // Original thing: https://www.thingiverse.com/thing:3066652
 // Original licence: CC-BY
 
+/* [Standard] */
+
 // Diameter of the handlebar
 tubeDiameter= 33; // [15:0.5:50]
 
@@ -26,12 +28,22 @@ preview = 1;  // [1: Preview, 0: Render]
 
 
 
-/* [Hidden] */
 
-h_n = 2.8; // size of a M3 nut + clearance
+/* [Extra] */
+
+// Height of a M3 nut + clearance
+h_n = 2.8;  // [2.4:0.05:5]
+
+// ring thickness
 d_ring = 6;
+
+// tie groove depth
 zip_gap_1 = 1;
+
+// tie gap
 zip_gap_2 = 5;
+
+/* [Hidden] */
 
 r_t = tubeDiameter/2;
 some_distance = 50;
