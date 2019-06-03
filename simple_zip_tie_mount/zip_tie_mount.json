@@ -1,0 +1,26 @@
+{
+    "parameterSets": {
+        "cube": {
+            "cableTiesWidth": "3",
+            "d_ring": "6",
+            "h_n": "3.8",
+            "ms": "0.01",
+            "p_th": "19",
+            "pa": "5",
+            "pna": "40",
+            "pnb": "15",
+            "preview": "1",
+            "ps": "1",
+            "ra": "2",
+            "rna": "180",
+            "rnb": "30",
+            "rs": "0.25",
+            "some_distance": "50",
+            "tubeDiameter": "33",
+            "width": "20",
+            "zip_gap_1": "1",
+            "zip_gap_2": "5"
+        }
+    },
+    "fileFormatVersion": "1"
+}
