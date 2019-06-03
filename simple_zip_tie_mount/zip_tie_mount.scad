@@ -18,7 +18,7 @@ width= 20;  // [15:0.5:50]
 // Width of the cable ties
 cableTiesWidth= 3;  // [1:0.25:10]
 
-// Plate thickness. 6 mm is enough for stability, but add here to raise your phone
+// Plate thickness. 6 mm is enough for stability, but add here to raise your fone
 p_th = 6; // [6:1:20]
 
 // Set to "Render" and click "Create Thing" when done with the setup
@@ -144,7 +144,7 @@ module Plate_add()
 // space for the screws and bolts
 module Plate_rem()
 {
-   translate([0,0,-0.01]) fourScrews(16,16,3.3,p_th+0.02);
+   translate([0,0,-0.01]) fourScrews(16,16,3.5,p_th+0.02);
    translate([0,0,p_th-h_n])
    {
       fourScrews(16,16,6.5,p_th+10, 6);
