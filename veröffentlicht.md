@@ -75,3 +75,4 @@
   - innen
   - außen
 * verbesserter Würfelturm
+* Damestein

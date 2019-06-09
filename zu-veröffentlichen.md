@@ -1,4 +1,3 @@
-* Damestein
 * Leitkegel
 * Dish
 * Löffelhalter
