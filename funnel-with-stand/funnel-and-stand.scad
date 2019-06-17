@@ -24,6 +24,9 @@ funnel_angle = 60;  // [30:75]
 // Cut off angle to give the funnel a sharpened tip. 0° means flat bottom.
 neck_tip_angle = 22.5;  // [0:0.5:60]
 
+// Rotatete the tip. Can be used to make a left or right handed funnel
+tip_rotation = 180; // [0:45:359]
+
 // Create just the funnel, or a stand to go with it, with one or three supports
 stand_style = 0;  // [0:Just funnel, 1:Funnel and simple stand, 3:Funnel and tripod stand]
 
@@ -423,11 +426,14 @@ module solid_funnel(x_o, z_o)
 module funnel_neck_cutoff()
 {
    // The bit that creates the slant an the neck
-   translate([-ond/2-ms, -ond/2-ms, mh])
+   rotate([0,0,tip_rotation])
    {
-      rotate(a=neck_tip_angle, v=[1, 0, 0])
+      translate([-ond/2-ms, -ond/2-ms, mh])
       {
-         cube([ond+2*ms, ncl, ncl]);
+         rotate(a=neck_tip_angle, v=[1, 0, 0])
+         {
+            cube([ond+2*ms, ncl, ncl]);
+         }
       }
    }
 }
