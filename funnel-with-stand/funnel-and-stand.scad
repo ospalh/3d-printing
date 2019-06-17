@@ -100,6 +100,8 @@ handle_l = 30;  // Long enough for the distal segments
 handle_cr = 2;  // Corner radius
 // Border radius: see below
 handle_handle_ch_ratio = 0.5;
+ch = (r_r - r_n) / tan(fua_b);
+
 // Used to calculate how heigh the lug that holds the handle is
 
 // Tip angle
@@ -295,7 +297,7 @@ module funnel_grip()
       minkowski()
       {
          cube([r_h_w, e_h_l, w]);
-         cylinder(r=handle_cr, h=ms, $fn=fb());
+         cylinder(r=handle_cr, h=ms);
       }
    }
 
@@ -305,7 +307,10 @@ module funnel_grip()
       {
          linear_extrude(handle_br)
          {
-            polygon([[w,0],[ch*handle_handle_ch_ratio+w,0],[w, e_h_l_2]]);
+            polygon(
+               [[w,0],
+                [ch*handle_handle_ch_ratio+w,0],
+                [w, e_h_l_2]]);
          }
       }
    }
@@ -315,11 +320,11 @@ module funnel_grip()
       {
          rotate([0,90,0])
          {
-            cylinder(h=r_h_w, r=handle_br, center=true, $fn=fc());
+            cylinder(h=r_h_w, r=handle_br, center=true);
          }
       }
       side_cylinder();
-      mirror()
+      mirror([1, 0, 0])
       {
          side_cylinder();
       }
@@ -333,17 +338,17 @@ module side_cylinder()
    {
       rotate([-90,0,0])
       {
-         cylinder(h=e_h_l+handle_cr, r=handle_br, $fn=fc());
+         cylinder(h=e_h_l+handle_cr, r=handle_br);
       }
       translate([handle_br-handle_cr, e_h_l_2-handle_cr, 0])
       {
          difference()
          {
-            rotate_extrude($fn=fb())
+            rotate_extrude()
             {
                translate([handle_cr-handle_br,0])
                {
-                  circle(r=handle_br, $fn=fc());
+                  circle(r=handle_br);
                }
             }
             translate([-handle_cr,-2*handle_cr,0])
@@ -365,7 +370,7 @@ module funnel_strake()
 
    translate([0, r_n+w, mh-l_n])
    {
-      cylinder(r=strake_r(), h=l_n+nth, $fn=fc());
+      cylinder(r=strake_r(), h=l_n+nth);
    }
    rotate(30)
    {
@@ -378,7 +383,7 @@ module funnel_strake()
                // It’s possibly a rounding error, but with
                // r=strake_r here it doesn’t perfectly
                // align with the funnel. Use a bit more.
-               cylinder(r=strake_r(), h=(r_r - r_n) / cos(funnel_angle), $fn=fc());
+               cylinder(r=strake_r(), h=(r_r - r_n) / cos(funnel_angle));
             }
          }
       }
