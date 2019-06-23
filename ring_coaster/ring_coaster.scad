@@ -6,10 +6,15 @@
 // Licence: CC-BY-SA 4.0
 
 
+<<<<<<< HEAD
 // Size of the coaster's hole (mm)
 inner_diameter = 20;  // [10:1:90]
+=======
+// Size of the coaster’s hole (mm)
+inner_diameter = 20;  // [10:1:190]
+>>>>>>> develop
 // Size of the coaster as a whole (mm)
-outer_diameter = 49;  // [20:1:100]
+outer_diameter = 49;  // [20:1:200]
 
 // Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]

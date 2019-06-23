@@ -65,3 +65,14 @@
 * Duschregal
 * Seifenspenderdeckel
 * Kannendeckel
+* Münzstapler
+  - Euro
+  - andere
+* Pfeil
+* Zweihandflaschenöffner
+* Stuhllehnentelefonhalter
+* Türhaken
+  - innen
+  - außen
+* verbesserter Würfelturm
+* Damestein
