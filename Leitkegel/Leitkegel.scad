@@ -10,7 +10,7 @@
 // Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
-/* [Sizs] */
+/* [Sizes] */
 
 // Hight
 height = 50;  // [15:1:100]
