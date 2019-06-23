@@ -76,3 +76,4 @@
   - außen
 * verbesserter Würfelturm
 * Damestein
+* Leitkegel
