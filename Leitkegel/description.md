@@ -13,7 +13,7 @@ Designt for 0.4 mm nozzles.
 
 Don’t just rescale this for other sizes. Use the customizer or OpenSCAD.
 
-Use high infill simply to get enough mass at the bottom. With 80 % infill it ended up weighing 3.3 g, slightly too heavy. The standard says the original should be ≥ 2.5 kg. (1:10 scale means 1:1000 volume, and  1 g in the model ≘ 1 kg for life size.)
+Use high infill simply to get enough mass at the bottom. With 80 % infill it ended up weighing 3.3 g, slightly too heavy. The standard says the original should be ≥ 2.5 kg. (1:10 scale means 1:1000 volume, and  1 g in the model ≘ 1 kg for life siz.)
 
 This is designt with filament change in mind. When yu use OpenSCAD this prints out the hights for the filament change to get two white rings. For the 50 mm version these are
 
