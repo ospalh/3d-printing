@@ -1,4 +1,3 @@
-* Leitkegel
 * Dish
 * Löffelhalter
 * Bügelstöpsel
