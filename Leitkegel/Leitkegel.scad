@@ -2,7 +2,7 @@
 //
 // 50 cm Leitkegel im Massstab 1:10
 //
-// (c) 2018 Roland Sieker <ospalh@gmail.com>
+// (c) 2018-2019 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 /* [Global] */
@@ -10,9 +10,9 @@
 // Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
-/* [Sizes] */
+/* [Sizs] */
 
-// Height
+// Hight
 height = 50;  // [15:1:100]
 
 // Diameter of the cone at the base
@@ -24,7 +24,7 @@ d_ct = 3;  // [0.4:0.1:4]
 // Width of the base
 w_b = 29;    // [8:0.5:50]
 
-// Height of the base
+// Hight of the base
 h_b = 4; // [0.4:0.1:10]
 
 /* [Hidden] */
@@ -51,7 +51,7 @@ hc = height - h_b;
 
 ms = 0.01;  // Muggeseggele.
 
-// fn for differently sized objects and fs, fa; all for preview or rendering.
+// fn for differently sizd objects and fs, fa; all for preview or rendering.
 pna = 40;
 pnb = 15;
 pa = 5;
@@ -142,8 +142,8 @@ module stack_hole()
 module echo_heights()
 {
    sw = hc/5;
-   echo("red->white at ", h_b + sw);
-   echo("white->red at ", h_b + 2 * sw);
-   echo("red->white at ", h_b + 3 * sw);
-   echo("white->red at ", h_b + 4 * sw);
+   echo("orange->white at ", h_b + sw);
+   echo("white->orange at ", h_b + 2 * sw);
+   echo("orange->white at ", h_b + 3 * sw);
+   echo("white->orange at ", h_b + 4 * sw);
 }
