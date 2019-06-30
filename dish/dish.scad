@@ -13,9 +13,12 @@ preview = 1; // [0:render, 1:preview]
 /* [Sizes] */
 
 // Diameter of the dish
-dish_d = 40;  // [30:0.1:240]
+dish_d = 40;  // [30:0.5:240]
 // Height of the dish
-dish_h = 5; // [5:0.1:24]
+dish_h = 5; // [5:0.5:24]
+
+// Angle of the sides of the dish
+dish_angle = 75; // [45:5:90]
 
 /* [Hidden] */
 
@@ -28,7 +31,7 @@ dish_h = 5; // [5:0.1:24]
 w = 1.8;  // Wall width
 // p = 1.2;  // Bottom, top plate height
 c = 0.4;  // Clearance
-dish_angle = 60; // Overhangs much below 60° are a problem for me
+
 r_r = 2;  // rounding radius
 
 // *******************************************************
