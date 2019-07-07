@@ -121,6 +121,10 @@ module hilfsform()
             scale(1.05)
             {
                2d_text();
+               projection()
+               {
+                  stem();
+               }
             }
          }
       }
