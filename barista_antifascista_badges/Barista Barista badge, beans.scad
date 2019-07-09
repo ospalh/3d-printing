@@ -24,10 +24,12 @@ badge_size = 100;  // [25:5:150]
 
 f_tr = 0.65;  // factor for inner text ring
 de_text = 84; // effective text diameter;
+bohnen_size = 115;
 
 r_b = badge_size/2;
 r_tr = r_b * f_tr;
 txt_factor = badge_size / de_text;
+bohnen_factor = 0.6 * badge_size / bohnen_size;
 
 h_bl = 0.4;  // hight of black pot
 h_rd = 0.4;  // hight of red pot
@@ -41,7 +43,7 @@ h_rd = 0.4;  // hight of red pot
 
 
 w = 1.8;  // Wall width
-p = 1.2;  // Bottom, top plate height
+p = 0.8;  // Bottom, top plate height
 c = 0.4;  // Clearance
 angle = 60; // Overhangs much below 60° are a problem for me
 
@@ -81,6 +83,7 @@ $fa = (preview) ? pa : ra;
 
 
 use <Barista textpfad.scad>
+use <Vier Bohnen.scad>
 
 
 // *******************************************************
@@ -91,7 +94,16 @@ print_part();
 
 if ("t" == part)
 {
-   barista_text_3d();
+   color ("red")
+   {
+      rote_bohnen_3d();
+   }
+   color("black")
+   {
+      schwarze_bohne_3d();
+   }
+   // schwarze_bohne();
+   // rote_bohnen();
 }
 
 
@@ -114,21 +126,50 @@ module barista_barista_badge()
       ring_badge();
       barista_text_3d();
    }
-
-
+   translate([-0.04*r_b, 0.01*r_b,0])
+   {
+      bohnen();
+   }
 }
 
 module ring_badge()
 {
-   difference()
+   color("white")
    {
-      cylinder(r=r_b, h=h_t);
-      translate([0,0,p])
-      {
-         cylinder(r=r_tr, h=h_t);
-      }
-
+      cylinder(r=r_b, h=p);
    }
+
+   translate([0,0,p-ms])
+   {
+      difference()
+      {
+         color("red")
+         {
+            cylinder(r=r_b, h=h_rd+ms);
+         }
+         translate([0,0,-ms])
+         {
+            cylinder(r=r_tr, h=h_rd+3*ms);
+         }
+      }
+   }
+   translate([0,0,p+h_rd-ms])
+   {
+      difference()
+      {
+         color("black")
+         {
+            cylinder(r=r_b, h=h_bl+ms);
+         }
+         translate([0,0,-ms])
+         {
+            cylinder(r=r_tr, h=h_bl+3*ms);
+         }
+      }
+   }
+
+
+
 }
 
 
@@ -150,4 +191,46 @@ module barista_text_3d()
          }
       }
    }
+}
+
+module bohnen()
+{
+   color ("red")
+   {
+      rote_bohnen_3d();
+   }
+   color("black")
+   {
+      schwarze_bohne_3d();
+   }
+
+}
+
+module rote_bohnen_3d()
+{
+   translate([0,0,p-ms])
+   {
+      linear_extrude(h_rd+ms)
+      {
+         scale([bohnen_factor, bohnen_factor])
+         {
+            rote_bohnen();
+         }
+      }
+   }
+}
+
+module schwarze_bohne_3d()
+{
+   translate([0,0,p-ms])
+   {
+      linear_extrude(h_rd+h_bl+ms)
+      {
+         scale([bohnen_factor, bohnen_factor])
+         {
+            schwarze_bohne();
+         }
+      }
+   }
+
 }
