@@ -184,7 +184,7 @@ module barista_text_3d()
       {
          scale([txt_factor, txt_factor])
          {
-            translate([9,-67])
+            translate([8,-67])
             {
                barista_barista_text();
             }

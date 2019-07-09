@@ -40,8 +40,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="303.78226"
-     inkscape:cy="785.86413"
+     inkscape:cx="288.59263"
+     inkscape:cy="729.09414"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -49,10 +49,11 @@
      inkscape:snap-page="true"
      inkscape:snap-text-baseline="true"
      inkscape:window-width="1920"
-     inkscape:window-height="1180"
+     inkscape:window-height="1058"
      inkscape:window-x="0"
      inkscape:window-y="0"
-     inkscape:window-maximized="1" />
+     inkscape:window-maximized="1"
+     showguides="false" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -76,17 +77,16 @@
        sodipodi:cy="81.364578"
        sodipodi:rx="30"
        sodipodi:ry="30"
-       sodipodi:start="3.0857421"
-       sodipodi:end="0.06981317"
-       d="M 67.37565,83.039224 A 30,30 0 0 1 81.967586,55.595782 30,30 0 0 1 113.04845,55.81277 30,30 0 0 1 127.25579,83.457272"
-       sodipodi:open="true" />
+       sodipodi:start="3.0368729"
+       sodipodi:end="0.087266463"
+       d="M 67.493216,84.500432 A 30,30 0 0 1 81.283552,56.016054 30,30 0 0 1 112.92936,55.739885 30,30 0 0 1 127.21471,83.979251 L 97.328873,81.364578 Z" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:900;font-size:14.11111111px;line-height:6.61458302px;font-family:'Praxis LT';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:'Praxis LT, Heavy';font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;"
+       style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:14.11111069px;line-height:6.61458302px;font-family:'Praxis LT';-inkscape-font-specification:'Praxis LT, Heavy';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        id="text4530"><textPath
          xlink:href="#path4526"
          id="textPath4532"
-         style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:14.11111111px;font-family:'Praxis LT';-inkscape-font-specification:'Praxis LT, Heavy';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr;text-anchor:start;stroke-width:0.26458332px">Barista, Barista</textPath></text>
+         style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:14.11111069px;font-family:'Praxis LT';-inkscape-font-specification:'Praxis LT, Heavy';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332px">Barista, barista,</textPath></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:6.61458302px;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -100,23 +100,24 @@
          style="stroke-width:0.26458332px" /></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:900;font-size:10.58333333px;line-height:6.61458302px;font-family:'Praxis LT';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:'Praxis LT, Heavy';font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;"
+       style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:10.58333302px;line-height:6.61458302px;font-family:'Praxis LT';-inkscape-font-specification:'Praxis LT, Heavy';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        id="text4530-9"><textPath
          xlink:href="#path4602"
-         id="textPath4604"
-         style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:14.11111111px;font-family:'Praxis LT';-inkscape-font-specification:'Praxis LT, Heavy';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr;text-anchor:start;stroke-width:0.26458332px">Antifascista!</textPath></text>
+         id="textPath18"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.11111069px;font-family:'Praxis LT';-inkscape-font-specification:'Praxis LT, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start">antifascista!</textPath></text>
     <path
-       sodipodi:open="true"
-       d="m -61.758202,103.42331 a 39.966053,39.966053 0 0 1 -33.745641,17.90512 39.966053,39.966053 0 0 1 -33.363267,-18.6079"
-       sodipodi:end="2.5778513"
-       sodipodi:start="0.5846853"
-       sodipodi:ry="39.966053"
-       sodipodi:rx="39.966053"
-       sodipodi:cy="81.364571"
-       sodipodi:cx="-95.085327"
-       sodipodi:type="arc"
        id="path4602"
        style="opacity:0.97000002;fill:none;fill-opacity:0.2;stroke:#000000;stroke-width:1.90504849;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       transform="scale(-1,1)" />
+       transform="scale(-1,1)"
+       inkscape:transform-center-x="-0.062641296"
+       inkscape:transform-center-y="0.070993468"
+       sodipodi:type="arc"
+       sodipodi:cx="-97.383774"
+       sodipodi:cy="81.438713"
+       sodipodi:rx="39.966053"
+       sodipodi:ry="39.966053"
+       sodipodi:start="0.55850536"
+       sodipodi:end="2.5830873"
+       d="m -63.490639,102.61749 a 39.966053,39.966053 0 0 1 -33.893135,18.78728 39.966053,39.966053 0 0 1 -33.893136,-18.78728 l 33.893136,-21.178777 z" />
   </g>
 </svg>
