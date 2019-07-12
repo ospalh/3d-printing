@@ -24,7 +24,7 @@ badge_size = 100;  // [25:5:150]
 
 f_tr = 0.65;  // factor for inner text ring
 de_text = 84; // effective text diameter;
-flaggen_size = 5300;
+flaggen_size = 300;
 
 r_b = badge_size/2;
 r_tr = r_b * f_tr;
