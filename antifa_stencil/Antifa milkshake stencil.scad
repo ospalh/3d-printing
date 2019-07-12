@@ -1,6 +1,7 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// NN
+// A stencil to decorate your milkshake with the two flag Antifaschistische
+// Aktion logo.
 //
 // © 2018–2019 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
