@@ -22,14 +22,14 @@ badge_size = 100;  // [25:5:150]
 
 /* [Hidden] */
 
-f_tr = 0.65;  // factor for inner text ring
-de_text = 84; // effective text diameter;
-flaggen_size = 300;
+f_tr = 0.745;  // factor for inner text ring
+de_text = 77; // effective text diameter;
+flaggen_size = 370;
 
 r_b = badge_size/2;
 r_tr = r_b * f_tr;
 txt_factor = badge_size / de_text;
-flaggen_factor = 0.6 * badge_size / flaggen_size;
+flaggen_factor = badge_size / flaggen_size;
 
 h_bl = 0.4;  // hight of black pot
 h_rd = 0.4;  // hight of red pot
@@ -102,7 +102,7 @@ module print_part()
 {
    if ("a" == part)
    {
-      barista_barista_badge();
+      antifa_badge();
    }
 }
 
@@ -110,14 +110,14 @@ module print_part()
 // Code for the parts themselves
 
 
-module barista_barista_badge()
+module antifa_badge()
 {
    difference()
    {
       ring_badge();
-      barista_text_3d();
+      antifa_text_3d();
    }
-   translate([0.01*r_b, 0.02*r_b,0])
+   translate([0.0*r_b, 0.0*r_b,0])
    {
       flaggen();
    }
@@ -166,7 +166,7 @@ module ring_badge()
 
 
 
-module barista_text_3d()
+module antifa_text_3d()
 {
    // [-105.0, 148.5]
    translate([0,0,p])
@@ -177,7 +177,7 @@ module barista_text_3d()
          {
             translate([8,-67])
             {
-               barista_barista_text();
+               antifa_text();
             }
          }
       }
