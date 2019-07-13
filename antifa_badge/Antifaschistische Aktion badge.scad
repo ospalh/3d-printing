@@ -5,20 +5,30 @@
 // © 2018–2019 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
-/* [Global] */
+/* [Parameters] */
 
 
 // … to preview. You will get all parts as separate STLs when you click “Create Thing”.
-part = "t"; // [t: test, a: Badge]
+part = "a"; // [t: test, a: Badge]
 
+
+
+// Size of the completed badge. Or just scale it
+badge_size = 100;  // [25:5:150]
+
+
+// switch hight of the big flag
+big_flag_red = true;
+
+// switch hight of the small flag
+small_flag_red = false;
+
+// Turn around flagpoles in 1920’s style
+left_pole = false;
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
-/* [Sizes] */
-
-// Size of the completed badge. Or just scale it
-badge_size = 100;  // [25:5:150]
 
 /* [Hidden] */
 
@@ -31,10 +41,17 @@ r_tr = r_b * f_tr;
 txt_factor = badge_size / de_text;
 flaggen_factor = badge_size / flaggen_size;
 
-h_bl = 0.4;  // hight of black pot
-h_rd = 0.4;  // hight of red pot
+do_ttr = (big_flag_red || small_flag_red);
 
+h_color = 0.4;
+bigfc = big_flag_red ? "red" : "black";
+bfh = (big_flag_red || !do_ttr) ? h_color : 2*h_color;
+smallfc = small_flag_red ? "red" : "black";
+sfh = (small_flag_red || !do_ttr) ? h_color : 2*h_color;
 
+ftrc = do_ttr ? "red" : "black";
+echo("bfh", bfh);
+echo("sfh", sfh);
 
 // Done with the customizer
 
@@ -42,14 +59,12 @@ h_rd = 0.4;  // hight of red pot
 // Extra parameters. These can be changed reasonably safely.
 
 
+
 w = 1.8;  // Wall width
 p = 0.8;  // Bottom, top plate height
 c = 0.4;  // Clearance
 angle = 60; // Overhangs much below 60° are a problem for me
 
-
-h_rd_t = p + h_rd;
-h_t = p + h_rd + h_bl;
 
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed
@@ -77,6 +92,8 @@ function na() = (preview) ? pna : rna;
 function nb() = (preview) ? pnb : rnb;
 $fs = (preview) ? ps : rs;
 $fa = (preview) ? pa : ra;
+
+
 
 // *******************************************************
 // End setup
@@ -119,7 +136,18 @@ module antifa_badge()
    }
    translate([0.0*r_b, 0.0*r_b,0])
    {
-      flaggen();
+      if (left_pole)
+      {
+         mirror([1,0,0])
+         {
+            flaggen();
+         }
+      }
+      else
+      {
+         flaggen();
+      }
+
    }
 }
 
@@ -134,27 +162,30 @@ module ring_badge()
    {
       difference()
       {
-         color("red")
+         color(ftrc)
          {
-            cylinder(r=r_b, h=h_rd+ms);
+            cylinder(r=r_b, h=h_color+ms);
          }
          translate([0,0,-ms])
          {
-            cylinder(r=r_tr, h=h_rd+3*ms);
+            cylinder(r=r_tr, h=h_color+3*ms);
          }
       }
    }
-   translate([0,0,p+h_rd-ms])
+   if (do_ttr)
    {
-      difference()
+      translate([0,0,p+h_color-ms])
       {
-         color("black")
+         difference()
          {
-            cylinder(r=r_b, h=h_bl+ms);
-         }
-         translate([0,0,-ms])
-         {
-            cylinder(r=r_tr, h=h_bl+3*ms);
+            color("black")
+            {
+               cylinder(r=r_b, h=h_color+ms);
+            }
+            translate([0,0,-ms])
+            {
+               cylinder(r=r_tr, h=h_color+3*ms);
+            }
          }
       }
    }
@@ -171,7 +202,7 @@ module antifa_text_3d()
    // [-105.0, 148.5]
    translate([0,0,p])
    {
-      linear_extrude(h_rd+h_bl+ms)
+      linear_extrude(2*h_color+ms)
       {
          scale([txt_factor, txt_factor])
          {
@@ -186,11 +217,11 @@ module antifa_text_3d()
 
 module flaggen()
 {
-   color ("red")
+   color (bigfc)
    {
       rote_flagge_3d();
    }
-   color("black")
+   color(smallfc)
    {
       schwarze_flagge_3d();
    }
@@ -199,9 +230,10 @@ module flaggen()
 
 module rote_flagge_3d()
 {
+   // big flag, that is.
    translate([0,0,p-ms])
    {
-      linear_extrude(h_rd+ms)
+      linear_extrude(bfh+ms)
       {
          scale([flaggen_factor, flaggen_factor])
          {
@@ -215,7 +247,7 @@ module schwarze_flagge_3d()
 {
    translate([0,0,p-ms])
    {
-      linear_extrude(h_rd+h_bl+ms)
+      linear_extrude(sfh+ms)
       {
          scale([flaggen_factor, flaggen_factor])
          {
