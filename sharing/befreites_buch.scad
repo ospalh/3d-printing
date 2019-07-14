@@ -2,7 +2,7 @@
 //
 // A stamp
 //
-// © 2018–2019 Roland Sieker <ospalh@gmail.com>
+// Copyright 2018 - 2019 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 /* [Global] */
@@ -39,7 +39,7 @@ h_t = 2;
 h_st_1 = 20;
 h_st_2 = 8;
 h_st_3 = 8;
-angle = 60; // Overhangs much below 60° are a problem for me
+angle = 60; // Overhangs much below 60 degrees are a problem for me
 
 r1 = 4;
 r2 = 2;

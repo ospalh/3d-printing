@@ -2,7 +2,7 @@
 //
 // Buchse (bushing)
 //
-// © 2017 Roland Sieker <ospalh@gmail.com>
+// Copyright 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-0 4.0
 
 

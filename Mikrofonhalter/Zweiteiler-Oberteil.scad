@@ -2,7 +2,7 @@
 //
 // NN
 //
-// © 2018–2019 Roland Sieker <ospalh@gmail.com>
+// Copyright 2018 - 2019 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 /* [Global] */
@@ -34,7 +34,7 @@ g_h = 0.8;
 w = 1.8;  // Wall width
 p = 1.2;  // Bottom, top plate hight
 c = 0.4;  // Clearance
-angle = 60; // Overhangs much below 60° are a problem for me
+angle = 60; // Overhangs much below 60 degrees are a problem for me
 
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed

@@ -2,14 +2,14 @@
 //
 // Holder to scan Minox film strips with a Reflecta ProScan 10T
 //
-// © 2018 Roland Sieker <ospalh@gmail.com>
+// Copyright 2018 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 
 
 
 // … to preview. You will get all parts when you click “Create Thing”.
-part = "halter"; // [halter: lower part, einsatz: upper part, st: Stössel, r: Rettungsschieber, s: stack, p: preview]
+part = "halter"; // [halter: lower part, einsatz: upper part, st: Stoessel, r: Rettungsschieber, s: stack, p: preview]
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
@@ -26,14 +26,14 @@ l_rahmen = 50;
 
 /* [Hidden] */
 
-// Größen des Halters.
+// Groessen des Halters.
 
-// Länge == Maß in Richtung des Filmlaus.
-// Höhe == Maß normal zum Film
-// Breite oder Weite == Maß in Richtung Filmkante zu Filmkante
+// Laenge == Mass in Richtung des Filmlaus.
+// Hoehe == Mass normal zum Film
+// Breite oder Weite == Mass in Richtung Filmkante zu Filmkante
 
 // Die beiden wichtigen. Wenn diese falsch sind passt’s nicht oder wackelt.
-h_ue_a = 4.8;  // Höhe über alles
+h_ue_a = 4.8;  // Hoehe ueber alles
 w_gesamt = 64;  // Gesamtbreite
 
 
@@ -44,12 +44,12 @@ r_r = 1.5;  // Rundungsradius
 
 l_sr = (l_scanner - l_bild)/2;
 
-x_t_s = -1.5; // tweak für Stößellänge
-x_t_f = +0.5; // tweak für Rahmen
+x_t_s = -1.5; // tweak fuer Stoessellaenge
+x_t_f = +0.5; // tweak fuer Rahmen
 y_t_n = -1; // tweak nut
 
 // Auch wichtig:
-l_zk = 4;  // Länge Zentrierkerbe
+l_zk = 4;  // Laenge Zentrierkerbe
 b_zk = 4;  // Breite Zentrierkerbe
 h_zk = 1.2;  // Tiefe der Zentrierkerbe
 w_zk = 1;  // Wand bzw Abstand der Zentrierkerbe vom Rand
@@ -58,13 +58,13 @@ l_griff = l_bild;
 w_rand = 3;
 
 
-w_stop = w_gesamt + 5;  // Breite für Klotz, der Durchschieben den Halters verhindert.
-l_stop = 5;  // Länge für diesen Klotz
+w_stop = w_gesamt + 5;  // Breite fuer Klotz, der Durchschieben den Halters verhindert.
+l_stop = 5;  // Laenge fuer diesen Klotz
 
 
 w_schraeg = h_ue_a/4;
 
-l_ueber = (3*l_rahmen - l_scanner)/2 + x_t_f ; // // Extrabreite rechts. Dient als Maß beim Einschieben
+l_ueber = (3*l_rahmen - l_scanner)/2 + x_t_f ; // // Extrabreite rechts. Dient als Mass beim Einschieben
 echo("l_ueber", l_ueber);
 
 // *******************************************************
@@ -74,13 +74,13 @@ echo("l_ueber", l_ueber);
 w = 1.8;  // Wall width
 p = 1.2;  // Bottom, top plate hight
 c = 0.4;  // Clearance
-c_h = 0.2;  // Spiel in Höhe
-angle = 60; // Overhangs much below 60° are a problem for me
+c_h = 0.2;  // Spiel in Hoehe
+angle = 60; // Overhangs much below 60 degrees are a problem for me
 
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed
 
-tau = 2 * PI;  // π is still wrong. τ = circumference ÷ r
+tau = 2 * PI;  // pi is still wrong. tau = circumference / r
 
 xy_factor = 1/tan(angle);
 // To get from a hight to a horizontal width inclined correctly
@@ -106,12 +106,12 @@ $fa = (preview) ? pa : ra;
 
 l_ue_a =  l_sr + l_bild + l_sr + l_ueber;
 w_einsatz = w_gesamt - 2 * w_rand;
-h_bd = h_ue_a/2;  // Höhe Boden oder Deckel
+h_bd = h_ue_a/2;  // Hoehe Boden oder Deckel
 
 
-// h_bk = 0.2;  // Höhe Bildkerbe. 0.4 mm (dies × 2) sollte reichen. Für 1. test
-// w_br = 1;  // Extra Rand für Bildkerbe. (Mit der Perforation haben wir’s.)
-// l_br = 2;  // Extra Rand für Bildkerbe. (Mit der Perforation haben wir’s.)
+// h_bk = 0.2;  // Hoehe Bildkerbe. 0.4 mm (dies * 2) sollte reichen. Fuer 1. test
+// w_br = 1;  // Extra Rand fuer Bildkerbe. (Mit der Perforation haben wir’s.)
+// l_br = 2;  // Extra Rand fuer Bildkerbe. (Mit der Perforation haben wir’s.)
 h_lkl = 0.75*h_bd;
 
 // *******************************************************

@@ -2,7 +2,7 @@
 //
 // Parametric funnel with stand
 //
-// © 2017–18 Roland Sieker <ospalh@gmail.com>
+// Copyright 2017 - 18 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 //
 
@@ -18,10 +18,10 @@ inner_rim_diameter = 7;  // [3:0.1:15]
 // in cm. The sharped tip is added to this length
 neck_length = 2; // [0.3:0.1:8]
 
-// Slope of the main conical part, in °. Beware of printing problems below 45°.
+// Slope of the main conical part, in  degrees. Beware of printing problems below 45 degrees.
 funnel_angle = 60;  // [30:75]
 
-// Cut off angle to give the funnel a sharpened tip. 0° means flat bottom.
+// Cut off angle to give the funnel a sharpened tip. 0 degrees means flat bottom.
 neck_tip_angle = 22.5;  // [0:0.5:60]
 
 // Create just the funnel, or a stand to go with it, with one or three supports
@@ -108,10 +108,10 @@ ch = (r_r - r_n) / tan(fua_b);
 // Used to calculate how heigh the lug that holds the handle is
 
 // Tip angle
-tip_a = 21;  // °. Apparently standard in Germany
-// tip_a = 19;  // °. There is a German »Long Point« pencil sharpnener with 19 °.
+tip_a = 21;  //  degrees. Apparently standard in Germany
+// tip_a = 19;  //  degrees. There is a German "Long Point" pencil sharpnener with 19  degrees.
 // There are also rumors that American pencil are pointier than German ones.
-// tip_a = 24 // °. Special color pencil sharpener.
+// tip_a = 24 //  degrees. Special color pencil sharpener.
 
 // The tip angle is apparently from one side to the other side, not from
 // one side to the center line.

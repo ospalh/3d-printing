@@ -3,7 +3,7 @@
 // A stencil to decorate your milkshake with the two flag Antifaschistische
 // Aktion logo.
 //
-// © 2018–2019 Roland Sieker <ospalh@gmail.com>
+// Copyright 2018 - 2019 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 /* [Global] */
@@ -41,7 +41,7 @@ p = 1.8;  // [0.4:0.2:4]
 w = 1.8;  // Wall width
 
 c = 0.4;  // Clearance
-angle = 60; // Overhangs much below 60° are a problem for me
+angle = 60; // Overhangs much below 60 degrees are a problem for me
 
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed

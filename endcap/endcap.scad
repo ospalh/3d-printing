@@ -2,7 +2,7 @@
 //
 // NN
 //
-// © 2018–2019 Roland Sieker <ospalh@gmail.com>
+// Copyright 2018 - 2019 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 /* [Global] */
