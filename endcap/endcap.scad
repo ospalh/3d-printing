@@ -28,13 +28,13 @@ wall = 0.9;   // [0.4:0.1:5]
 
 
 // w = 1.8;  // Wall width
-p = 1.2;  // Bottom, top plate height
+p = 1.2;  // Bottom, top plate hight
 c = 0.4;  // Clearance
 
 gap = 1;  // The central gap for the two plug/clamp arms
 cgap = 2; // Cylinder gap
 r_r = 2;  // Rounding radius. Reduce this for tubes < ~ 5mm
-h_p = 5;  // height of the plug bit
+h_p = 5;  // hight of the plug bit
 
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed

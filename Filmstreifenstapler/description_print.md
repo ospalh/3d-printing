@@ -19,7 +19,7 @@ Unfortunately i forgot to take pictures of these before i finished scanning my p
 
 300 µm
 
-Easy print. Use big layer heights to speed up the print.
+Easy print. Use big layer hights to speed up the print.
 
 
 ## how

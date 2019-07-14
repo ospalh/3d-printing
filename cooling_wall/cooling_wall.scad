@@ -7,8 +7,8 @@
 
 // … to preview
 part = "wall"; // [wall: The cooling wall, modifier: The modifier cuboid. See description]
-top_height=150; // [0,0.1:200]
-modifier_bottom_height = 10;  // [0,0.1:200]
+top_hight=150; // [0,0.1:200]
+modifier_bottom_hight = 10;  // [0,0.1:200]
 
 
 /* [Hidden] */
@@ -34,23 +34,23 @@ module wall()
 {
    translate([-2.5, -50, 0])
    {
-      cube([5, 0.8, top_height]);
+      cube([5, 0.8, top_hight]);
    }
    translate([-2.5, 50, 0])
    {
-   cube([5, 0.8, top_height]);
+   cube([5, 0.8, top_hight]);
    }
-   translate([0,0,top_height/2])
+   translate([0,0,top_hight/2])
    {
-      cube([0.4, 100, top_height], center=true);
+      cube([0.4, 100, top_hight], center=true);
    }
 }
 
 module modifier()
 {
-   translate([0,0,(top_height-modifier_bottom_height)/2+modifier_bottom_height+ms])
+   translate([0,0,(top_hight-modifier_bottom_hight)/2+modifier_bottom_hight+ms])
    {
-      cube([1.2, 102, top_height-modifier_bottom_height+2*ms], center=true);
+      cube([1.2, 102, top_hight-modifier_bottom_hight+2*ms], center=true);
    }
 
 }

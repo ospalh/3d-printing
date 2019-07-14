@@ -26,7 +26,7 @@ This shuold cover most film formats commonly used smaller than sheet film. If yo
 
 300 µm
 
-Easy print. Use big layer heights to speed up the print.
+Easy print. Use big layer hights to speed up the print.
 
 
 ## post printing

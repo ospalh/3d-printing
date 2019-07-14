@@ -52,14 +52,14 @@ horizontal_text_offset = 0;  // [-5:0.01:5]
 // *******************************************************
 // Extra parameters. These can be changed reasonably safely.
 
-height = 60;  // of the seal or grip
+hight = 60;  // of the seal or grip
 
 w=1.8;  // Wall width
 w2=3.2;  // Wall width for ink pad
 clearance = 0.5;
 bd=0.4;  // Width of the ring around the characetrs
 
-ink_pad_height = 15;
+ink_pad_hight = 15;
 
 punch_clearance = 0.1;
 punch_wall = 0.4;
@@ -279,7 +279,7 @@ module notches_x(w, a)
       translate([w, 0, 0])
       {
          rotate([0, a, 0])
-         cylinder(r=notch_r, h=height);
+         cylinder(r=notch_r, h=hight);
       }
    }
 }
@@ -288,8 +288,8 @@ module notched_high_mitome_in()
 {
    difference()
    {
-      mitome_in(height, false, true);
-      translate([0, 0, height+char_h])
+      mitome_in(hight, false, true);
+      translate([0, 0, hight+char_h])
       {
          rotate([180, 0, 0])
          {
@@ -328,7 +328,7 @@ module mitome_in(sh, tp, sb)
         }
    intersection()
    {
-      linear_extrude(height=char_h+0.5*sh, scale=1, convexity=10)
+      linear_extrude(hight=char_h+0.5*sh, scale=1, convexity=10)
       {
          all_text();
       }
@@ -361,7 +361,7 @@ module mitome_in(sh, tp, sb)
 module grip()
 {
    // rotate([180,0,0])
-    translate([0, 0, height/2])
+    translate([0, 0, hight/2])
     {
        difference()
        {
@@ -369,7 +369,7 @@ module grip()
           {
              scale([r_1x/r_1y, 1, 1])
              {
-                cylinder(r=r_1y, h=height, center=true);
+                cylinder(r=r_1y, h=hight, center=true);
              }
 
              translate([-r_1x+r_b*ball_df,0,0])
@@ -377,7 +377,7 @@ module grip()
                 sphere(r=r_b);
              }
           }
-          translate([w/2+clearance, -clearance, height/2+ms])
+          translate([w/2+clearance, -clearance, hight/2+ms])
           {
              rotate([0, 180, 0])
              {
@@ -410,10 +410,10 @@ module ink_pad()
 {
    difference()
    {
-      cylinder(r=r_5, h=ink_pad_height);
+      cylinder(r=r_5, h=ink_pad_hight);
       translate([0,0,w2])
       {
-         cylinder(r=r_4, h=ink_pad_height);
+         cylinder(r=r_4, h=ink_pad_hight);
       }
    }
 }
@@ -423,10 +423,10 @@ module ink_pad_punch()
 {
    difference()
    {
-      cylinder(r=r_7, h=ink_pad_height);
+      cylinder(r=r_7, h=ink_pad_hight);
       translate([0,0,w])
       {
-         cylinder(r=r_6, h=ink_pad_height);
+         cylinder(r=r_6, h=ink_pad_hight);
       }
    }
 }

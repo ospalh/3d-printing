@@ -52,7 +52,7 @@ some_distance = 120;
 //font = "Arial Narrow:style=Bold";
 font = "Liberation Sans:style=Bold";
 text_size = 4.5;
-textheight = 1.0;
+texthight = 1.0;
 
 // *******************************************************
 // End setup
@@ -152,7 +152,7 @@ NOTES:
 //hinge core parameters
 cr0 = 3; //inner radius
 cr1 = 7; //outer radius
-ch = 12; //height
+ch = 12; //hight
 
 //arm parameters
 totalArmLength = 10;
@@ -170,7 +170,7 @@ baseWidth = 40; //degrees
 //teeth parameters
 rTooth0 = 0.2; //tip width
 rTooth1 = 1; //base width
-hTooth = 3; //height
+hTooth = 3; //hight
 wTooth = ch; //depth
 nTeethUp = 6; //number of teeth for the upper jaw
 nTeethLow = 5; //number of teeth for the lower jaw
@@ -569,7 +569,7 @@ module hinge(arml,shoulderl,ch,cr0,cr1,slack,openangle)
 
 module ext_text(tx)
 {
-   linear_extrude(height = textheight)
+   linear_extrude(hight = texthight)
    {
       text(text=tx, font=font, size=text_size, halign="center", valign="center");
    }

@@ -50,7 +50,7 @@ t_h = 0.4;  // Textextrusionshöhe
 tau = 2 * PI;  // π is still wrong. τ = circumference / r
 
 xy_factor = 1/tan(angle);
-// To get from a height to a horizontal width inclined correctly
+// To get from a hight to a horizontal width inclined correctly
 z_factor = tan(angle);  // The other way around
 
 

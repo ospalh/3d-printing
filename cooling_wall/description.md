@@ -8,10 +8,10 @@ Print settings
 
 There are two ways to use this: with OpenSCAD or with your slicer.
 
-For both ways you first have to check the critical height of your real part. That is, the top and bottom height of those small bits where you need (passive) cooling.
+For both ways you first have to check the critical hight of your real part. That is, the top and bottom hight of those small bits where you need (passive) cooling.
 
-* Set the top and bottom height in the `scad` file or, when it’s working, the customizer.
-* Use either the solid or half wall `STL` and use your slicer to cut it to the right height.
+* Set the top and bottom hight in the `scad` file or, when it’s working, the customizer.
+* Use either the solid or half wall `STL` and use your slicer to cut it to the right hight.
 * Use your slicer to print the wall slowly while keeping the normal speed for the real part.
 
 I use slic3r, and this is how to do the speed setting there:

@@ -10,7 +10,7 @@ teapot_inner_radius = 35;
 // And i mean radius. When you measure the diameter (with a caliper), divide by two.
 
 // How you like it
-brim_height = 11;  // height of the lange/brim
+brim_hight = 11;  // hight of the lange/brim
 thickness = 3;  // general material thickness
 sprout_width = 15;  // How wide the gap for the spourt is 
 handle_radus = 5;
@@ -47,14 +47,14 @@ module brim()
       {
          translate([teapot_inner_radius-thickness, 0, 0])
          {
-            square([thickness, brim_height]);
+            square([thickness, brim_hight]);
          }
       }
 
       // The gap
-      translate([-0.5*sprout_width, 0.5*teapot_inner_radius, -0.5*brim_height])
+      translate([-0.5*sprout_width, 0.5*teapot_inner_radius, -0.5*brim_hight])
       {
-         cube([sprout_width, teapot_inner_radius, 2*brim_height], false);
+         cube([sprout_width, teapot_inner_radius, 2*brim_hight], false);
       }
    }
 }

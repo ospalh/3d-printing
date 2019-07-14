@@ -62,7 +62,7 @@ finish=Edge_finish;
 
 //Flush for easier printing
 Flush_or_Raised_Hub=1;//[0:Hub,1:Flush]
-flush=Flush_or_Raised_Hub;		//Flush is easier to print, the hub is height of bearing and may print with support
+flush=Flush_or_Raised_Hub;		//Flush is easier to print, the hub is hight of bearing and may print with support
 
 //knurledFinishLib_v2
 	/*
@@ -77,12 +77,12 @@ flush=Flush_or_Raised_Hub;		//Flush is easier to print, the hub is height of bea
 	 *
 	 *	 in your OpenSCAD script and call either...
 	 *
-	 *    knurled_cyl( Knurled cylinder height,
+	 *    knurled_cyl( Knurled cylinder hight,
 	 *                 Knurled cylinder outer diameter,
 	 *                 Knurl polyhedron width,
-	 *                 Knurl polyhedron height,
+	 *                 Knurl polyhedron hight,
 	 *                 Knurl polyhedron depth,
-	 *                 Cylinder ends smoothed height,
+	 *                 Cylinder ends smoothed hight,
 	 *                 Knurled surface smoothing amount );
 	 *
 	 *  ...or...
@@ -242,7 +242,7 @@ flush=Flush_or_Raised_Hub;		//Flush is easier to print, the hub is height of bea
 	spoke_z=holder_z;
 
 
-	//If flush: hub will be height of coin stack otherwise height of bearing
+	//If flush: hub will be hight of coin stack otherwise hight of bearing
 	hub_z=flush==1 ? coin_thickness*stack : brg_z;
 
 

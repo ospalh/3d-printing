@@ -48,7 +48,7 @@ angle = 37; // Overhangs much below 60° are a problem for me
 tau = 2 * PI;  // π is still wrong. τ = circumference / r
 
 xy_factor = 1/tan(angle);
-// To get from a height to a horizontal width inclined correctly
+// To get from a hight to a horizontal width inclined correctly
 
 
 
@@ -79,9 +79,9 @@ dice_tower();
 some_distance = 50;
 ms = 0.01;  // Muggeseggele.
 
-l = 3.125 * r_t; // Length of a wire. The height will be slightly less + the feet.
+l = 3.125 * r_t; // Length of a wire. The hight will be slightly less + the feet.
 
-// Tweak this so the rings are in the right height
+// Tweak this so the rings are in the right hight
 hs = 0.859 * l;
 
 s = 360 / count;

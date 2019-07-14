@@ -67,13 +67,13 @@ module schwaebische_gruesse_kopfueber(h)
 {
    difference()
    {
-      linear_extrude(height=h)
+      linear_extrude(hight=h)
       {
          Lecken_mich_voll();
       }
       translate([0,  0,  -fudge])
       {
-         linear_extrude(height=h+2*fudge)
+         linear_extrude(hight=h+2*fudge)
          {
             L_punze();
             e_1_punze_2();
@@ -90,13 +90,13 @@ module schwaebische_gruesse_kopfueber(h)
    }
    difference()
    {
-      linear_extrude(height=h)
+      linear_extrude(hight=h)
       {
          Sie_voll();
       }
       translate([0,  0,  -fudge])
       {
-         linear_extrude(height=h+2*fudge)
+         linear_extrude(hight=h+2*fudge)
          {
             S_punze_1();
             S_punze_2();
@@ -106,13 +106,13 @@ module schwaebische_gruesse_kopfueber(h)
    }
    difference()
    {
-      linear_extrude(height=h)
+      linear_extrude(hight=h)
       {
          am_voll();
       }
       translate([0,  0,  -fudge])
       {
-         linear_extrude(height=h+2*fudge)
+         linear_extrude(hight=h+2*fudge)
          {
             a_punze();
          }
@@ -120,27 +120,27 @@ module schwaebische_gruesse_kopfueber(h)
    }
    difference()
    {
-      linear_extrude(height=h)
+      linear_extrude(hight=h)
       {
          sch_voll();
       }
       translate([0,  0,  -fudge])
       {
-         linear_extrude(height=h+2*fudge)
+         linear_extrude(hight=h+2*fudge)
          {
             c_3_punze();
          }
       }
    }
-   linear_extrude(height=h)
+   linear_extrude(hight=h)
    {
       Ar();
    }
-   linear_extrude(height=h)
+   linear_extrude(hight=h)
    {
       bang_schaft();
    }
-   linear_extrude(height=h)
+   linear_extrude(hight=h)
    {
       bang_punkt();
    }

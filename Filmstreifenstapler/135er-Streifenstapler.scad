@@ -40,7 +40,7 @@ spo = 20;
 
 
 w = 1.8;  // Wall width
-p = 1.2;  // Bottom, top plate height
+p = 1.2;  // Bottom, top plate hight
 c = 0.4;  // Clearance
 angle = 60; // Overhangs much below 60° are a problem for me
 
@@ -50,7 +50,7 @@ angle = 60; // Overhangs much below 60° are a problem for me
 tau = 2 * PI;  // π is still wrong. τ = circumference ÷ r
 
 xy_factor = 1/tan(angle);
-// To get from a height to a horizontal width inclined correctly
+// To get from a hight to a horizontal width inclined correctly
 z_factor = tan(angle);  // The other way around
 
 he = h + 2*p;

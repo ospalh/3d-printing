@@ -14,8 +14,8 @@ preview = 1; // [0:render, 1:preview]
 bar_spacing = 18.4;  // [5:0.1:30]
 // Diameter of one shelf grid bar
 bar_width = 2.8;  // [0.5:0.1:7]
-// Height of the coaster pot.
-pot_height = 20;  // [3:0.5:50]
+// Hight of the coaster pot.
+pot_hight = 20;  // [3:0.5:50]
 // Diameter of the bottle to hold
 bottle_diameter_y = 56.5;  // [10:0.1:80]
 bottle_diameter_x = 68.3;  // [10:0.1:80]
@@ -35,7 +35,7 @@ number_of_pots = 1;  // [1:1:10]
 
 
 w = 1.8;  // Wall width
-p = 1.2;  // Bottom, top plate pot_height
+p = 1.2;  // Bottom, top plate pot_hight
 c = 0.4;  // Clearance
 angle = 60; // Overhangs much below 60° are a problem for me
 
@@ -45,7 +45,7 @@ angle = 60; // Overhangs much below 60° are a problem for me
 tau = 2 * PI;  // π is still wrong. τ = circumference ÷ r
 
 xy_factor = 1/tan(angle);
-// To get from a pot_height to a horizontal width inclined correctly
+// To get from a pot_hight to a horizontal width inclined correctly
 z_factor = tan(angle);  // The other way around
 
 
@@ -104,7 +104,7 @@ module fridge_coaster()
             {
                scale([1,factor_out,1])
                {
-                  cylinder(r1=riex+w, r2=ritx+w, h=pot_height+ms);
+                  cylinder(r1=riex+w, r2=ritx+w, h=pot_hight+ms);
                }
             }
          }
@@ -131,7 +131,7 @@ module fridge_coaster()
          {
             scale([1,factor_in,1])
             {
-               cylinder(r1=riex, r2=ritx, h=pot_height+2*ms);
+               cylinder(r1=riex, r2=ritx, h=pot_hight+2*ms);
             }
          }
       }

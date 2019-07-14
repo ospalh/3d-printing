@@ -9,7 +9,7 @@
 
 // Diameter of the oil can
 d_can = 79;  // [20:1:150]
-// Height of the oiling tip above ground
+// Hight of the oiling tip above ground
 h_tip = 133;  // [20:1:170]
 // Distance of the tip from the center of the can
 x_tip = 142;   // [20:1:200]
@@ -33,9 +33,9 @@ b_c = 4;  // Thickness of the connector
 r_catcher = 10;  // radius of the oil catcher pot
 w = 1.8;  // wall strength;
 r_stem = 3;  // diameter of the oil catcher pot stem
-h_can = 10;  // height of the can wall
+h_can = 10;  // hight of the can wall
 h_clear = 5;  // distance from the tip to the catcher pot
-pot_bottom_height = 8;  // To give the catcher got a bit of a flat bottom
+pot_bottom_hight = 8;  // To give the catcher got a bit of a flat bottom
 l_horns = 20;
 
 
@@ -158,7 +158,7 @@ module catcher_hollow()
       intersection()
       {
          cylinder(r1=ms, r2=r_catcher+ms, h=h_cc+2*ms);
-         translate([0,0,pot_bottom_height])
+         translate([0,0,pot_bottom_hight])
          {
             cylinder(r=r_catcher+2*ms, h=h_cc+2);
          }

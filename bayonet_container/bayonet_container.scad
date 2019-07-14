@@ -22,8 +22,8 @@ stackable = 0;  // [0: no, 1: yes]
 // minimum interior diameter of container
 _insideDiameter = 17;  // [5:0.1:35]
 
-// height of the container's interior space
-_interiorHeight = 110;  // [5:0.1:200]
+// hight of the container's interior space
+_interiorHight = 110;  // [5:0.1:200]
 
 // the thinnest walls of the container will use this value
 _minimumWallThickness = 1.2;
@@ -31,8 +31,8 @@ _minimumWallThickness = 1.2;
 // horizontal thickness used for the top of the lid or bottom of the container
 _topBottomThickness = 1.2;
 
-// height of the lip between lid and container
-_lipHeight = 3.0;
+// hight of the lip between lid and container
+_lipHight = 3.0;
 
 // how much the locking bayonets protrude (larger values may be needed for larger diameters)
 _bayonetDepth = 0.6;
@@ -52,7 +52,7 @@ _partGap = 0.2;
 _numberOfSides = 6;  // [3:1:12]
 
 w = 1.8;  // Wall width
-p = 1.2;  // Bottom, top plate height
+p = 1.2;  // Bottom, top plate hight
 c = 0.4;  // Clearance
 angle = 60; // Overhangs much below 60° are a problem for me
 
@@ -69,16 +69,16 @@ _topBottomThickness = 1.2;
 tau = 2 * PI;  // π is still wrong. τ = circumference ÷ r
 
 xy_factor = 1/tan(angle);
-// To get from a height to a horizontal width inclined correctly
+// To get from a hight to a horizontal width inclined correctly
 z_factor = tan(angle);  // The other way around
 
 // Override these to specify exterior dimensions instead of interior
 // dimensions
 outsideDiameter = _insideDiameter +
    2 * (_minimumWallThickness*2 + _partGap + _bayonetDepth);
-baseHeight = _interiorHeight + _topBottomThickness - _lipHeight;
-stackable_containerHeight = _interiorHeight + _topBottomThickness;
-lidHeight = _topBottomThickness + _lipHeight + 2; // 2 mm extra for the bayonet
+baseHight = _interiorHight + _topBottomThickness - _lipHight;
+stackable_containerHight = _interiorHight + _topBottomThickness;
+lidHight = _topBottomThickness + _lipHight + 2; // 2 mm extra for the bayonet
 // No storage space in the lid. That’s what “lid” means.
 twistAngle = 60; // amount of twist to close the lid
 bayonetAngle = 30; // angular size of the bayonets
@@ -164,8 +164,8 @@ module stack_parts()
       short_container();
 
       // Dto.
-      // translate([0,0,stackable_containerHeight + _lipHeight+ 2*_bayonetDepth+ ms])
-      translate([0,0,baseHeight + _lipHeight+ 2*_bayonetDepth+ ms])
+      // translate([0,0,stackable_containerHight + _lipHight+ 2*_bayonetDepth+ ms])
+      translate([0,0,baseHight + _lipHight+ 2*_bayonetDepth+ ms])
       {
          rotate([0,180,0])
          {
@@ -181,8 +181,8 @@ module stack_parts()
 module short_container()
 {
    container(
-      _style, outsideDiameter, baseHeight, _minimumWallThickness,
-      _topBottomThickness, _lipHeight, _bayonetDepth, bayonetAngle, _partGap,
+      _style, outsideDiameter, baseHight, _minimumWallThickness,
+      _topBottomThickness, _lipHight, _bayonetDepth, bayonetAngle, _partGap,
       _numberOfSides);
 }
 
@@ -190,15 +190,15 @@ module short_container()
 module short_stackable_container()
 {
    stackable_container(
-      _style, outsideDiameter, stackable_containerHeight, _minimumWallThickness,
-      _topBottomThickness, _lipHeight, _bayonetDepth, bayonetAngle, _partGap,
+      _style, outsideDiameter, stackable_containerHight, _minimumWallThickness,
+      _topBottomThickness, _lipHight, _bayonetDepth, bayonetAngle, _partGap,
       _numberOfSides, twistAngle);
 }
 module short_lid()
 {
    lid(
-      _style, outsideDiameter, lidHeight, _minimumWallThickness,
-      _topBottomThickness, _lipHeight, _bayonetDepth, bayonetAngle,
+      _style, outsideDiameter, lidHight, _minimumWallThickness,
+      _topBottomThickness, _lipHight, _bayonetDepth, bayonetAngle,
       _numberOfSides, twistAngle);
 
 }
@@ -208,34 +208,34 @@ module short_lid()
 // Code for the parts themselves
 
 
-module makeStylizedCylinder(type, diameter, height, rounding, polygonSides)
+module makeStylizedCylinder(type, diameter, hight, rounding, polygonSides)
 {
    radius = diameter/2;
    if (type == "crown")
    {
-      crownCylinder(polygonSides, radius, height, rounding);
+      crownCylinder(polygonSides, radius, hight, rounding);
    }
    else if (type == "flipped crown")
    {
-      translate([0,0,height])
+      translate([0,0,hight])
       {
          mirror([0,0,1])
          {
-            crownCylinder(polygonSides, radius, height, rounding);
+            crownCylinder(polygonSides, radius, hight, rounding);
          }
       }
    }
    else if (type == "polygon")
    {
-      polyCylinder(polygonSides, radius, height, rounding);
+      polyCylinder(polygonSides, radius, hight, rounding);
    }
    else
    {
-      roundCylinder(radius, height, rounding);
+      roundCylinder(radius, hight, rounding);
    }
 }
 
-module thread(r1, r2, angle, height, yoffset, rotation, chamfer=0, r3=0, r4=0)
+module thread(r1, r2, angle, hight, yoffset, rotation, chamfer=0, r3=0, r4=0)
 {
    for(a=[0,120,240])
    {
@@ -245,12 +245,12 @@ module thread(r1, r2, angle, height, yoffset, rotation, chamfer=0, r3=0, r4=0)
          {
             hull()
             {
-               smallArc(r1, r2, angle, height);
+               smallArc(r1, r2, angle, hight);
                if (chamfer != 0)
                {
                   translate([0,0,chamfer])
                   {
-                     smallArc(r3, r4, angle, height);
+                     smallArc(r3, r4, angle, hight);
                   }
                }
             }
@@ -260,15 +260,15 @@ module thread(r1, r2, angle, height, yoffset, rotation, chamfer=0, r3=0, r4=0)
 }
 
 module container(
-   style, diameter, height, wall, base, lipHeight, bayonetDepth, bayonetAngle, partGap, sides)
+   style, diameter, hight, wall, base, lipHight, bayonetDepth, bayonetAngle, partGap, sides)
 {
-   height = max(height, base+lipHeight);
+   hight = max(hight, base+lipHight);
    radius = diameter/2;
    innerRadius = radius - wall*2 - bayonetDepth - partGap;
-   fullHeight = height + lipHeight;
+   fullHight = hight + lipHight;
    rounding = 1.0;
    chamfer = bayonetDepth;
-   bayonetHeight = (lipHeight-chamfer)/2;
+   bayonetHight = (lipHight-chamfer)/2;
    eps = 0.1;
 
    difference()
@@ -278,36 +278,36 @@ module container(
          // body
          if (style == "tapered")
          {
-            taperedCylinder(radius, innerRadius+wall, height, rounding);
+            taperedCylinder(radius, innerRadius+wall, hight, rounding);
          }
          else
          {
-            makeStylizedCylinder(style, diameter, height, rounding, sides);
+            makeStylizedCylinder(style, diameter, hight, rounding, sides);
          }
 
          // lip
          translate([0,0,rounding+eps])
          {
-            cylinder(r=innerRadius+wall, h=fullHeight-rounding-eps);
+            cylinder(r=innerRadius+wall, h=fullHight-rounding-eps);
          }
 
          // bayonet
          thread(
             innerRadius+wall-eps, innerRadius+wall+bayonetDepth, bayonetAngle,
-            bayonetHeight, fullHeight - bayonetHeight/2, 0, -chamfer,
+            bayonetHight, fullHight - bayonetHight/2, 0, -chamfer,
             innerRadius, innerRadius+wall);
       }
 
       // inner cutout
       translate([0,0,base])
       {
-         cylinder(r=innerRadius, h=fullHeight);
+         cylinder(r=innerRadius, h=fullHight);
          if (style == "round thin")
          {
             hull()
             {
-               cylinder(r=radius-wall, h=height-base*2 - (radius-innerRadius));
-               cylinder(r=innerRadius, h=height-base*2);
+               cylinder(r=radius-wall, h=hight-base*2 - (radius-innerRadius));
+               cylinder(r=innerRadius, h=hight-base*2);
             }
          }
       }
@@ -317,16 +317,16 @@ module container(
 
 
 module lid(
-   style, diameter, height, wall, base, lipHeight, bayonetDepth, bayonetAngle,
+   style, diameter, hight, wall, base, lipHight, bayonetDepth, bayonetAngle,
    sides, twistAngle)
 {
-   height = max(height, base+lipHeight);
+   hight = max(hight, base+lipHight);
    bayonetAngle = bayonetAngle+2;
    radius = diameter/2;
    innerRadius = radius - wall - bayonetDepth;
    rounding = 1.0;
    chamfer = bayonetDepth;
-   bayonetHeight = (lipHeight-chamfer)/2;
+   bayonetHight = (lipHight-chamfer)/2;
    eps = 0.1;
 
    difference()
@@ -334,55 +334,55 @@ module lid(
       // body (round, hex, knurled)
       if (style == "tapered" || style == "thin")
       {
-         taperedCylinder(radius, innerRadius+wall, height, rounding);
+         taperedCylinder(radius, innerRadius+wall, hight, rounding);
       }
       else
       {
-         makeStylizedCylinder(style, diameter, height, rounding, sides);
+         makeStylizedCylinder(style, diameter, hight, rounding, sides);
       }
 
       // inner cutout
       translate([0,0,base])
       {
-         cylinder(r=innerRadius, h=height+eps);
+         cylinder(r=innerRadius, h=hight+eps);
          if (style == "round thin")
          {
             hull()
             {
                cylinder(
-                  r=radius-wall, h=height-lipHeight-base*2 - (radius-innerRadius));
-               cylinder(r=innerRadius, h=height-lipHeight-base*2);
+                  r=radius-wall, h=hight-lipHight-base*2 - (radius-innerRadius));
+               cylinder(r=innerRadius, h=hight-lipHight-base*2);
             }
          }
       }
       // bayonet
       thread(
          innerRadius-eps, innerRadius+bayonetDepth, bayonetAngle,
-         lipHeight + eps, height - lipHeight/2 + eps/2,
+         lipHight + eps, hight - lipHight/2 + eps/2,
          twistAngle + bayonetAngle);
 
       // bayonet
       thread(
          innerRadius-eps, innerRadius+bayonetDepth, bayonetAngle+twistAngle,
-         bayonetHeight + eps, height - (lipHeight - bayonetHeight/2) + eps/2,
+         bayonetHight + eps, hight - (lipHight - bayonetHight/2) + eps/2,
          twistAngle + bayonetAngle, chamfer, innerRadius-eps, innerRadius);
    }
 }
 
 module stackable_container(
-   style, diameter, height, wall, base, lipHeight, bayonetDepth, bayonetAngle,
+   style, diameter, hight, wall, base, lipHight, bayonetDepth, bayonetAngle,
    partGap, sides, twistAngle)
 {
-   height = max(height, base+lipHeight);
+   hight = max(hight, base+lipHight);
    radius = diameter/2;
    innerRadius = radius - wall*2 - bayonetDepth - partGap;
    middleRadius = radius - wall - bayonetDepth;
    wallThickness = radius - innerRadius;
-   fullHeight = height + lipHeight;
+   fullHight = hight + lipHight;
    rounding = 0;
    topBayonetAngle = bayonetAngle+2;
    chamfer = bayonetDepth;
-   bayonetHeight = (lipHeight-chamfer)/2;
+   bayonetHight = (lipHight-chamfer)/2;
    eps = 0.1;
 
    difference()
@@ -390,45 +390,45 @@ module stackable_container(
       union()
       {
          // lip
-         cylinder(r=innerRadius+wall, h=fullHeight);
+         cylinder(r=innerRadius+wall, h=fullHight);
 
          // body
-         translate([0,0,lipHeight])
+         translate([0,0,lipHight])
          {
-            makeStylizedCylinder(style, diameter, height, rounding, sides);
+            makeStylizedCylinder(style, diameter, hight, rounding, sides);
          }
          // bayonet
          thread(
             innerRadius+wall-eps, innerRadius+wall+bayonetDepth, bayonetAngle,
-            bayonetHeight, bayonetHeight/2, 0, chamfer, innerRadius,
+            bayonetHight, bayonetHight/2, 0, chamfer, innerRadius,
             innerRadius+wall);
       }
 
       // inner cutout
       translate([0,0,base])
       {
-         cylinder(r=innerRadius, h=fullHeight);
+         cylinder(r=innerRadius, h=fullHight);
       }
-      translate([0,0,lipHeight+max(wall,base)])
+      translate([0,0,lipHight+max(wall,base)])
       {
-         cylinder(r=middleRadius, h=fullHeight);
+         cylinder(r=middleRadius, h=fullHight);
       }
       if (style == "round thin")
       {
-         // assign(cutHeight = height-lipHeight-base*2 - wallThickness*2) {
-         cutHeight = height-lipHeight-base*2 - wallThickness*2;
+         // assign(cutHight = hight-lipHight-base*2 - wallThickness*2) {
+         cutHight = hight-lipHight-base*2 - wallThickness*2;
          {
-            if (cutHeight > 0)
+            if (cutHight > 0)
             {
-               translate([0,0,lipHeight+base])
+               translate([0,0,lipHight+base])
                {
                   hull()
                   {
                      translate([0,0,wallThickness])
                      {
-                        cylinder(r=radius-wall, h=cutHeight);
+                        cylinder(r=radius-wall, h=cutHight);
                      }
-                  cylinder(r=innerRadius, h=cutHeight + wallThickness*2);
+                  cylinder(r=innerRadius, h=cutHight + wallThickness*2);
                   }
                }
             }
@@ -436,23 +436,23 @@ module stackable_container(
       }
 
       // thread cutout
-      translate([0,0,fullHeight-lipHeight-partGap])
+      translate([0,0,fullHight-lipHight-partGap])
       {
-         cylinder(r=middleRadius, h=lipHeight+partGap+eps);
+         cylinder(r=middleRadius, h=lipHight+partGap+eps);
       }
 
       // top thread
       thread(
          middleRadius-eps, middleRadius+bayonetDepth, topBayonetAngle,
-         lipHeight+eps, fullHeight - lipHeight/2 + eps/2,
+         lipHight+eps, fullHight - lipHight/2 + eps/2,
          twistAngle + topBayonetAngle);
 
 
       // top thread
       thread(
          middleRadius-eps, middleRadius+bayonetDepth,
-         topBayonetAngle+twistAngle, bayonetHeight + eps,
-         fullHeight - lipHeight + bayonetHeight/2 + eps/2,
+         topBayonetAngle+twistAngle, bayonetHight + eps,
+         fullHight - lipHight + bayonetHight/2 + eps/2,
          twistAngle + topBayonetAngle, chamfer, middleRadius-eps, middleRadius);
    }
 }
@@ -498,17 +498,17 @@ module torus(r1, r2)
    }
 }
 
-module roundCylinder(radius, height, rounding)
+module roundCylinder(radius, hight, rounding)
 {
    if (rounding == 0)
    {
-      cylinder(r=radius, h=height);
+      cylinder(r=radius, h=hight);
    }
    else
    {
       hull()
       {
-         translate([0,0,height-rounding])
+         translate([0,0,hight-rounding])
          {
             cylinder(r=radius, h=rounding);
          }
@@ -520,12 +520,12 @@ module roundCylinder(radius, height, rounding)
    }
 }
 
-module taperedCylinder(radius1, radius2, height, rounding)
+module taperedCylinder(radius1, radius2, hight, rounding)
 {
    eps = 0.1;
    hull()
    {
-      translate([0,0,height-eps])
+      translate([0,0,hight-eps])
       {
          cylinder(r=radius1, h=eps);
       }
@@ -544,13 +544,13 @@ module taperedCylinder(radius1, radius2, height, rounding)
    }
 }
 
-module crownCylinder(sides, radius, height, rounding)
+module crownCylinder(sides, radius, hight, rounding)
 {
    eps = 0.1;
    angle = 360/sides;
    hull()
    {
-      translate([0,0,height-eps])
+      translate([0,0,hight-eps])
       {
          cylinder(r=radius, h=eps);
       }
@@ -580,7 +580,7 @@ module crownCylinder(sides, radius, height, rounding)
    }
 }
 
-module polyCylinder(sides, radius, height, rounding)
+module polyCylinder(sides, radius, hight, rounding)
 {
    angle = 360/sides;
    if (rounding == 0)
@@ -593,7 +593,7 @@ module polyCylinder(sides, radius, height, rounding)
             {
                translate([0,(radius - rounding)/cos(angle/2),0])
                {
-                  cylinder(r=1, h=height, $fn=30);
+                  cylinder(r=1, h=hight, $fn=30);
                }
             }
          }
@@ -603,7 +603,7 @@ module polyCylinder(sides, radius, height, rounding)
    {
       hull()
       {
-         translate([0,0,height-rounding])
+         translate([0,0,hight-rounding])
          {
             hull()
             {

@@ -112,7 +112,7 @@ if (false)
 
 module how_rude()
 {
-   linear_extrude(height = 0.5) {
+   linear_extrude(hight = 0.5) {
       text(text="Please visit", size=5);
       translate([0,-5,0])
       {
@@ -154,7 +154,7 @@ module measure()
                      (inner_box_dimension + 2*wall_thickness);
                   translate([0,0,icl_z/2-4*wall_thickness])
                   {
-                     linear_extrude(height=2*wall_thickness,scale=delta_x)
+                     linear_extrude(hight=2*wall_thickness,scale=delta_x)
                      {
                         offset(r=roundness)
                         {
@@ -164,7 +164,7 @@ module measure()
                   }
                   translate([0,0,icl_z/2-2*wall_thickness])
                   {
-                     linear_extrude(height=3*wall_thickness)
+                     linear_extrude(hight=3*wall_thickness)
                      {
                         offset(r=roundness)
                         {
@@ -180,7 +180,7 @@ module measure()
                   sphere(inner_radius);
                }
                // Cut off the top. A big enough cube. important is the
-               // lower face height.
+               // lower face hight.
                translate([-msd/2,-msd/2,icl_z_plus/2])
                {
                   cube([msd,msd,2*roundness]);
@@ -319,7 +319,7 @@ module funnel()
              translate([0,0, wall_thickness])
              {
 
-                linear_extrude(height=1.5*wall_thickness, scale=xym/xyo)
+                linear_extrude(hight=1.5*wall_thickness, scale=xym/xyo)
                 {
                    offset(roundness)
                    {
@@ -371,7 +371,7 @@ module funnel()
 //   xf = xm + roundness * cos(funnel_angle);
    xyfb = xym + roundness * cos(funnel_angle);
    xyft = max(xyfb, min_funnel_top_width/2);
-   funnel_height = (xyft - xyfb/2) * tan(funnel_angle);
+   funnel_hight = (xyft - xyfb/2) * tan(funnel_angle);
    translate([wall_thickness, wall_thickness,
               2*wall_thickness + funnel_z_offset])
    {
@@ -395,7 +395,7 @@ module funnel()
                {
                    sphere(roundness);
                }
-               translate([0,0,funnel_height])
+               translate([0,0,funnel_hight])
                {
                    translate([xyft, xyft, 0])
                    {
@@ -435,7 +435,7 @@ module funnel()
                    {
                        sphere(roundness);
                    }
-                   translate([0,0,funnel_height])
+                   translate([0,0,funnel_hight])
                    {
                        translate([xyft, xyft, 0])
                        {
@@ -466,7 +466,7 @@ module funnel()
                    }
                }
            }
-           translate([0,0,funnel_height-roundness])
+           translate([0,0,funnel_hight-roundness])
            {
                linear_extrude(2*roundness)
                {

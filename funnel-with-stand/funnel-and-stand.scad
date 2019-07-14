@@ -30,8 +30,8 @@ tip_rotation = 180; // [0:45:359]
 // Create just the funnel, or a stand to go with it, with one or three supports
 stand_style = 0;  // [0:Just funnel, 1:Funnel and simple stand, 3:Funnel and tripod stand]
 
-// Height added  to the stand, in cm. The height of the top of the funnel will be the length of your pencil plus this.
-extra_height = 1; // [1:15]
+// Hight added  to the stand, in cm. The hight of the top of the funnel will be the length of your pencil plus this.
+extra_hight = 1; // [1:15]
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
@@ -42,7 +42,7 @@ preview = 1; // [0:render, 1:preview]
 // bad idea. Try, and undo if it didn’t work.
 
 xy_factor = 1/tan(funnel_angle);
-// To get from a height to a horizontal width inclined correctly
+// To get from a hight to a horizontal width inclined correctly
 z_factor = tan(funnel_angle);  // The other way around
 
 
@@ -51,7 +51,7 @@ w = 1.2;  // To get four perimeters in slic3r, we have to add a bit here. WTF?
 // Wall thickness.  When you measure the conical part along the surfaces it
 // will appear thinner.
 
-es_h = 20; // Extra support/stabilizer height
+es_h = 20; // Extra support/stabilizer hight
 es_w = 0.8;
 // Extra support/stabilizer width. Need not be as stable as a normal
 // wall
@@ -63,7 +63,7 @@ handle_br = 0.8;  // Hanle border radius
 r_n = (outer_neck_diameter * 5) - w - strake_r();  // inner neck radius in mm
 r_r = inner_rim_diameter * 5;  // inner rim radius in mm
 l_n = neck_length * 10;  // neck_length in mm
-heh = extra_height * 5; // Half the extra height, in mm
+heh = extra_hight * 5; // Half the extra hight, in mm
 ond = outer_neck_diameter * 10;
 ncl = ond / cos(neck_tip_angle) * 1.05;
 nth = ond * tan(neck_tip_angle);
@@ -121,13 +121,13 @@ tip_a = 21;  // °. Apparently standard in Germany
 r_bp_s = sqrt(2) * r_p_s;
 r_bp_l = r_bp_s * 2 / 3 * sqrt(3);
 
-sp_h = 8 * r_p_s;  // Height of the sharpend pencil cylindrical connector bit
-usp_h = 10 * r_p_s;  // Height of the unsharpend pencil connector bit
+sp_h = 8 * r_p_s;  // Hight of the sharpend pencil cylindrical connector bit
+usp_h = 10 * r_p_s;  // Hight of the unsharpend pencil connector bit
 
 
 bp_s_h = r_bp_s / tan(tip_a/2);
 
-// Height of the sleeve at the bottom (as printed) of the “big pencil”
+// Hight of the sleeve at the bottom (as printed) of the “big pencil”
 // connector. The length of a pencil tip. (The angle of the outer wall
 // should come out slightly below tip_a, as the walls get thinner. We
 // (try to) maintain cross section area, not wall strength.)

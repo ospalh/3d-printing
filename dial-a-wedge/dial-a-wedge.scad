@@ -9,9 +9,9 @@
 //
 length = 50; // [1:0.1:200]
 width = 20; // [1:0.1:200]
-height = 20; // [1:0.1:200]
-// The height of the sharp end. Typically 0
-height_2 = 0; // [0:0.1:190]
+hight = 20; // [1:0.1:200]
+// The hight of the sharp end. Typically 0
+hight_2 = 0; // [0:0.1:190]
 
 
 
@@ -22,7 +22,7 @@ module wedge()
    {
       linear_extrude(width)
       {
-         polygon([[-length/2,0], [length/2,0], [length/2,height], [-length/2,height_2]]);
+         polygon([[-length/2,0], [length/2,0], [length/2,hight], [-length/2,hight_2]]);
 
       }
    }

@@ -7,8 +7,8 @@
 
 b_width = 25;
 arm_length = 35;
-arm_height = 3;
-hook_height = 25;
+arm_hight = 3;
+hook_hight = 25;
 hook_wall = 3;
 knob_thickness = 12;
 knob_radius = 12;
@@ -20,7 +20,7 @@ h_width = 2 * (knob_radius + hook_wall);
 translate([-b_width/2, -arm_length, 0])
 {
    // Base
-   cube([b_width, arm_length, arm_height]);
+   cube([b_width, arm_length, arm_hight]);
 }
 translate([0.5*(h_width-b_width), 0, 0])
 {
@@ -31,9 +31,9 @@ translate([0.5*(h_width-b_width), 0, 0])
          // Lower part of took
          translate([-h_width/2, 0, 0])
          {
-            cube([h_width, hook_thickness, hook_height-knob_radius-hook_wall]);
+            cube([h_width, hook_thickness, hook_hight-knob_radius-hook_wall]);
          }
-         translate([0, 0, hook_height-knob_radius-hook_wall])
+         translate([0, 0, hook_hight-knob_radius-hook_wall])
          {
             // upper part of hook
             rotate([-90, 0, 0])
@@ -42,7 +42,7 @@ translate([0.5*(h_width-b_width), 0, 0])
             }
          }
       }
-      translate([0, hook_wall, hook_height-knob_radius-hook_wall])
+      translate([0, hook_wall, hook_hight-knob_radius-hook_wall])
       {
          // Space where the knob will rest
          rotate([-90, 0, 0])
@@ -53,12 +53,12 @@ translate([0.5*(h_width-b_width), 0, 0])
       translate([-h_width/2+hook_wall, hook_wall, -knob_radius-hook_wall])
       {
          // Space to insert the knob
-         cube([2*knob_radius, knob_thickness, hook_height]);
+         cube([2*knob_radius, knob_thickness, hook_hight]);
       }
       translate([-line_width/2, hook_wall, -ms])
       {
          // space for the line
-         cube([line_width, hook_thickness, hook_height+2*ms]);
+         cube([line_width, hook_thickness, hook_hight+2*ms]);
       }
       translate([-h_width/2, -h_width,-h_width])
       {

@@ -7,10 +7,10 @@
 
 // Basically the inner diameter of the bottle (glass, whatever)
 stopper_diameter = 8.0; // [5:0.1:90]
-// The height of the conical part
-stopper_height = 5;  // [2.5:0.1:60]
+// The hight of the conical part
+stopper_hight = 5;  // [2.5:0.1:60]
 //
-flange_height = 2.4; // [1.8:0.1:15]
+flange_hight = 2.4; // [1.8:0.1:15]
 flange_width = 3.2;  // [1.8:0.1:24]
 
 // Add a notch for a string, rubber band or similar
@@ -34,8 +34,8 @@ r_u = r_o * 0.6;
 r_k = stopper_diameter/2 + flange_width;
 
 
-h = stopper_height;
-h_g = h + flange_height;
+h = stopper_hight;
+h_g = h + flange_hight;
 
 
 // a_fn = 60; b_fn = 20;  // draft
@@ -97,7 +97,7 @@ module stoepsel_mit_nut()
 
 module stoepsel()
 {
-   translate([0,0,h+flange_height])
+   translate([0,0,h+flange_hight])
    {
       mirror([0,0,1])
       {
@@ -121,10 +121,10 @@ module stoepsel_form()
       [r_k-r_r, h],
       [r_k-r_r, h+r_r],
       [r_k, h+r_r],
-      [r_k, h+flange_height-r_r],
-      [r_k-r_r, h+flange_height-r_r],
-      [r_k-r_r, h+flange_height],
-      [0, h+flange_height],
+      [r_k, h+flange_hight-r_r],
+      [r_k-r_r, h+flange_hight-r_r],
+      [r_k-r_r, h+flange_hight],
+      [0, h+flange_hight],
       ];
   polygon(rot_points);
   translate([r_u-r_r, r_r])
@@ -146,7 +146,7 @@ module stoepsel_form()
   {
      circle(r=r_r, $fn=b_fn);
   }
-  translate([r_k-r_r, h+flange_height-r_r])
+  translate([r_k-r_r, h+flange_hight-r_r])
   {
      circle(r=r_r, $fn=b_fn);
   }

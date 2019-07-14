@@ -32,7 +32,7 @@ font_33 = "Symbola";
 font_34 = "FreeSerif";
 
 w = 50; // width of the plate
-p = 3;  // height of the plate
+p = 3;  // hight of the plate
 
 bw = 4.3;  // Border width
 nw = 1.2;

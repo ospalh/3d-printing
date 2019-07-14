@@ -13,7 +13,7 @@
 glass_diameter = 70; // [30:1:100]
 
 // … and how tall.
-glass_height = 90; // [20:1:200]
+glass_hight = 90; // [20:1:200]
 
 // Angle at which the glass rests
 angle = 45; // [20:1:70]
@@ -21,7 +21,7 @@ angle = 45; // [20:1:70]
 // Width of the wedge as a percentage of the glass diameter
 wedge_width = 70; // [50:1:99]
 
-// Length of the wedge as a percentage of the glass height
+// Length of the wedge as a percentage of the glass hight
 wedge_length = 70; // [50:1:99]
 
 // Distance between the outside and the hole in the inside. The width of the wedge.
@@ -41,7 +41,7 @@ preview = 1; // [0:render, 1:preview]
 
 
 w = 1.8;  // Wall width. Not used here, i think.
-p = 1.2;  // Bottom, top plate height. In this case, distance of the glass from the freezer floor
+p = 1.2;  // Bottom, top plate hight. In this case, distance of the glass from the freezer floor
 c = 0.4;  // Clearance
 
 // *******************************************************
@@ -52,10 +52,10 @@ r_w = glass_diameter/2 * wedge_width/100;
 
 tau = 2 * PI;  // π is still wrong. τ = circumference ÷ r
 
-gh = glass_height*wedge_length/100;
+gh = glass_hight*wedge_length/100;
 
 xy_factor = 1/tan(angle);
-// To get from a height to a horizontal width inclined correctly
+// To get from a hight to a horizontal width inclined correctly
 z_factor = tan(angle);  // The other way around
 hb = gh*sin(angle);
 

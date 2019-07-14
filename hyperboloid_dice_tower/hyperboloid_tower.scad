@@ -22,9 +22,9 @@ c = 14;  // count
 r_t = 34;  // Top (after print) radius
 a_1 = 30;  // Angle from vertical
 a_2 = 50;  // Angle inwards
-l = 125.5; // Length of a wire. The height will be slightly less + the feet.
+l = 125.5; // Length of a wire. The hight will be slightly less + the feet.
 
-// Tweak this so the rings are in the right height
+// Tweak this so the rings are in the right hight
 hs = 0.8566 * l;
 
 s = 360 / c;

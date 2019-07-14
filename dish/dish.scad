@@ -14,7 +14,7 @@ preview = 1; // [0:render, 1:preview]
 
 // Diameter of the dish
 dish_d = 40;  // [30:0.5:240]
-// Height of the dish
+// Hight of the dish
 dish_h = 5; // [5:0.5:24]
 
 // Angle of the sides of the dish
@@ -29,7 +29,7 @@ dish_angle = 75; // [45:5:90]
 
 
 w = 1.8;  // Wall width
-// p = 1.2;  // Bottom, top plate height
+// p = 1.2;  // Bottom, top plate hight
 c = 0.4;  // Clearance
 
 r_r = 2;  // rounding radius
@@ -40,7 +40,7 @@ r_r = 2;  // rounding radius
 tau = 2 * PI;  // π is still wrong. τ = circumference / r
 
 xy_factor = 1/tan(dish_angle);
-// To get from a height to a horizontal width inclined correctly
+// To get from a hight to a horizontal width inclined correctly
 z_factor = tan(dish_angle);  // The other way around
 
 r_d = dish_d/2;

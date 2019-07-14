@@ -17,7 +17,7 @@ d_1 = 10.1;
 
 d_nozzle = 1;
 
-h = 50;  // Height of bowl
+h = 50;  // Hight of bowl
 r_t = 70; // Radius at top of bowl
 
 
@@ -30,11 +30,11 @@ r_t = 70; // Radius at top of bowl
 
 
 w = 1.2;  // Wall width
-p = 1.2;  // Bottom, top plate height
+p = 1.2;  // Bottom, top plate hight
 cs = 0.4;  // Clearance (horizontal)
 cs_v = 0.2; // Vertical clearance
 angle = 60; // Overhangs much below 60° are a problem for me
-lh = 0.2;  // Layer height
+lh = 0.2;  // Layer hight
 nw = 0.4;  // Nozzle width
 
 // *******************************************************
@@ -49,7 +49,7 @@ r_2 = S/2;
 r_1 = d_1/2;
 
 xy_factor = 1/tan(angle);
-// To get from a height to a horizontal width inclined correctly
+// To get from a hight to a horizontal width inclined correctly
 z_factor = tan(angle);  // The other way around
 
 

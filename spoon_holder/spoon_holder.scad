@@ -14,7 +14,7 @@ preview = 1; // [0:render, 1:preview]
 
 // Diameter of the dish
 dish_d = 50;  // [30:0.5:240]
-// Height of the dish
+// Hight of the dish
 dish_h = 5; // [5:0.25:24]
 grip_width = 8; // [3:0.1:20]
 grip_thickness = 3.6; // [1:0.1:20]
@@ -29,7 +29,7 @@ holder_length = 30; // [5:1:50]
 
 
 w = 1.8;  // Wall width
-// p = 1.2;  // Bottom, top plate height
+// p = 1.2;  // Bottom, top plate hight
 c = 1;  // Clearance
 dish_angle = 60; // Overhangs much below 60° are a problem for me
 r_r = 4;  // rounding radius, dish
@@ -44,7 +44,7 @@ g_w = grip_width + c;
 tau = 2 * PI;  // π is still wrong. τ = circumference / r
 
 xy_factor = 1/tan(dish_angle);
-// To get from a height to a horizontal width inclined correctly
+// To get from a hight to a horizontal width inclined correctly
 z_factor = tan(dish_angle);  // The other way around
 
 r_d = dish_d/2;

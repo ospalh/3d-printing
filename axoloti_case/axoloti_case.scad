@@ -20,7 +20,7 @@ screw_hole_distance = 2;
 screw_hole_radius = 1.6;
 
 // Dimensions of the axoloti core.
-// Todo: get the real height:
+// Todo: get the real hight:
 device_xyz = [160, 50, 23];
 // The gap between the axoloti and the case:
 clearance_xyz = [1, 1, 2];
@@ -130,7 +130,7 @@ texts = [
    // [
    // face_name, text_to_write,
    // shape_position[x_pos,y_pos,x_offs,y_offs,rotate,align],
-   // shape_size[depth, font_height, mirror, font_name]
+   // shape_size[depth, font_hight, mirror, font_name]
    // ]
    // Notes:
    // Mirror must be 0 or 1 corresponding to false and true in this
@@ -973,7 +973,7 @@ module make_texts(box, items)
    //      scale_z,scale_x,scale_y,mirror]]
    //    shape_position[
    //       x_pos,y_pos,x_offs,y_offs,rotate,align],
-   //    shape_size[depth,font_height,font_spacing,mirror]
+   //    shape_size[depth,font_hight,font_spacing,mirror]
 
    // Note: for silly reasons mirror must be 0 or 1 corresponding to
    // false and true in this version
@@ -1003,7 +1003,7 @@ module make_texts(box, items)
       rotation=items[j][2][4];
       align=items[j][2][5];
       depth=texts[j][3][0];
-      text_height=texts[j][3][1];
+      text_hight=texts[j][3][1];
       text_mirror=texts[j][3][2];
       //echo("items face",face);
       if (face=="N")
@@ -1017,12 +1017,12 @@ module make_texts(box, items)
                   translate(v=[0,0,-box_t[1]-a_bit])
                      rotate(a=[0,0,-rotation])
                      extrude_text(
-                        text_to_type, text_height, depth+a_bit, font_name);
+                        text_to_type, text_hight, depth+a_bit, font_name);
                else if (align=="outside")
                   translate(v=[0,0,-depth])
                      rotate(a=[0,0,-rotation])
                      extrude_text(
-                        text_to_type, text_height, depth+a_bit, font_name);
+                        text_to_type, text_hight, depth+a_bit, font_name);
                else
                   echo("invalid alignment", align);
             }
@@ -1039,12 +1039,12 @@ module make_texts(box, items)
                   translate(v=[0,0,-box_t[0]-a_bit])
                      rotate(a=[0,0,-rotation])
                      extrude_text(
-                        text_to_type, text_height, depth+a_bit, font_name);
+                        text_to_type, text_hight, depth+a_bit, font_name);
                else if (align=="outside")
                   translate(v=[0,0,-depth])
                      rotate(a=[0,0,-rotation])
                      extrude_text(
-                        text_to_type, text_height, depth+a_bit, font_name);
+                        text_to_type, text_hight, depth+a_bit, font_name);
                else
                   echo("invalid alignment", align);
             }
@@ -1060,12 +1060,12 @@ module make_texts(box, items)
                   translate(v=[0,0,-box_t[2]-a_bit])
                      rotate(a=[0,0,-rotation])
                      extrude_text(
-                        text_to_type, text_height, depth+a_bit, font_name);
+                        text_to_type, text_hight, depth+a_bit, font_name);
                else if (align=="outside")
                   translate(v=[0,0,-depth])
                      rotate(a=[0,0,-rotation])
                      extrude_text(
-                        text_to_type, text_height, depth+a_bit, font_name);
+                        text_to_type, text_hight, depth+a_bit, font_name);
                else
                   echo("invalid alignment", align);
             }
@@ -1081,12 +1081,12 @@ module make_texts(box, items)
                   translate(v=[0,0,-box_t[1]-a_bit])
                      rotate(a=[0,0,-rotation])
                      extrude_text(
-                        text_to_type, text_height, depth+a_bit, font_name);
+                        text_to_type, text_hight, depth+a_bit, font_name);
                else if (align=="outside")
                   translate(v=[0,0,-depth])
                      rotate(a=[0,0,-rotation])
                      extrude_text(
-                        text_to_type, text_height, depth+a_bit, font_name);
+                        text_to_type, text_hight, depth+a_bit, font_name);
                else
                   echo("invalid alignment", align);
             }
@@ -1103,12 +1103,12 @@ module make_texts(box, items)
                   translate(v=[0,0,-box_t[0]-a_bit])
                      rotate(a=[0,0,-rotation])
                      extrude_text(
-                        text_to_type, text_height, depth+a_bit, font_name);
+                        text_to_type, text_hight, depth+a_bit, font_name);
                else if (align=="outside")
                   translate(v=[0,0,-depth])
                      rotate(a=[0,0,-rotation])
                      extrude_text(
-                        text_to_type, text_height, depth+a_bit, font_name);
+                        text_to_type, text_hight, depth+a_bit, font_name);
                else
                   echo("invalid alignment", align);
             }
@@ -1124,12 +1124,12 @@ module make_texts(box, items)
                   translate(v=[0,0,-box_t[2]-a_bit])
                      rotate(a=[0,0,-rotation])
                      extrude_text(
-                        text_to_type, text_height, depth+a_bit, font_name);
+                        text_to_type, text_hight, depth+a_bit, font_name);
                else if (align=="outside")
                   translate(v=[0,0,-depth])
                      rotate(a=[0,0,-rotation])
                      extrude_text(
-                        text_to_type, text_height, depth+a_bit, font_name);
+                        text_to_type, text_hight, depth+a_bit, font_name);
                else
                   echo("invalid alignment", align);
             }
@@ -1141,10 +1141,10 @@ module make_texts(box, items)
    }
 }
 
-module extrude_text(string, height, depth, font_name)
+module extrude_text(string, hight, depth, font_name)
 {
    linear_extrude(depth)
    {
-      text(text=string, size=height, font=font_name);
+      text(text=string, size=hight, font=font_name);
    }
 }

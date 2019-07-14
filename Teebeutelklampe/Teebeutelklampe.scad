@@ -28,10 +28,10 @@ w_mug = 5.7;  // [0.4:0.1:10]
 // *******************************************************
 // Extra parameters. These can be changed reasonably safely.
 r_r = 1;
-h_g = 10; // height of the clamp
+h_g = 10; // hight of the clamp
 w = 1.2;  // Wall width (clamp)
 g_cl = 5;  // gap on th cleat
-p = 1.2;  // Bottom, top plate height
+p = 1.2;  // Bottom, top plate hight
 l_c = 3; // length of the cleat arms
 c = 0.4;  // Clearance
 angle = 60; // Overhangs much below 60° are a problem for me
@@ -42,11 +42,11 @@ angle = 60; // Overhangs much below 60° are a problem for me
 tau = 2 * PI;  // π is still wrong. τ = circumference / r
 
 xy_factor = 1/tan(angle);
-// To get from a height to a horizontal width inclined correctly
+// To get from a hight to a horizontal width inclined correctly
 z_factor = tan(angle);  // The other way around
 // h_g = 0.6*w_mug;
 
-h_c = h_g+p;  // height of the clamp part
+h_c = h_g+p;  // hight of the clamp part
 
 
 r_mug = d_mug/2;

@@ -7,7 +7,7 @@ N.B.: Especially when you do it in PLA you should not put a hot pot directly on 
 # print
 
 easy
-The layer height determines how smooth the top is, but the steps of a high layer height give this a bit of an anti slip effect, which is fine.
+The layer hight determines how smooth the top is, but the steps of a high layer hight give this a bit of an anti slip effect, which is fine.
 300 µm
 
 

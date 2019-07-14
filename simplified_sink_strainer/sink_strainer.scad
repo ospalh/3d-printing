@@ -13,7 +13,7 @@
 // The main diameter of the sink’s hole, at the top
 sink_hole_diameter = 43;  // [10:0.1:100]
 
-// The depth of the sink hole, height of the body without the flange
+// The depth of the sink hole, hight of the body without the flange
 sink_hole_depth = 8;  // [1:0.1:20]
 
 // Add a central handle
@@ -38,7 +38,7 @@ flange_support_angle = 15; // [0, 15, 30, 45, 60]
 
 // Wall width
 wall = 1.8;  // [0.1:0.1:5]
-// Height of the bottom rings and the top flange at the end
+// Hight of the bottom rings and the top flange at the end
 plates = 1.2;  // [0.1:0.1:5]
 
 //  What it says on the tin
@@ -46,8 +46,8 @@ handle_lower_diameter = 6;  // [2:0.1:20]
 //  dto.
 handle_upper_diameter = 9;  // [3:0.1:25]
 
-// Change the height of the handle
-handle_height_tweak = 1.0;  // [0.1:0.1:5]
+// Change the hight of the handle
+handle_hight_tweak = 1.0;  // [0.1:0.1:5]
 
 
 // Width of the four connector beams at the bottom in wall widths
@@ -59,8 +59,8 @@ beam_strengthener = 2;  // [0.5:0.01:5]
 $fs = 0.2;
 $fa = 1;
 
-flange_support_height = flange_width*sin(flange_support_angle);
-handle_height = handle_height_tweak * sink_hole_depth+flange_support_height;
+flange_support_hight = flange_width*sin(flange_support_angle);
+handle_hight = handle_hight_tweak * sink_hole_depth+flange_support_hight;
 
 
 
@@ -106,9 +106,9 @@ module strainer()
       {
          translate([0,0,sink_hole_depth])
          {
-            flange_support(flange_support_height);
+            flange_support(flange_support_hight);
          }
-         translate([0,0,sink_hole_depth+flange_support_height])
+         translate([0,0,sink_hole_depth+flange_support_hight])
          {
             flange();
          }
@@ -197,7 +197,7 @@ module strainer()
    {
       cylinder(
          r1=handle_lower_diameter/2, r2=handle_upper_diameter/2,
-         h=handle_height);
+         h=handle_hight);
    }
 
 }

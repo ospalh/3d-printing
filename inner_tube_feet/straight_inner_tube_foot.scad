@@ -30,8 +30,8 @@ preview = 1; // [0:render, 1:preview]
 
 w = 1.6;  // Wall width of the tube part
 tw = 5; // Width at the top. This is the
-p = 2.0;  // height of the connecting plate
-min_ph = 10;  // Height of the plate connector
+p = 2.0;  // hight of the connecting plate
+min_ph = 10;  // Hight of the plate connector
 cs = 0.2; // clearance
 
 // *******************************************************
@@ -144,7 +144,7 @@ module foot(pw)
 
    itt_r = itr - w;
    // how wide the inner tube thing should be in the end. The circle has
-   // the radius of the inner tube, but the height is so that we get w on
+   // the radius of the inner tube, but the hight is so that we get w on
    // either side.
    itt_e = sqrt(itr*itr - itt_r*itt_r);
 

@@ -16,16 +16,16 @@ preview = 1; // [0:render, 1:preview]
 
 /* [Hidden] */
 
-p = 0.6;  // Bottom, top plate height
+p = 0.6;  // Bottom, top plate hight
 
 // *****************************************************************************
 // Change the list below
 // *****************************************************************************
 
 coin_sizes = [
-   // For each coin size, add a pair with diameter and stack height. Write
-   // the stack height as number * height of one coin. Add p to the last
-   // height to give space for the lid.
+   // For each coin size, add a pair with diameter and stack hight. Write
+   // the stack hight as number * hight of one coin. Add p to the last
+   // hight to give space for the lid.
    [17, 5 * 1],  // FF 5 ¢ (centimes)
    [19.55, 6 * 2.05],  // ½ FF, kleiner als 10 ¢
    [20, 6 * 1.5],  // FF 10 ¢
@@ -48,7 +48,7 @@ max_index = len(coin_sizes) - 1;
 // Horizontal clearance. I use a lot here. Coins may rattle a bit in the final shape, but i am OK with that.
 c = 1;  // [0.05:0.05:1.5]
 
-// Height clearance.
+// Hight clearance.
 ch = 0.2;  // [0.05:0.05:0.6]
 
 /* [Hidden] */
@@ -71,7 +71,7 @@ angle = 55; // Overhangs much below 60° are a problem for me
 tau = 2 * PI;  // π is still wrong. τ = circumference / r
 
 xy_factor = 1/tan(angle);
-// To get from a height to a horizontal width inclined correctly
+// To get from a hight to a horizontal width inclined correctly
 z_factor = tan(angle);  // The other way around
 
 
