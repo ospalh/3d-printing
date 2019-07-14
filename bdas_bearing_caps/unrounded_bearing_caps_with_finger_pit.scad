@@ -37,13 +37,13 @@ slot  = true;
 nozzle = 0.4;
 layer  = 0.2;
 
-stem_height = 0.45;  // as part of bearing height
+stem_hight = 0.45;  // as part of bearing hight
 
 per_per = 8;  // Period of how many nozzle sizes per support connector
 per_mat = 2.5;  // How much of that is filled with material
 
 
-h_stem = h_bearing * stem_height;
+h_stem = h_bearing * stem_hight;
 
 r_in_e = d_in/2 + o;
 r_cap = d_cap/2;
@@ -55,7 +55,7 @@ $fn   = 70;
 ms  = 0.01; // Muggeseggele
 
 w_rim  = 1.6;  // width of rim
-t_rim  = 0.4;              // height of rim
+t_rim  = 0.4;              // hight of rim
 
 m     = ceil(sqrt(number_of_caps));
 n     = ceil(number_of_caps/m);

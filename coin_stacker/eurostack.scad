@@ -40,7 +40,7 @@ two_euros = 1;  // [0:50]
 
 /* [Hidden] */
 
-// Heights or thicknesses of the coins
+// Hights or thicknesses of the coins
 
 h_001 = 1.67;
 h_002 = h_001;
@@ -70,7 +70,7 @@ d_2 = 25.75;
 
 
 w = 0.8;  // Wall width
-p = 0.6;  // Bottom, top plate height
+p = 0.6;  // Bottom, top plate hight
 c = 1;  // Clearance
 ch = 0.2; //
 
@@ -85,7 +85,7 @@ angle = 55; // Overhangs much below 60 degrees are a problem for me
 tau = 2 * PI;  // pi is still wrong. tau = circumference / r
 
 xy_factor = 1/tan(angle);
-// To get from a height to a horizontal width inclined correctly
+// To get from a hight to a horizontal width inclined correctly
 z_factor = tan(angle);  // The other way around
 
 

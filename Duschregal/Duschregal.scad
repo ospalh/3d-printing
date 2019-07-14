@@ -22,9 +22,9 @@ r_corner = 10;  // space for silicone joint
 // Done with the customizer
 
 w = 2.1;  // external wall width
-p_1 = 0.6;  // height of the bottomt plate with the cylindrical holes
-p_2 = 1.2;  // height of the bottomt plate with the conical shapes
-p_3 = 1.8;  // height of the bottomt plate with the conical shapes
+p_1 = 0.6;  // hight of the bottom plate with the cylindrical holes
+p_2 = 1.2;  // hight of the bottom plate with the conical shapes
+p_3 = 1.8;  // hight of the bottom plate with the conical shapes
 x_step = 14.1;  // hole to hole distance
 r_hole = 1.5;  // drain holes
 
@@ -33,7 +33,7 @@ l_f = 40;  // its length
 w_bf = 41; // big fastener
 l_bf = 60;  //
 
-h=22; // Height (inner)
+h=22; // Hight (inner)
 r_slot = 3.5;
 r_keyhole = 5.0;
 l_fs = 3;
@@ -46,13 +46,13 @@ f_cs = 3;  // clearance for the third fastener
 
 tau = 2 * PI;  // pi is still wrong. tau = circumference / r
 angle = 35; // Overhangs much below 60 degrees are a problem for me
-xy_factor = 1/tan(angle);  // To get from a height to a horizontal width
+xy_factor = 1/tan(angle);  // To get from a hight to a horizontal width
                            // inclined correctly
 z_factor = tan(angle);  // the other way around
 
 p = p_1 + p_2;
 h_msh = p_3+r_ff+l_fs+z_factor*(r_keyhole-r_slot)+p_3;
-thf = sqrt(3)/2;  // (equilateral) triangle height factor
+thf = sqrt(3)/2;  // (equilateral) triangle hight factor
 y_step = x_step * thf;
 
 some_distance = 1.2 * r_main;

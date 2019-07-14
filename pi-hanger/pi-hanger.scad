@@ -19,10 +19,10 @@ posts = true;  // Posts to clip the Pi on or screw holes (false)
 spr = 3;  // Screw post radius. How big a cylinder to put the screws in
 pbr = 2;  // Similar for the posts
 aw = 2;  // Arm width
-ah = 2;  // Arm height
-sph = 5;  // Height of the screw posts
+ah = 2;  // Arm hight
+sph = 5;  // Hight of the screw posts
 pbh = 5;  // Similar for the post bases
-ph = 5;  // Post height. Needs to be higher than the PI PCB
+ph = 5;  // Post hight. Needs to be higher than the PI PCB
 ms = 0.01;  // Muggeseggele. To make the diferences render nicer in preview
 clear = -3.5;  // Clearnace distance
 

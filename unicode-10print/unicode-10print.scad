@@ -16,7 +16,7 @@ gridy = 20; // [2,100]
 
 /* [Hidden] */
 random = rands(9585, 9586, 10000);
-h = 5; // height of 'stick'
+h = 5; // hight of 'stick'
 
 font = "DejaVu Sans Mono:style=Book";
 gridsize = h/sqrt(2);

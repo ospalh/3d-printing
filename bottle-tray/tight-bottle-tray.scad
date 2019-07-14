@@ -24,13 +24,13 @@ x_count = 3;  // [2:1:10]
 y_count = 2;  //   // [2:1:10]
 // Change the basic shape of one holder
 honeycombish = 0;  // [1:Use hexagons, 0:Use circles]
-// Height of the walls of the holders
-height = 18; // [8:0.1:90]
+// Hight of the walls of the holders
+hight = 18; // [8:0.1:90]
 // Size of the hole in the bottom of each holder. 0 for no hole, larger than the diameter for just cylinders
 hole_diameter = 30; // [0:0.1:91]
 
-// Make grooves at the bottom to fit this onto the shelfs of a fridge
-with_fridge_grooves = 0;  //  [0: no grooves, 1: add grooves]
+// Add ridges at the bottom to fit this onto the shelfs of a fridge
+with_fridge_ridges = false;  //
 
 // Distance from one rod of the fridge shelf to the next.
 grating_spacing = 18.4; // [5:0.1:40]
@@ -49,8 +49,8 @@ module dummy()
 
 // ***************************************************
 // Change these if you have to
-bottom_height = 1.2;  // How thick (mm) the bottom will be
-// Will end up as a multiple of your layer height after slicing.
+bottom_hight = 1.2;  // How thick (mm) the bottom will be
+// Will end up as a multiple of your layer hight after slicing.
 // Use enough top and bottom solid layers. Getting infil here is kind-of pointles.
 
 wall_width = 1.8;  // how thick the walls will be (mm).
@@ -78,7 +78,7 @@ $fs = (preview) ? ps : rs;
 $fa = (preview) ? pa : ra;
 
 
-be = (with_fridge_grooves) ? 2*bottom_height : bottom_height;
+be = (with_fridge_ridges) ? 2*bottom_hight : bottom_hight;
 
 // ***************************************************
 // Change below only if you know what you are doing.
@@ -88,7 +88,7 @@ r_h = hole_diameter/2;
 r_o = r_i + wall_width;
 
 x_step = 2*r_i+min_wall_width;
-thf = sqrt(3)/2;  // (equilateral) triangle height factor
+thf = sqrt(3)/2;  // (equilateral) triangle hight factor
 y_step = x_step*thf;
 
 ms = 0.02; // Muggeseggele. To make the quick renderer work a little better.
@@ -97,9 +97,9 @@ difference()
 {
    full_shape();
    holes();
-   if (with_fridge_grooves)
+   if (with_fridge_ridges)
    {
-      grooves();
+      ridges();
    }
 }
 
@@ -159,7 +159,7 @@ module one_hole(x_pos, y_pos)
    {
       translate([0, 0, be])
       {
-         cylinder(r=r_i, h=height);
+         cylinder(r=r_i, h=hight);
       }
       if (hole_diameter)
       {
@@ -189,18 +189,18 @@ module one_cylinder(x_pos, y_pos)
       {
          rotate(30)
          {
-            cylinder(r=r_o/thf, h=height, $fn=6);
+            cylinder(r=r_o/thf, h=hight, $fn=6);
          }
       }
       else
       {
-         cylinder(r=r_o, h=height);
+         cylinder(r=r_o, h=hight);
       }
    }
 }
 
 
-module grooves()
+module ridges()
 {
    de = 2*r_i+wall_width;
    hrl = ceil((r_i+wall_width+grating_bar_width)/grating_spacing) + 1;
@@ -213,7 +213,7 @@ module grooves()
          echo(o);
          translate([(x_count-1)*de*0.5, (o+0.5)*grating_spacing, 0])
          {
-            cube([2*(r_i+wall_width+cs+grating_bar_width+ms)+(x_count-1)*de, grating_bar_width, 2*bottom_height], center=true);
+            cube([2*(r_i+wall_width+cs+grating_bar_width+ms)+(x_count-1)*de, grating_bar_width, 2*bottom_hight], center=true);
          }
       }
 

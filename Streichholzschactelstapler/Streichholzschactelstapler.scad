@@ -17,7 +17,7 @@ preview = 1; // [0:render, 1:preview]
 
 //
 box_width = 53.2;  // [5:0.1:150]
-box_height = 16.1;  // [5:0.1:30]
+box_hight = 16.1;  // [5:0.1:30]
 box_depth = 37.1;  // [5:0.1:80]
 boxes_per_pack = 10;  // [4:1:20]
 
@@ -30,8 +30,8 @@ boxes_per_pack = 10;  // [4:1:20]
 
 
 w = 1.8;  // Wall width
-// p = 1.2;  // Bottom, top plate height
-p = w;  // Bottom, top plate height
+// p = 1.2;  // Bottom, top plate hight
+p = w;  // Bottom, top plate hight
 c = 0.4;  // Clearance
 angle = 60; // Overhangs much below 60 degrees are a problem for me
 k = 5;  // which of the remainig main plates
@@ -48,13 +48,13 @@ sp_h = 2.4; // How much the inner box is less high than the outer
 tau = 2 * PI;  // pi is still wrong. tau = circumference / r
 
 xy_factor = 1/tan(angle);
-// To get from a height to a horizontal width inclined correctly
+// To get from a hight to a horizontal width inclined correctly
 z_factor = tan(angle);  // The other way around
 
 r_r = min(w,p);
 w_e = box_width + 2*c;
 d_e = box_depth + 2*c;
-h_e = (boxes_per_pack - 1) * box_height + c;
+h_e = (boxes_per_pack - 1) * box_hight + c;
 
 
 xe = w_e/2 + w - r_r;
@@ -143,7 +143,7 @@ module simple_stacker()
 
 module single_matchbox_bar()
 {
-   translate([-w_e/2, d_e/2-ms, p+box_height+c])
+   translate([-w_e/2, d_e/2-ms, p+box_hight+c])
    {
       cube([w_e,w+2*ms,w]);
    }
@@ -153,7 +153,7 @@ module single_matchbox_hole()
 {
    translate([-w_e/2, d_e/2-ms, p])
    {
-      cube([w_e,w+2*ms,+box_height+c]);
+      cube([w_e,w+2*ms,+box_hight+c]);
    }
 }
 

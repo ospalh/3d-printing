@@ -19,7 +19,7 @@ this smoothness.
 
 ### Print Settings
 
-* I used a 300 µm layer height, because this thing is more about utility than aesthetics, but use whatever you like
+* I used a 300 µm layer hight, because this thing is more about utility than aesthetics, but use whatever you like
 * No supports
 * No raft or brim
 * Standard low infill. About 20 % should be enough.

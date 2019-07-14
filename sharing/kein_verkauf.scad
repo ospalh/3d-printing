@@ -33,7 +33,7 @@ a_factor = 12/709;
 
 
 w = 1.8;  // Wall width
-p = 0.6;  // Bottom, top plate height
+p = 0.6;  // Bottom, top plate hight
 c = 0.4;  // Clearance
 h_t = 2;
 h_st_1 = 20;
@@ -52,7 +52,7 @@ sp_2 = 12;
 tau = 2 * PI;  // π is still wrong. τ = circumference / r
 
 xy_factor = 1/tan(angle);
-// To get from a height to a horizontal width inclined correctly
+// To get from a hight to a horizontal width inclined correctly
 z_factor = tan(angle);  // The other way around
 
 

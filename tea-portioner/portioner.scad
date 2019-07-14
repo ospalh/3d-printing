@@ -27,15 +27,15 @@ funnel_diameter = 90;  // [30:1:120]
 // *******************************************************
 // Some more values that can be changed
 
-h_in_r = 1;  // Height of the cylinder in radiuses. Tweaked by hand
+h_in_r = 1;  // Hight of the cylinder in radiuses. Tweaked by hand
 
 w = 1.8;  // wall width for the horizontal flanges
-p = 1.2;  // height of the bottomt plate
+p = 1.2;  // hight of the bottom plate
 w_i = 1.2;  // Internal wall width. The bit between the two circular holes
 w_f = 1.8;  // Wall for the funnel. I had some problems with varying wall widths, but fixed it otherwise.
-stand_height = 15;
-flange_height = 10;
-stand_peg_height = 2;
+stand_hight = 15;
+flange_hight = 10;
+stand_peg_hight = 2;
 
 chute_limit_diameter = 20;  // Make a hole at least this big
 chute_limit_factor = 0.3;  // ... or at least this part of the top hole
@@ -82,8 +82,8 @@ r_cb_0 = r_cb - clearance;
 
 r_f = funnel_diameter/2;
 d_ftb = r_f-r_1;
-h_f = d_ftb / tan(90-funnel_angle);  // Funnel height
-h_fg = flange_height+clearance;  // funnel grip height
+h_f = d_ftb / tan(90-funnel_angle);  // Funnel hight
+h_fg = flange_hight+clearance;  // funnel grip hight
 
 some_distance = max(2*r_5,stand_diameter/2+r_3) + 10;
 
@@ -182,11 +182,11 @@ module portioner()
    {
       translate([0, r_2+w/2, 0])
       {
-         cylinder(d=w, h=flange_height+p, $fn=fb());
+         cylinder(d=w, h=flange_hight+p, $fn=fb());
       }
       translate([0, -r_2-w/2, 0])
       {
-         cylinder(d=w, h=flange_height+p, $fn=fb());
+         cylinder(d=w, h=flange_hight+p, $fn=fb());
       }
    }
 }
@@ -222,19 +222,19 @@ module stand()
       union()
       {
          stand_base();
-         ccc(r_5, stand_height, w+clearance, 0);
+         ccc(r_5, stand_hight, w+clearance, 0);
       }
-      ccc(r_4, stand_height, w+clearance, p+ms);
+      ccc(r_4, stand_hight, w+clearance, p+ms);
    }
    translate([d_cc, 0, p])
    {
-      cylinder(r=r_cb_0, h=stand_peg_height, $fn=fa());
+      cylinder(r=r_cb_0, h=stand_peg_hight, $fn=fa());
    }
 }
 
 module portioner_body()
 {
-   ccc(r_3, r*(h_in_r+1)+p+flange_height, w+clearance, 0);
+   ccc(r_3, r*(h_in_r+1)+p+flange_hight, w+clearance, 0);
 }
 
 
@@ -252,12 +252,12 @@ module portioner_hollow()
       cylinder(r1=r_cb, r2=r, h=r*(h_in_r+1)+p + 2*ms, $fn=fa());
    }
    // funnel flange hollow
-   ccc(r_2, flange_height+ms, w+clearance, r*(h_in_r+1)+p);
+   ccc(r_2, flange_hight+ms, w+clearance, r*(h_in_r+1)+p);
    translate([0,0,0])
    {
       translate([d_cc-w-clearance, -r_5, r*(h_in_r+1)+p])
       {
-          cube([2*r_2, 2*r_5, flange_height+ms]);
+          cube([2*r_2, 2*r_5, flange_hight+ms]);
       }
    }
 }
@@ -282,19 +282,19 @@ module funnel_hollow()
 {
    translate([0, 0, -ms])
    {
-      cylinder(r=r, h=flange_height+clearance+3*ms, $fn=fa());
+      cylinder(r=r, h=flange_hight+clearance+3*ms, $fn=fa());
    }
-   translate([0, 0, flange_height+clearance])
+   translate([0, 0, flange_hight+clearance])
    {
       // N.B.: now ms here. Necessary for a consistant wall width.
       cylinder(r1=r, r2=funnel_diameter/2, h=h_f, $fn=fa());
    }
    translate([d_cc, 0, -ms])
    {
-      cylinder(r=r, h=flange_height+clearance+3*ms, $fn=fa());
+      cylinder(r=r, h=flange_hight+clearance+3*ms, $fn=fa());
    }
    // Just for the preview
-   translate([0, 0, flange_height+clearance+h_f-ms])
+   translate([0, 0, flange_hight+clearance+h_f-ms])
    {
       cylinder(d=funnel_diameter-2*ms, h=2*ms, $fn=fa());
    }
@@ -307,7 +307,7 @@ module stand_base()
       cylinder(d=stand_diameter, h=p, $fn=fa());
       translate([0,0,p])
       {
-         cylinder(d1=stand_diameter, d2=2*r_5, h=stand_height-w, $fn=fa());
+         cylinder(d1=stand_diameter, d2=2*r_5, h=stand_hight-w, $fn=fa());
       }
    }
 

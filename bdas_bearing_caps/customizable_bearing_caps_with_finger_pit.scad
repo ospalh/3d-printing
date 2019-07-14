@@ -50,14 +50,14 @@ layer  = 0.2;
 t_nof = 3 * layer;  // no fillet for a bit
 r_fillet = t_cap - t_nof;
 
-stem_height = 0.45;  // as part of bearing height
+stem_hight = 0.45;  // as part of bearing hight
 
 
 per_per = 8;  // Period of how many nozzle sizes per support connector
 per_mat = 2.5;  // How much of that is filled with material
 
 
-h_stem = h_bearing * stem_height;
+h_stem = h_bearing * stem_hight;
 
 r_in_e = d_in/2 + o;
 r_cap = d_cap/2;

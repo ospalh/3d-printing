@@ -25,7 +25,7 @@ month_de =
       "Dez"
       ];
 font_de = "Praxis LT:style=Heavy";
-lh_de = 6.5;  // Text height
+lh_de = 6.5;  // Text hight
 
 
 // English
@@ -45,7 +45,7 @@ month_en =
       "Dec"
       ];
 font_en = "Praxis LT:style=Heavy";
-lh_en = 6.5;  // Text height
+lh_en = 6.5;  // Text hight
 
 // Using European-Arabic numerals. This is easier then using str(m) later
 // for only this version.
@@ -65,7 +65,7 @@ month_ea =
       "12"
       ];
 font_ea = "Praxis LT:style=Bold";
-lh_ea = 11;  // Text height
+lh_ea = 11;  // Text hight
 
 
 month_rom =
@@ -84,7 +84,7 @@ month_rom =
       "XII"
       ];
 font_rom = "Praxis LT:style=Bold";
-lh_rom = 8;  // Text height
+lh_rom = 8;  // Text hight
 
 // Change here to pick the language or version you want
 month = month_de;
@@ -94,13 +94,13 @@ lh = lh_de;
 // *****************************************************
 // End language setting section
 
-p = 0.8;  // height of the edge
+p = 0.8;  // hight of the edge
 d = 0.4;  // Depth of the text
 
 // font = "Praxis LT:style=Regular";
 
 pw = 17;  // month plate width
-ph = 18; // month plate height
+ph = 18; // month plate hight
 gap = 3;
 tyo = -2; // Text y offset. Shif the text down slightly.
 

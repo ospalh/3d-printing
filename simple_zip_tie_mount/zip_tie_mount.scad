@@ -31,7 +31,7 @@ preview = 1;  // [1: Preview, 0: Render]
 
 /* [Extra] */
 
-// Height of a M3 nut + clearance
+// Hight of a M3 nut + clearance
 h_n = 2.8;  // [2.4:0.05:5]
 
 // ring thickness
@@ -187,7 +187,7 @@ module cubeR(dims, rnd=1, centerR= false)
 // four screw nuts without threads - good for metal screws
 // x, y: distances of mid points
 // d: screw diameter
-// h: nut height
+// h: nut hight
 module fourScrews(x, y, d, h, fn=nb())
 {
    translate([x/2,y/2,0]) cylinder(r=d/2,h=h,$fn=fn);
@@ -199,7 +199,7 @@ module fourScrews(x, y, d, h, fn=nb())
 // ////////////////////////////////////////////////////////////////
 // rounded button - lower part is a cylinder, upper part like a filled ring
 // r= outer radius
-// h= height
+// h= hight
 // rr= upper rounding
 // buttonRound(20,10,2);
 module buttonRound(r, h, rr)

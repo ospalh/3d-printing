@@ -15,7 +15,7 @@ I used many (5) perimeters and many (6) top layers. Like that, no or low infill 
 
 I also used a brim, to avoid warping.
 
-The layer height of 300 µm works OK. You get steps on the top surface, but that’s fine.
+The layer hight of 300 µm works OK. You get steps on the top surface, but that’s fine.
 
 This should be an easy print. No falsework or similar required.
 

@@ -4,7 +4,7 @@ clamp/hook/bracket
 
 The build-in locking mechanism of my Ikea window blinds broke. So i needed something to fix the drawstring and to stop the blinds from falling down again once pulled up.
 
-It turns out that the window sill is at exactly the right height. If only i could somehow hook the knob on the drawstring to the windowsill …
+It turns out that the window sill is at exactly the right hight. If only i could somehow hook the knob on the drawstring to the windowsill …
 
 I put it on the *under*side of the sill with double sided tape, on top of the flat part, and on the adjacent side of the hook bit.
 

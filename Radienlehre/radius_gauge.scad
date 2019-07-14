@@ -61,8 +61,8 @@ concave_number_list = [8, 10, 20, 50];
 convex_tick_list = [6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 30, 40, 50, 100];
 convex_number_list = [5, 10, 20, 50];
 
-text_extrude_height = 0.9;
-text_character_height = 5.5;
+text_extrude_hight = 0.9;
+text_character_hight = 5.5;
 
 if ( view == 0 ) // 0 = assembly view
 {
@@ -108,7 +108,7 @@ module stationary_part()
    stationary_part_hinge();
 
    // Protractor arc.
-   linear_extrude(height=thickness)
+   linear_extrude(hight=thickness)
       difference()
    {
       // Protractor arc.
@@ -124,7 +124,7 @@ module stationary_part()
    }
 
    // Tall contact cylinder on stationary part.
-   linear_extrude(height=2 * thickness)
+   linear_extrude(hight=2 * thickness)
       translate([- contact_spread, 0])
       circle(r=contact_radius, center=true);
 
@@ -134,10 +134,10 @@ module stationary_part()
       {
          rotate(-70)
          {
-            linear_extrude(text_extrude_height)
+            linear_extrude(text_extrude_hight)
             {
                text(
-                  "cm", text_character_height, font_,
+                  "cm", text_character_hight, font_,
                   halign="center",
                   valign="center");
             }
@@ -172,7 +172,7 @@ module stationary_part_hinge()
 {
    difference()
    {
-      linear_extrude(height=thickness)
+      linear_extrude(hight=thickness)
          difference()
       {
          // Contact circle with hinge cylinder.
@@ -196,8 +196,8 @@ module number_mark(text, angle)
 {
    rotate(-30 + angle)
       translate([0, - protractor_radius + 1, thickness])
-      linear_extrude(text_extrude_height)
-      text(text, text_character_height, font_, halign="center");
+      linear_extrude(text_extrude_hight)
+      text(text, text_character_hight, font_, halign="center");
    tick_mark(angle, 4);
 }
 
@@ -208,7 +208,7 @@ module tick_mark(angle, length=2)
 {
    rotate(-30 + angle)
       translate([-1/2, -(length + pointer_radius + .5), thickness])
-      cube([1, length, text_extrude_height]);
+      cube([1, length, text_extrude_hight]);
 }
 
 
@@ -217,7 +217,7 @@ module moving_part()
 //   color("Cyan")
 {
    translate([0, 0, thickness])
-      linear_extrude(height=thickness)
+      linear_extrude(hight=thickness)
    {
       // Pointer
       rotate([0, 0, -30])
@@ -243,7 +243,7 @@ module moving_part()
    }
 
    // Tall contact cylinder on moving part.
-   linear_extrude(height=2 * thickness)
+   linear_extrude(hight=2 * thickness)
       translate([contact_spread, 0, 0])
       circle(r=contact_radius, center=true);
 
@@ -287,7 +287,7 @@ module moving_part_hinge()
 {
    // Contact circle with hinge pin.
    translate([0, 0, thickness])
-      linear_extrude(height=thickness)
+      linear_extrude(hight=thickness)
       circle(r=contact_radius, center=true);
 
    // Hinge pin.

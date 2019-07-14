@@ -20,7 +20,7 @@ preview = 1; // [0:render, 1:preview]
 // Width of the holder. This one and the next one are the two values you do need to set up for your scanner. Preset is for a Reflecta proScan. Maybe subtract half a millimtre for a better fit.
 holder_width = 58.4;  // [20:0.1:150]
 
-// Height or thickness of the holder. See above. You know they were too high when you need a mallet to go from one image to the next...
+// Hight or thickness of the holder. See above. You know they were too high when you need a mallet to go from one image to the next...
 holder_thickness = 5.6;  // [3:0.1:10]
 
 // How many exposures on the longest strips you want to fit into this. Make sure the resulting holder still fits onto your print bed.
@@ -30,8 +30,8 @@ images_per_strip = 11;  // [1:1:20]
 
 // Diameter of the magnet hole. Add clearance by hand here. Set to 0 for no magnet holes.
 magnet_diameter = 3.8;  // [0:0.1:15]
-// Height or thickness of the magnet. Make sure to use magnets flat enough to fit.
-magnet_height = 1;  // [0.5:0.1:3]
+// Hight or thickness of the magnet. Make sure to use magnets flat enough to fit.
+magnet_hight = 1;  // [0.5:0.1:3]
 
 /* [Hidden] */
 
@@ -47,7 +47,7 @@ image_width = 13; // [8:0.1:100]
 // Length from one point (e.g. left edge) of one exposure to the same point of the next exposure. This minus the image width is used for the vertical ridges, if it's positive.
 image_pitch = 13; // [0:0.1:110]
 // Size of an exposure from bottom to top.
-image_height = 8; // [7:0.1:68]
+image_hight = 8; // [7:0.1:68]
 
 
 bildabstand = max(image_pitch, image_width);
@@ -70,7 +70,7 @@ magnet_y_off = 0;  // Abstand Magnet vom Einsatz
 
 kurzsteg_grenze = 1;  // Weniger als 1 mm pro Seite: Kurzstege
 
-mit_langsteg = ( ((film_width-image_height)/2) >= kurzsteg_grenze);
+mit_langsteg = ( ((film_width-image_hight)/2) >= kurzsteg_grenze);
 
 
 w_steg = 2;  // Breite fuer Stuecke, die den Film zentrieren.
@@ -89,7 +89,7 @@ w_schraeg = 1;  // Breite der Abschraegung rund um die Filmfenster
 
 
 w = 1.8;  // Wall width
-p = 1.2;  // Bottom, top plate height
+p = 1.2;  // Bottom, top plate hight
 c = 0.6;  // Clearance
 c_z = 0.3;  // Clearance in z direction. Mostly for the magnet hole and centering ridge
 angle = 60; // Overhangs much below 60 degrees are a problem for me
@@ -107,7 +107,7 @@ h_nut = h_steg + c_z;  // Tiefe fuer Stuecke, auf denen der Film nicht aufliegt
 tau = 2 * PI;  // pi is still wrong. tau = circumference / r
 
 xy_factor = 1/tan(angle);
-// To get from a height to a horizontal width inclined correctly
+// To get from a hight to a horizontal width inclined correctly
 z_factor = tan(angle);  // The other way around
 
 some_distance = 1.2 * holder_width;
@@ -131,7 +131,7 @@ l_fenster = bildabstand * images_per_strip;
 l_rand = 2 * w_steg + w_schraeg + 2;
 w_rand = w_schraeg + 8;
 l_ue_a =  l_fenster + 2*l_rand;
-w_einsatz = image_height + 2 * w_rand;
+w_einsatz = image_hight + 2 * w_rand;
 h_bd = holder_thickness/2;  // Hoehe Boden oder Deckel
 
 to_griff = l_ue_a/2 - o_griff - l_griff/2;
@@ -336,12 +336,12 @@ module fenster()
       {
          translate([0,0,-0.5+ms])
          {
-            cube([l_fenster, image_height, 1], center=true);
+            cube([l_fenster, image_hight, 1], center=true);
          }
          translate([0,0,-h_bd-0.5-ms])
          {
             cube(
-               [l_fenster+2*w_schraeg, image_height+2*w_schraeg, 1], center=true);
+               [l_fenster+2*w_schraeg, image_hight+2*w_schraeg, 1], center=true);
          }
       }
 
@@ -351,7 +351,7 @@ module fenster()
 
 module magnetausschnitte()
 {
-   if (magnet_diameter > 0 && magnet_height > 0)
+   if (magnet_diameter > 0 && magnet_hight > 0)
    {
       magnetausschnitt(1, 1);
       magnetausschnitt(-1, 1);
@@ -367,9 +367,9 @@ module magnetausschnitt(xf, yf)
 
    // Mittig in den Griffen.
    translate(
-      [xf * (to_griff), yf * (yo_mag), h_bd - magnet_height-c_z + ms])
+      [xf * (to_griff), yf * (yo_mag), h_bd - magnet_hight-c_z + ms])
    {
-      cylinder(d=magnet_diameter, h=magnet_height+c_z);  // N.B. Spiel ist schon im magnet_diameter
+      cylinder(d=magnet_diameter, h=magnet_hight+c_z);  // N.B. Spiel ist schon im magnet_diameter
       // eingerechnet
    }
 }
@@ -446,9 +446,9 @@ module einsatzausschnitte()
    {
       for (i=[0:images_per_strip-1])
       {
-         translate([-l_fenster/2 + (0.5 + i) * bildabstand, w_steg/2+film_width/2+c/2-film_width/4 + image_height/4, 0])
+         translate([-l_fenster/2 + (0.5 + i) * bildabstand, w_steg/2+film_width/2+c/2-film_width/4 + image_hight/4, 0])
          {
-            cube([l_kurzsteg+2*c, w_steg+2*c+film_width/2 - image_height/2, h_nut], center=true);
+            cube([l_kurzsteg+2*c, w_steg+2*c+film_width/2 - image_hight/2, h_nut], center=true);
          }
       }
    }
@@ -463,7 +463,7 @@ module fensterstege()
       {
          translate([-l_fenster/2 + i * bildabstand, 0, h_bd/2-ms])
          {
-            cube([l_filmsteg, image_height+2*w_schraeg + 2*ms ,h_bd], center=true);
+            cube([l_filmsteg, image_hight+2*w_schraeg + 2*ms ,h_bd], center=true);
          }
       }
    }

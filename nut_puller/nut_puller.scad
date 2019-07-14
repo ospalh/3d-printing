@@ -19,7 +19,7 @@ preview = 0;
 
 
 w = 2.4;  // external wall width
-p = 2.4;  // height of the bottomt plate
+p = 2.4;  // hight of the bottom plate
 
 // *******************************************************
 // Some shortcuts. These shouldn't be changed
@@ -56,7 +56,7 @@ m = [
    0, // no M23
    21.5, // M24
    ];
-// height
+// hight
 
 
 s = [

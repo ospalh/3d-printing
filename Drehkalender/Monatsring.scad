@@ -32,7 +32,7 @@ preview = 1; // [0:render, 1:preview]
 
 
 w = 1.8;  // external wall width
-p = 1.2;  // height of the bottomt plate
+p = 1.2;  // hight of the bottom plate
 d = 1.2;  // Depth of the text
 
 //r1 = 55;

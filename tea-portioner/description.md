@@ -32,7 +32,7 @@ This should be an easy print. No falsework or similar required. The stand can be
 
 After using my now [*old* tea portioner](https://www.thingiverse.com/thing:2183718) a while, i noticed that the chute didn’t do its job all that well. I often spilled some tea leaves. So, instead of tweaking it here and there, i came up with this new design. It is, all in all, somewhat heavy. If you want to save a bit of filament, you can stick to the old one. I also used a simpler shape for the measuring space itself, simplifying the calculation considerably.
 
-There are some more values that can be changed, like the height of the cylindrical section of the measuring space. Load the `SCAD` file into OpenSCAD on your computer and tweak them there.
+There are some more values that can be changed, like the hight of the cylindrical section of the measuring space. Load the `SCAD` file into OpenSCAD on your computer and tweak them there.
 
 There is some design history available at my [github repo](https://github.com/ospalh/3d-printing/tree/develop/tea-portioner).
 

@@ -7,7 +7,7 @@ There are two variants, one for thin laptops where the hinge is arranged so ther
 Print setting:
 
 Mirror the provided STL in your slice so that you get a pair.
-I generally like to print with low infil and many perimeters and top layers, but set it up to your taste. 300 µm layer height should be fine.
+I generally like to print with low infil and many perimeters and top layers, but set it up to your taste. 300 µm layer hight should be fine.
 
 A brim may be useful to avoid warping
 

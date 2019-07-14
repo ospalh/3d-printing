@@ -1,7 +1,7 @@
 A parametric ball bearing finger cap. This is based on [bda](https://www.thingiverse.com/bda/about)’s “[Customizable comfy spinner caps. Cap for any bearing.](https://www.thingiverse.com/thing:2319653)”, but you have to put in some measures as length (in millimetre). The important ones:
 
 * Shaft diameter: size of the inner hole of the bearing
-* Bearing height: distance between the two flat surfaces of the bearing. The shaft of the cap will be 45 % of this and two caps will fit into the bearing.
+* Bearing hight: distance between the two flat surfaces of the bearing. The shaft of the cap will be 45 % of this and two caps will fit into the bearing.
 * Cap diameter: the diameter of the cap. This can be smaller or larger than the outer diameter of the bearing. Pick this to taste. I use 1 mm less than the bearing size. 21 mm for the 22 mm ⌀ 608 bearing.
 
 Some more things can be set up in the customizer, and even more things in the `scad` file.

@@ -42,7 +42,7 @@ for (o = [0:s:360-s])
 
 Do it with the angles in the other direction, and your shell is done.
 
-I didn’t calculate the ring radiuses, but tweaked them by hand. The same for the height of the shell. I just picked the length of one wire and put the last ring at the height it came out.
+I didn’t calculate the ring radiuses, but tweaked them by hand. The same for the hight of the shell. I just picked the length of one wire and put the last ring at the hight it came out.
 
 Design files and history can be found at github, in [a directory](https://github.com/ospalh/3d-printing/tree/develop/hyperboloid_dice_tower) of my 3d printing repo there.
 

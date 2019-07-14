@@ -10,7 +10,7 @@
 //parameters can be changed using the values below.
 
 can_diameter = 66;  //can inner diameter
-height = 15;
+hight = 15;
 
 slat_width = 2.4;
 
@@ -49,22 +49,22 @@ module can_colander()
    //main strainer
    difference()
    {
-      cylinder(r=r_can, height, $fn=fa());
+      cylinder(r=r_can, hight, $fn=fa());
       translate([0,0,p_h])
       {
-         cylinder(r=r_can - wall, height, $fn=fa());
+         cylinder(r=r_can - wall, hight, $fn=fa());
       }
       for(x = [-r_can + wall: slat_width * 2 : r_can - wall])
       {
          translate([x, -r_can, -ms])
          {
-            cube([slat_width, r_can * 2, height]);
+            cube([slat_width, r_can * 2, hight]);
          }
       }
    }
 
    // rim
-   translate([0,0,height])
+   translate([0,0,hight])
    {
       difference()
       {
@@ -79,9 +79,9 @@ module can_colander()
          {
             cylinder(r=r_can-wall, wall*6, $fn=fa());
          }
-         translate([0, 0, wall + height/2])
+         translate([0, 0, wall + hight/2])
          {
-            cube([r_can*2+4*wall, r_can*2+4*wall, height], true);
+            cube([r_can*2+4*wall, r_can*2+4*wall, hight], true);
          }
       }
    }

@@ -33,8 +33,8 @@ wall_thickness_ = 1.8;  // I like the strong. Reduce this for more flimsy scoops
 
 // Tweak these to modify the label sizes
 label_thickness = 1.5;
-label1_height = 10.0;
-label2_height = 8.5;
+label1_hight = 10.0;
+label2_hight = 8.5;
 
 label1_text= str(volume, " ml");
 
@@ -53,8 +53,8 @@ r_fn=12;  // used for $fn
 
 
 labels=[
-   [0,label1_text, label1_font,label1_height,label_thickness],
-   [1,label_text, label2_font,label2_height,label_thickness],
+   [0,label1_text, label1_font,label1_hight,label_thickness],
+   [1,label_text, label2_font,label2_hight,label_thickness],
    ];
 
 
@@ -136,7 +136,7 @@ module build_cup(points)
    intersection()
 {
    translate([0,0,z1-r2])
-      linear_extrude(height=abs(z1)+r2,convexity=10)
+      linear_extrude(hight=abs(z1)+r2,convexity=10)
       polygon([
                  [-x3-r2-.1,y0-r2-.1],
                  [x3+r2+.1,y0-r2-.1],
@@ -176,7 +176,7 @@ module build_handle(points)
    }
 }
 
-module build_label(idx, txt, font, height, thickness)
+module build_label(idx, txt, font, hight, thickness)
 {
    n=4;
    xd=(x4-x5)/(n+1);
@@ -192,7 +192,7 @@ module build_label(idx, txt, font, height, thickness)
       {
          linear_extrude(thickness)
          {
-            text(txt, size=height, font=font, valign="center", halign="center");
+            text(txt, size=hight, font=font, valign="center", halign="center");
          }
          // cylinder(r1=wall_thickness/4,r2=0,h=thickness,$fn=4);
       }

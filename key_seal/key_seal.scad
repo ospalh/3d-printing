@@ -58,10 +58,10 @@ preview = 1; // [0:render, 1:preview]
 // Extra parameters. These can be changed reasonably safely.
 
 w = 0.8;  // external wall width
-p = 0.4;  // height of the bottomt plate
+p = 0.4;  // hight of the bottom plate
 c = 0.4;  // clearance
 
-lh = 0.2; // layer height
+lh = 0.2; // layer hight
 nw = 0.4;  // nozzle width
 
 sh = lh * 2;  // We do two layers of strakes or stringers
@@ -70,7 +70,7 @@ sh = lh * 2;  // We do two layers of strakes or stringers
 // Some shortcuts. These shouldn't be changed
 
 angle = 60; // Overhangs much below 60 degrees are a problem for me
-xy_factor = 1/tan(angle);  // To get from a height to a horizontal width
+xy_factor = 1/tan(angle);  // To get from a hight to a horizontal width
                            // inclined correctly
 z_factor = tan(angle);  // the other way around
 

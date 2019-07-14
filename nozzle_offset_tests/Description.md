@@ -21,9 +21,9 @@ When you use ditto printing you *must* set the nozzle offset in the scad file as
 
 When you’ve finished printing the cubes, take a photo of the print bed to check the orientation of the error later.
 
-To measure the results, measure the height of the whole three cube block
-and subtract the height of one of the end cubes. That is, zero your
-caliper when measuring the height of an end cube and then measure the
+To measure the results, measure the hight of the whole three cube block
+and subtract the hight of one of the end cubes. That is, zero your
+caliper when measuring the hight of an end cube and then measure the
 heigt of the three cube. Those are the absolute values of the offset. Think about whetehr you have to subtract or add them in your slicer, and print again with the correction.
 
 
