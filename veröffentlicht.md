@@ -77,3 +77,4 @@
 * verbesserter Würfelturm
 * Damestein
 * Leitkegel
+* dish
