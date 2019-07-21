@@ -78,3 +78,4 @@
 * Damestein
 * Leitkegel
 * dish
+* Antifa badge
