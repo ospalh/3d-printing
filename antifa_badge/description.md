@@ -44,4 +44,4 @@ The flag shapes i got from the [Antifasistische Aktion logo](https://commons.wik
 I used Inkscape. There i removed the text and the rings, simplified the paths, and exported them with this [export tool](https://www.thingiverse.com/thing:2805184). Similarly, the text i did in Inkscape and exported. Then i combined those in OpenScad
 
 
-There is some design history available at my [github repo](https://github.com/ospalh/3d-printing/tree/develop/antifa_badge).
+There is some design history available at my [github repo](https://github.com/ospalh/3d-printing/tree/develop/antifa_badge). That contains some of the intermediary files.
