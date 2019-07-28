@@ -1,4 +1,4 @@
-[Once upon a time](https://taz.de/Freispruch-fuer-Monchi/!5468333/) there were a bunch of neonazis that tried to toss chairs at migrants. They were stopped by antifascists, who must have shouted “Alerta! Alerta! Antifascista!” as they arrivt. Then the antifa were accused of tossing those chairs. One policeman said this as a witness: “And then they chanted their slogan” What slogan? “I don’t speak Spanish. ‘[Barista, barista, antifascista!](https://taz.de/Missverstandene-Antifa-Schlachtrufe/!5472705/)’, something like that”.
+[Once upon a time](https://taz.de/Freispruch-fuer-Monchi/!5468333/) there was a bunch of neonazis that tried to toss chairs at migrants. They were stopped by antifascists, who must have shouted “Alerta! Alerta! Antifascista!” as they arrivt. Then the antifa were accused of tossing those chairs. One policeman said this as a witness: “And then they chanted their slogan” What slogan? “I don’t speak Spanish. ‘[Barista, barista, antifascista!](https://taz.de/Missverstandene-Antifa-Schlachtrufe/!5472705/)’, something like that”.
 
 So this is how “Barista, barista, antifascisata!” became the tung-in-cheeck slogan of German antifa.
 

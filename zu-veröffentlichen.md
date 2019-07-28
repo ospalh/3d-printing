@@ -6,5 +6,4 @@
 * stamp in general
 * Streichholzschachtelstapler
 * Dia-Schnellscanner
-* Antifa stencil
 * Barista antifa
