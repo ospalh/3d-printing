@@ -79,3 +79,4 @@
 * Leitkegel
 * dish
 * Antifa badge
+* Antifa stencil
