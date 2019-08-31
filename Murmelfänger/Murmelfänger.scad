@@ -16,16 +16,16 @@ preview = 1; // [0:render, 1:preview]
 /* [Flasche] */
 
 // Durchmesser des Flaschenhalses innen
-d_loch = 15;  // [10:1:50]
+d_loch = 45;  // [10:1:50]
 
 // Durchmesser des Flansches oben am Flaschenhals
-d_flansch = 25; // [10:1:50]
+d_flansch = 58; // [10:1:50]
 
 // Höhe (Dicke) des Flansches, aussen
-h_flansch = 3;  // [10:1:50]
+h_flansch = 4.2;  // [10:1:50]
 
 // Winkel des Flansches, °
-a_flansch = 10;   // [0:0.25:20]
+a_flansch = 0;   // [0:0.25:20]
 
 /* [Fänger] */
 
@@ -39,8 +39,15 @@ w_stab = 3; // [1:0.5:7]
 d_unten = 5; // [1:0.5:7]
 
 
-// Breite des Clips
-w_clip = 3; // // [1:0.5:7]
+// Breite des Clips, d.h. des eigentlichen flansches
+w_clip = 2; // [1:0.5:7]
+
+// Breite des Rings für die clips
+w_rand = 2;  // [1:0.5:7]
+
+// Breite der Clips in y-Richtung
+d_clip = 5; // [1:0.5:10]
+
 
 /* [Hidden] */
 
@@ -78,6 +85,10 @@ z_factor = tan(angle);  // The other way around
 
 some_distance = 50;
 ms = 0.01;  // Muggeseggele.
+
+rf = d_flansch/2;
+rfp = rf+w_rand;
+rl = d_loch/2;
 
 // fn for differently sized objects and fs, fa; all for preview or rendering.
 pna = 40;
@@ -129,19 +140,11 @@ module print_part()
    {
       faenger();
    }
-   if ("b" == part)
-   {
-      part_b();
-   }
 }
 
 module preview_parts()
 {
    faenger();
-   translate([some_distance, 0, 0])
-   {
-      part_b();
-   }
 }
 
 module stack_parts()
@@ -152,13 +155,6 @@ module stack_parts()
       {
          faenger();
       }
-      translate([0,0,30])
-      {
-         color("red")
-         {
-            part_b();
-         }
-      }
    }
 }
 
@@ -168,7 +164,22 @@ module stack_parts()
 module faenger()
 {
    clip_ring();
+   main_ring();
    bars();
+}
+
+module main_ring()
+{
+   difference()
+   {
+      rotate_extrude()
+      {
+         translate([rf,0])
+         {
+            square([w_rand, h_stab]);
+         }
+      }
+   }
 }
 
 module clip_ring()
@@ -179,10 +190,12 @@ module clip_ring()
       {
          clip_2d();
       }
-      translate([-d_flansch,-d_loch/2+d_unten,-d_flansch])
+      kmirror([0,1,0])
       {
-         // Extra big on purpose
-         cube(2*d_flansch);
+         translate([-rf,rf/2,-ms])
+         {
+            cube([d_flansch,d_clip,2*h_stab+h_flansch]);
+         }
       }
    }
 }
@@ -190,8 +203,6 @@ module clip_ring()
 module clip_2d()
 {
    // sin
-   rf = d_flansch/2;
-   rfp = rf+w_stab;
    hf = h_stab+h_flansch;
    dco = sin(a_flansch) * w_stab;
    dci = sin(a_flansch) * w_clip;
@@ -209,15 +220,34 @@ module clip_2d()
 
 module bars()
 {
-   translate([0, -d_loch/2+d_unten, 0])
+   intersection()
    {
-      translate([-d_flansch/2-ms,0,0])
+      catch_rings();
+      translate([0,0,-ms])
       {
-         cube([d_flansch+2*ms, w_stab, h_stab]);
+         cylinder(r=rfp-ms, h=h_stab+2*ms);
       }
-      translate([-w_stab/2,ms,0])
+   }
+}
+
+
+module catch_rings()
+{
+   translate([0,-rl,0])
+   {
+      rotate_extrude(convexity=8)
       {
-         cube([w_stab, d_flansch/2+d_loch/2-d_unten+ms, h_stab]);
+         for (rr=[d_unten:d_unten+w_stab:d_loch])
+         {
+            translate([rr,0])
+            {
+               square([w_stab, h_stab]);
+            }
+         }
       }
+   }
+   translate([-w_stab/2,-rl+d_unten+w_stab/2,0])
+   {
+      cube([w_stab,rf+rl-d_unten-w_stab/2+w_rand/2, h_stab]);
    }
 }
