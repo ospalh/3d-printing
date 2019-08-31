@@ -22,15 +22,15 @@ d_loch = 45;  // [10:1:50]
 d_flansch = 58; // [10:1:50]
 
 // Höhe (Dicke) des Flansches, aussen
-h_flansch = 4.2;  // [10:1:50]
+h_flansch = 4.5;  // [10:1:50]
 
 // Winkel des Flansches, °
-a_flansch = 0;   // [0:0.25:20]
+a_flansch = 60;   // [0:0.25:20]
 
 /* [Fänger] */
 
 // Höhe der Riegelstäbe
-h_stab = 3; // [1:0.5:7]
+h_stab = 1; // [1:0.5:7]
 
 // Breite der Riegelstäbe
 w_stab = 3; // [1:0.5:7]
@@ -40,13 +40,13 @@ d_unten = 5; // [1:0.5:7]
 
 
 // Breite des Clips, d.h. des eigentlichen flansches
-w_clip = 2; // [1:0.5:7]
+w_clip = 1; // [1:0.5:7]
 
 // Breite des Rings für die clips
-w_rand = 2;  // [1:0.5:7]
+w_rand = 1.6;  // [1:0.5:7]
 
 // Breite der Clips in y-Richtung
-d_clip = 5; // [1:0.5:10]
+d_clip = 8; // [1:0.5:10]
 
 
 /* [Hidden] */
@@ -206,13 +206,14 @@ module clip_2d()
    hf = h_stab+h_flansch;
    dco = sin(a_flansch) * w_stab;
    dci = sin(a_flansch) * w_clip;
+   // This is getting a bit freestyle. Whatever.
    polygon(
       [
          [rf, 0],
          [rfp, 0],
-         [rfp, hf+h_stab-dco],
-         [rf-w_clip, hf+h_stab+dci],
-         [rf-w_clip, hf+dco],
+         [rfp, hf+h_stab],
+         [rf, hf+h_stab+dci],
+         [rf-w_clip, hf+dci],
          [rf, hf]
          ]
       );
