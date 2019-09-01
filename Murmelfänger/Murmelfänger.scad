@@ -24,8 +24,6 @@ d_flansch = 58; // [10:1:50]
 // Höhe (Dicke) des Flansches, aussen
 h_flansch = 4.5;  // [10:1:50]
 
-// Winkel des Flansches, °
-a_flansch = 60;   // [0:0.25:20]
 
 /* [Fänger] */
 
@@ -204,16 +202,13 @@ module clip_2d()
 {
    // sin
    hf = h_stab+h_flansch;
-   dco = sin(a_flansch) * w_stab;
-   dci = sin(a_flansch) * w_clip;
-   // This is getting a bit freestyle. Whatever.
+
    polygon(
       [
          [rf, 0],
          [rfp, 0],
-         [rfp, hf+h_stab],
-         [rf, hf+h_stab+dci],
-         [rf-w_clip, hf+dci],
+         [rfp, hf+2*w_clip+w_rand],
+         [rf-w_clip, hf+w_clip],
          [rf, hf]
          ]
       );
