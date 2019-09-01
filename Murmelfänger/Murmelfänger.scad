@@ -34,14 +34,14 @@ h_stab = 1; // [1:0.5:7]
 w_stab = 3; // [1:0.5:7]
 
 // Abstand Querstab Unterkante Hals innen
-d_unten = 5; // [1:0.5:7]
+d_unten = 7; // [1:0.5:7]
 
 
 // Breite des Clips, d.h. des eigentlichen flansches
 w_clip = 1; // [1:0.5:7]
 
 // Breite des Rings für die clips
-w_rand = 1.6;  // [1:0.5:7]
+w_rand = 2.0;  // [1:0.5:7]
 
 // Breite der Clips in y-Richtung
 d_clip = 8; // [1:0.5:10]
@@ -192,7 +192,7 @@ module clip_ring()
       {
          translate([-rf,rf/2,-ms])
          {
-            cube([d_flansch,d_clip,2*h_stab+h_flansch]);
+            cube([d_flansch,d_clip,some_distance]);
          }
       }
    }
