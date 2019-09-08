@@ -16,19 +16,19 @@ preview = 1; // [0:render, 1:preview]
 /* [Flasche] */
 
 // Durchmesser des Flaschenhalses innen
-d_loch = 45;  // [10:1:50]
+d_loch = 45;  // [10:1:70]
 
 // Durchmesser des Flansches oben am Flaschenhals
-d_flansch = 58; // [10:1:50]
+d_flansch = 58.6; // [10:1:70]
 
 // Höhe (Dicke) des Flansches, aussen
-h_flansch = 4.5;  // [10:1:50]
+h_flansch = 2.5;  // [1:0.251:10]
 
 
 /* [Fänger] */
 
 // Höhe der Riegelstäbe
-h_stab = 1; // [1:0.5:7]
+h_stab = 1.8; // [1:0.5:7]
 
 // Breite der Riegelstäbe
 w_stab = 3; // [1:0.5:7]
@@ -38,7 +38,7 @@ d_unten = 7; // [1:0.5:7]
 
 
 // Breite des Clips, d.h. des eigentlichen flansches
-w_clip = 1; // [1:0.5:7]
+w_clip = 2.4; // [1:0.5:7]
 
 // Breite des Rings für die clips
 w_rand = 2.0;  // [1:0.5:7]
@@ -188,12 +188,28 @@ module clip_ring()
       {
          clip_2d();
       }
-      kmirror([0,1,0])
+      union()
       {
-         translate([-rf,rf/2,-ms])
+      kmirror([1, 0, 0])
+      {
+         rotate([0, 0, 45])
          {
-            cube([d_flansch,d_clip,some_distance]);
+            translate([0,-d_clip/2])
+            {
+               cube([d_flansch,d_clip,some_distance]);
+            }
          }
+      }
+      kmirror([1, 0, 0])
+      {
+         rotate([0, 0, -30])
+         {
+            translate([0,-d_clip/2])
+            {
+               cube([d_flansch,d_clip,some_distance]);
+            }
+         }
+      }
       }
    }
 }
