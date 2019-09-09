@@ -13,12 +13,12 @@ preview = 1; // [0:render, 1:preview]
 /* [Sizes] */
 
 // Diameter of the pot to heat
-pot_d = 55;  // [30:0.5:240]
-// Hight of the dish
-dish_h = 70; // [30:1:120]
+pot_d = 58;  // [30:0.5:240]
+// Hight of the bath
+bath_h = 70; // [30:1:120]
 
 // Space for water
-w_water = 15; // [5:0.5:24]
+w_water = 10; // [5:0.5:24]
 
 /* [Hidden] */
 
@@ -29,12 +29,9 @@ w_water = 15; // [5:0.5:24]
 // *******************************************************
 // Extra parameters. These can be changed reasonably safely.
 
-// Angle of the sides of the dish
-dish_angle = 90; // [45:5:90]
+// Angle of the sides of the bath
+bath_angle = 90; // [45:5:90]
 
-h_c = 30;
-
-h_c_e = min(h_c, (dish_h-w_water)/2) + w_water;
 w = 1.8;  // Wall width
 // p = 1.2;  // Bottom, top plate hight
 c = 0.4;  // Clearance
@@ -46,9 +43,9 @@ r_r = 2;  // rounding radius
 
 tau = 2 * PI;  // π is still wrong. τ = circumference / r
 
-xy_factor = 1/tan(dish_angle);
+xy_factor = 1/tan(bath_angle);
 // To get from a hight to a horizontal width inclined correctly
-z_factor = tan(dish_angle);  // The other way around
+z_factor = tan(bath_angle);  // The other way around
 
 r_p = pot_d/2;
 r_d = r_p + w_water;
@@ -56,10 +53,35 @@ r_a = r_r + w;
 r_m = r_r + w/2;
 r_rs = r_p*0.2;
 
+// Höhe der Zentrierstege. Siehe unten.
+// h_c = 30;
 
-x_k = r_m * sin(dish_angle);
-h_k = r_m * (1 - cos(dish_angle));
-h_r = dish_h - h_k - w;
+// Höhe des Potts im Wasser
+h_pe = bath_h - w_water;
+
+// Volumen Wasser, das der Pott verdrängt
+V_pot = r_p * r_p * tau/2 * h_pe;
+
+// Fläche bad
+A_wb = r_d * r_d * tau/2;
+
+// Gesamtvolumen, Oberteil
+V_go = A_wb * h_pe;
+
+// Wasservolumen ist
+// (Näherung: gerade Zentrierstege)
+// v_wasser = v_go - v_pot - h_c * 3 * r_rs * w
+// h_c bestimmt aus
+// v_unten = r_d * r_d * tau_/2 * h_c - h_c * 3 * r_rs * w = w_wasser
+
+h_c = (V_go - V_pot) / A_wb;
+
+h_c_e = h_c + w_water - 2;
+
+
+x_k = r_m * sin(bath_angle);
+h_k = r_m * (1 - cos(bath_angle));
+h_r = bath_h - h_k - w;
 x_r = h_r * xy_factor;
 l_r = sqrt(h_r*h_r+x_r*x_r);
 r_z = r_d - x_r - x_k;
@@ -90,23 +112,23 @@ $fa = (preview) ? pa : ra;
 // Generate the parts
 
 bain_marie();
-// 2d_dish();
+// 2d_bath();
 
 // *******************************************************
 // Code for the parts themselves
 
 module bain_marie()
 {
-   dish();
+   bath();
    pot_centerers();
    pot_raisers();
 }
 
-module dish()
+module bath()
 {
    rotate_extrude()
    {
-      2d_dish();
+      2d_bath();
    }
 }
 
@@ -123,7 +145,7 @@ module pot_centerers()
             {
                translate([0,-r_rs, ms])
                {
-                  cube([r_d, 2*r_rs, 2*dish_h]);
+                  cube([r_d, 2*r_rs, 2*bath_h]);
                }
             }
          }
@@ -138,11 +160,11 @@ module full_centerer()
    {
       translate([0,0,2*ms])
       {
-         cylinder(r=r_p+w+c, h=h_c_e);
+         cylinder(r=r_p+w+c, h=h_c_e, $fn=na());
       }
       translate([0,0,ms])
       {
-         cylinder(r=r_p+c, h=h_c_e+4*ms);
+         cylinder(r=r_p+c, h=h_c_e+4*ms, $fn=na());
       }
    }
 }
@@ -161,13 +183,13 @@ module pot_raisers()
 
 module pot_raiser()
 {
-   translate([-r_p+1.6*r_rs, 0, ms])
+   translate([-r_p+1.8*r_rs, 0, ms])
    {
       cylinder(r=r_rs, h=w_water+w-ms);
    }
 }
 
-module 2d_dish()
+module 2d_bath()
 {
    square([r_z,w]);
    translate([r_z-ms,r_a])
@@ -180,7 +202,7 @@ module 2d_dish()
          {
             square(3*r_a, center=true);
          }
-         rotate(dish_angle)
+         rotate(bath_angle)
          {
             translate([0,-r_r-w-ms])
             {
@@ -192,7 +214,7 @@ module 2d_dish()
 
    translate([r_z+x_k, w/2+h_k])
    {
-      rotate(dish_angle)
+      rotate(bath_angle)
       {
          translate([-ms, -w/2])
          {
@@ -200,7 +222,7 @@ module 2d_dish()
          }
       }
    }
-   translate([r_d,dish_h-w/2])
+   translate([r_d,bath_h-w/2])
    {
       circle(r=w/2);
    }
