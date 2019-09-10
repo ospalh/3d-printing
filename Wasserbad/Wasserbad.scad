@@ -9,6 +9,7 @@
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
+part = "bm"; // [bm: bain marie, t: test]
 
 /* [Sizes] */
 
@@ -33,20 +34,25 @@ w_water = 10; // [5:0.5:24]
 bath_angle = 90; // [45:5:90]
 
 w = 1.8;  // Wall width
-// p = 1.2;  // Bottom, top plate hight
+p = 1.2;  // Bottom, top plate hight
 c = 0.4;  // Clearance
 
-r_r = 2;  // rounding radius
+r_r = 3;  // rounding radius
 
 // *******************************************************
 // Some shortcuts. These shouldn’t be changed
 
+module kmirror(maxis=[1, 0, 0])
+{
+   // Keep *and* mirror an object. Standard is left and right mirroring.
+   children();
+   mirror(maxis)
+   {
+      children();
+   }
+}
+
 tau = 2 * PI;  // π is still wrong. τ = circumference / r
-
-xy_factor = 1/tan(bath_angle);
-// To get from a hight to a horizontal width inclined correctly
-z_factor = tan(bath_angle);  // The other way around
-
 r_p = pot_d/2;
 r_d = r_p + w_water;
 r_a = r_r + w;
@@ -79,13 +85,6 @@ h_c = (V_go - V_pot) / A_wb;
 h_c_e = h_c + w_water - 2;
 
 
-x_k = r_m * sin(bath_angle);
-h_k = r_m * (1 - cos(bath_angle));
-h_r = bath_h - h_k - w;
-x_r = h_r * xy_factor;
-l_r = sqrt(h_r*h_r+x_r*x_r);
-r_z = r_d - x_r - x_k;
-
 some_distance = 50;
 ms = 0.01;  // Muggeseggele.
 
@@ -111,8 +110,16 @@ $fa = (preview) ? pa : ra;
 // *******************************************************
 // Generate the parts
 
-bain_marie();
-// 2d_bath();
+
+if ("bm" == part)
+{
+   bain_marie();
+}
+if ("t" == part)
+{
+   2d_raiser();
+}
+
 
 // *******************************************************
 // Code for the parts themselves
@@ -156,15 +163,38 @@ module pot_centerers()
 
 module full_centerer()
 {
-   difference()
+   translate([0,0,ms])
+   rotate_extrude()
    {
-      translate([0,0,2*ms])
+      2d_centerer();
+   }
+}
+
+
+module 2d_centerer()
+{
+   translate([r_p+w/2,0])
+   {
+      difference()
       {
-         cylinder(r=r_p+w+c, h=h_c_e, $fn=na());
-      }
-      translate([0,0,ms])
-      {
-         cylinder(r=r_p+c, h=h_c_e+4*ms, $fn=na());
+         translate([0,h_c_e/2])
+         {
+            square([w+2*r_r,h_c_e], center=true);
+         }
+         kmirror()
+         {
+            hull()
+            {
+               translate([-r_r-w/2, p+r_r])
+               {
+                  circle(r_r);
+               }
+               translate([-r_r-w/2-ms, p+h_c_e])
+               {
+                  square([r_r+ms,r_r]); // the hight is so we can see it
+               }
+            }
+         }
       }
    }
 }
@@ -185,45 +215,53 @@ module pot_raiser()
 {
    translate([-r_p+1.8*r_rs, 0, ms])
    {
-      cylinder(r=r_rs, h=w_water+w-ms);
+      rotate_extrude()
+      {
+         2d_raiser();
+      }
+   }
+}
+
+module 2d_raiser()
+{
+   difference()
+   {
+      square([r_rs+r_r-ms, w_water+p]);
+      hull()
+      {
+         translate([r_rs+r_r,r_r+p])
+         {
+            circle(r_r);
+         }
+         translate([r_rs, p+w_water+ms])
+         {
+            square([r_r+ms,r_r]); // the hight is so we can see it
+         }
+      }
+
    }
 }
 
 module 2d_bath()
 {
-   square([r_z,w]);
-   translate([r_z-ms,r_a])
+   difference()
    {
-      difference()
+      square([r_d+w, bath_h]);
+      hull()
       {
-         circle(r=r_a);
-         circle(r=r_r);
-         translate([-1.5*r_a,0])
+         translate([r_d-r_r,r_r+p])
          {
-            square(3*r_a, center=true);
+            circle(r_r);
          }
-         rotate(bath_angle)
+         translate([0,p])
          {
-            translate([0,-r_r-w-ms])
-            {
-               square([r_a+ms,r_r+r_a+w+ms]);
-            }
+            square([ms,ms]);
+         }
+         translate([0,bath_h+p+ms])
+         {
+            square([r_d, ms]);
          }
       }
-   }
 
-   translate([r_z+x_k, w/2+h_k])
-   {
-      rotate(bath_angle)
-      {
-         translate([-ms, -w/2])
-         {
-            square([l_r+2*ms,w]);
-         }
-      }
-   }
-   translate([r_d,bath_h-w/2])
-   {
-      circle(r=w/2);
    }
 }
