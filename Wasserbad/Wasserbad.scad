@@ -1,6 +1,12 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// NN
+// einfaches Wasserbad
+// simple bain marie
+//
+// Ein Gefäß, in das heißes (kaltes) Wasser gefüllt wird. Ein kleineres
+// Gefäß wird eingesetzt, und erwärmt oder kühlt dessen Inhalt. Einfach, da
+// nichts die Tempratur stabilisiert. Das heiße Wasser kühlt ab. Oft ist
+// das gut genug.
 //
 // © 2018–2019 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
@@ -9,6 +15,8 @@
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
+
+// What to show.
 part = "bm"; // [bm: bain marie, t: test]
 
 /* [Sizes] */
@@ -117,7 +125,8 @@ if ("bm" == part)
 }
 if ("t" == part)
 {
-   2d_raiser();
+   2d_bath();
+   // 2d_centerer();
 }
 
 
@@ -173,30 +182,16 @@ module full_centerer()
 
 module 2d_centerer()
 {
-   translate([r_p+w/2,0])
-   {
-      difference()
-      {
-         translate([0,h_c_e/2])
-         {
-            square([w+2*r_r,h_c_e], center=true);
-         }
-         kmirror()
-         {
-            hull()
-            {
-               translate([-r_r-w/2, p+r_r])
-               {
-                  circle(r_r);
-               }
-               translate([-r_r-w/2-ms, p+h_c_e])
-               {
-                  square([r_r+ms,r_r]); // the hight is so we can see it
-               }
-            }
-         }
-      }
-   }
+
+   rot_points = [
+      [r_d+ms, h_c_e-p-2*w_water],
+      [r_d+ms, h_c_e],
+      [r_p, h_c_e],
+      [r_p, h_c_e-p]
+
+      ];
+   polygon(rot_points);
+
 }
 
 module pot_raisers()
@@ -263,5 +258,9 @@ module 2d_bath()
          }
       }
 
+   }
+   translate([r_d+w/2, bath_h])
+   {
+      circle(r=w/2);
    }
 }
