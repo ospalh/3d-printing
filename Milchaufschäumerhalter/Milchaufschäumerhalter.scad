@@ -33,7 +33,6 @@ d_a = 2;  // [1:0.25:4]
 // Hight added  to the stand. The hight of the top of the funnel will be the length of your pencil plus this.
 extra_hight = 10; // [10:5:150]
 
-
 /* [Hidden] */
 
 // Done with the customizer
@@ -62,6 +61,11 @@ module kmirror(maxis=[1, 0, 0])
 }
 
 r_mf = d_mf/2;
+heh = extra_hight * 0.5; // Half the extra hight, in mm
+es_h = 20; // Extra support/stabilizer hight
+es_w = 0.8;
+// Extra support/stabilizer width. Need not be as stable as a normal
+// wall
 
 tau = 2 * PI;  // π is still wrong. τ = circumference / r
 
@@ -207,15 +211,15 @@ module base()
          }
       }
       // … and subtract everything below the xy plane.
-      translate([0,0,-l_n])
+      translate([0,0,-some_distance])
       {
-         cylinder(r=1.5*r_r, h=l_n);
+         cylinder(r=some_distance, h=some_distance);
       }
    }
    // Fill the base plate
    rotate(30)
    {
-      cylinder(r=hex_r, h=es_w, $fn=6);
+      cylinder(r=hex_r, h=2*p, $fn=6);
    }
    kmirror([0,1,0])
    {
@@ -280,9 +284,9 @@ module extra_plate()
    {
       translate([r_p_s, 0.5*r_p_l, 0])
       {
-         linear_extrude(es_w)
+         linear_extrude(p)
          {
-            polygon(es_s_p);
+            #polygon(es_s_p);
          }
       }
    }
