@@ -192,9 +192,6 @@ module stack_parts()
 
 module base()
 {
-   // hex_r = r_r + w + r_p_s;
-
-//   hex_r_l = hex_r_s * 2 / 3 * sqrt(3);
    difference()
    {
       union()
@@ -212,7 +209,7 @@ module base()
          }
       }
       // … and subtract everything below the xy plane.
-      translate([0,0,-some_distance])
+      translate([0,0,-some_distance-ms])
       {
          cylinder(r=some_distance, h=some_distance);
       }
@@ -220,56 +217,105 @@ module base()
    // Fill the base plate
    rotate(30)
    {
-      cylinder(r=hex_r, h=2*p, $fn=6);
+      cylinder(r=hex_r, h=p, $fn=6);
    }
-   kmirror([0,1,0])
+   translate([0,0,2*ms])
    {
-      translate([0, hex_r, 0])
+      kmirror([0,1,0])
       {
-
-         rotate(30)
+         translate([0, hex_r, 0])
          {
-            difference()
-            {
-               union()
-               {
-                  cylinder(h=bp_s_h, r1=r_p_l, r2=r_bp_l,$fn=6);
-                  // The shaft bit
-                  translate([0, 0 , bp_s_h])
-                  {
-                     cylinder(h=sp_h, r=r_bp_l, $fn=6);
-                  }
-                  // The extra plates. Should not interfere with the stand
-                  // without this. Anyway.
-                  rotate(-60)
-                  {
-                     extra_plate();
-                  }
-                  rotate(180)
-                  {
-                     extra_plate();
-                  }
-               }
-               // Hollow it out
-               cylinder(h=bp_s_h, r1=0, r2=r_p_l, $fn=6);
-               translate([0, 0 , bp_s_h])
-               {
-                  cylinder(h=sp_h+1,r=r_p_l, $fn=6);
-               }
 
+            rotate(30)
+            {
+               difference()
+               {
+                  union()
+                  {
+                     cylinder(h=p+h, r=r_p_l, $fn=6);
+                     translate([0,0,p])
+                     {
+                        cylinder(h=bp_s_h, r1=r_p_l, r2=r_bp_l,$fn=6);
+                     }
+                     // The shaft bit
+                     translate([0, 0 , bp_s_h+p+-ms])
+                     {
+                        cylinder(h=sp_h, r=r_bp_l, $fn=6);
+                     }
+                     // The extra plates. Should not interfere with the stand
+                     // without this. Anyway.
+                     rotate(-60)
+                     {
+                        extra_plate();
+                     }
+                     rotate(180)
+                     {
+                        extra_plate();
+                     }
+                  }
+                  // Hollow it out
+                  translate([0,0,p])
+                  {
+                     cylinder(h=bp_s_h, r1=ms, r2=r_p_l, $fn=6);
+                  }
+                  translate([0, 0 , bp_s_h+p])
+                  {
+                     cylinder(h=sp_h+1,r=r_p_l, $fn=6);
+                  }
+               }
             }
          }
       }
-
    }
+}
+
+module base_holder()
+{
+   translate([0, hex_r, 0])
+   {
+
+      rotate(30)
+      {
+         difference()
+         {
+            union()
+            {
+               cylinder(h=bp_s_h, r1=r_p_l, r2=r_bp_l,$fn=6);
+               // The shaft bit
+               translate([0, 0 , bp_s_h-ms])
+               {
+                  cylinder(h=sp_h, r=r_bp_l, $fn=6);
+               }
+               // The extra plates. Should not interfere with the stand
+               // without this. Anyway.
+               rotate(-60)
+               {
+                  extra_plate();
+               }
+               rotate(180)
+               {
+                  extra_plate();
+               }
+            }
+            // Hollow it out
+            cylinder(h=bp_s_h, r1=0, r2=r_p_l, $fn=6);
+            translate([0, 0 , bp_s_h])
+            {
+               cylinder(h=sp_h+1,r=r_p_l, $fn=6);
+            }
+
+         }
+      }
+   }
+
 }
 
 module extra_plate()
 {
    es_s_p = [
       [0, 0],
-      [es_h + r_p_l/2, 0],
-      [0, es_h + r_p_l/2]
+      [es_h + r_p_l/2-ms, 0],
+      [0, es_h + r_p_l/2-ms]
       ];
    rotate([90, 0, 0])
    {
@@ -336,13 +382,13 @@ module holder_support()
 
 module holder_hollow()
 {
-      translate([0,0,-ms])
+   translate([0,0,-ms])
+   {
+      cylinder(r1=d_1/2, r2=d_2/2, h=h+2*ms);
+      translate([0, -d_a/2,0])
       {
-         cylinder(r1=d_1/2, r2=d_2/2, h=h+2*ms);
-         translate([0, -d_a/2,0])
-         {
-            cube([d_2, d_a, h+2*ms]);
-         }
+         cube([d_2, d_a, h+2*ms]);
       }
+   }
 
 }
