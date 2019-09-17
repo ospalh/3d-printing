@@ -25,13 +25,10 @@ d_2 = 29;  // [5:0.5:40]
 h = 16;   // [10:1:40]
 
 // diameter of the milk frother itself
-d_mf = 50; // [30:1:80]
+d_mf = 60; // [30:1:80]
 
 // diameter of the gap for the axle
 d_a = 2;  // [1:0.25:4]
-
-// Hight added  to the stand. The hight of the top of the funnel will be the length of your pencil plus this.
-extra_hight = 10; // [10:5:150]
 
 /* [Hidden] */
 
@@ -61,11 +58,8 @@ module kmirror(maxis=[1, 0, 0])
 }
 
 r_mf = d_mf/2;
-heh = 5; // Half the extra hight, in mm
-es_h = 15; // Extra support/stabilizer hight
-es_w = 0.8;
-// Extra support/stabilizer width. Need not be as stable as a normal
-// wall
+es_h = 12; // Extra support/stabilizer hight
+
 
 tau = 2 * PI;  // π is still wrong. τ = circumference / r
 
@@ -100,9 +94,10 @@ tip_a = 21;  // °. Apparently standard in Germany
 r_bp_s = sqrt(2) * r_p_s;
 r_bp_l = r_bp_s * 2 / 3 * sqrt(3);
 
-sp_h = 8 * r_p_s;  // Hight of the sharpend pencil cylindrical connector bit
+sp_h = 4 * r_p_s;  // Hight of the sharpend pencil cylindrical connector bit
 usp_h = 10 * r_p_s;  // Hight of the unsharpend pencil connector bit
 
+hex_r = r_mf + r_bp_l;
 
 bp_s_h = r_bp_s / tan(tip_a/2);
 
@@ -140,6 +135,12 @@ if ("s" == part)
    preview_parts();
 }
 
+
+if ("t" == part)
+{
+   holder_support();
+}
+
 if ("st" == part)
 {
    // Use "st" during development
@@ -171,16 +172,16 @@ module stack_parts()
 {
    // intersection()
    {
-      color("yellow")
-      {
-         upholder();
-      }
       translate([0,0,30])
       {
-         color("red")
+         color("yellow")
          {
-            base();
+            upholder();
          }
+      }
+      color("red")
+      {
+         base();
       }
    }
 }
@@ -192,7 +193,7 @@ module stack_parts()
 module base()
 {
    // hex_r = r_r + w + r_p_s;
-   hex_r = r_mf/2 + r_bp_l;
+
 //   hex_r_l = hex_r_s * 2 / 3 * sqrt(3);
    difference()
    {
@@ -232,16 +233,9 @@ module base()
             {
                union()
                {
-                  // Three segments of linear extrusion
-                  // The extra
-                  cylinder(h=heh, r=r_p_l,$fn=6);
-                  // The sharpend bit
-                  translate([0, 0 , heh])
-                  {
-                     cylinder(h=bp_s_h, r1=r_p_l, r2=r_bp_l,$fn=6);
-                  }
+                  cylinder(h=bp_s_h, r1=r_p_l, r2=r_bp_l,$fn=6);
                   // The shaft bit
-                  translate([0, 0 , bp_s_h+heh])
+                  translate([0, 0 , bp_s_h])
                   {
                      cylinder(h=sp_h, r=r_bp_l, $fn=6);
                   }
@@ -257,11 +251,8 @@ module base()
                   }
                }
                // Hollow it out
-               translate([0, 0 , heh])
-               {
-                  cylinder(h=bp_s_h, r1=0, r2=r_p_l, $fn=6);
-               }
-               translate([0, 0 , bp_s_h+heh])
+               cylinder(h=bp_s_h, r1=0, r2=r_p_l, $fn=6);
+               translate([0, 0 , bp_s_h])
                {
                   cylinder(h=sp_h+1,r=r_p_l, $fn=6);
                }
@@ -286,7 +277,7 @@ module extra_plate()
       {
          linear_extrude(p)
          {
-            #polygon(es_s_p);
+            polygon(es_s_p);
          }
       }
    }
@@ -300,6 +291,7 @@ module upholder()
       union()
       {
          filled_holder();
+         holder_arm();
       }
       holder_hollow();
    }
@@ -310,14 +302,46 @@ module filled_holder()
    cylinder(r1=d_1/2+w, r2=d_2/2+w, h=h);
 }
 
+module holder_arm()
+{
+   kmirror([0,1,0])
+   {
+      holder_support();
+   }
+}
+
+module holder_support()
+{
+   bp_s_f = (r_bp_l) / r_p_l;
+   translate([0,r_mf+r_bp_l, 0])
+   {
+      rotate(30)
+      {
+         difference()
+         {
+            cylinder(h=h, r=r_bp_l, $fn=6);
+            // Hollow it out
+            translate([0,0, -ms])
+            {
+               cylinder(h=h-3*p, r=r_p_l, $fn=6);
+            }
+         }
+      }
+   }
+   translate([-w/2, 0, 0])
+   {
+      cube([w,r_mf+w,h]);
+   }
+}
+
 module holder_hollow()
 {
       translate([0,0,-ms])
       {
          cylinder(r1=d_1/2, r2=d_2/2, h=h+2*ms);
-         translate([-d_a/2, 0,0])
+         translate([0, -d_a/2,0])
          {
-            cube([d_a, d_2, h+2*ms]);
+            cube([d_2, d_a, h+2*ms]);
          }
       }
 
