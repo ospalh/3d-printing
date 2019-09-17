@@ -291,3 +291,34 @@ module extra_plate()
       }
    }
 }
+
+
+module upholder()
+{
+   difference()
+   {
+      union()
+      {
+         filled_holder();
+      }
+      holder_hollow();
+   }
+}
+
+module filled_holder()
+{
+   cylinder(r1=d_1/2+w, r2=d_2/2+w, h=h);
+}
+
+module holder_hollow()
+{
+      translate([0,0,-ms])
+      {
+         cylinder(r1=d_1/2, r2=d_2/2, h=h+2*ms);
+         translate([-d_a/2, 0,0])
+         {
+            cube([d_a, d_2, h+2*ms]);
+         }
+      }
+
+}
