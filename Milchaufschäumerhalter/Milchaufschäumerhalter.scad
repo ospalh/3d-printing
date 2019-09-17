@@ -16,16 +16,16 @@ preview = 1; // [0:render, 1:preview]
 /* [Sizes] */
 
 // lower diameter
-d_1 = 20;  // [5:0.5:40]
+d_1 = 14;  // [5:0.5:40]
 
 // higher diameter
-d_2 = 30;  // [5:0.5:40]
+d_2 = 29;  // [5:0.5:40]
 
 // hight of the holder bar
-h = 20;   // [10:1:40]
+h = 16;   // [10:1:40]
 
 // diameter of the milk frother itself
-d_mf = 60; // [30:1:80]
+d_mf = 50; // [30:1:80]
 
 // diameter of the gap for the axle
 d_a = 2;  // [1:0.25:4]
@@ -61,8 +61,8 @@ module kmirror(maxis=[1, 0, 0])
 }
 
 r_mf = d_mf/2;
-heh = extra_hight * 0.5; // Half the extra hight, in mm
-es_h = 20; // Extra support/stabilizer hight
+heh = 5; // Half the extra hight, in mm
+es_h = 15; // Extra support/stabilizer hight
 es_w = 0.8;
 // Extra support/stabilizer width. Need not be as stable as a normal
 // wall
