@@ -30,6 +30,9 @@ d_mf = 45; // [30:1:80]
 // diameter of the gap for the axle
 d_a = 2;  // [1:0.25:4]
 
+// Radius of the not quite conical wall
+r_nc = 40; // [30:1:200]
+
 /* [Hidden] */
 
 // Done with the customizer
