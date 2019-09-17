@@ -22,10 +22,10 @@ d_1 = 14;  // [5:0.5:40]
 d_2 = 29;  // [5:0.5:40]
 
 // hight of the holder bar
-h = 16;   // [10:1:40]
+h = 16;   // [10:0.1:40]
 
 // diameter of the milk frother itself
-d_mf = 60; // [30:1:80]
+d_mf = 45; // [30:1:80]
 
 // diameter of the gap for the axle
 d_a = 2;  // [1:0.25:4]
@@ -97,7 +97,8 @@ r_bp_l = r_bp_s * 2 / 3 * sqrt(3);
 sp_h = 4 * r_p_s;  // Hight of the sharpend pencil cylindrical connector bit
 usp_h = 10 * r_p_s;  // Hight of the unsharpend pencil connector bit
 
-hex_r = r_mf + r_bp_l;
+// hex_r = r_mf + r_bp_l;
+r_red = r_mf - r_bp_l;
 
 bp_s_h = r_bp_s / tan(tip_a/2);
 
@@ -201,7 +202,7 @@ module base()
          {
             rotate_extrude($fn=6)
             {
-               translate([hex_r, 0, 0])
+               translate([r_mf, 0, 0])
                {
                   circle(r=r_p_l, $fn=6);
                }
@@ -217,13 +218,13 @@ module base()
    // Fill the base plate
    rotate(30)
    {
-      cylinder(r=hex_r, h=p, $fn=6);
+      cylinder(r=r_mf, h=p, $fn=6);
    }
    translate([0,0,2*ms])
    {
       kmirror([0,1,0])
       {
-         translate([0, hex_r, 0])
+         translate([0, r_mf, 0])
          {
 
             rotate(30)
@@ -271,7 +272,7 @@ module base()
 
 module base_holder()
 {
-   translate([0, hex_r, 0])
+   translate([0, r_mf, 0])
    {
 
       rotate(30)
@@ -359,7 +360,7 @@ module holder_arm()
 module holder_support()
 {
    bp_s_f = (r_bp_l) / r_p_l;
-   translate([0,r_mf+r_bp_l, 0])
+   translate([0,r_mf, 0])
    {
       rotate(30)
       {
@@ -376,7 +377,7 @@ module holder_support()
    }
    translate([-w/2, 0, 0])
    {
-      cube([w,r_mf+w,h]);
+      cube([w,r_red+w,h]);
    }
 }
 
