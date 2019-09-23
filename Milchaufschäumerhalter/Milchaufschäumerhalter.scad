@@ -75,7 +75,8 @@ xy_factor = 1/tan(angle);
 z_factor = tan(angle);  // The other way around
 
 
-wiggle_room_factor = 1.05;
+// wiggle_room_factor = 1.05;
+wiggle_room_factor = 1.1;
 
 // The small radius of the support pencil, from center to center of face
 r_p_s = 3.2 * wiggle_room_factor;
