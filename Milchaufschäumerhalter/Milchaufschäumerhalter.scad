@@ -354,7 +354,7 @@ module upholder()
 
 module filled_holder()
 {
-   holder_base_shape(w/2);
+   holder_base_shape(w);
 }
 
 module holder_arm()
@@ -425,9 +425,9 @@ module 2d_holder_shape(ew)
       {
          rotate(-sfere_a)
          {
-            translate([-r_nc+ew,0])
+            translate([-r_nc,0])
             {
-               circle(r=r_nc+ew);
+               circle(r=r_nc);
             }
          }
       }
