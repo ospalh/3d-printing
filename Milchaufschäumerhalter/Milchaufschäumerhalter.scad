@@ -60,6 +60,10 @@ module kmirror(maxis=[1, 0, 0])
    }
 }
 
+r_1 = d_1/2;
+r_2 = d_2/2;
+d_r = r_2-r_1;
+
 r_mf = d_mf/2;
 es_h = 12; // Extra support/stabilizer hight
 
@@ -142,7 +146,8 @@ if ("s" == part)
 
 if ("t" == part)
 {
-   holder_support();
+   2d_holder_shape(0);
+   // holder_support();
 }
 
 if ("st" == part)
@@ -349,7 +354,7 @@ module upholder()
 
 module filled_holder()
 {
-   cylinder(r1=d_1/2+w, r2=d_2/2+w, h=h);
+   holder_base_shape(w/2);
 }
 
 module holder_arm()
@@ -388,11 +393,45 @@ module holder_hollow()
 {
    translate([0,0,-ms])
    {
-      cylinder(r1=d_1/2, r2=d_2/2, h=h+2*ms);
+      holder_base_shape(0);
+      // cylinder(r1=r_1, r2=R_2, h=h+2*ms);
       translate([0, -d_a/2,0])
       {
          cube([d_2, d_a, h+2*ms]);
       }
    }
 
+}
+
+
+module holder_base_shape(ew)
+{
+   rotate_extrude(convexity=6)
+   {
+      2d_holder_shape(ew);
+   }
+}
+
+
+module 2d_holder_shape(ew)
+{
+   // We cheat a bit. We ignore some angles and and stuff
+   sfere_a = asin(d_r/h);
+   echo("sfere_a", sfere_a);
+   intersection()
+   {
+      square([2*r_2,h+2*ms-0.01*ew]);
+      translate([r_2+ew,h/2])
+      {
+         rotate(-sfere_a)
+         {
+            translate([-r_nc+ew,0])
+            {
+               circle(r=r_nc+ew);
+            }
+         }
+      }
+   }
+
+   // cylinder(r1=d_1/2+ew, r2=d_2/2+ew, h=h);
 }
