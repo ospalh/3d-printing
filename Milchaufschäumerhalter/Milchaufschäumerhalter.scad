@@ -76,7 +76,7 @@ z_factor = tan(angle);  // The other way around
 
 
 // wiggle_room_factor = 1.05;
-wiggle_room_factor = 1.1;
+wiggle_room_factor = 1.15;
 
 // The small radius of the support pencil, from center to center of face
 r_p_s = 3.2 * wiggle_room_factor;
@@ -147,7 +147,7 @@ if ("s" == part)
 
 if ("t" == part)
 {
-   2d_holder_shape(0);
+   2d_holder_shape(0, ms);
    // holder_support();
 }
 
@@ -355,7 +355,7 @@ module upholder()
 
 module filled_holder()
 {
-   holder_base_shape(w);
+   holder_base_shape(w, 0);
 }
 
 module holder_arm()
@@ -394,7 +394,7 @@ module holder_hollow()
 {
    translate([0,0,-ms])
    {
-      holder_base_shape(0);
+      holder_base_shape(0, 2*ms);
       // cylinder(r1=r_1, r2=R_2, h=h+2*ms);
       translate([0, -d_a/2,0])
       {
@@ -405,28 +405,32 @@ module holder_hollow()
 }
 
 
-module holder_base_shape(ew)
+module holder_base_shape(ew, ey)
 {
    rotate_extrude(convexity=6)
    {
-      2d_holder_shape(ew);
+      2d_holder_shape(ew, ey);
    }
 }
 
 
-module 2d_holder_shape(ew)
+module 2d_holder_shape(ew, ey)
 {
    // We cheat a bit. We ignore some angles and and stuff
    sfere_a = asin(d_r/h);
    echo("sfere_a", sfere_a);
+   r_sh = sqrt(r_nc*r_nc - h*h/4);
    intersection()
    {
-      square([2*r_2,h+2*ms-0.01*ew]);
-      translate([r_2+ew,h/2])
+      translate([0,-ey])
+      {
+         square([2*r_2,h+2*ey]);
+      }
+      translate([r_1+ew, 0])
       {
          rotate(-sfere_a)
          {
-            translate([-r_nc,0])
+            translate([-r_sh,h/2])
             {
                circle(r=r_nc);
             }
