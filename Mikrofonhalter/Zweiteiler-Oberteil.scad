@@ -7,10 +7,10 @@
 
 /* [Global] */
 
-// … to preview. You will get all parts as separate STLs when you click “Create Thing”.
+// ... to preview. You will get all parts as separate STLs when you click "Create Thing".
 part = "a"; // [s: Set, a: Zweiteilhalter, b: Part B]
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 /* [Sizes] */
@@ -37,9 +37,9 @@ c = 0.4;  // Clearance
 angle = 60; // Overhangs much below 60 degrees are a problem for me
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
-tau = 2 * PI;  // π is still wrong. τ = circumference / r
+tau = 2 * PI;  // pi is still wrong. tau = circumference / r
 
 xy_factor = 1/tan(angle);
 // To get from a hight to a horizontal width inclined correctly

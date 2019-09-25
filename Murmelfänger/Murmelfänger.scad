@@ -1,16 +1,16 @@
 // -*- mode: SCAD ; c-file-style: "ellemtel" ; coding: utf-8 -*-
 //
-// Murmelfänger
+// Murmelfaenger
 //
-// © 2018–2019 Roland Sieker <ospalh@gmail.com>
+// (c) 2018-2019 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 /* [Global] */
 
-// … to preview. You will get all parts as separate STLs when you click “Create Thing”.
-part = "s"; // [s: Set, a: Murmelfänger, st: Stack test, t: test]
+// ... to preview. You will get all parts as separate STLs when you click "Create Thing".
+part = "s"; // [s: Set, a: Murmelfaenger, st: Stack test, t: test]
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 /* [Flasche] */
@@ -21,16 +21,16 @@ d_loch = 45;  // [10:1:70]
 // Durchmesser des Flansches oben am Flaschenhals
 d_flansch = 58.6; // [10:1:70]
 
-// Höhe (Dicke) des Flansches, aussen
+// Hoehe (Dicke) des Flansches, aussen
 h_flansch = 2.5;  // [1:0.251:10]
 
 
-/* [Fänger] */
+/* [Faenger] */
 
-// Höhe der Riegelstäbe
+// Hoehe der Riegelstaebe
 h_stab = 1.8; // [1:0.5:7]
 
-// Breite der Riegelstäbe
+// Breite der Riegelstaebe
 w_stab = 3; // [1:0.5:7]
 
 // Abstand Querstab Unterkante Hals innen
@@ -40,7 +40,7 @@ d_unten = 7; // [1:0.5:7]
 // Breite des Clips, d.h. des eigentlichen flansches
 w_clip = 2.4; // [1:0.5:7]
 
-// Breite des Rings für die clips
+// Breite des Rings fuer die clips
 w_rand = 2.0;  // [1:0.5:7]
 
 // Breite der Clips in y-Richtung
@@ -58,10 +58,10 @@ d_clip = 8; // [1:0.5:10]
 w = 1.8;  // Wall width
 p = 1.2;  // Bottom, top plate hight
 c = 0.4;  // Clearance
-angle = 60; // Overhangs much below 60° are a problem for me
+angle = 60; // Overhangs much below 60 degrees are a problem for me
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
 
 module kmirror(maxis=[1, 0, 0])
@@ -74,7 +74,7 @@ module kmirror(maxis=[1, 0, 0])
    }
 }
 
-tau = 2 * PI;  // π is still wrong. τ = circumference / r
+tau = 2 * PI;  // pi is still wrong. tau = circumference / r
 
 xy_factor = 1/tan(angle);
 // To get from a hight to a horizontal width inclined correctly

@@ -8,10 +8,10 @@
 
 
 
-// … to preview. You will get all parts when you click “Create Thing”.
+// ... to preview. You will get all parts when you click "Create Thing".
 part = "halter"; // [halter: lower part, einsatz: upper part, st: Stoessel, r: Rettungsschieber, s: stack, p: preview]
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 
@@ -32,7 +32,7 @@ l_rahmen = 50;
 // Hoehe == Mass normal zum Film
 // Breite oder Weite == Mass in Richtung Filmkante zu Filmkante
 
-// Die beiden wichtigen. Wenn diese falsch sind passt’s nicht oder wackelt.
+// Die beiden wichtigen. Wenn diese falsch sind passt's nicht oder wackelt.
 h_ue_a = 4.8;  // Hoehe ueber alles
 w_gesamt = 64;  // Gesamtbreite
 
@@ -78,7 +78,7 @@ c_h = 0.2;  // Spiel in Hoehe
 angle = 60; // Overhangs much below 60 degrees are a problem for me
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
 tau = 2 * PI;  // pi is still wrong. tau = circumference / r
 
@@ -110,8 +110,8 @@ h_bd = h_ue_a/2;  // Hoehe Boden oder Deckel
 
 
 // h_bk = 0.2;  // Hoehe Bildkerbe. 0.4 mm (dies * 2) sollte reichen. Fuer 1. test
-// w_br = 1;  // Extra Rand fuer Bildkerbe. (Mit der Perforation haben wir’s.)
-// l_br = 2;  // Extra Rand fuer Bildkerbe. (Mit der Perforation haben wir’s.)
+// w_br = 1;  // Extra Rand fuer Bildkerbe. (Mit der Perforation haben wir's.)
+// l_br = 2;  // Extra Rand fuer Bildkerbe. (Mit der Perforation haben wir's.)
 h_lkl = 0.75*h_bd;
 
 // *******************************************************

@@ -2,15 +2,15 @@
 //
 // A stand for my (Severin) milk frother.
 //
-// © 2018–2019 Roland Sieker <ospalh@gmail.com>
+// (c) 2018-2019 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 /* [Global] */
 
-// … to preview. You will get all parts as separate STLs when you click “Create Thing”.
+// ... to preview. You will get all parts as separate STLs when you click "Create Thing".
 part = "s"; // [s: set, a: upper holder, b: base, t: test, st: stack]
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 /* [Sizes] */
@@ -44,10 +44,10 @@ r_nc = 40; // [30:1:200]
 w = 1.8;  // Wall width
 p = 1.2;  // Bottom, top plate hight
 c = 0.4;  // Clearance
-angle = 60; // Overhangs much below 60° are a problem for me
+angle = 60; // Overhangs much below 60 degrees are a problem for me
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
 
 module kmirror(maxis=[1, 0, 0])
@@ -68,7 +68,7 @@ r_mf = d_mf/2;
 es_h = 12; // Extra support/stabilizer hight
 
 
-tau = 2 * PI;  // π is still wrong. τ = circumference / r
+tau = 2 * PI;  // pi is still wrong. tau = circumference / r
 
 xy_factor = 1/tan(angle);
 // To get from a hight to a horizontal width inclined correctly
@@ -80,7 +80,7 @@ wiggle_room_factor = 1.15;
 
 // The small radius of the support pencil, from center to center of face
 r_p_s = 3.2 * wiggle_room_factor;
-// The flat-to-flat diameter of a standard pencil is 6.4 mm. Do quite a
+// The flat-to-flat diameter of a standard pencil is 6.4 mm. Do quite a
 // bit more.
 // The max. radius (center to edge).  Also the
 // width of one pencil face.
@@ -89,16 +89,16 @@ r_p_l = r_p_s * 2 / 3 * sqrt(3);
 // Used to calculate how heigh the lug that holds the handle is
 
 // Tip angle
-tip_a = 21;  // °. Apparently standard in Germany
-// tip_a = 19;  // °. There is a German »Long Point« pencil sharpnener with 19 °.
+tip_a = 21;  //  degrees. Apparently standard in Germany
+// tip_a = 19;  //  degrees. There is a German "Long Point" pencil sharpnener with 19  degrees.
 // There are also rumors that American pencil are pointier than German ones.
-// tip_a = 24 // °. Special color pencil sharpener.
+// tip_a = 24 //  degrees. Special color pencil sharpener.
 
 // The tip angle is apparently from one side to the other side, not from
 // one side to the center line.
 
 
-// Size of the “big pencil” connector. Twice the area, half of it hollow.
+// Size of the "big pencil" connector. Twice the area, half of it hollow.
 r_bp_s = sqrt(2) * r_p_s;
 r_bp_l = r_bp_s * 2 / 3 * sqrt(3);
 
@@ -206,7 +206,7 @@ module base()
    {
       union()
       {
-         // Construct the stand ring symmetric to xy plane …
+         // Construct the stand ring symmetric to xy plane ...
          rotate(30)
          {
             rotate_extrude($fn=6)
@@ -218,7 +218,7 @@ module base()
             }
          }
       }
-      // … and subtract everything below the xy plane.
+      // ... and subtract everything below the xy plane.
       translate([0,0,-some_distance-ms])
       {
          cylinder(r=some_distance, h=some_distance);

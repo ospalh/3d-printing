@@ -8,7 +8,7 @@
 /* [Global] */
 
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 /* [Sizes] */
@@ -37,9 +37,9 @@ r_r = 2;  // Rounding radius. Reduce this for tubes < ~ 5mm
 h_p = 5;  // hight of the plug bit
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
-tau = 2 * PI;  // π is still wrong. τ = circumference / r
+tau = 2 * PI;  // pi is still wrong. tau = circumference / r
 
 
 

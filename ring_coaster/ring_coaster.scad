@@ -10,7 +10,7 @@
 // Size of the coaster's hole (mm)
 inner_diameter = 20;  // [10:1:90]
 =======
-// Size of the coaster’s hole (mm)
+// Size of the coaster's hole (mm)
 inner_diameter = 20;  // [10:1:190]
 >>>>>>> develop
 // Size of the coaster as a whole (mm)

@@ -6,7 +6,7 @@
 // Licence: CC-BY-SA 4.0
 //
 
-// … to preview. You will get both parts, if you select a stand
+// ... to preview. You will get both parts, if you select a stand
 part = "funnel"; // [funnel: funnel, stand: stand or nothing]
 
 // in cm. The neck is the thin bottom part
@@ -33,13 +33,13 @@ stand_style = 0;  // [0:Just funnel, 1:Funnel and simple stand, 3:Funnel and tri
 // Hight added  to the stand, in cm. The hight of the top of the funnel will be the length of your pencil plus this.
 extra_hight = 1; // [1:15]
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 /* [Hidden] */
 
 // Some of the values below can be carefully tweaked, changing others is a
-// bad idea. Try, and undo if it didn’t work.
+// bad idea. Try, and undo if it didn't work.
 
 xy_factor = 1/tan(funnel_angle);
 // To get from a hight to a horizontal width inclined correctly
@@ -128,7 +128,7 @@ usp_h = 10 * r_p_s;  // Hight of the unsharpend pencil connector bit
 
 bp_s_h = r_bp_s / tan(tip_a/2);
 
-// Hight of the sleeve at the bottom (as printed) of the “big pencil”
+// Hight of the sleeve at the bottom (as printed) of the "big pencil"
 // connector. The length of a pencil tip. (The angle of the outer wall
 // should come out slightly below tip_a, as the walls get thinner. We
 // (try to) maintain cross section area, not wall strength.)
@@ -384,8 +384,8 @@ module funnel_strake()
          {
             translate([0,0,w])
             {
-               // It’s possibly a rounding error, but with
-               // r=strake_r here it doesn’t perfectly
+               // It's possibly a rounding error, but with
+               // r=strake_r here it doesn't perfectly
                // align with the funnel. Use a bit more.
                cylinder(r=strake_r(), h=(r_r - r_n) / cos(funnel_angle));
             }
@@ -490,7 +490,7 @@ module stand()
    {
       union()
       {
-         // Construct the stand ring symmetric to xy plane …
+         // Construct the stand ring symmetric to xy plane ...
          rotate(30)
          {
             rotate_extrude($fn=6)
@@ -502,7 +502,7 @@ module stand()
             }
          }
       }
-      // … and subtract everything below the xy plane.
+      // ... and subtract everything below the xy plane.
       translate([0,0,-l_n])
       {
          cylinder(r=1.5*r_r, h=l_n);

@@ -3,17 +3,17 @@
 // einfaches Wasserbad
 // simple bain marie
 //
-// Ein Gefäß, in das heißes (kaltes) Wasser gefüllt wird. Ein kleineres
-// Gefäß wird eingesetzt, und erwärmt oder kühlt dessen Inhalt. Einfach, da
-// nichts die Tempratur stabilisiert. Das heiße Wasser kühlt ab. Oft ist
+// Ein Gefaess, in das heisses (kaltes) Wasser gefuellt wird. Ein kleineres
+// Gefaess wird eingesetzt, und erwaermt oder kuehlt dessen Inhalt. Einfach, da
+// nichts die Tempratur stabilisiert. Das heisse Wasser kuehlt ab. Oft ist
 // das gut genug.
 //
-// © 2018–2019 Roland Sieker <ospalh@gmail.com>
+// (c) 2018-2019 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 /* [Global] */
 
-// Set this to “render” and click on “Create Thing” when done with the setup.
+// Set this to "render" and click on "Create Thing" when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
 // What to show.
@@ -48,7 +48,7 @@ c = 0.4;  // Clearance
 r_r = 3;  // rounding radius
 
 // *******************************************************
-// Some shortcuts. These shouldn’t be changed
+// Some shortcuts. These shouldn't be changed
 
 module kmirror(maxis=[1, 0, 0])
 {
@@ -60,30 +60,30 @@ module kmirror(maxis=[1, 0, 0])
    }
 }
 
-tau = 2 * PI;  // π is still wrong. τ = circumference / r
+tau = 2 * PI;  // pi is still wrong. tau = circumference / r
 r_p = pot_d/2;
 r_d = r_p + w_water;
 r_a = r_r + w;
 r_m = r_r + w/2;
 r_rs = r_p*0.2;
 
-// Höhe der Zentrierstege. Siehe unten.
+// Hoehe der Zentrierstege. Siehe unten.
 // h_c = 30;
 
-// Höhe des Potts im Wasser
+// Hoehe des Potts im Wasser
 h_pe = bath_h - w_water;
 
-// Volumen Wasser, das der Pott verdrängt
+// Volumen Wasser, das der Pott verdraengt
 V_pot = r_p * r_p * tau/2 * h_pe;
 
-// Fläche bad
+// Flaeche bad
 A_wb = r_d * r_d * tau/2;
 
 // Gesamtvolumen, Oberteil
 V_go = A_wb * h_pe;
 
 // Wasservolumen ist
-// (Näherung: gerade Zentrierstege)
+// (Naeherung: gerade Zentrierstege)
 // v_wasser = v_go - v_pot - h_c * 3 * r_rs * w
 // h_c bestimmt aus
 // v_unten = r_d * r_d * tau_/2 * h_c - h_c * 3 * r_rs * w = w_wasser
