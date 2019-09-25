@@ -21,7 +21,7 @@ bottle_diameter = 56;  // [8:0.1:90]
 // Number of bottles in a long (odd) row.  Every other (even) row is one position shorter.
 x_count = 3;  // [2:1:10]
 // Number of rows.
-y_count = 2;  //   // [2:1:10]
+y_count = 2;  //  [2:1:10]
 // Change the basic shape of one holder
 honeycombish = 0;  // [1:Use hexagons, 0:Use circles]
 // Hight of the walls of the holders
@@ -91,7 +91,6 @@ x_step = 2*r_i+min_wall_width;
 thf = sqrt(3)/2;  // (equilateral) triangle hight factor
 y_step = x_step*thf;
 
-ms = 0.02; // Muggeseggele. To make the quick renderer work a little better.
 
 difference()
 {

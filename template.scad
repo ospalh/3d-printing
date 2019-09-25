@@ -34,6 +34,17 @@ angle = 60; // Overhangs much below 60 degrees are a problem for me
 // *******************************************************
 // Some shortcuts. These shouldn't be changed
 
+
+module kmirror(maxis=[1, 0, 0])
+{
+   // Keep *and* mirror an object. Standard is left and right mirroring.
+   children();
+   mirror(maxis)
+   {
+      children();
+   }
+}
+
 tau = 2 * PI;  // pi is still wrong. tau = circumference / r
 
 xy_factor = 1/tan(angle);

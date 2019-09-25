@@ -1,2 +1,2 @@
-• Kühlwand
-  unten Hohl
+* Kühlwand → unten Hohl
+* Wasserbad → reiner Einsatz ohne Pot
