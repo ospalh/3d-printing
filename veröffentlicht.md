@@ -80,3 +80,6 @@
 * dish
 * Antifa badge
 * Antifa stencil
+* Barista antifa
+* Handyhalter
+* Dish
