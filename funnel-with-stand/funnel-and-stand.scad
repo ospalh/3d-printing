@@ -33,6 +33,11 @@ stand_style = 0;  // [0:Just funnel, 1:Funnel and simple stand, 3:Funnel and tri
 // Hight added  to the stand, in cm. The hight of the top of the funnel will be the length of your pencil plus this.
 extra_hight = 1; // [1:15]
 
+// Measure for the smoothness of the neck/funnel joint
+joint_r_factor = 3;  // [0.25:0.25:6]
+
+
+
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
 
@@ -73,8 +78,6 @@ ms = 0.01; // Muggeseggele
 fua = funnel_angle;
 fua_b = 90 - fua;
 
-
-joint_r_factor = 3;
 
 r_j = r_n * joint_r_factor;
 
