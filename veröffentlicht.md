@@ -84,3 +84,4 @@
 * Handyhalter
 * Dish
 * Löffelhalter
+* Bügelstöpsel
