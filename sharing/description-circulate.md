@@ -6,9 +6,10 @@ So, to deter people from selling these, or rather from paying for them, i stamp 
 
 ## how to print:
 
-The actual “rubber” part should be done with soft, flexible material, at least fPLA. Use filament change. Go from the flexible material to standard PLA at 2 mm.
+The actual “rubber” part, the bottom 2 mm, should be done with soft, flexible material, at least fPLA or something like filaflex, and change to standard PLA then.
 
 ## how designt
+
 
 This was done with OpenScad. One trick i used was `hull()`, to get the plate and spars with exactly the size and shape of the text.
 
