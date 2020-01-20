@@ -2,4 +2,4 @@ There is some design history available at my [github repo](https://github.com/os
 
 ---
 
-I use “Simplified Spelling Boaad”/“Handbook of Simplified Spelling” rules.
+I use “Simplified Spelling Board”/“Handbook of Simplified Spelling” rules.
