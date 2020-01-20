@@ -5,3 +5,4 @@
 * Zweihandflaschenöffner, Warnlabel
 * Dosendurchschlag (mit Quelle): Fotos
 * Blumentopfabstandhalter
+* stamp in general
