@@ -34,7 +34,7 @@ stand_style = 0;  // [0:Just funnel, 1:Funnel and simple stand, 3:Funnel and tri
 extra_hight = 1; // [1:15]
 
 // Measure for the smoothness of the neck/funnel joint
-joint_r_factor = 3;  // [0.25:0.25:6]
+joint_r_factor = 1.75;  // [0.25:0.25:6]
 
 
 
