@@ -61,11 +61,13 @@ es_w = 0.8;
 // Extra support/stabilizer width. Need not be as stable as a normal
 // wall
 
-function strake_r() = (stand_style) ? 0 : 0.8;
+function strake_w() = (stand_style) ? 0 : 0.8;
 handle_br = 0.8;  // Hanle border radius
 
 
-r_n = (outer_neck_diameter * 5) - w - strake_r();  // inner neck radius in mm
+
+r_nst = outer_neck_diameter * 5;  // diameter at the bottom *with* strakes
+r_n = r_nst - w - strake_w();  // inner neck radius in mm
 r_r = inner_rim_diameter * 5;  // inner rim radius in mm
 l_n = neck_length * 10;  // neck_length in mm
 heh = extra_hight * 5; // Half the extra hight, in mm
@@ -147,7 +149,7 @@ e_h_l_2 = handle_l + r_r+w;
 
 some_distance = 2 * (r_r + w) + 13 * w;
 
-// fn for differently sized objects, for preview or rendering.
+// fn for differently sized objects and fs, fa; all for preview or rendering.
 pna = 40;
 pnb = 15;
 pa = 5;
@@ -173,22 +175,24 @@ if (part == "p")
 {
    preview_parts();
 }
-// preview_parts();
+
 if (part == "s")
 {
    stack_parts();
 }
-// stack_parts();
+
 if (part == "t")
 {
-   // Test shapes
-   // The funnel proper
-   difference()
+   if (0 == stand_style)
    {
-      solid_funnel(w,0);
-      solid_funnel(0,ms);
-      #funnel_neck_cutoff();
+      intersection()
+      {
+         %solid_funnel(w+strake_w(),0);
+         #funnel_strakes();
+
+      }
    }
+   // solid_funnel(w,0);
 }
 
 print_part();
@@ -196,7 +200,7 @@ print_part();
 // I used this cylinder as a modifier to set the infill to higher
 // values under the central bit of the portioner sphere, to get less
 // sag.
-// cylinder(r=0.7*r, h=r,$fn=fa());
+// cylinder(r=0.7*r, h=r,$fn=na());
 
 
 module print_part()
@@ -248,21 +252,22 @@ module stack_parts()
 // Code for the parts themselves
 
 
-// And the definitions
+
 
 // And the definitions
 module funnel()
 {
 
-   // Max height. I sort-of designed the funnel the right way up, but
+   // The funnel proper
    difference()
    {
-      solid_funnel(w,0);
+      outer_funnel();
       solid_funnel(0,ms);
       funnel_neck_cutoff();
+
    }
 
-   // just the rotationl symmetirc part
+   //
    difference()
    {
       union()
@@ -280,13 +285,6 @@ module funnel()
          else
          {
             funnel_grip();
-            for (i=[60, 180, 300])
-            {
-               rotate(i)
-               {
-                  funnel_strake();
-               }
-            }
 
          }
       }
@@ -295,7 +293,34 @@ module funnel()
    }
 }
 
+module outer_funnel()
+{
+   if (0 == stand_style)
+   {
+      intersection()
+      {
+         solid_funnel(w+strake_w(),-ms);
+         funnel_strakes();
 
+      }
+   }
+   solid_funnel(w,0);
+}
+
+
+module funnel_strakes()
+{
+   for (i=[0, 120, 240])
+   {
+      rotate(i+30)
+      {
+         translate([0,-strake_w()/2,-2*ms])
+         {
+            cube([r_r+w+strake_w()+3*ms, strake_w(), mh+l_n+4*ms]);
+         }
+      }
+   }
+}
 
 module funnel_grip()
 {
@@ -372,31 +397,6 @@ module side_cylinder()
 
 }
 
-module funnel_strake()
-{
-
-   translate([0, r_n+w, mh-l_n])
-   {
-      cylinder(r=strake_r(), h=l_n+nth);
-   }
-   rotate(30)
-   {
-      translate([-(r_r+w), 0, 0])
-      {
-         rotate([0,90-funnel_angle,0])
-         {
-            translate([0,0,w])
-            {
-               // It's possibly a rounding error, but with
-               // r=strake_r here it doesn't perfectly
-               // align with the funnel. Use a bit more.
-               cylinder(r=strake_r(), h=(r_r - r_n) / cos(funnel_angle));
-            }
-         }
-      }
-   }
-
-}
 
 module solid_funnel(x_o, z_o)
 {
@@ -445,7 +445,7 @@ module funnel_neck_cutoff()
 module funnel_support()
 {
 
-   // The funnel proper
+   // The holder lug. The Poly is bigger than needed, and we
    // subtract a bit later.
    lp_poly = [
       [r_bp_s,r_r + w - 3*w],
@@ -459,7 +459,7 @@ module funnel_support()
       // Holder plate
       polygon(lp_poly);
    }
-   //
+   // Extra support
    translate([-es_w/2,r_n+w+0.5*(r_bp_l-r_p_l),0])
    {
       cube([es_w,r_r-r_n, es_h]);

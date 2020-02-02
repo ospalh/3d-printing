@@ -86,3 +86,4 @@
 * Löffelhalter
 * Bügelstöpsel
 * circulating-books
+* Streichholzschachtelstapler
