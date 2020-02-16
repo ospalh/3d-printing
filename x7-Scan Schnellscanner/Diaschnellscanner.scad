@@ -48,7 +48,7 @@ l_scanner = 104;  // [20:1:200]
   // Rundungsradius
 r_r = 1.5;  // [0.1:0.1:3]
 
-// Länge Zentrierkerbe
+// Laenge Zentrierkerbe
 l_zk = 4;  // [0.1:0.1:20]
 // Breite Zentrierkerbe
 b_zk = 4;  // [0.1:0.1:20]
