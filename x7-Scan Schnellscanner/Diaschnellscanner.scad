@@ -6,7 +6,7 @@
 // Licence: CC-BY-SA 4.0
 
 
-
+/* [Global] */
 
 // … to preview. You will get all parts when you click “Create Thing”.
 part = "halter"; // [halter: lower part, einsatz: upper part, st: Stössel, r: Rettungsschieber, s: stack, p: preview]
@@ -15,14 +15,48 @@ part = "halter"; // [halter: lower part, einsatz: upper part, st: Stössel, r: R
 preview = 1; // [0:render, 1:preview]
 
 
+/* [Slide frame] */
+
+// Width of a slide frame in mm. Maybe set this to 50.8 mm, if American slide frames really are bigger thas 50 mm.
+w_rahmen = 50;  // [15:0.1:60]
+
+// Size of the hole for the actual picture. This is intentionally bigger than the hole in the frame.
+w_bild = 28;  // [10:0.1:55]
+// The same, in the other direction.
+l_bild = 38;  // [10:0.1:55]
+// Hight of a slide frame.
+h_rahmen = 1.7;  // [0.2:0.05:3]
+
+// Length of a slide frame. Usually the same as its length.
+l_rahmen = 50;  // [15:0.1:60]
+
+/* [Scanner] */
+
+// Hight of the whole inset
+h_ue_a = 4.8;  // [10:0.1:20]
+// Width of the whole inset
+w_gesamt = 64;  // [10:0.1:20]
+
+
+// Size of the scanner from left to right
+l_scanner = 104;  // [20:1:200]
 
 
 
-w_rahmen = 50;
-w_bild = 28;
-l_bild = 38;
-h_rahmen = 1.7;
-l_rahmen = 50;
+/* [Extra] */
+
+  // Rundungsradius
+r_r = 1.5;  // [0.1:0.1:3]
+
+// Länge Zentrierkerbe
+l_zk = 4;  // [0.1:0.1:20]
+// Breite Zentrierkerbe
+b_zk = 4;  // [0.1:0.1:20]
+// Tiefe der Zentrierkerbe
+h_zk = 1.2;  // [0.1:0.1:20]
+// Wand bzw Abstand der Zentrierkerbe vom Rand
+w_zk = 1;  // [0.1:0.1:20]
+
 
 /* [Hidden] */
 
@@ -33,14 +67,7 @@ l_rahmen = 50;
 // Breite oder Weite == Maß in Richtung Filmkante zu Filmkante
 
 // Die beiden wichtigen. Wenn diese falsch sind passt’s nicht oder wackelt.
-h_ue_a = 4.8;  // Höhe über alles
-w_gesamt = 64;  // Gesamtbreite
 
-
-
-l_scanner = 104;  // Bestimmt die Position der Stoppnase und die Breite
-// links. Nach Datenblatt
-r_r = 1.5;  // Rundungsradius
 
 l_sr = (l_scanner - l_bild)/2;
 
@@ -48,11 +75,6 @@ x_t_s = -1.5; // tweak für Stößellänge
 x_t_f = +0.5; // tweak für Rahmen
 y_t_n = -1; // tweak nut
 
-// Auch wichtig:
-l_zk = 4;  // Länge Zentrierkerbe
-b_zk = 4;  // Breite Zentrierkerbe
-h_zk = 1.2;  // Tiefe der Zentrierkerbe
-w_zk = 1;  // Wand bzw Abstand der Zentrierkerbe vom Rand
 
 l_griff = l_bild;
 w_rand = 3;
