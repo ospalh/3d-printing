@@ -428,8 +428,11 @@ module stoessel()
       linear_extrude(1, convexity=8)
       {
          text(
-            text="🢘", font="Symbola:style=Regular",
+            text="\U01f898", font="Symbola:style=Regular",
             valign="center", halign="left", size=32);
+         // Sigh. I originally had just put in the character
+         // directly. Files with just a single non-ASCII broke the
+         // customizer a while ago.
       }
    }
 }
