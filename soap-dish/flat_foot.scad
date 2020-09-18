@@ -6,13 +6,15 @@
 // Licence: CC-BY-SA 4.0
 
 
-zmin = 6;
 
 h = 6;
-w=6;
-gr = 2.4;
+w=5;
 
-gh=gr/2;
+
+gr = 2;
+
+gh=2.5;
+hb=8;
 
 module p()
 {
@@ -21,10 +23,8 @@ module p()
          [-h,-gh],
          [0,-gh],
          [0,-gh-gr],
-         [gr,-gh-gr],
-         [gr,-gh],
-         [gr,gh],
-         [gr,gh+gr],
+         [hb,-gh-gr],
+         [hb,gh+gr],
          [0,gh+gr],
          [0,gh],
          [-h,gh],
