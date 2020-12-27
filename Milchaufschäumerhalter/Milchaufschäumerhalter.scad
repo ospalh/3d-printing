@@ -2,13 +2,14 @@
 //
 // A stand for my (Severin) milk frother.
 //
-// © 2018–2019 Roland Sieker <ospalh@gmail.com>
+// © 2018–2020 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
 /* [Global] */
 
 // … to preview. You will get all parts as separate STLs when you click “Create Thing”.
-part = "s"; // [s: set, a: upper holder, b: base, t: test, st: stack]
+// part = "s"; // [s: set, a: upper holder, b: base, t: test, st: stack]
+part = "a"; // [a: upper holder, b: base]
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
@@ -18,19 +19,19 @@ preview = 1; // [0:render, 1:preview]
 // lower diameter
 d_1 = 14;  // [5:0.5:40]
 
-// higher diameter
+// upper diameter
 d_2 = 29;  // [5:0.5:40]
 
 // hight of the holder bar
 h = 16;   // [10:0.1:40]
 
-// diameter of the milk frother itself
-d_mf = 45; // [30:1:80]
+// Size of the base plate
+d_mf = 60; // [30:1:120]
 
-// diameter of the gap for the axle
+// Width of the gap for the axle
 d_a = 2;  // [1:0.25:4]
 
-// Radius of the not quite conical wall
+// Radius of the not quite conical part. Leave this alone at first.
 r_nc = 40; // [30:1:200]
 
 /* [Hidden] */
