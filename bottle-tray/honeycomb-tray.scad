@@ -28,7 +28,7 @@ y_count = 3;  //  [2:1:10]
 start_short = true;
 
 // Hight of the walls of the holders
-hight = 70; // [8:0.1:150]
+hight = 70; // [1:0.1:150]
 
 // Size of the hole in the bottom of each holder. 0 for no hole, larger than the diameter for just cylinders
 hole_diameter = 30; // [0:0.1:91]
