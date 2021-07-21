@@ -5,15 +5,15 @@
 // © 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-0 4.0
 
-d_i = 10.5;
+d_i = 13;
 r_i = d_i/2;
-h = 1;
-d_o = 20;
+h = 2;
+d_o = 25.7;
 r_o = d_o/2;
 ms = 0.01;  // Muggeseggele
 
 
-preview = 1;
+preview = 0;
 
 // fn for differently sized objects and fs, fa; all for preview or rendering.
 pna = 40;
