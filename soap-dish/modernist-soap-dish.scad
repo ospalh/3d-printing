@@ -6,23 +6,24 @@
 // (c) 2017 Roland Sieker <ospalh@gmail.com>
 // Licence: CC-BY-SA 4.0
 
-rx = 60;
-ry = 45;
-zmin = 6;
+rx = 63;
+ry = 44;
+zmin = 4;
 
-w = 3;
-g = 3;
+w = 4;
+g = 5;
 
 //
 r_spar = 3;
 rk = 4 * rx;
 zmax=30;
 
+preview = 1; // [0:render, 1:preview]
 
 p = w+g; // period
 ms = 0.01; // Muggeseggele
 
-preview = 1; // [0:render, 1:preview]
+
 
 
 // fn for differently sized objects and fs, fa; all for preview or rendering.
@@ -61,25 +62,17 @@ intersection()
             // Two support members holding it together
             rotate([0, 90, 0])
             {
-               cylinder(r=r_spar, h=2*rx, center=true);
+               cylinder(r=r_spar, h=2*rx+g, center=true);
             }
             rotate([90, 0, 0])
             {
-               cylinder(r=r_spar, h=2*ry, center=true);
+               cylinder(r=r_spar, h=2*ry+g, center=true);
             }
             // Ad hoc supports for the three outer ring bits
-            short_support(30, ry);
-            short_support(-30, ry);
-            short_support(180-30, ry);
-            short_support(180+30, ry);
-            short_support(55, ry+p);
-            short_support(-55, ry+p);
-            short_support(180-55, ry+p);
-            short_support(180+55, ry+p);
-            short_support(75, ry+2*p);
-            short_support(-75, ry+2*p);
-            short_support(180-75, ry+2*p);
-            short_support(180+75, ry+2*p);
+
+            short_support_set(50, 5);
+            short_support_set(75, 6);
+            // short_support_set(80, 8);
          }
          // The hollow
          translate([0,0,zmin+rk])
@@ -101,11 +94,20 @@ intersection()
 }
 
 
+module short_support_set(a,o)
+{
+   short_support(a, o*p);
+   short_support(-a, o*p);
+   short_support(180-a, o*p);
+   short_support(180+a, o*p);
+}
+
+
 module short_support(a,o)
 {
    rotate(a)
    {
-      translate([0, o-ms, 0])
+      translate([0, o-ms+p/2, 0])
       {
          rotate([90, 0, 0])
          {
