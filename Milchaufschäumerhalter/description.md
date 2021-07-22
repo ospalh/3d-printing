@@ -2,11 +2,10 @@ A stand for my milk frother. This fits the Severin model i hav. Use two standard
 
 Use the customizer to change it until it fits your model. Important are the top and bottom diameters and the hight. If it wobbles around, check where it doesn’t fit and change the corresponding size. Switch from “preview” to “render” when done with setting the size to get a smoother part.
 
-The version i printed was too small and tended to fall over a lot, so i increased the size afterwards, and it will come out bigger than in the pictures.
 
 ## how print
 
-This has some smallish bridges at the top of the upper pencil connectors, but they should work quite well without supports. So, over all this is an easy print. For the upper part yu need a bit of bed adhesion. Use standard methods (raft, brim) if this is a problem.
+Over all this is an easy print. For the upper part yu need a bit of bed adhesion. Use standard methods (raft, brim) if this is a problem.
 
 ## how designt
 
