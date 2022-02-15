@@ -328,7 +328,7 @@ module einsatz_ausschnitt(ec)
       translate([0, rand_unten - rand_oben, 0])
       cube([l_ue_a+2*ms, w_einsatz + ec, 2*holder_thickness], center=true);
       grip_cut();
-      mirror()
+      mirror([1,0,0])
       {
          grip_cut();
       }
