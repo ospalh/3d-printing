@@ -13,20 +13,27 @@ preview = 1; // [0:render, 1:preview]
 
 /* [Sizes] */
 
+// wedge length
+w_l = 1; // [0:0.1:20]
+
 // distance from slat
 a = 3.6;  // [1:0.1:40]
 
 // diameter
 d = 2.8;  // [1:0.1:40]
 
+// outer diameter
+d_a = 4.2;
+
 // hight of block
 h = 3.9;  // [1:0.1:40]
 
 // depth
-t = 4.5;  // [1:0.1:40]
+// t = 4.5;  // [1:0.1:40]
+t = 5.1;  // [1:0.1:40]
 
 // width
-w = 10;  // [1:0.1:40]
+w = 6.2;  // [1:0.1:40]
 
 // length
 l = 5;  // [1:0.1:40]
@@ -90,6 +97,7 @@ $fa = (preview) ? pa : ra;
 
 
 r = d/2;
+r_a = d_a/2;
 cp = a + r;
 
 // … to preview. You will get all parts as separate STLs when you click “Create Thing”.
@@ -150,12 +158,36 @@ module stack_parts()
 
 module kettending()
 {
-   translate([-t/2, 0, 0])
+   hull()
    {
-      cube([t,w,h]);
+      translate([-t/2, 0, 0])
+      {
+         cube([t,ms,h]);
+      }
+      translate([0, a+r, 0])
+      {
+         cylinder(r=r_a, h=h);
+      }
    }
    translate([0, a+r, h-ms])
    {
       cylinder(r=r, h=l);
+   }
+   if (w_l > 0)
+   {
+      hull ()
+      {
+         translate([-t/2, 0, 0])
+         {
+            translate([0, ms, 0])
+            {
+               cube([t,ms,h]);
+            }
+            translate([0, -w_l, 0])
+            {
+               cube([t,ms,ms]);
+            }
+         }
+      }
    }
 }
