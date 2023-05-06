@@ -35,7 +35,7 @@ a_2 = 20;  // Angle inwards
 l = 100; // Length of a wire. The hight will be slightly less + the feet.
 
 // Tweak this so the rings are in the right hight
-hs = 0.957 * l;
+hs = 0.955 * l;
 
 s = 360 / c;
 
@@ -69,7 +69,7 @@ module tower()
 module rings()
 {
    // ring(0, r_t);  // plate instead
-   ring(hs, 2.74*r_t);
+   ring(hs, 2.57*r_t);
 }
 
 module plate()
