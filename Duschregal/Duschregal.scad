@@ -26,7 +26,7 @@ p_1 = 0.6;  // hight of the bottom plate with the cylindrical holes
 p_2 = 1.2;  // hight of the bottom plate with the conical shapes
 p_3 = 1.8;  // hight of the bottom plate with the conical shapes
 x_step = 14.1;  // hole to hole distance
-r_hole = 1.5;  // drain holes
+r_hole = 5.9;  // drain holes
 
 w_f = 20;  // width of the fastener
 l_f = 40;  // its length
