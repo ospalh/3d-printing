@@ -179,7 +179,7 @@ module os()
       rotate([0,0,-90])
       linear_extrude(10)
    {
-      text("ospalh", font="Zeppelin", size=7, halign="center", valign="center");
+      text("ospalh", font="Neue Kabel:style=Medium", size=6.5, halign="center", valign="center");
    }
 }
 
@@ -189,6 +189,6 @@ module des()
       rotate([0,0,-90])
    linear_extrude(10)
    {
-      text("design", font="Zeppelin", size=7, halign="center", valign="center");
+      text("design", font="Neue Kabel:style=Medium", size=6.5, halign="center", valign="center");
    }
 }
