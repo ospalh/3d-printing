@@ -13,7 +13,7 @@
 w = 1.2;  // wire size
 c = 14;  // count
 
-ph=1.8;
+ph=1.0;
 rw=2;
 
 rh=17/2;
@@ -23,7 +23,7 @@ pw= 2*rh+2*w;
 
 
 //
-rbr=2;
+rbr=1.6;
 wbr = 0.4;
 
 ms=0.01;  // Muggaseggale
