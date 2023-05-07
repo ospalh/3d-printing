@@ -16,7 +16,7 @@ c = 14;  // count
 ph=1.0;
 rw=2;
 
-rh=17/2;
+rh=18/2;
 pl=40;
 pw= 2*rh+2*w;
 
@@ -53,7 +53,11 @@ difference()
    {
       cylinder(r=rh,h=ph+2*ms+1);
    }
-
+   translate([0,0, ph-0.2])
+   {
+      os();
+      des();
+   }
    translate([0, 0, -6*w])
    {
       cylinder(r=20*r_t,h=6*w);
@@ -69,7 +73,7 @@ module tower()
 module rings()
 {
    // ring(0, r_t);  // plate instead
-   ring(hs, 2.57*r_t);
+   ring(hs, 2.44*r_t);
 }
 
 module plate()
@@ -165,5 +169,32 @@ module feet(rf)
             }
          }
       }
+   }
+}
+
+
+module os()
+{
+   translate([7, 35,0])
+      rotate([0,0,-90])
+      linear_extrude(10)
+   {
+      text("OSP", font="Prisma", size=5.6, halign="center", valign="center");
+   }
+   translate([7, 20.7,0])
+      rotate([0,0,-90])
+      linear_extrude(10)
+   {
+      text("ALH", font="Prisma", size=5.6, halign="center", valign="center");
+   }
+}
+
+module des()
+{
+   translate([-7, 30,0])
+      rotate([0,0,-90])
+   linear_extrude(10)
+   {
+      text("design", font="Neue Kabel", size=6, halign="center", valign="center");
    }
 }
