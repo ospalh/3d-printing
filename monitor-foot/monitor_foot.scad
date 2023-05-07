@@ -23,8 +23,8 @@ pw= 2*rh+2*w;
 
 
 //
-rbr=1.6;
-wbr = 0.4;
+rbr=3;
+wbr = 0.8;
 
 ms=0.01;  // Muggaseggale
 
@@ -84,16 +84,16 @@ module plate()
 
 module brace()
 {
-   translate([0,pl+rh+rw-rbr-wbr, 0])
+   translate([0,rh, 0])
    {
-      rotate([50,0,0])
+      rotate([-90,0,0])
       {
          difference()
          {
-            cylinder(r=rbr+wbr,h=83.5,$fn=10);
+            cylinder(r=rbr+wbr,h=pl+rw,$fn=20);
             translate([0,0, -ms])
             {
-               cylinder(r=rbr,h=100+2*ms,$fn=10);
+               cylinder(r=rbr,h=pl+rh+rw+2*ms,$fn=20);
             }
          }
      }
