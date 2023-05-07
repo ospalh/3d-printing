@@ -175,17 +175,11 @@ module feet(rf)
 
 module os()
 {
-   translate([7, 35,0])
+   translate([7, 30,0])
       rotate([0,0,-90])
       linear_extrude(10)
    {
-      text("OSP", font="Prisma", size=5.6, halign="center", valign="center");
-   }
-   translate([7, 20.7,0])
-      rotate([0,0,-90])
-      linear_extrude(10)
-   {
-      text("ALH", font="Prisma", size=5.6, halign="center", valign="center");
+      text("ospalh", font="Zeppelin", size=7, halign="center", valign="center");
    }
 }
 
@@ -195,6 +189,6 @@ module des()
       rotate([0,0,-90])
    linear_extrude(10)
    {
-      text("design", font="Neue Kabel", size=6, halign="center", valign="center");
+      text("design", font="Zeppelin", size=7, halign="center", valign="center");
    }
 }
