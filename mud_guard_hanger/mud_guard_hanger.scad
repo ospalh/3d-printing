@@ -17,6 +17,7 @@ preview = 1; // [0:render, 1:preview]
 
 // bla bla
 b=38;
+b2=45;
 h=7.46;
 pw=20;
 ph=24;
@@ -133,8 +134,7 @@ module stack_parts()
 
 // *******************************************************
 // Code for the parts themselves
-module part_t()
-   {plate();}
+
 
 module part_a()
 {
@@ -153,10 +153,11 @@ module part_a()
    kmirror()
    {
       // translate([b/2,-r_hk+ms])
-      translate([b/2+r_hk+1,0])
       linear_extrude(ed)
       {
-         difference()
+         translate([b/2+r_hk+1,0])
+         {
+            difference()
             {
                circle(r_hk+w_hk);
                circle(r_hk);
@@ -165,7 +166,26 @@ module part_a()
                   square([r_hk+w_hk,r_hk+w_hk]);
                }
             }
+         }
+         translate([b2/2,-r_hk-w])
+         {
+            rotate(-45)
+            square([2*r_hk,w]);
+         }
+         translate([b2/2+r_hk+1,-4.5*r_hk])
+         {
+            difference()
+            {
+               circle(r_hk+w_hk);
+               circle(r_hk);
+               translate([-r_hk-w_hk-w_hk*0.2,0])
+               {
+                  square([r_hk+w_hk,2*r_hk+2*w_hk]);
+               }
+            }
+         }
       }
+
    }
 }
 
