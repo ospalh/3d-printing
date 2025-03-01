@@ -12,18 +12,18 @@
 
 
 // Capacity of the scoop in cm³ (ml)
-volume = 42; // [10:0.5:150]
+volume = 37.5; // [10:0.5:150]
 
 // Text in the second row. (First row is the size)
-label_text="Wasch";
+label_text="senkalkilo";
 
 /* [Hidden] */
 
-// label1_font="Demos LT";
-// label2_font="Demos LT";
+label1_font="Praxis Next Dan";
+label2_font="Praxis Next Dan:style=Regular Condensed";
 
-label1_font = "Barlow";
-label2_font = "Barlow Condensed";
+//label1_font = "Barlow";
+//label2_font = "Barlow Condensed";
 
 // If the printed size does to much differ, you can adjust here. It is easy
 // to calculate: [desired volume] / [printed volume] -> adjust.
@@ -34,7 +34,7 @@ wall_thickness_ = 1.8;  // I like the strong. Reduce this for more flimsy scoops
 // Tweak these to modify the label sizes
 label_thickness = 1.5;
 label1_hight = 10.0;
-label2_hight = 8.5;
+label2_hight = 7.0;
 
 label1_text= str(volume, " cm³");
 
@@ -136,7 +136,7 @@ module build_cup(points)
    intersection()
 {
    translate([0,0,z1-r2])
-      linear_extrude(hight=abs(z1)+r2,convexity=10)
+      linear_extrude(height=abs(z1)+r2,convexity=10)
       polygon([
                  [-x3-r2-.1,y0-r2-.1],
                  [x3+r2+.1,y0-r2-.1],

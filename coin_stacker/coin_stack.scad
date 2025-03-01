@@ -26,14 +26,25 @@ coin_sizes = [
    // For each coin size, add a pair with diameter and stack hight. Write
    // the stack hight as number * hight of one coin. Add p to the last
    // hight to give space for the lid.
-   [17, 5 * 1],  // FF 5 ¢ (centimes)
-   [19.55, 6 * 2.05],  // ½ FF, kleiner als 10 ¢
-   [20, 6 * 1.5],  // FF 10 ¢
-   [22.9, 1 * 2.15],  // FF 10, klein für den Wert
-   [23.6, 7 * 1.4],  // FF 20 ¢
-   [24, 6 * 1.8],  // FF 1
-   [26.3, 1 * 1.75],  // FF 2
-   [28.9, 1 * 2.15 + p]  // FF 5
+
+
+   [16.5 , 28.9],
+   [18.5 , 11.6],
+   [19.3 , 18.3],
+   [19.9 , 12],
+   [21.6 , 23.1],
+   [23.5 , 10.3],
+   [26.8 , 9],
+   [29 , 4.2+p]
+
+//   [17, 5 * 1],  // FF 5 ¢ (centimes)
+//   [19.55, 6 * 2.05],  // ½ FF, kleiner als 10 ¢
+//   [20, 6 * 1.5],  // FF 10 ¢
+//   [22.9, 1 * 2.15],  // FF 10, klein für den Wert
+//   [23.6, 7 * 1.4],  // FF 20 ¢
+//   [24, 6 * 1.8],  // FF 1
+//   [26.3, 1 * 1.75],  // FF 2
+//   [28.9, 1 * 2.15 + p]  // FF 5
    ];
 
 // *****************************************************************************
@@ -46,7 +57,8 @@ max_index = len(coin_sizes) - 1;
 
 
 // Horizontal clearance. I use a lot here. Coins may rattle a bit in the final shape, but i am OK with that.
-c = 1;  // [0.05:0.05:1.5]
+//c = 1;  // [0.05:0.05:1.5]
+c = 0.2;  // [0.05:0.05:1.5]
 
 // Hight clearance.
 ch = 0.2;  // [0.05:0.05:0.6]
