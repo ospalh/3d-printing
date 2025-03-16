@@ -31,7 +31,7 @@ letter_3 = "B";
 size = 20; // [5:1:100]
 
 // Typeface. There is a list somewhere which ones work online, or download and use one you have on your computer.
-type = "Praxis Next Dan:style=Black";
+type = "Nimbus Sans:style=Bold";
 
 /* [Tweaks] */
 
@@ -76,20 +76,6 @@ l3_y_offset = 0;  // [-10:0.01:10]
 // *******************************************************
 // Extra parameters. These can be changed reasonably safely.
 
-
-w = 1.8;  // Wall width
-p = 1.2;  // Bottom, top plate hight
-c = 0.4;  // Clearance
-angle = 60; // Overhangs much below 60° are a problem for me
-
-// *******************************************************
-// Some shortcuts. These shouldn’t be changed
-
-
-tau = 2 * PI;  // π is still wrong. τ = circumference / r
-
-
-some_distance = 50;
 ms = 0.01;  // Muggeseggele.
 
 // fn for differently sized objects and fs, fa; all for preview or rendering.
@@ -109,14 +95,14 @@ $fa = (preview) ? pa : ra;
 // *******************************************************
 // End setup
 
+$vpr = [0,0,0];
+$vpt = [(1.15+0.5) * size, size/2, 15*size];
 
 
 // *******************************************************
 // Generate the parts
 
 print_part();
-
-
 
 
 module print_part()
@@ -164,7 +150,6 @@ module onel(tl, xtw, ytw, xoff, yoff)
 
 module square_test()
 {
-
    color("green")
       {
          translate([size/2,0,0])
