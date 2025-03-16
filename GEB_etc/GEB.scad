@@ -9,7 +9,7 @@
 /* [Global] */
 
 // The part to create.
-part = "tlc"; // [tlc: three letter cube,  square_test: squareness test]
+part = "square_test"; // [tlc: three letter cube,  square_test: squareness test]
 
 // Set this to “render” and click on “Create Thing” when done with the setup.
 preview = 1; // [0:render, 1:preview]
@@ -37,21 +37,36 @@ type = "Praxis Next Dan:style=Black";
 
 // Scale letter 1 horizontally
 l1_x_tweak = 1.08;  // [0.25:0.01:4]
-
 // Scale letter 1 vertically
 l1_y_tweak = 1.08;  // [0.25:0.01:4]
 
+// Shift letter 1 horizontally
+l1_x_offset = 0;  // [-10:0.01:10]
+// Shift letter 1 vertically
+l1_y_offset = 0;  // [-10:0.01:10]
+
+
+
+
 // Scale letter 2 horizontally
 l2_x_tweak = 1.08;  // [0.25:0.01:4]
-
 // Scale letter 2 vertically
 l2_y_tweak = 1.08;  // [0.25:0.01:4]
 
+// Shift letter 2 horizontally
+l2_x_offset = 0;  // [-10:0.01:10]
+// Shift letter 1 vertically
+l2_y_offset = 0;  // [-10:0.01:10]
+
 // Scale letter 3 horizontally
 l3_x_tweak = 1.08; // [0.25:0.01:4]
-
 // Scale letter 3 vertically
 l3_y_tweak = 1.08;  // [0.25:0.01:4]
+
+// Shift letter 3 horizontally
+l3_x_offset = 0;  // [-10:0.01:10]
+// Shift letter 1 vertically
+l3_y_offset = 0;  // [-10:0.01:10]
 
 /* [Hidden] */
 
@@ -126,19 +141,19 @@ module twc(l1, l2, l3)
    {
       translate([0, size/2, 0])
          rotate([90,0,90])
-         onel(l1, l1_x_tweak, l1_y_tweak);
+         onel(l1, l1_x_tweak, l1_y_tweak, l1_x_offset, l1_y_offset);
       translate([size/2, size, 0])
          rotate([90,0,0])
-         onel(l2, l2_x_tweak, l2_y_tweak);
+         onel(l2, l2_x_tweak, l2_y_tweak, l2_x_offset, l2_y_offset);
       translate([size/2,0,0])
-         onel(l3, l3_x_tweak, l3_y_tweak);
+         onel(l3, l3_x_tweak, l3_y_tweak, l3_x_offset, l3_y_offset);
    }
 }
 
 
-module onel(tl, xtw, ytw)
+module onel(tl, xtw, ytw, xoff, yoff)
 {
-   translate([0,0,-ms])
+   translate([xoff,yoff,-ms])
       scale([xtw, ytw, 1])
       linear_extrude(size+2*ms)
       text(text=tl, size=size, font=type, halign="center");
@@ -153,11 +168,11 @@ module square_test()
       {
          translate([size/2,0,0])
          {
-         onel(letter_1, l1_x_tweak, l1_y_tweak);
+         onel(letter_1, l1_x_tweak, l1_y_tweak, l1_x_offset, l1_y_offset);
          translate([1.15*size, 0, 0])
-            onel(letter_2, l2_x_tweak, l2_y_tweak);
+            onel(letter_2, l2_x_tweak, l2_y_tweak, l2_x_offset, l2_y_offset);
          translate([2.3*size, 0, 0])
-            onel(letter_3, l3_x_tweak, l3_y_tweak);
+            onel(letter_3, l3_x_tweak, l3_y_tweak, l3_x_offset, l3_y_offset);
          }
       }
    color("red")
