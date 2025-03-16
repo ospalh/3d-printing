@@ -37,11 +37,12 @@ type = "Praxis Next Dan:style=Black";
 
 // Scale letter 1 horizontally
 l1_x_tweak = 1.08;  // [0.25:0.01:4]
-// Scale letter 1 vertically
-l1_y_tweak = 1.08;  // [0.25:0.01:4]
-
 // Shift letter 1 horizontally
 l1_x_offset = 0;  // [-10:0.01:10]
+
+
+// Scale letter 1 vertically
+l1_y_tweak = 1.08;  // [0.25:0.01:4]
 // Shift letter 1 vertically
 l1_y_offset = 0;  // [-10:0.01:10]
 
@@ -50,21 +51,21 @@ l1_y_offset = 0;  // [-10:0.01:10]
 
 // Scale letter 2 horizontally
 l2_x_tweak = 1.08;  // [0.25:0.01:4]
-// Scale letter 2 vertically
-l2_y_tweak = 1.08;  // [0.25:0.01:4]
-
 // Shift letter 2 horizontally
 l2_x_offset = 0;  // [-10:0.01:10]
+
+// Scale letter 2 vertically
+l2_y_tweak = 1.08;  // [0.25:0.01:4]
 // Shift letter 1 vertically
 l2_y_offset = 0;  // [-10:0.01:10]
 
 // Scale letter 3 horizontally
 l3_x_tweak = 1.08; // [0.25:0.01:4]
-// Scale letter 3 vertically
-l3_y_tweak = 1.08;  // [0.25:0.01:4]
-
 // Shift letter 3 horizontally
 l3_x_offset = 0;  // [-10:0.01:10]
+
+// Scale letter 3 vertically
+l3_y_tweak = 1.08;  // [0.25:0.01:4]
 // Shift letter 1 vertically
 l3_y_offset = 0;  // [-10:0.01:10]
 
