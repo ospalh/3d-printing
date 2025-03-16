@@ -184,12 +184,16 @@ module lattenecke()
 module lattenecke_links()
 {
    lattenecke();
+   translate([laenge-pg/2-pw-size_x/2,size_x/2,0])
+      hanger_a();
 }
 
 module lattenecke_rechts()
 {
    rotate(270)
       lattenecke();
+   translate([-laenge+pg/2+pw+size_x/2,size_x/2,0])
+      hanger_b();
 }
 
 
@@ -205,5 +209,62 @@ module lattending_l()
    translate([-size_x/2-ms, -size_x/2,p])
    {
       cube([laenge+2*ms, size_x, size_y+ms]);
+   }
+}
+
+
+module hanger_a()
+{
+   linear_extrude(p)
+   {
+      difference()
+      {
+         union()
+         {
+            translate([-pw-pg/2, -ms])
+               square([2*pw+pg,pw+pg+exl+2*ms]);
+            translate([0,pw+pg+exl])
+               circle(r=pw+pr1);
+         }
+         translate([0,pw+pg+exl])
+            circle(r=pr1);
+         translate([-pr1, -ms])
+            square([pg,pw+pg+exl+2*ms]);
+      }
+   }
+}
+
+
+module hanger_b()
+{
+   drr=pr1-pr2;
+   linear_extrude(p)
+   {
+      difference()
+      {
+         union()
+         {
+            translate([-pw-pg/2, -ms])
+               square([2*pw+pg,pw+pg+2*ms+drr+exl]);
+            kmirror()
+               translate([-drr,pw+pg+drr+exl])
+            {
+               circle(r=pw+pr2);
+            }
+            translate([-pg/2+drr,pg+2*pw+exl])
+               square([2*drr, pw]);
+         }
+         translate([0,pw+pg+exl])
+            kmirror()
+            translate([-drr,+drr])
+         {
+            circle(r=pr2);
+         }
+         circle(r=pr1);
+         translate([-pr1, -ms])
+            square([pg,pw+pg+2*ms+drr+exl]);
+         translate([-drr, pg+pw+exl])
+            square([2*drr, pw]);
+      }
    }
 }
